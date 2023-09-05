@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB18699F2AA7D33C00981A30 /* Sen_aventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB18699E2AA7D33C00981A30 /* Sen_aventuraApp.swift */; };
+		FB18699F2AA7D33C00981A30 /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB18699E2AA7D33C00981A30 /* SegnaventuraApp.swift */; };
 		FB1869A12AA7D33C00981A30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1869A02AA7D33C00981A30 /* ContentView.swift */; };
 		FB1869A32AA7D33D00981A30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB1869A22AA7D33D00981A30 /* Assets.xcassets */; };
 		FB1869A62AA7D33D00981A30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB1869A52AA7D33D00981A30 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FB18699B2AA7D33C00981A30 /* Señaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Señaventura.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB18699E2AA7D33C00981A30 /* Sen_aventuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sen_aventuraApp.swift; sourceTree = "<group>"; };
+		FB18699B2AA7D33C00981A30 /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB18699E2AA7D33C00981A30 /* SegnaventuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnaventuraApp.swift; sourceTree = "<group>"; };
 		FB1869A02AA7D33C00981A30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB1869A22AA7D33D00981A30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB1869A52AA7D33D00981A30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		FB18699C2AA7D33C00981A30 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FB18699B2AA7D33C00981A30 /* Señaventura.app */,
+				FB18699B2AA7D33C00981A30 /* Segnaventura.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,7 +51,7 @@
 		FB18699D2AA7D33C00981A30 /* Señaventura */ = {
 			isa = PBXGroup;
 			children = (
-				FB18699E2AA7D33C00981A30 /* Sen_aventuraApp.swift */,
+				FB18699E2AA7D33C00981A30 /* SegnaventuraApp.swift */,
 				FB1869A02AA7D33C00981A30 /* ContentView.swift */,
 				FB1869A22AA7D33D00981A30 /* Assets.xcassets */,
 				FB1869A42AA7D33D00981A30 /* Preview Content */,
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FB18699A2AA7D33C00981A30 /* Señaventura */ = {
+		FB18699A2AA7D33C00981A30 /* Segnaventura */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB1869A92AA7D33D00981A30 /* Build configuration list for PBXNativeTarget "Señaventura" */;
+			buildConfigurationList = FB1869A92AA7D33D00981A30 /* Build configuration list for PBXNativeTarget "Segnaventura" */;
 			buildPhases = (
 				FB1869972AA7D33C00981A30 /* Sources */,
 				FB1869982AA7D33C00981A30 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = "Señaventura";
+			name = Segnaventura;
 			productName = "Señaventura";
-			productReference = FB18699B2AA7D33C00981A30 /* Señaventura.app */;
+			productReference = FB18699B2AA7D33C00981A30 /* Segnaventura.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FB1869962AA7D33C00981A30 /* Build configuration list for PBXProject "Señaventura" */;
+			buildConfigurationList = FB1869962AA7D33C00981A30 /* Build configuration list for PBXProject "Segnaventura" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FB18699A2AA7D33C00981A30 /* Señaventura */,
+				FB18699A2AA7D33C00981A30 /* Segnaventura */,
 			);
 		};
 /* End PBXProject section */
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB1869A12AA7D33C00981A30 /* ContentView.swift in Sources */,
-				FB18699F2AA7D33C00981A30 /* Sen_aventuraApp.swift in Sources */,
+				FB18699F2AA7D33C00981A30 /* SegnaventuraApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +320,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FB1869962AA7D33C00981A30 /* Build configuration list for PBXProject "Señaventura" */ = {
+		FB1869962AA7D33C00981A30 /* Build configuration list for PBXProject "Segnaventura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB1869A72AA7D33D00981A30 /* Debug */,
@@ -329,7 +329,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB1869A92AA7D33D00981A30 /* Build configuration list for PBXNativeTarget "Señaventura" */ = {
+		FB1869A92AA7D33D00981A30 /* Build configuration list for PBXNativeTarget "Segnaventura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB1869AA2AA7D33D00981A30 /* Debug */,
