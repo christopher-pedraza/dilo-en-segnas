@@ -1,6 +1,6 @@
 //
-//  Sen_aventuraApp.swift
-//  Señaventura
+//  SegnaventuraApp.swift
+//  Segnaventura
 //
 //  Created by Alumno on 05/09/23.
 //
