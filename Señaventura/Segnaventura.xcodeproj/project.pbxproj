@@ -35,7 +35,7 @@
 		FB1869922AA7D33C00981A30 = {
 			isa = PBXGroup;
 			children = (
-				FB18699D2AA7D33C00981A30 /* Señaventura */,
+				FB18699D2AA7D33C00981A30 /* Segnaventura */,
 				FB18699C2AA7D33C00981A30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,7 +48,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FB18699D2AA7D33C00981A30 /* Señaventura */ = {
+		FB18699D2AA7D33C00981A30 /* Segnaventura */ = {
 			isa = PBXGroup;
 			children = (
 				FB18699E2AA7D33C00981A30 /* SegnaventuraApp.swift */,
@@ -56,7 +56,7 @@
 				FB1869A22AA7D33D00981A30 /* Assets.xcassets */,
 				FB1869A42AA7D33D00981A30 /* Preview Content */,
 			);
-			path = "Señaventura";
+			path = Segnaventura;
 			sourceTree = "<group>";
 		};
 		FB1869A42AA7D33D00981A30 /* Preview Content */ = {
