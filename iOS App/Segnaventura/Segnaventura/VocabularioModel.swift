@@ -9,7 +9,7 @@ import Foundation
 
 struct VocabularioModel : Decodable, Identifiable {
     var id = UUID()
-    var categorias : [Categorias]
+    var categorias : [Categorias]?
     
     enum CodingKeys : String, CodingKey {
         case categorias
