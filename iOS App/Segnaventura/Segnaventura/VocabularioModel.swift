@@ -9,7 +9,7 @@ import Foundation
 
 struct VocabularioModel : Decodable, Identifiable {
     var id = UUID()
-    var categorias : [Categorias]?
+    var categorias : [Categorias] = [Categorias]()
     
     enum CodingKeys : String, CodingKey {
         case categorias
@@ -19,8 +19,8 @@ struct VocabularioModel : Decodable, Identifiable {
 
 struct Categorias: Decodable, Identifiable {
     var id = UUID()
-    var nombre_categoria : String
-    var vocabulario : [Vocabulario]
+    var nombre_categoria : String = ""
+    var vocabulario : [Vocabulario] = [Vocabulario]()
     
     enum CodingKeys : String, CodingKey {
         case nombre_categoria
@@ -30,10 +30,10 @@ struct Categorias: Decodable, Identifiable {
 
 struct Vocabulario: Decodable, Identifiable {
     var id = UUID()
-    var palabra_espagnol : String
-    var url_audio : String
-    var url_video : String
-    var url_imagen : String
+    var palabra_espagnol : String = ""
+    var url_audio : String = ""
+    var url_video : String = ""
+    var url_imagen : String = ""
     
     enum CodingKeys : String, CodingKey {
         case palabra_espagnol

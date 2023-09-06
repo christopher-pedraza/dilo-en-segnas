@@ -12,7 +12,7 @@ class VocabularioViewModel : ObservableObject {
     @Published var vocabulario = VocabularioModel()
     
     func getVocabularioData() async throws {
-        guard let url = URL(string: "https://jsonkeeper.com/b/E6FK")
+        guard let url = URL(string: "https://api.npoint.io/d577f0819de195e35e31")
                 else {
                     print("Error: Invalid URL")
                     return
@@ -30,6 +30,7 @@ class VocabularioViewModel : ObservableObject {
             
             DispatchQueue.main.async {
                 self.vocabulario = results
+                print(results)
             }
     }
 }
