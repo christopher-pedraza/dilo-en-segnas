@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var VocabularioVM = VocabularioViewModel()
+    var fsm = FileSystemManager()
+    @State var strings : [String] = [""]
     
     var body: some View {
         List(VocabularioVM.vocabulario.categorias) { categoria in
@@ -25,11 +27,21 @@ struct ContentView: View {
         }
         .task {
             do {
+                try fsm.save(strings: ["Test", "Test2"])
                 try await VocabularioVM.getVocabularioData()
             } catch {
                 print("Error: No se pudo obtener los datos de las fotos.")
             }
-                    }
+        }
+        List(strings, id: \.self) { item in
+            Text(item)
+        }
+        .task {
+            do {
+                strings = try fsm.load()
+            } catch {}
+        }
+        
         Text("Test")
     }
 }
