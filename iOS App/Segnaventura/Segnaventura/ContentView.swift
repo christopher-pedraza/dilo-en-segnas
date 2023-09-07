@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var VocabularioVM = VocabularioViewModel()
-    var fsm = FileSystemManager()
+    @EnvironmentObject var VocabularioVM : VocabularioViewModel
+    @EnvironmentObject var fsm : FileSystemManager
+    
     @State var strings : [String] = [""]
     
     var body: some View {

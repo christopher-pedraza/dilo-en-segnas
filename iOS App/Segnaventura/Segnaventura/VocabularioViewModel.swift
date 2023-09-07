@@ -30,7 +30,6 @@ class VocabularioViewModel : ObservableObject {
             
             DispatchQueue.main.async {
                 self.vocabulario = results
-                print(results)
             }
     }
 }

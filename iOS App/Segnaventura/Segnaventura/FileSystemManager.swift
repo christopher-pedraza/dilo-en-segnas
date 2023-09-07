@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FileSystemManager {
+class FileSystemManager : ObservableObject{
     var fileURL: URL = {
         let docDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         return docDir.appendingPathComponent("Vocabulario.plist")
