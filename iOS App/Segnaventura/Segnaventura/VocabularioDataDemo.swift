@@ -2,21 +2,25 @@
 //  VocabularioDataDemo.swift
 //  Segnaventura
 //
-//  Created by Alumno on 11/09/23.
+//  Christopher Pedraza Pohlenz
 //
 
 import SwiftUI
 
 struct VocabularioDataDemo: View {
+    // Objeto del vocabulario (que se leyo del JSON)
     @EnvironmentObject var VocabularioVM : VocabularioViewModel
+    // Objeto que maneja los archivos del sistema
     @EnvironmentObject var fsm : FileSystemManager
     
     var body: some View {
         VStack {
+            // Lista con el vocabulario. Se itera por las categorias
             List(VocabularioVM.vocabulario.categorias) { categoria in
                 VStack {
                     Text(categoria.nombre_categoria)
                     
+                    // Se itera por el vocabulario dentro de cada categoria
                     ForEach(categoria.vocabulario) { vocabulario in
                         VStack {
                             Text(vocabulario.palabra_espagnol)
@@ -27,19 +31,11 @@ struct VocabularioDataDemo: View {
             }
             .task {
                 do {
-                    try fsm.save(strings: ["Test", "Test2"])
+                    // Se obtienen los datos del vocabulario del API
                     try await VocabularioVM.getVocabularioData()
                 } catch {
-                    print("Error: No se pudo obtener los datos de las fotos.")
+                    print("Error: No se pudo obtener los datos del API")
                 }
-            }
-            List(fsm.vocabularioAprendido, id: \.self) { item in
-                Text(item)
-            }
-            .task {
-                do {
-                    fsm.vocabularioAprendido = try fsm.load()
-                } catch {}
             }
         }
     }

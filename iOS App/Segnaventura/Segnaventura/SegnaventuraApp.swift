@@ -2,13 +2,15 @@
 //  SegnaventuraApp.swift
 //  Segnaventura
 //
-//  Created by Alumno on 05/09/23.
+//  Christopher Pedraza Pohlenz
 //
 
 import SwiftUI
 
 @main
 struct SegnaventuraApp: App {
+    // Se pasaran como environmentObjects estos dos objetos para que puedan ser usados
+    // en las demas vistas
     @StateObject var VocabularioVM = VocabularioViewModel()
     @StateObject var fsm = FileSystemManager()
     

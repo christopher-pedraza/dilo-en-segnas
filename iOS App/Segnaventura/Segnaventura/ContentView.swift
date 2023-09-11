@@ -2,13 +2,14 @@
 //  ContentView.swift
 //  Segnaventura
 //
-//  Created by Alumno on 05/09/23.
+//  Christopher Pedraza Pohlenz
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        // Tab view con las dos demos de las funcionalidades
         TabView {
             VocabularioDataDemo()
                 .tabItem {

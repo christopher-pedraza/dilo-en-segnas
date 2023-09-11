@@ -2,11 +2,12 @@
 //  VocabularioModel.swift
 //  Segnaventura
 //
-//  Created by Alumno on 05/09/23.
+//  Christopher Pedraza Pohlenz
 //
 
 import Foundation
 
+// Modelo general que contiene una lista de las categorias del vocabulario
 struct VocabularioModel : Decodable, Identifiable {
     var id = UUID()
     var categorias : [Categorias] = [Categorias]()
@@ -17,6 +18,9 @@ struct VocabularioModel : Decodable, Identifiable {
     
 }
 
+// Categorias del vocabulario.
+// Identificado por su id y nombre
+// Contiene a su vez una lista de vocabulario
 struct Categorias: Decodable, Identifiable {
     var id = UUID()
     var id_categoria : String = ""
@@ -30,6 +34,9 @@ struct Categorias: Decodable, Identifiable {
     }
 }
 
+// Vocabulario
+// Identificado por su id
+// Contiene otros datos como la palabra en espagnol, y los urls al audio, video e imagen
 struct Vocabulario: Decodable, Identifiable {
     var id = UUID()
     var id_palabra : String = ""
