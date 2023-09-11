@@ -12,7 +12,7 @@ class VocabularioViewModel : ObservableObject {
     @Published var vocabulario = VocabularioModel()
     
     func getVocabularioData() async throws {
-        guard let url = URL(string: "https://api.npoint.io/d577f0819de195e35e31")
+        guard let url = URL(string: "https://api.npoint.io/666d9d534e223ed1c8b4")
                 else {
                     print("Error: Invalid URL")
                     return

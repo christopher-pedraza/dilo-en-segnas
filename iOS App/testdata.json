@@ -1,1 +1,44 @@
-{"categorias":[{"nombre_categoria":"Frutas","vocabulario":[{"palabra_espagnol":"Manzana","url_audio":"audio Manzana","url_video":"video Manzana","url_imagen":"imagen Manzana"},{"palabra_espagnol":"Pera","url_audio":"audio Pera","url_video":"video Pera","url_imagen":"imagen Pera"}]},{"nombre_categoria":"Frutas2","vocabulario":[{"palabra_espagnol":"Manzana2","url_audio":"audio Manzana2","url_video":"video Manzana2","url_imagen":"imagen Manzana2"},{"palabra_espagnol":"Pera2","url_audio":"audio Pera2","url_video":"video Pera2","url_imagen":"imagen Pera2"}]}]}
+{
+  "categorias": [
+    {
+      "id_categoria": "FRU01",
+      "nombre_categoria": "Frutas",
+      "vocabulario": [
+        {
+          "id_palabra": "MAN01",
+          "palabra_espagnol": "Manzana",
+          "url_audio": "audio Manzana",
+          "url_video": "video Manzana",
+          "url_imagen": "imagen Manzana"
+        },
+        {
+          "id_palabra": "PER01",
+          "palabra_espagnol": "Pera",
+          "url_audio": "audio Pera",
+          "url_video": "video Pera",
+          "url_imagen": "imagen Pera"
+        }
+      ]
+    },
+    {
+      "id_categoria": "FRU02",
+      "nombre_categoria": "Frutas2",
+      "vocabulario": [
+        {
+          "id_palabra": "MAN02",
+          "palabra_espagnol": "Manzana2",
+          "url_audio": "audio Manzana2",
+          "url_video": "video Manzana2",
+          "url_imagen": "imagen Manzana2"
+        },
+        {
+          "id_palabra": "PER02",
+          "palabra_espagnol": "Pera2",
+          "url_audio": "audio Pera2",
+          "url_video": "video Pera2",
+          "url_imagen": "imagen Pera2"
+        }
+      ]
+    }
+  ]
+}

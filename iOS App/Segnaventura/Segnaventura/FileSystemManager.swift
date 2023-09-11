@@ -8,6 +8,8 @@
 import Foundation
 
 class FileSystemManager : ObservableObject{
+    @Published var vocabularioAprendido: [String] = []
+    
     var fileURL: URL = {
         let docDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         return docDir.appendingPathComponent("Vocabulario.plist")
@@ -21,6 +23,18 @@ class FileSystemManager : ObservableObject{
     func load() throws -> [String] {
         let d = try Data(contentsOf: self.fileURL)
         return try PropertyListDecoder().decode(Array<String>.self, from: d)
+    }
+    
+    func agregarPalabra(palabra: String) throws {
+        vocabularioAprendido.append(palabra)
+        try save(strings: vocabularioAprendido)
+    }
+    
+    func quitarPalabra(palabra: String) throws {
+        if let index = vocabularioAprendido.firstIndex(of: palabra) {
+            vocabularioAprendido.remove(at: index)
+        }
+        try save(strings: vocabularioAprendido)
     }
     
 }
