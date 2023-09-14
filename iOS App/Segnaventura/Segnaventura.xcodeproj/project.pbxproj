@@ -7,18 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
+		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
 		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
 		FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE782AA7D89600C7124B /* ContentView.swift */; };
 		FB74CE7B2AA7D89700C7124B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB74CE7A2AA7D89700C7124B /* Assets.xcassets */; };
 		FB74CE7E2AA7D89700C7124B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */; };
+		FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */; };
+		FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */; };
+		FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
+		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
 		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnaventuraApp.swift; sourceTree = "<group>"; };
 		FB74CE782AA7D89600C7124B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB74CE7A2AA7D89700C7124B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioModel.swift; sourceTree = "<group>"; };
+		FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioViewModel.swift; sourceTree = "<group>"; };
+		FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +61,13 @@
 		FB74CE752AA7D89600C7124B /* Segnaventura */ = {
 			isa = PBXGroup;
 			children = (
+				FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */,
+				FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */,
+				FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */,
 				FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */,
 				FB74CE782AA7D89600C7124B /* ContentView.swift */,
+				FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */,
+				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
 				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
 				FB74CE7C2AA7D89700C7124B /* Preview Content */,
 			);
@@ -137,6 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */,
+				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
+				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
+				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
+				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
 				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
 			);
