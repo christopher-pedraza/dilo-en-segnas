@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct VideosActivity: View {
+    @EnvironmentObject var VideoVM : VideoViewModel
+    
     var body: some View {
         VStack {
             Text("Titulo")

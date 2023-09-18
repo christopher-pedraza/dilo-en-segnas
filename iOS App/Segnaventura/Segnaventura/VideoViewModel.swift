@@ -1,5 +1,5 @@
 //
-//  VocabularioViewModel.swift
+//  VideoViewModel.swift
 //  Segnaventura
 //
 //  Christopher Pedraza Pohlenz
@@ -14,7 +14,7 @@ class VideoViewModel : ObservableObject {
     
     // Funcion para leer un JSON de un API en linea y desearizarlo para poder guardarlo
     // en un objeto que se pueda luego usar en la aplicacion
-    func getVocabularioData() async throws {
+    func getVideosData() async throws {
         // Guarda el URL donde esta almacenado el JSON
         guard let url = URL(string: "https://api.npoint.io/020de1de6fdd67602ec1")
                 else {
