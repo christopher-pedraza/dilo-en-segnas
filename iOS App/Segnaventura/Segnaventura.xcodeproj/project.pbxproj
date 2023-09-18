@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2922AB7CE980048411D /* VideoModel.swift */; };
+		9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2942AB7D6910048411D /* VideoViewModel.swift */; };
+		9D82A2972AB7DEF70048411D /*  VideosActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2962AB7DEF70048411D /*  VideosActivity.swift */; };
+		9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2982AB7DF2B0048411D /* VideoView.swift */; };
 		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
 		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
 		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		9D82A2922AB7CE980048411D /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		9D82A2942AB7D6910048411D /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		9D82A2962AB7DEF70048411D /*  VideosActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " VideosActivity.swift"; sourceTree = "<group>"; };
+		9D82A2982AB7DF2B0048411D /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
 		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
 		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +77,9 @@
 				FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */,
 				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
 				9D82A2922AB7CE980048411D /* VideoModel.swift */,
+				9D82A2942AB7D6910048411D /* VideoViewModel.swift */,
+				9D82A2962AB7DEF70048411D /*  VideosActivity.swift */,
+				9D82A2982AB7DF2B0048411D /* VideoView.swift */,
 				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
 				FB74CE7C2AA7D89700C7124B /* Preview Content */,
 			);
@@ -156,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */,
+				9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */,
 				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
 				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
@@ -163,6 +173,8 @@
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
 				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
+				9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */,
+				9D82A2972AB7DEF70048411D /*  VideosActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  VideoModel.swift
 //  Segnaventura
 //
-//  Created by Christopher Pedraza on 17/09/23.
+//  Created by Christopher Pedraza
 //
 
 import Foundation
