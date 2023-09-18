@@ -1,0 +1,63 @@
+{
+	"titulo": "Demo",
+	"cantidadPartes": 2,
+	"partes": [
+		{
+			"titulo": "Lugares",
+			"idVideo": "BCyjT6lkAg4",
+			"preguntas": [
+				{
+					"pregunta": "Pregunta de ejemplo 1",
+					"respuestas": [
+						{"respuesta": "Respuesta 1"},
+						{"respuesta": "Respuesta 2"},
+						{"respuesta": "Respuesta 3"},
+						{"respuesta": "Respuesta 4"}
+					]
+				},
+                {
+                    "pregunta": "Pregunta de ejemplo 2",
+                    "respuestas": [
+                        {"respuesta": "Respuesta 1"},
+                        {"respuesta": "Respuesta 2"}
+                    ]
+                }
+			]
+		},
+        {
+            "titulo": "Escuelas",
+            "idVideo": "Y4Yv7sHJvMU",
+            "preguntas": [
+                {
+                    "pregunta": "Pregunta de ejemplo 1",
+                    "respuestas": [
+                        {"respuesta": "Respuesta 1"},
+                        {"respuesta": "Respuesta 2"},
+                        {"respuesta": "Respuesta 3"},
+                        {"respuesta": "Respuesta 4"}
+                    ]
+                },
+                {
+                    "pregunta": "Pregunta de ejemplo 2",
+                    "respuestas": [
+                        {"respuesta": "Respuesta 1"},
+                        {"respuesta": "Respuesta 2"},
+                        {"respuesta": "Respuesta 3"},
+                        {"respuesta": "Respuesta 4"},
+                        {"respuesta": "Respuesta 5"},
+                        {"respuesta": "Respuesta 6"},
+                        {"respuesta": "Respuesta 7"},
+                        {"respuesta": "Respuesta 8"}
+                    ]
+                },
+                {
+                    "pregunta": "Pregunta de ejemplo 3",
+                    "respuestas": [
+                        {"respuesta": "Respuesta 1"},
+                        {"respuesta": "Respuesta 2"}
+                    ]
+                }
+            ]
+        }
+	]
+}

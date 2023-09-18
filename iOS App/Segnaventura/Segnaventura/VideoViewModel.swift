@@ -16,7 +16,7 @@ class VideoViewModel : ObservableObject {
     // en un objeto que se pueda luego usar en la aplicacion
     func getVocabularioData() async throws {
         // Guarda el URL donde esta almacenado el JSON
-        guard let url = URL(string: "")
+        guard let url = URL(string: "https://api.npoint.io/020de1de6fdd67602ec1")
                 else {
                     print("Error: Invalid URL")
                     return
@@ -32,8 +32,8 @@ class VideoViewModel : ObservableObject {
                 return
             }
             
-            // Los datos obtenidos del API se decodifican usando la estructura en el VocabularioModel
-            // Para crear un objeto de VocabularioModel
+            // Los datos obtenidos del API se decodifican usando la estructura en el VideoModel
+            // Para crear un objeto de VideoModel
             let results = try JSONDecoder().decode(VideoModel.self, from: data)
             DispatchQueue.main.async {
                 self.videos = results
