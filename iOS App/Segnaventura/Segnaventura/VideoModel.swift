@@ -10,10 +10,12 @@ import Foundation
 // Modelo general que contiene una lista de las categorias del vocabulario
 struct VideoModel : Decodable, Identifiable {
     var id = UUID()
+    var titulo : String = ""
     var cantidadPartes : Int = 0
     var partes : [Partes] = [Partes]()
     
     enum CodingKeys : String, CodingKey {
+        case titulo
         case cantidadPartes
         case partes
     }
