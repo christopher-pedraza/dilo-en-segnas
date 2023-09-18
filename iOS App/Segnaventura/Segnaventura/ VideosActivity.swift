@@ -11,12 +11,20 @@ struct VideosActivity: View {
     @EnvironmentObject var VideoVM : VideoViewModel
     
     var body: some View {
-        VStack {
-            Text("Titulo")
-            VideoView(videoID: "BCyjT6lkAg4")
-                .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height * 0.3)
-                .cornerRadius(12)
-                .padding(.horizontal, 24)
+        NavigationStack {
+            List(VideoVM.videos.partes, id: \.self) { parte in
+                NavigationLink(parte.idVideo, parte.preguntas)
+            }
+            .navigationDestination(for: IndividualVideoActivity.self) { parte in
+                IndividualVideoActivity(videoID: parte.videoID, preguntas: parte.preguntas)
+            }
+        }
+        .task {
+            do {
+                try await VideoVM.getVideosData()
+            } catch {
+                print("Error: No se pudo obtener los datos del API")
+            }
         }
     }
 }

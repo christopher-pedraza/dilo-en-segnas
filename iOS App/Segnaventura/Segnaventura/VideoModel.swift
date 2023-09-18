@@ -21,7 +21,7 @@ struct VideoModel : Decodable, Identifiable {
     }
 }
 
-struct Partes : Decodable, Identifiable {
+struct Partes : Decodable, Identifiable, Hashable {
     var id = UUID()
     var titulo : String = ""
     var idVideo : String = ""
