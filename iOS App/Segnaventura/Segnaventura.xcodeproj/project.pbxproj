@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2922AB7CE980048411D /* VideoModel.swift */; };
 		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
 		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
 		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D82A2922AB7CE980048411D /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
 		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
 		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				FB74CE782AA7D89600C7124B /* ContentView.swift */,
 				FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */,
 				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
+				9D82A2922AB7CE980048411D /* VideoModel.swift */,
 				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
 				FB74CE7C2AA7D89700C7124B /* Preview Content */,
 			);
@@ -155,6 +158,7 @@
 				FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */,
 				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
+				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
