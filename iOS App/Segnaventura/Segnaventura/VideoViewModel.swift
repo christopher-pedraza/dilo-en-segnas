@@ -11,10 +11,13 @@ import SwiftUI
 class VideoViewModel : ObservableObject {
     // Estructura para deserializar el JSON
     @Published var videos = VideoModel()
+    // Variable para checar si ya se acabo de cargar los datos de la API
+    @Published var isLoading = false
     
     // Funcion para leer un JSON de un API en linea y desearizarlo para poder guardarlo
     // en un objeto que se pueda luego usar en la aplicacion
     func getVideosData() async throws {
+        isLoading = true
         // Guarda el URL donde esta almacenado el JSON
         guard let url = URL(string: "https://api.npoint.io/020de1de6fdd67602ec1")
                 else {
@@ -36,7 +39,10 @@ class VideoViewModel : ObservableObject {
             // Para crear un objeto de VideoModel
             let results = try JSONDecoder().decode(VideoModel.self, from: data)
             DispatchQueue.main.async {
+                print(results)
                 self.videos = results
+                self.isLoading = false
             }
+        isLoading = false
     }
 }

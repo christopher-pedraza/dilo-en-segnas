@@ -11,19 +11,26 @@ struct VideosActivity: View {
     @EnvironmentObject var VideoVM : VideoViewModel
     
     var body: some View {
-        NavigationStack {
-            List(VideoVM.videos.partes, id: \.self) { parte in
-                NavigationLink(parte.idVideo, parte.preguntas)
-            }
-            .navigationDestination(for: IndividualVideoActivity.self) { parte in
-                IndividualVideoActivity(videoID: parte.videoID, preguntas: parte.preguntas)
-            }
+        if VideoVM.isLoading && VideoVM.videos.partes.isEmpty {
+            ProgressView()
         }
-        .task {
+        else {
+            TabView {
+                ForEach($VideoVM.videos.partes) { $parte in
+                    IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .onAppear(perform: downloadVideos)
+        }
+    }
+    
+    func downloadVideos() {
+        Task {
             do {
                 try await VideoVM.getVideosData()
             } catch {
-                print("Error: No se pudo obtener los datos del API")
             }
         }
     }
@@ -34,3 +41,4 @@ struct VideosActivity_Previews: PreviewProvider {
         VideosActivity()
     }
 }
+

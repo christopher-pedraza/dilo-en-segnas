@@ -21,7 +21,7 @@ struct VideoModel : Decodable, Identifiable {
     }
 }
 
-struct Partes : Decodable, Identifiable, Hashable {
+struct Partes : Decodable, Identifiable {
     var id = UUID()
     var titulo : String = ""
     var idVideo : String = ""
@@ -34,7 +34,7 @@ struct Partes : Decodable, Identifiable, Hashable {
     }
 }
 
-struct Pregunta : Decodable, Identifiable {
+struct Pregunta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var pregunta : String = ""
     var respuestas : [Respuesta] = [Respuesta]()
@@ -45,7 +45,7 @@ struct Pregunta : Decodable, Identifiable {
     }
 }
 
-struct Respuesta : Decodable, Identifiable {
+struct Respuesta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var respuesta : String = ""
     
