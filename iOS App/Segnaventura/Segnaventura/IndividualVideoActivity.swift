@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct IndividualVideoActivity: View {
-    // @EnvironmentObject var VideoVM : VideoViewModel
-    
     let videoID : String
     let preguntas : [Pregunta]
     
@@ -38,6 +36,24 @@ struct IndividualVideoActivity: View {
         }
     }
 }
+
+struct VideoQuizButton: View {
+    @State private var didTap : Bool = false
+    let text : String
+    let colorDefault : Color
+    let colorPressed : Color
+    
+    var body: some View {
+        Button(action: {
+            self.didTap = true
+        }) {
+            Text(text)
+                .font(.system(size: 24))
+        }
+        .foregroundColor(didTap ? colorPressed : colorDefault)
+    }
+}
+
 
 struct IndividualVideoActivity_Previews: PreviewProvider {
     static var previews: some View {
