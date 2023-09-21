@@ -15,6 +15,7 @@ struct VideosActivity: View {
             ForEach($VideoVM.videos.partes) { $parte in
                 IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas)
             }
+            // Agregar vista de finalizacion de quiz aqui
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         .indexViewStyle(.page(backgroundDisplayMode: .always))

@@ -28,16 +28,14 @@ struct IndividualVideoActivity: View {
                 ForEach(preguntas, id: \.self) { pregunta in
                     Section(header: Text(pregunta.pregunta)) {
                         ForEach(pregunta.respuestas, id: \.self) { respuesta in
-                            Button(respuesta.respuesta) {}
+                            //Button(action: {}, label: {Text(respuesta.respuesta)})
+                            VideoQuizButton(text: respuesta.respuesta, colorDefault: Color.red, colorPressed: Color.yellow)
                         }
                     }
                 }
             }
-            Button(action: saveData) {
-                Label("Next", systemImage: "arrow.up")
-            }
+            .padding([.bottom], 40)
         }
-        .padding([.bottom], 40)
     }
 }
 
