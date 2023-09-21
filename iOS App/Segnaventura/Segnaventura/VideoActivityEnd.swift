@@ -14,6 +14,7 @@ struct VideoActivityEnd: View {
     var body: some View {
         VStack {
             Text("\(correctAnswers)/\(maxCorrectas)")
+                .font(.system(size: 48))
             Button(action: {
                 
             }) {
@@ -21,6 +22,7 @@ struct VideoActivityEnd: View {
                     .font(.system(size: 24))
             }
             .disabled(correctAnswers != maxCorrectas)
+            .padding(.top, 40)
         }
     }
 }

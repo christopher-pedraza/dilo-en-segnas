@@ -11,6 +11,7 @@ struct IndividualVideoActivity: View {
     let videoID : String
     let preguntas : [Pregunta]
     @Binding var correctAnswers : Int
+    @State var alreadyAnswered : [Bool]
     
     func saveData() {
         
@@ -24,10 +25,10 @@ struct IndividualVideoActivity: View {
                 .padding(.horizontal, 24)
             
             Form {
-                ForEach(preguntas, id: \.self) { pregunta in
+                ForEach(Array(preguntas.enumerated()), id: \.offset) { index, pregunta in                    
                     Section(header: Text(pregunta.pregunta)) {
                         ForEach(pregunta.respuestas, id: \.self) { respuesta in
-                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.esCorrecta, correctAnswers: $correctAnswers)
+                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.esCorrecta, index: index, correctAnswers: $correctAnswers, alreadyAnswered: $alreadyAnswered)
                         }
                     }
                 }
@@ -41,10 +42,13 @@ struct VideoQuizButton: View {
     @State private var didTap : Bool = false
     let text : String
     let esCorrecta : Bool
+    let index : Int
+    
     private let colorDefault : Color = Color.black
     private let colorPressed : Color = Color.black
     
     @Binding var correctAnswers : Int
+    @Binding var alreadyAnswered : [Bool]
     
     var body: some View {
         Button(action: {
@@ -57,6 +61,7 @@ struct VideoQuizButton: View {
                 .font(.system(size: 24))
         }
         .foregroundColor(didTap ? (esCorrecta ? Color.green : Color.red) : colorDefault)
+        .disabled(alreadyAnswered[index])
     }
 }
 
