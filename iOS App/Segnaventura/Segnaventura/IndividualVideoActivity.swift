@@ -24,16 +24,17 @@ struct IndividualVideoActivity: View {
                 .cornerRadius(12)
                 .padding(.horizontal, 24)
             
-            ScrollView {
-                ForEach(preguntas, id: \.self) { item in
-                    Text(item.pregunta)
-                    ForEach(item.respuestas, id: \.self) { respuesta in
-                        Text(respuesta.respuesta)
+            Form {
+                ForEach(preguntas, id: \.self) { pregunta in
+                    Section(header: Text(pregunta.pregunta)) {
+                        ForEach(pregunta.respuestas, id: \.self) { respuesta in
+                            Button(respuesta.respuesta) {}
+                        }
                     }
                 }
-                Button(action: saveData) {
-                    Label("Next", systemImage: "arrow.up")
-                }
+            }
+            Button(action: saveData) {
+                Label("Next", systemImage: "arrow.up")
             }
         }
         .padding([.bottom], 40)

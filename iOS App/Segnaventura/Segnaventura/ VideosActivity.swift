@@ -11,19 +11,14 @@ struct VideosActivity: View {
     @EnvironmentObject var VideoVM : VideoViewModel
     
     var body: some View {
-        if VideoVM.isLoading && VideoVM.videos.partes.isEmpty {
-            ProgressView()
-        }
-        else {
-            TabView {
-                ForEach($VideoVM.videos.partes) { $parte in
-                    IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas)
-                }
+        TabView {
+            ForEach($VideoVM.videos.partes) { $parte in
+                IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas)
             }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
-            .onAppear(perform: downloadVideos)
         }
+        .tabViewStyle(.page(indexDisplayMode: .always))
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .onAppear(perform: downloadVideos)
     }
     
     func downloadVideos() {
