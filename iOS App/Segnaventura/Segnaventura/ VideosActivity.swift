@@ -9,13 +9,14 @@ import SwiftUI
 
 struct VideosActivity: View {
     @EnvironmentObject var VideoVM : VideoViewModel
+    @State var correctAnswers : Int
     
     var body: some View {
         TabView {
             ForEach($VideoVM.videos.partes) { $parte in
-                IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas)
+                IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas, correctAnswers: $correctAnswers)
             }
-            // Agregar vista de finalizacion de quiz aqui
+            VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: VideoVM.videos.correctas)
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         .indexViewStyle(.page(backgroundDisplayMode: .always))
@@ -32,9 +33,10 @@ struct VideosActivity: View {
     }
 }
 
+/*
 struct VideosActivity_Previews: PreviewProvider {
     static var previews: some View {
-        VideosActivity()
+        VideosActivity(correctAnswers: <#Int#>)
     }
 }
-
+*/

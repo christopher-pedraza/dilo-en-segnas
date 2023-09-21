@@ -10,6 +10,7 @@ import SwiftUI
 struct IndividualVideoActivity: View {
     let videoID : String
     let preguntas : [Pregunta]
+    @Binding var correctAnswers : Int
     
     func saveData() {
         
@@ -26,8 +27,7 @@ struct IndividualVideoActivity: View {
                 ForEach(preguntas, id: \.self) { pregunta in
                     Section(header: Text(pregunta.pregunta)) {
                         ForEach(pregunta.respuestas, id: \.self) { respuesta in
-                            //Button(action: {}, label: {Text(respuesta.respuesta)})
-                            VideoQuizButton(text: respuesta.respuesta, colorDefault: Color.black, colorPressed: respuesta.esCorrecta ? Color.green : Color.red)
+                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.esCorrecta, correctAnswers: $correctAnswers)
                         }
                     }
                 }
@@ -40,23 +40,30 @@ struct IndividualVideoActivity: View {
 struct VideoQuizButton: View {
     @State private var didTap : Bool = false
     let text : String
-    let colorDefault : Color
-    let colorPressed : Color
+    let esCorrecta : Bool
+    private let colorDefault : Color = Color.black
+    private let colorPressed : Color = Color.black
+    
+    @Binding var correctAnswers : Int
     
     var body: some View {
         Button(action: {
             self.didTap = true
+            if esCorrecta {
+                correctAnswers += 1
+            }
         }) {
             Text(text)
                 .font(.system(size: 24))
         }
-        .foregroundColor(didTap ? colorPressed : colorDefault)
+        .foregroundColor(didTap ? (esCorrecta ? Color.green : Color.red) : colorDefault)
     }
 }
 
-
+/*
 struct IndividualVideoActivity_Previews: PreviewProvider {
     static var previews: some View {
-        IndividualVideoActivity(videoID: "Y4Yv7sHJvMU", preguntas: [Pregunta]())
+        IndividualVideoActivity(videoID: "Y4Yv7sHJvMU", preguntas: [Pregunta](), correctAnswers: <#Binding<Int>#>)
     }
 }
+*/

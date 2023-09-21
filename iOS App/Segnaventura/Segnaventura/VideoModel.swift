@@ -12,11 +12,13 @@ struct VideoModel : Decodable, Identifiable {
     var id = UUID()
     var titulo : String = ""
     var cantidadPartes : Int = 0
+    var correctas : Int = 0
     var partes : [Partes] = [Partes]()
     
     enum CodingKeys : String, CodingKey {
         case titulo
         case cantidadPartes
+        case correctas
         case partes
     }
 }

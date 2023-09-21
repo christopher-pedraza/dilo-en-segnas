@@ -1,6 +1,7 @@
 {
 	"titulo": "Demo",
 	"cantidadPartes": 2,
+    "correctas": 6,
 	"partes": [
 		{
 			"titulo": "Lugares",
@@ -14,7 +15,7 @@
                             "esCorrecta": true
                         },
 						{
-                            "respuesta": "Respuesta 2",
+                            "respuesta": "Respuesta con un texto muy largo, para probar si se visualiza bien",
                             "esCorrecta": false
                         },
 						{
