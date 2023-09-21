@@ -48,8 +48,10 @@ struct Pregunta : Decodable, Identifiable, Hashable {
 struct Respuesta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var respuesta : String = ""
+    var esCorrecta : Bool = false
     
     enum CodingKeys : String, CodingKey {
         case respuesta
+        case esCorrecta
     }
 }

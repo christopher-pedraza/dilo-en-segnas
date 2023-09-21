@@ -9,17 +9,35 @@
 				{
 					"pregunta": "Pregunta de ejemplo 1",
 					"respuestas": [
-						{"respuesta": "Respuesta 1"},
-						{"respuesta": "Respuesta 2"},
-						{"respuesta": "Respuesta 3"},
-						{"respuesta": "Respuesta 4"}
+						{
+                            "respuesta": "Respuesta 1 - Correcta",
+                            "esCorrecta": true
+                        },
+						{
+                            "respuesta": "Respuesta 2",
+                            "esCorrecta": false
+                        },
+						{
+                            "respuesta": "Respuesta 3",
+                            "esCorrecta": false
+                        },
+						{
+                            "respuesta": "Respuesta 4",
+                            "esCorrecta": false
+                        }
 					]
 				},
                 {
                     "pregunta": "Pregunta de ejemplo 2",
                     "respuestas": [
-                        {"respuesta": "Respuesta 1"},
-                        {"respuesta": "Respuesta 2"}
+                        {
+                            "respuesta": "Respuesta 1 - Correcta",
+                            "esCorrecta": true
+                        },
+                        {
+                            "respuesta": "Respuesta 2",
+                            "esCorrecta": false
+                        }
                     ]
                 }
 			]
@@ -31,30 +49,72 @@
                 {
                     "pregunta": "Pregunta de ejemplo 1",
                     "respuestas": [
-                        {"respuesta": "Respuesta 1"},
-                        {"respuesta": "Respuesta 2"},
-                        {"respuesta": "Respuesta 3"},
-                        {"respuesta": "Respuesta 4"}
+                        {
+                            "respuesta": "Respuesta 1",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 2 - Correcta",
+                            "esCorrecta": true
+                        },
+                        {
+                            "respuesta": "Respuesta 3",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 4",
+                            "esCorrecta": false
+                        }
                     ]
                 },
                 {
                     "pregunta": "Pregunta de ejemplo 2",
                     "respuestas": [
-                        {"respuesta": "Respuesta 1"},
-                        {"respuesta": "Respuesta 2"},
-                        {"respuesta": "Respuesta 3"},
-                        {"respuesta": "Respuesta 4"},
-                        {"respuesta": "Respuesta 5"},
-                        {"respuesta": "Respuesta 6"},
-                        {"respuesta": "Respuesta 7"},
-                        {"respuesta": "Respuesta 8"}
+                        {
+                            "respuesta": "Respuesta 1",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 2",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 3 - Correcta",
+                            "esCorrecta": true
+                        },
+                        {
+                            "respuesta": "Respuesta 4",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 5",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 6 - Correcta",
+                            "esCorrecta": true
+                        },
+                        {
+                            "respuesta": "Respuesta 7",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 8",
+                            "esCorrecta": false
+                        }
                     ]
                 },
                 {
                     "pregunta": "Pregunta de ejemplo 3",
                     "respuestas": [
-                        {"respuesta": "Respuesta 1"},
-                        {"respuesta": "Respuesta 2"}
+                        {
+                            "respuesta": "Respuesta 1",
+                            "esCorrecta": false
+                        },
+                        {
+                            "respuesta": "Respuesta 2 - Correcta",
+                            "esCorrecta": true
+                        }
                     ]
                 }
             ]

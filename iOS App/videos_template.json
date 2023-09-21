@@ -9,10 +9,10 @@
 				{
 					"pregunta": "",
 					"respuestas": [
-						{"respuesta": ""},
-						{"respuesta": ""},
-						{"respuesta": ""},
-						{"respuesta": ""}
+						{
+                            "respuesta": "",
+                            "esCorrecta": false
+                        }
 					]
 				}
 			]
