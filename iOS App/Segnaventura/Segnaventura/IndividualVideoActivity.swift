@@ -18,13 +18,13 @@ struct IndividualVideoActivity: View {
     }
     
     var body: some View {
-        ScrollView {
+        VStack {
             VideoView(videoID: videoID)
                 .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height * 0.3)
                 .cornerRadius(12)
                 .padding(.horizontal, 24)
             
-            
+            ScrollView {
                 ForEach(preguntas, id: \.self) { item in
                     Text(item.pregunta)
                     ForEach(item.respuestas, id: \.self) { respuesta in
@@ -36,8 +36,8 @@ struct IndividualVideoActivity: View {
                 }
             }
         }
-        //.padding([.bottom], 40)
-    //}
+        .padding([.bottom], 40)
+    }
 }
 
 struct IndividualVideoActivity_Previews: PreviewProvider {
