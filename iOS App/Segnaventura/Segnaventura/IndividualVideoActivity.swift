@@ -29,7 +29,7 @@ struct IndividualVideoActivity: View {
                     Section(header: Text(pregunta.pregunta)) {
                         ForEach(pregunta.respuestas, id: \.self) { respuesta in
                             //Button(action: {}, label: {Text(respuesta.respuesta)})
-                            VideoQuizButton(text: respuesta.respuesta, colorDefault: Color.red, colorPressed: Color.yellow)
+                            VideoQuizButton(text: respuesta.respuesta, colorDefault: Color.black, colorPressed: respuesta.esCorrecta ? Color.green : Color.red)
                         }
                     }
                 }
