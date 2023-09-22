@@ -2,20 +2,38 @@
 //  ContentView.swift
 //  Segnaventura
 //
-//  Created by Alumno on 05/09/23.
+//  Christopher Pedraza Pohlenz
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    /*
+    init(){
+        UITabBar.appearance().backgroundColor = .blue
+    }
+     */
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        
+        
+        
+        // Tab view con las dos demos de las funcionalidades
+        
+            TabView {
+                
+                
+                
+                VocabularioDataDemo()
+                    .tabItem {
+                        Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
+                FileManagerDemo()
+                    .tabItem {
+                        Label("FileManagerDemo", systemImage: "gearshape.2.fill")
+                    }
+            }
+        
+        
+        
     }
 }
 
