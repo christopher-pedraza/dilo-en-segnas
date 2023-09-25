@@ -42,14 +42,14 @@ struct Vocabulario: Decodable, Identifiable {
     var id_palabra : String = ""
     var palabra_espagnol : String = ""
     var url_audio : String = ""
-    var id_video : String = ""
+    var url_video : String = ""
     var url_imagen : String = ""
     
     enum CodingKeys : String, CodingKey {
         case id_palabra
         case palabra_espagnol
         case url_audio
-        case id_video
+        case url_video
         case url_imagen
     }
 }
