@@ -11,7 +11,7 @@ struct IndividualVideoActivity: View {
     let videoID : String
     let preguntas : [Pregunta]
     @Binding var correctAnswers : Int
-    @State var alreadyAnswered : [Bool]
+    @State var questionCorrectAnswers : [Int]
     
     func saveData() {
         
@@ -28,7 +28,7 @@ struct IndividualVideoActivity: View {
                 ForEach(Array(preguntas.enumerated()), id: \.offset) { index, pregunta in                    
                     Section(header: Text(pregunta.pregunta)) {
                         ForEach(pregunta.respuestas, id: \.self) { respuesta in
-                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.esCorrecta, index: index, correctAnswers: $correctAnswers, alreadyAnswered: $alreadyAnswered)
+                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.esCorrecta, index: index, correctAnswers: $correctAnswers, questionCorrectAnswers: $questionCorrectAnswers, cantidadCorrectas: pregunta.cantidadCorrectas)
                         }
                     }
                 }
@@ -48,20 +48,22 @@ struct VideoQuizButton: View {
     private let colorPressed : Color = Color.black
     
     @Binding var correctAnswers : Int
-    @Binding var alreadyAnswered : [Bool]
+    @Binding var questionCorrectAnswers : [Int]
+    var cantidadCorrectas: Int
     
     var body: some View {
         Button(action: {
             self.didTap = true
             if esCorrecta {
                 correctAnswers += 1
+                questionCorrectAnswers[index] += 1
             }
         }) {
             Text(text)
                 .font(.system(size: 24))
         }
         .foregroundColor(didTap ? (esCorrecta ? Color.green : Color.red) : colorDefault)
-        .disabled(alreadyAnswered[index])
+        .disabled(questionCorrectAnswers[index] == cantidadCorrectas)
     }
 }
 

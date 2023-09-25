@@ -14,7 +14,7 @@ struct VideosActivity: View {
     var body: some View {
         TabView {
             ForEach($VideoVM.videos.partes) { $parte in
-                IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas, correctAnswers: $correctAnswers)
+                IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count))
             }
             VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: VideoVM.videos.correctas)
         }
