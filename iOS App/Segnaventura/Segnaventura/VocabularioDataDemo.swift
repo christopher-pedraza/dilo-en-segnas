@@ -1,4 +1,3 @@
-
     import SwiftUI
     import AVKit
 
@@ -9,6 +8,7 @@
 
         let customColor = UIColor(Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255)) // Replace with your RGB values
 
+        //Para editar la navbar de la parte superior de la pantalla
         init() {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
@@ -17,8 +17,6 @@
         }
 
         var body: some View {
-            
-                
                 NavigationStack {
                     VStack {
                         List(VocabularioVM.vocabulario.categorias) { categoria in
@@ -56,10 +54,11 @@
         }
     }
 
+//Vista de la categoria de objetos
         struct CategoryView: View {
             let category: Categorias
-            @State private var showAllObjects = false
-            @State private var selectedVocabulary: Vocabulario?
+            @State private var showAllObjects = false //Variable que controla si
+            @State private var selectedVocabulary: Vocabulario? //Variable para definir vocabulario que selecciono el usuario
             @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
             var imageWidth: CGFloat {
@@ -81,7 +80,8 @@
                         .font(.title)
                         .padding(8)
                         .foregroundColor(.black)
-
+                    
+                    //Limita objetos en una categoria a 6, checa si esta inclinado para definir numero de filas y  columnas
                     let maxObjectsPerRow = isLandscape ? 2 : 3
                     let objectsToDisplay = showAllObjects ? category.vocabulario.count : min(category.vocabulario.count, maxObjectsPerRow * 2)
 
@@ -120,18 +120,13 @@
                                     .padding(.bottom,5)
                             }
                             
-                            //.padding(.vertical)
                             .contentShape(Rectangle()) // Make the whole cell tappable
                             .onTapGesture {
                                 selectedVocabulary = vocabulario // Set the selected vocabulary when the cell is tapped
                             }
                         }
                     }
-                    //.background(Color.red)
-                    
-
                     if category.vocabulario.count > 6 {
-
                         Button(action: {
                             showAllObjects.toggle()
                         }) {
@@ -146,13 +141,6 @@
                
                 .background(customColor)
                 .cornerRadius(20)
-            
-                //.padding()
-            //.cornerRadius(120)
-            //.padding(.horizontal)
-            //.padding(.vertical, 8)
-            
-            //.border(Color.black, width: 2)
             .sheet(item: $selectedVocabulary) { vocabulary in
                 PopupView(vocabulary: vocabulary, videoID: vocabulary.id_video)
             }
@@ -172,6 +160,7 @@
         }
     }
 
+//Vista del popup cuando usuario selecciona objeto
 struct PopupView: View {
     let vocabulary: Vocabulario
     let videoID: String // Provide the video ID here
@@ -214,58 +203,7 @@ struct PopupView: View {
             }
             Spacer()
         }
-
-        //.padding()
     }
 }
 
 
-=======
-//
-//  VocabularioDataDemo.swift
-//  Segnaventura
-//
-//  Christopher Pedraza Pohlenz
-//
-
-import SwiftUI
-
-struct VocabularioDataDemo: View {
-    // Objeto del vocabulario (que se leyo del JSON)
-    @EnvironmentObject var VocabularioVM : VocabularioViewModel
-    // Objeto que maneja los archivos del sistema
-    @EnvironmentObject var fsm : FileSystemManager
-    
-    var body: some View {
-        VStack {
-            // Lista con el vocabulario. Se itera por las categorias
-            List(VocabularioVM.vocabulario.categorias) { categoria in
-                VStack {
-                    Text(categoria.nombre_categoria)
-                    
-                    // Se itera por el vocabulario dentro de cada categoria
-                    ForEach(categoria.vocabulario) { vocabulario in
-                        VStack {
-                            Text(vocabulario.palabra_espagnol)
-                            Text(vocabulario.url_video)
-                        }
-                    }
-                }
-            }
-            .task {
-                do {
-                    // Se obtienen los datos del vocabulario del API
-                    try await VocabularioVM.getVocabularioData()
-                } catch {
-                    print("Error: No se pudo obtener los datos del API")
-                }
-            }
-        }
-    }
-}
-
-struct VocabularioDataDemo_Previews: PreviewProvider {
-    static var previews: some View {
-        VocabularioDataDemo()
-    }
-}
