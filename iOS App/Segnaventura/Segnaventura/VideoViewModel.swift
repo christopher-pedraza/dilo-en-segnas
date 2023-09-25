@@ -38,7 +38,6 @@ class VideoViewModel : ObservableObject {
             // Para crear un objeto de VideoModel
             let results = try JSONDecoder().decode(VideoModel.self, from: data)
             DispatchQueue.main.async {
-                print(results)
                 self.videos = results
             }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Modelo general que contiene una lista de las categorias del vocabulario
+// Modelo general para la actividad de videos
 struct VideoModel : Decodable, Identifiable {
     var id = UUID()
     var titulo : String = ""
@@ -23,6 +23,7 @@ struct VideoModel : Decodable, Identifiable {
     }
 }
 
+// Partes de cada actividad
 struct Partes : Decodable, Identifiable {
     var id = UUID()
     var titulo : String = ""
@@ -36,6 +37,7 @@ struct Partes : Decodable, Identifiable {
     }
 }
 
+// Preguntas
 struct Pregunta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var pregunta : String = ""
@@ -49,6 +51,7 @@ struct Pregunta : Decodable, Identifiable, Hashable {
     }
 }
 
+// Respuestas
 struct Respuesta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var respuesta : String = ""

@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+// View final de la actividad de videos
 struct VideoActivityEnd: View {
+    // Binding con la cantidad de respuestas correctas para llevar un registro
     @Binding var correctAnswers : Int
+    // Cantidad maxima de respuestas que puede tener la actividad
     let maxCorrectas : Int
     
     var body: some View {
@@ -21,16 +24,10 @@ struct VideoActivityEnd: View {
                 Text("Terminar")
                     .font(.system(size: 24))
             }
+            // El boton estara deshabilitado hasta que se tengan todas las respuestas
+            // correctas
             .disabled(correctAnswers != maxCorrectas)
             .padding(.top, 40)
         }
     }
 }
-
-/*
- struct VideoActivityEnd_Previews: PreviewProvider {
- static var previews: some View {
- VideoActivityEnd()
- }
- }
- */
