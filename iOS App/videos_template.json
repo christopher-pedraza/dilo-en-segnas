@@ -9,6 +9,7 @@
 			"preguntas": [
 				{
 					"pregunta": "",
+                    "cantidadCorrectas": 0,
 					"respuestas": [
 						{
                             "respuesta": "",

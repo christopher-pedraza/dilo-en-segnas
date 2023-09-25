@@ -39,10 +39,12 @@ struct Partes : Decodable, Identifiable {
 struct Pregunta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var pregunta : String = ""
+    var cantidadCorrectas = 0
     var respuestas : [Respuesta] = [Respuesta]()
     
     enum CodingKeys : String, CodingKey {
         case pregunta
+        case cantidadCorrectas
         case respuestas
     }
 }
