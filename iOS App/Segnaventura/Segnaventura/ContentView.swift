@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {        
+    var body: some View {
         // Tab view con las dos demos de las funcionalidades
         TabView {
             VocabularioDataDemo()
-                .tabItem {
+                .tabItem {  
                     Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
             FileManagerDemo()
                 .tabItem {
                     Label("FileManagerDemo", systemImage: "gearshape.2.fill")
                 }
         }
- 
     }
 }
 
