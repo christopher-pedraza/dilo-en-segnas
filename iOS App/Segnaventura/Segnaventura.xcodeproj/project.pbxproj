@@ -54,6 +54,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07B7CED92AC33047008F97F2 /* 1-Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "1-Model";
+			sourceTree = "<group>";
+		};
+		07B7CEDA2AC33051008F97F2 /* 2-Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "2-Data";
+			sourceTree = "<group>";
+		};
+		07B7CEDB2AC3305A008F97F2 /* 3-UI */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEE12AC330C2008F97F2 /* TranslationViews */,
+				07B7CEE02AC330B8008F97F2 /* PredictionViews */,
+			);
+			path = "3-UI";
+			sourceTree = "<group>";
+		};
+		07B7CEDC2AC3306D008F97F2 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEDF2AC3309A008F97F2 /* Views */,
+				07B7CEDE2AC33087008F97F2 /* CameraViewControllers */,
+				07B7CEDD2AC3307F008F97F2 /* Helpers */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		07B7CEDD2AC3307F008F97F2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		07B7CEDE2AC33087008F97F2 /* CameraViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CameraViewControllers;
+			sourceTree = "<group>";
+		};
+		07B7CEDF2AC3309A008F97F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		07B7CEE02AC330B8008F97F2 /* PredictionViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PredictionViews;
+			sourceTree = "<group>";
+		};
+		07B7CEE12AC330C2008F97F2 /* TranslationViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TranslationViews;
+			sourceTree = "<group>";
+		};
 		FB74CE6A2AA7D89600C7124B = {
 			isa = PBXGroup;
 			children = (
@@ -73,10 +141,13 @@
 		FB74CE752AA7D89600C7124B /* Segnaventura */ = {
 			isa = PBXGroup;
 			children = (
+				07B7CEDC2AC3306D008F97F2 /* Foundation */,
+				07B7CEDB2AC3305A008F97F2 /* 3-UI */,
+				07B7CEDA2AC33051008F97F2 /* 2-Data */,
+				07B7CED92AC33047008F97F2 /* 1-Model */,
 				FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */,
 				FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */,
 				FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */,
-				BCC3D90D2AB8C0F5000C3F85 /* VideoView.swift */,
 				FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */,
 				FB74CE782AA7D89600C7124B /* ContentView.swift */,
 				FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */,
@@ -178,7 +249,6 @@
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
 				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
-				BCC3D90E2AB8C0F6000C3F85 /* VideoView.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
 				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
