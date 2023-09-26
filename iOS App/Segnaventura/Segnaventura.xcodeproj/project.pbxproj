@@ -7,16 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		9D0E59E62AB8C7A300EA57B9 /* IndividualVideoActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */; };
 		9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2922AB7CE980048411D /* VideoModel.swift */; };
 		9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2942AB7D6910048411D /* VideoViewModel.swift */; };
 		9D82A2972AB7DEF70048411D /*  VideosActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2962AB7DEF70048411D /*  VideosActivity.swift */; };
 		9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2982AB7DF2B0048411D /* VideoView.swift */; };
 		9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */; };
-=======
-		BCC3D90E2AB8C0F6000C3F85 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3D90D2AB8C0F5000C3F85 /* VideoView.swift */; };
->>>>>>> main
 		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
 		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
 		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
@@ -29,16 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
 		9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualVideoActivity.swift; sourceTree = "<group>"; };
 		9D82A2922AB7CE980048411D /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		9D82A2942AB7D6910048411D /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		9D82A2962AB7DEF70048411D /*  VideosActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " VideosActivity.swift"; sourceTree = "<group>"; };
 		9D82A2982AB7DF2B0048411D /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoActivityEnd.swift; sourceTree = "<group>"; };
-=======
-		BCC3D90D2AB8C0F5000C3F85 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
->>>>>>> main
 		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
 		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
 		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
