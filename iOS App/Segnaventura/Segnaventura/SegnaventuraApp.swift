@@ -14,6 +14,7 @@ struct SegnaventuraApp: App {
     @StateObject var VocabularioVM = VocabularioViewModel()
     @StateObject var VideoVM = VideoViewModel()
     @StateObject var fsm = FileSystemManager()
+    @StateObject private var predictionStatus = PredictionStatus()
     
     var body: some Scene {
         WindowGroup {
