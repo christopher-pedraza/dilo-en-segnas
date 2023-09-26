@@ -114,6 +114,8 @@
 				07B7CEE12AC330C2008F97F2 /* TranslationViews */,
 				07B7CEE02AC330B8008F97F2 /* PredictionViews */,
 				07B7CEF42AC3325B008F97F2 /* LaunchScreenView.swift */,
+				07B7CEF62AC33269008F97F2 /* ClassificationView.swift */,
+				07B7CEF82AC33278008F97F2 /* PredictionResultView.swift */,
 			);
 			path = "3-UI";
 			sourceTree = "<group>";
@@ -177,8 +179,6 @@
 		FB74CE6A2AA7D89600C7124B = {
 			isa = PBXGroup;
 			children = (
-				07B7CEF62AC33269008F97F2 /* ClassificationView.swift */,
-				07B7CEF82AC33278008F97F2 /* PredictionResultView.swift */,
 				FB74CE752AA7D89600C7124B /* Segnaventura */,
 				FB74CE742AA7D89600C7124B /* Products */,
 			);
