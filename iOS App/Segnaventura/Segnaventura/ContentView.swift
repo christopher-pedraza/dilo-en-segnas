@@ -22,6 +22,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("VideosDemo", systemImage: "gearshape.2.fill")
                 }
+            LaunchScreenView()
+                .tabItem {
+                    Label("Scanner", systemImage: "gearshape.2.fill")
+                }
         }
     }
 }
