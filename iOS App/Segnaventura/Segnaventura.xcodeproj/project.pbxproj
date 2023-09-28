@@ -25,6 +25,8 @@
 		07B7CF052AC332FC008F97F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF042AC332FC008F97F2 /* Constants.swift */; };
 		07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF062AC33308008F97F2 /* SoundPlayer.swift */; };
 		07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF082AC3340C008F97F2 /* VideoViewCOML.swift */; };
+		07B7CF0E2AC3EF69008F97F2 /* Coloresmodel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF0C2AC3EF69008F97F2 /* Coloresmodel.mlmodel */; };
+		07B7CF0F2AC3EF69008F97F2 /* Naturalezamodel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF0D2AC3EF69008F97F2 /* Naturalezamodel.mlmodel */; };
 		9D0E59E62AB8C7A300EA57B9 /* IndividualVideoActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */; };
 		9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2922AB7CE980048411D /* VideoModel.swift */; };
 		9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2942AB7D6910048411D /* VideoViewModel.swift */; };
@@ -61,6 +63,8 @@
 		07B7CF042AC332FC008F97F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		07B7CF062AC33308008F97F2 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		07B7CF082AC3340C008F97F2 /* VideoViewCOML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewCOML.swift; sourceTree = "<group>"; };
+		07B7CF0C2AC3EF69008F97F2 /* Coloresmodel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Coloresmodel.mlmodel; sourceTree = "<group>"; };
+		07B7CF0D2AC3EF69008F97F2 /* Naturalezamodel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Naturalezamodel.mlmodel; sourceTree = "<group>"; };
 		9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualVideoActivity.swift; sourceTree = "<group>"; };
 		9D82A2922AB7CE980048411D /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		9D82A2942AB7D6910048411D /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 		07B7CED92AC33047008F97F2 /* 1-Model */ = {
 			isa = PBXGroup;
 			children = (
+				07B7CF0C2AC3EF69008F97F2 /* Coloresmodel.mlmodel */,
+				07B7CF0D2AC3EF69008F97F2 /* Naturalezamodel.mlmodel */,
 				07B7CEE62AC331BF008F97F2 /* Comidasmodel.mlmodel */,
 				07B7CEE22AC3316B008F97F2 /* PredictionStatus.swift */,
 			);
@@ -303,6 +309,7 @@
 				9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */,
 				07B7CEFD2AC332AA008F97F2 /* RoundedRectButtonStyle.swift in Sources */,
 				07B7CF052AC332FC008F97F2 /* Constants.swift in Sources */,
+				07B7CF0E2AC3EF69008F97F2 /* Coloresmodel.mlmodel in Sources */,
 				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
 				07B7CEF92AC33278008F97F2 /* PredictionResultView.swift in Sources */,
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
@@ -319,6 +326,7 @@
 				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
 				07B7CEEB2AC331EA008F97F2 /* Classification.swift in Sources */,
 				9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */,
+				07B7CF0F2AC3EF69008F97F2 /* Naturalezamodel.mlmodel in Sources */,
 				07B7CEEF2AC33222008F97F2 /* AudioView.swift in Sources */,
 				07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */,
 				07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */,
@@ -455,14 +463,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = 9MQSX62K58;
+				DEVELOPMENT_TEAM = CND48JQ7YK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,14 +494,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = 9MQSX62K58;
+				DEVELOPMENT_TEAM = CND48JQ7YK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
