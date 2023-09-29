@@ -11,35 +11,35 @@ struct PredictionResultView: View {
     var body: some View {
         // TODO: The View that shows classification results - edit the styling below!
         
-        ZStack(alignment: .top) {
+        ZStack() {
 
         //[OPTIONAL] Edit panel background color here.
-        Color.white
-            .opacity(0.5)
+        Color.black
+            .opacity(0.3)
             .ignoresSafeArea()
 
             VStack {
                 //This view displays your prediction. Make edits in PredictiveLabelView file.
                 PredictiveLabelView(labelData: labelData)
+                    .padding()
                 
-                NavigationLink {
-                    TranslationView(labelData: labelData)
-                } label: {
+                NavigationLink(destination: TranslationView(labelData: labelData)){
                     Text("Confirmar")
-                        .padding()
-                        .background(.blue)
-                        .foregroundStyle(.white)
-                        .clipShape(Capsule())
-                    
                 }
+                .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+                .padding(EdgeInsets(top: 10, leading: 0, bottom: -10, trailing: 0))
                 
             }
-            .padding()
+            .padding(30)
+            
 
 
         }
         //[OPTIONAL] Change the size of the frame.
-        .frame(width: 350)
+        .frame(width: 300, height: 250, alignment: .bottom)
+        .cornerRadius(10)
+        .padding()
+        .frame(maxHeight: .infinity, alignment: .bottom)
 
     }
 }
