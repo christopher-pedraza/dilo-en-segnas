@@ -1,7 +1,7 @@
 export default function Item() {
   return (
     <div className="flex items-center justify-between border-4 rounded-lg py-2 px-4 my-4">
-      <h3 className="text-xl">Categoría 1</h3>
+      <h3 className="text-xl">Item</h3>
       <div className="flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
