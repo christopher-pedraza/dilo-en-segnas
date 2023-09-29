@@ -12,36 +12,60 @@ struct TranslationView: View {
     private(set) var labelData: Classification
     @State var soundPlayer = SoundPlayer()
     
+    
     var body: some View {
-        VStack(alignment: .center) {
+        ZStack {
+            Color(hex: 0xD5F4FF, opacity: 1.0)
+                .ignoresSafeArea()
             
-            Spacer()
-            
-            Image(labelData.image)
-
-            HStack {
-                Text(labelData.label.capitalized)
-                    .font(.largeTitle).bold()
+            VStack(alignment: .center) {
                 
-                Button("Audio", action: {
+                VideoViewCOML(videoURL: URL(string: "https://www.youtube.com/embed/WJfUZ8jcml0?si=j__udeKpMX1DsVRS")!)
+                    .frame(width: 320, height: 160)
+                    .padding(EdgeInsets(top: 40, leading: 0, bottom: 10, trailing: 0))
+                
+                HStack {
+                    Text(labelData.label.capitalized)
+                        .font(.largeTitle).bold()
 
-                    let audioFile = labelData.audio.lowercased()
-                        soundPlayer.playAudioFile(audioFile) // put in just the file name, including the file extension. Any audio file should work.
+                    Button {action: do {
+                        
+                        let audioFile = labelData.audio.lowercased()
+                            soundPlayer.playAudioFile(audioFile) // put in just the file name, including the file extension. Any audio file should work.
+                        }
+                            
+                    } label: {
+                        Image("audioIcon")
                     }
-                )
-                    .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
-                    .padding()
+                    
+//                    Button("Audio", action: {
+//
+//                        let audioFile = labelData.audio.lowercased()
+//                            soundPlayer.playAudioFile(audioFile) // put in just the file name, including the file extension. Any audio file should work.
+//                        }
+//                    )
+//                        .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+//                        .padding()
+                    
+                }
                 
-            }
-            
-        
-            VideoViewCOML(videoURL: URL(string: "https://www.youtube.com/embed/WJfUZ8jcml0?si=j__udeKpMX1DsVRS")!)
-                        .frame(width: 420, height: 360)
-            Spacer()
-            
-        }// VStack
-        .frame(width: 300)
-        .padding()
+                Image(labelData.image)
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .padding(EdgeInsets(top: -30, leading: 0, bottom: 0, trailing: 0))
+                
+                NavigationLink(destination: VocabularioDataDemo()){
+                    Text("Guardar")
+                }
+                .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+                .padding(EdgeInsets(top: -30, leading: 0, bottom: 30, trailing: 0))
+                
+            }// VStack
+//            .padding()
+            .frame(maxWidth: 370) // This sets the width of the white card
+            .background(Color.white) // This sets the background color of the card
+            .cornerRadius(20)
+        }
     }
 }
 
