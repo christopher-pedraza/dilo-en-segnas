@@ -3,8 +3,9 @@ import { Dialog } from "@headlessui/react";
 
 import Navbar from "../components/Navbar";
 import Item from "../components/Item";
+import ItemToggle from "../components/ItemToggle";
 
-export default function Wordspage() {
+export default function QuizPage() {
   let [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -19,36 +20,41 @@ export default function Wordspage() {
             {/* The actual dialog panel  */}
             <Dialog.Panel className="flex w-full max-w-md flex-col rounded-lg bg-white p-6">
               <form>
-                <label htmlFor="wordName" className="text-2xl font-bold">
+                <label htmlFor="quizName" className="text-2xl font-bold">
                   Nombre
                 </label>
                 <input
                   type="text"
-                  id="wordyName"
-                  name="wordyName"
-                  placeholder="Ingresa el nombre de la palabra"
+                  id="quizName"
+                  name="quizName"
+                  placeholder="Ingresa el nombre del quiz"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
                 />
-                <label htmlFor="wordImage" className="text-2xl font-bold">
-                  Imagen
+                <label htmlFor="quizCategory" className="text-2xl font-bold">
+                  Categoría
+                  <select
+                    name="quizCategory"
+                    id="quizCategory"
+                    defaultValue="default"
+                    className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
+                  >
+                    <option value="default" disabled>
+                      --- Selecciona una categoria ---
+                    </option>
+                    <option value="comidas">Comidas</option>
+                    <option value="naturaleza">Naturaleza</option>
+                    <option value="colores">Colores</option>
+                  </select>
                 </label>
-                <input
-                  type="text"
-                  id="wordImage"
-                  name="wordImage"
-                  placeholder="Ingresa el URL de la imagen"
-                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
-                />
-                <label htmlFor="wordVideo" className="text-2xl font-bold">
-                  Video
+                <label htmlFor="quizPalabras" className="text-2xl font-bold">
+                  Palabras
                 </label>
-                <input
-                  type="text"
-                  id="wordVideo"
-                  name="wordVideo"
-                  placeholder="Ingresa el URL del video"
-                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
-                />
+                <div className="mb-6">
+                  <ItemToggle />
+                  <ItemToggle />
+                  <ItemToggle />
+                  <ItemToggle />
+                </div>
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
@@ -74,13 +80,13 @@ export default function Wordspage() {
       <Navbar />
       <div className="max-w-3xl m-auto p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl">Palabras</h2>
+          <h2 className="text-3xl">Quiz</h2>
           <button
             onClick={() => setIsOpen(true)}
             className="p-2 text-white rounded-md"
             style={{ background: "#8712E0" }}
           >
-            Crear Palabra
+            Crear Quiz
           </button>
         </div>
         <div>
