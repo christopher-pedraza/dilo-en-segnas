@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-async function getAllCategorias(req, res, next) {
+async function getAll(req, res, next) {
 	try {
 		const resultado = await prisma.isla.findMany()
 		res.status(200).json(resultado)
@@ -11,7 +11,7 @@ async function getAllCategorias(req, res, next) {
 	}
 }
 
-async function getCategoria(req, res, next) {
+async function get(req, res, next) {
 	try {
 		const resultado = await prisma.isla.findUnique({
 			where: {
@@ -25,7 +25,7 @@ async function getCategoria(req, res, next) {
 	}
 }
 
-async function addCategoria(req, res, next) {
+async function add(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.isla.create({
@@ -42,7 +42,7 @@ async function addCategoria(req, res, next) {
 	}
 }
 
-async function removeCategoria(req, res, next) {
+async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.isla.delete({
 			where: { id_isla: Number(req.params.id_isla) }
@@ -54,7 +54,7 @@ async function removeCategoria(req, res, next) {
 	}
 }
 
-async function updateCategoria(req, res, next) {
+async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.isla.update({
@@ -71,9 +71,9 @@ async function updateCategoria(req, res, next) {
 }
 
 module.exports = {
-	getAllCategorias,
-	getCategoria,
-	addCategoria,
-	removeCategoria,
-	updateCategoria
+	getAll,
+	get,
+	add,
+	remove,
+	update
 }

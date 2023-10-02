@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-async function getAllMiembros(req, res, next) {
+async function getAll(req, res, next) {
 	try {
 		const resultado = await prisma.miembro.findMany()
 		res.status(200).json(resultado)
@@ -11,7 +11,7 @@ async function getAllMiembros(req, res, next) {
 	}
 }
 
-async function getMiembro(req, res, next) {
+async function get(req, res, next) {
 	try {
 		const resultado = await prisma.miembro.findUnique({
 			where: { id_miembro: Number(req.params.id_miembro) }
@@ -23,7 +23,7 @@ async function getMiembro(req, res, next) {
 	}
 }
 
-async function addMiembro(req, res, next) {
+async function add(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.miembro.create({
@@ -40,7 +40,7 @@ async function addMiembro(req, res, next) {
 	}
 }
 
-async function removeMiembro(req, res, next) {
+async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.miembro.delete({
 			where: { id_miembro: Number(req.params.id_miembro) }
@@ -52,7 +52,7 @@ async function removeMiembro(req, res, next) {
 	}
 }
 
-async function updateMiembro(req, res, next) {
+async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.miembro.update({
@@ -71,9 +71,9 @@ async function updateMiembro(req, res, next) {
 }
 
 module.exports = {
-	getAllMiembros,
-	getMiembro,
-	addMiembro,
-	removeMiembro,
-	updateMiembro
+	getAll,
+	get,
+	add,
+	remove,
+	update
 }

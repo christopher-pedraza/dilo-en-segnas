@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-async function getAllPalabras(req, res, next) {
+async function getAll(req, res, next) {
 	try {
 		const resultado = await prisma.palabra.findMany()
 		res.status(200).json(resultado)
@@ -11,7 +11,7 @@ async function getAllPalabras(req, res, next) {
 	}
 }
 
-async function getPalabra(req, res, next) {
+async function get(req, res, next) {
 	try {
 		const resultado = await prisma.palabra.findUnique({
 			where: {
@@ -25,7 +25,7 @@ async function getPalabra(req, res, next) {
 	}
 }
 
-async function addPalabra(req, res, next) {
+async function add(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.palabra.create({
@@ -43,7 +43,7 @@ async function addPalabra(req, res, next) {
 	}
 }
 
-async function removePalabra(req, res, next) {
+async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.palabra.delete({
 			where: { id_palabra: Number(req.params.id_palabra) }
@@ -55,7 +55,7 @@ async function removePalabra(req, res, next) {
 	}
 }
 
-async function updatePalabra(req, res, next) {
+async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.palabra.update({
@@ -89,10 +89,10 @@ async function getPalabrasByCategoria(req, res, next) {
 }
 
 module.exports = {
-	getAllPalabras,
-	getPalabra,
-	addPalabra,
-	removePalabra,
-	updatePalabra,
+	getAll,
+	get,
+	add,
+	remove,
+	update,
 	getPalabrasByCategoria
 }
