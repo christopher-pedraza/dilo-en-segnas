@@ -22,16 +22,20 @@ struct ClassificationView: View {
 
             // DO NOT EDIT this section. This displays the classification camera
             GeometryReader { geo in
-                HStack(alignment: .top) {
+                ZStack(alignment: .top) {
                     LiveCameraRepresentable() {
                         predictionStatus.setLivePrediction(with: $0, label: $1, confidence: $2)
                     }
+//                    .edgesIgnoringSafeArea(.all)
                     
                     PredictionResultView(labelData: classifierViewModel.getPredictionData(label: predictionLabel))
                     
                 }// HStack
                 .onAppear(perform: classifierViewModel.loadJSON)
-                .frame(width: geo.size.width)
+//                .frame(width: geo.size.width)
+//                .frame(width: geo.size.width, height: geo.size.height)
+//                .frame(maxWidth: .infinity, maxHeight: .infinity) // Expand HStack to fill the entire width and height
+//                .background(Color.clear) // Set background color (optional)
             }
         }
     }
