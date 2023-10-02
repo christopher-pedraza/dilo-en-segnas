@@ -3,6 +3,13 @@ const router = express.Router()
 const controller = require('../controllers/controller_quiz.js')
 
 // Rutas disponibles y las funciones que se llaman
-router.get('/getPalabrasByCategoria/:id_isla', controller.getPalabrasByCategoria)
+router.get('/getAll', controller.getAll)
+router.get('/get/:id_quiz', controller.get)
+router.post('/add', controller.add)
+router.delete('/remove/:id_quiz', controller.remove)
+router.put('/update/:id_quiz', controller.update)
+router.post('/addPalabra/:id_quiz/:id_palabra', controller.addPalabra)
+router.post('/removePalabra/:id_quiz/:id_palabra', controller.removePalabra)
+router.get('/getPalabrasByQuiz/:id_quiz', controller.getPalabrasByQuiz)
 
 module.exports = router
