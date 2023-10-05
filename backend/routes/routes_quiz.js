@@ -8,8 +8,8 @@ router.get('/get/:id_quiz', controller.get)
 router.post('/add', controller.add)
 router.delete('/remove/:id_quiz', controller.remove)
 router.put('/update/:id_quiz', controller.update)
-router.post('/addPalabra/:id_quiz/:id_palabra', controller.addPalabra)
-router.post('/removePalabra/:id_quiz/:id_palabra', controller.removePalabra)
+router.post('/addPalabra/:id_quiz', controller.addPalabra)
+router.delete('/removePalabra/:id_quiz', controller.removePalabra)
 router.get('/getPalabrasByQuiz/:id_quiz', controller.getPalabrasByQuiz)
 
 module.exports = router

@@ -71,10 +71,11 @@ async function update(req, res, next) {
 }
 
 async function addPalabra(req, res, next) {
+	body = req.body
 	try {
 		const resultado = await prisma.detalles_quiz.create({
 			data: {
-				id_quiz: Number(body.id_quiz),
+				id_quiz: Number(req.params.id_quiz),
 				id_palabra: Number(body.id_palabra)
 			}
 		})
@@ -86,11 +87,14 @@ async function addPalabra(req, res, next) {
 }
 
 async function removePalabra(req, res, next) {
+	body = req.body
 	try {
-		const resultado = await prisma.detalles_quiz.delete({
+		const resultado = await prisma.detalles_quiz.deleteMany({
 			where: {
-				id_quiz: Number(req.params.id_quiz),
-				id_palabra: Number(req.params.id_palabra)
+				AND: [
+					{ id_quiz: Number(req.params.id_quiz) },
+					{ id_palabra: Number(body.id_palabra) }
+				]
 			}
 		})
 		res.status(200).json(resultado)
@@ -102,18 +106,24 @@ async function removePalabra(req, res, next) {
 
 async function getPalabrasByQuiz(req, res, next) {
 	try {
-		const resultado = await prisma.quiz.findUnique({
+		const resultado = await prisma.quiz.findMany({
 			where: {
 				id_quiz: Number(req.params.id_quiz)
 			},
-			include: {
-				detalles_quiz: true
-			},
 			select: {
-				palabra: true,
-				id_video_segna: true
+				detalles_quiz: {
+					select: {
+						palabra: {
+							select: {
+								palabra: true,
+								id_video_segna: true
+							}
+						}
+					}
+				}
 			}
 		})
+		console.log(resultado)
 		res.status(200).json(resultado)
 	}
 	catch (err) {
