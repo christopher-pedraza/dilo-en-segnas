@@ -8,5 +8,6 @@ router.get('/get/:id_isla', controller.get)
 router.post('/add', controller.add)
 router.delete('/remove/:id_isla', controller.remove)
 router.put('/update/:id_isla', controller.update)
+router.get('/getWithPalabras', controller.getWithPalabras)
 
 module.exports = router
