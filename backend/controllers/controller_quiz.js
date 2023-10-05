@@ -64,14 +64,15 @@ async function addConPalabras(req, res, next) {
 		})
 		res.status(200).json(resultado)
 
-		body.palabras.forEach(async (id_quiz, id_palabra) => {
+		palabras = body.palabras
+		for (let i = 0; i < palabras.length; i++) {
 			await prisma.detalles_quiz.create({
 				data: {
-					id_quiz: Number(id_quiz),
-					id_palabra: Number(id_palabra)
+					id_quiz: Number(resultado.id_quiz),
+					id_palabra: Number(palabras[i].id_palabra)
 				}
 			})
-		})
+		}
 	}
 	catch (err) {
 		res.status(500).json({ "message": `${err}` })
