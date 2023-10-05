@@ -13,13 +13,10 @@ struct PredictiveLabelView: View {
         VStack(alignment: .center) {
             Image(labelData.image)
                 .resizable()
-                .frame(width: 150, height: 150)
-                .padding(-20)
+                .frame(width: 320, height: 320)
             
             Text(labelData.label)
                 .font(.system(size: 40, weight: .bold))
-                .foregroundStyle(.white)
-                .padding(-20)
         }
     }
 }
