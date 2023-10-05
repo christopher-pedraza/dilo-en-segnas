@@ -53,6 +53,43 @@ async function remove(req, res, next) {
 	}
 }
 
+async function addConPalabras(req, res, next) {
+	body = req.body
+	try {
+		const resultado = await prisma.quiz.create({
+			data: {
+				id_isla: Number(body.id_isla),
+				nombre: body.nombre,
+			}
+		})
+		res.status(200).json(resultado)
+
+		body.palabras.forEach(async (id_quiz, id_palabra) => {
+			await prisma.detalles_quiz.create({
+				data: {
+					id_quiz: Number(id_quiz),
+					id_palabra: Number(id_palabra)
+				}
+			})
+		})
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
+async function remove(req, res, next) {
+	try {
+		const resultado = await prisma.quiz.delete({
+			where: { id_quiz: Number(req.params.id_quiz) }
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function update(req, res, next) {
 	body = req.body
 	try {
@@ -135,6 +172,7 @@ module.exports = {
 	getAll,
 	get,
 	add,
+	addConPalabras,
 	remove,
 	update,
 	addPalabra,
