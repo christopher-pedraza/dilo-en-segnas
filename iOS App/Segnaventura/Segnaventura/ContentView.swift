@@ -18,7 +18,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("FileManagerDemo", systemImage: "gearshape.2.fill")
                 }
-            VideosActivity()
+            PreguntasPalabrasActivity()
+                .tabItem {
+                    Label("Quiz", systemImage: "gearshape.2.fill")
+                }
+            VideosActivity(correctAnswers: 0)
                 .tabItem {
                     Label("VideosDemo", systemImage: "gearshape.2.fill")
                 }
