@@ -15,6 +15,7 @@ struct SegnaventuraApp: App {
     @StateObject var VideoVM = VideoViewModel()
     @StateObject var fsm = FileSystemManager()
     @StateObject private var predictionStatus = PredictionStatus()
+    @StateObject var palabraVideosVM = PalabraVideosViewModel()
     
     var body: some Scene {
         WindowGroup {
@@ -22,7 +23,7 @@ struct SegnaventuraApp: App {
                 .environmentObject(VocabularioVM)
                 .environmentObject(VideoVM)
                 .environmentObject(fsm)
-                .environmentObject(predictionStatus)
+                .environmentObject(palabraVideosVM)
         }
     }
 }
