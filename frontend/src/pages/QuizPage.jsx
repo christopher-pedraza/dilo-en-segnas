@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 import Navbar from "../components/Navbar";
-import Item from "../components/Item";
+import ItemCategory from "../components/ItemCategory";
 import ItemToggle from "../components/ItemToggle";
 
 export default function QuizPage() {
@@ -90,9 +90,9 @@ export default function QuizPage() {
           </button>
         </div>
         <div>
-          <Item />
-          <Item />
-          <Item />
+          <ItemCategory />
+          <ItemCategory />
+          <ItemCategory />
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import { Dialog } from "@headlessui/react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-import Item from "../components/Item";
+import ItemCategory from "../components/ItemCategory";
 
 export default function CategoriesPage() {
   // Estados para controlar si el modal esta abierto o cerrado
@@ -122,7 +122,10 @@ export default function CategoriesPage() {
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenCreate(false)}
+                    onClick={() => {
+                      setIsOpenCreate(false);
+                      setFormData({ nombre: "" });
+                    }}
                   >
                     Cancelar
                   </button>
@@ -168,7 +171,10 @@ export default function CategoriesPage() {
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenUpdate(false)}
+                    onClick={() => {
+                      setIsOpenCreate(false);
+                      setFormData({ nombre: "" });
+                    }}
                   >
                     Cancelar
                   </button>
@@ -204,7 +210,7 @@ export default function CategoriesPage() {
         <div>
           {/* Map que muestra cada categoría del array categories */}
           {categories.map((category, index) => (
-            <Item
+            <ItemCategory
               key={index}
               data={category}
               onDelete={handleDelete}
