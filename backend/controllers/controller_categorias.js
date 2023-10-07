@@ -11,6 +11,20 @@ async function getAll(req, res, next) {
 	}
 }
 
+async function get(req, res, next) {
+	try {
+		const resultado = await prisma.isla.findUnique({
+			where: {
+				id_isla: Number(req.params.id_isla)
+			}
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function getWithPalabras(req, res, next) {
 	try {
 		const resultado = await prisma.isla.findMany({
@@ -25,18 +39,7 @@ async function getWithPalabras(req, res, next) {
 						url_icono: true
 					}
 				}
-			}
-		})
-		res.status(200).json(resultado)
-	}
-	catch (err) {
-		res.status(500).json({ "message": `${err}` })
-	}
-}
-
-async function get(req, res, next) {
-	try {
-		const resultado = await prisma.isla.findUnique({
+			},
 			where: {
 				id_isla: Number(req.params.id_isla)
 			}
@@ -83,7 +86,9 @@ async function update(req, res, next) {
 		const resultado = await prisma.isla.update({
 			where: { id_isla: Number(req.params.id_isla) },
 			data: {
-				nombre: body.nombre
+				nombre: body.nombre,
+				modelo_general: body.modelo_general,
+				modelo_especifico: body.modelo_especifico
 			}
 		})
 		res.status(200).json(resultado)

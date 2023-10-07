@@ -30,7 +30,7 @@ async function add(req, res, next) {
 			data: {
 				usuario: body.usuario,
 				contrasegna: body.contrasegna,
-				es_administrador: body.es_administrador.toLowerCase() == "true"
+				es_administrador: body.es_administrador
 			}
 		})
 		res.status(200).json(resultado)
@@ -60,7 +60,7 @@ async function update(req, res, next) {
 			data: {
 				usuario: body.usuario,
 				contrasegna: body.contrasegna,
-				es_administrador: body.es_administrador.toLowerCase() == "true"
+				es_administrador: body.es_administrador
 			},
 		})
 		res.status(200).json(resultado)
