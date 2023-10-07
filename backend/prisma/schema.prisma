@@ -98,6 +98,7 @@ model palabra {
 model parte_video_cuestionario {
   id_parte_video_cuestionario  Int                            @id @default(autoincrement())
   id_video_cuestionario        Int
+  url_video                    String
   indice                       Int
   video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
   preguntas_video_cuestionario preguntas_video_cuestionario[]

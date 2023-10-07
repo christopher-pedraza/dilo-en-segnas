@@ -25,6 +25,83 @@ async function get(req, res, next) {
 	}
 }
 
+async function getComplete(req, res, next) {
+	try {
+		const resultado = await prisma.video_cuestionario.findUnique({
+			where: {
+				id_video_cuestionario: Number(req.params.id)
+			},
+			include: {
+				palabras_video_cuestionario: {
+					include: {
+						palabra: true
+					}
+				},
+				parte_video_cuestionario: {
+					include: {
+						preguntas_video_cuestionario: {
+							include: {
+								respuestas_video_cuestionario: true
+							}
+						}
+					}
+				}
+			},
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
+async function getData(req, res, next) {
+	try {
+		const resultado = await prisma.video_cuestionario.findUnique({
+			where: {
+				id_video_cuestionario: Number(req.params.id)
+			},
+			select: {
+				_count: {
+					select: {
+						parte_video_cuestionario: true,
+					}
+				},
+				parte_video_cuestionario: {
+					select: {
+						url_video: true,
+						indice: true,
+						preguntas_video_cuestionario: {
+							select: {
+								pregunta: true,
+								_count: {
+									select: {
+										respuestas_video_cuestionario: {
+											where: {
+												es_correcta: true
+											}
+										}
+									}
+								},
+								respuestas_video_cuestionario: {
+									select: {
+										respuesta: true,
+										es_correcta: true,
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function add(req, res, next) {
 	body = req.body
 	try {
@@ -49,11 +126,11 @@ async function addComplete(req, res, next) {
 			}
 		})
 
-		for (let n = 0; n < body.palabras; n++) {
+		for (let n = 0; n < body.palabras.length; n++) {
 			const res_palabras = await prisma.palabras_video_cuestionario.create({
 				data: {
-					id_parte_video_cuestionario: res_parte.id_parte_video_cuestionario,
-					pregunta: body.partes[i].preguntas[j].pregunta,
+					id_video_cuestionario: res_cuestionario.id_video_cuestionario,
+					id_palabra: body.palabras[n]
 				}
 			})
 		}
@@ -62,11 +139,12 @@ async function addComplete(req, res, next) {
 			const res_parte = await prisma.parte_video_cuestionario.create({
 				data: {
 					id_video_cuestionario: res_cuestionario.id_video_cuestionario,
+					url_video: body.partes[i].url_video,
 					indice: i,
 				}
 			})
 
-			for (let j = 0; j < body.partes[i].preguntas; j++) {
+			for (let j = 0; j < body.partes[i].preguntas.length; j++) {
 				const res_pregunta = await prisma.preguntas_video_cuestionario.create({
 					data: {
 						id_parte_video_cuestionario: res_parte.id_parte_video_cuestionario,
@@ -74,7 +152,7 @@ async function addComplete(req, res, next) {
 					}
 				})
 
-				for (let k = 0; k < body.partes[i].preguntas[j].respuestas; k++) {
+				for (let k = 0; k < body.partes[i].preguntas[j].respuestas.length; k++) {
 					const res_respuesta = await prisma.respuestas_video_cuestionario.create({
 						data: {
 							id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
@@ -83,15 +161,13 @@ async function addComplete(req, res, next) {
 						}
 					})
 				}
-
 			}
-
 		}
-
-		res.status(200).json(resultado)
+		res.status(200).json(res_cuestionario)
 	}
 	catch (err) {
 		res.status(500).json({ "message": `${err}` })
+		console.log(err)
 	}
 }
 
@@ -126,7 +202,10 @@ async function update(req, res, next) {
 module.exports = {
 	getAll,
 	get,
+	getComplete,
+	getData,
 	add,
 	remove,
 	update,
+	addComplete,
 }
