@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/controller_miembros.js')
+const controller = require('../controllers/controller_modelo_coml.js')
 
 // Rutas disponibles y las funciones que se llaman
 router.get('/getAll', controller.getAll)

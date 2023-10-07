@@ -15,7 +15,7 @@ async function get(req, res, next) {
 	try {
 		const resultado = await prisma.isla.findUnique({
 			where: {
-				id_isla: Number(req.params.id_isla)
+				id_isla: Number(req.params.id)
 			}
 		})
 		res.status(200).json(resultado)
@@ -41,7 +41,7 @@ async function getWithPalabras(req, res, next) {
 				}
 			},
 			where: {
-				id_isla: Number(req.params.id_isla)
+				id_isla: Number(req.params.id)
 			}
 		})
 		res.status(200).json(resultado)
@@ -71,7 +71,7 @@ async function add(req, res, next) {
 async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.isla.delete({
-			where: { id_isla: Number(req.params.id_isla) }
+			where: { id_isla: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -84,7 +84,7 @@ async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.isla.update({
-			where: { id_isla: Number(req.params.id_isla) },
+			where: { id_isla: Number(req.params.id) },
 			data: {
 				nombre: body.nombre,
 				modelo_general: body.modelo_general,

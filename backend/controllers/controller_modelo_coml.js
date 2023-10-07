@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 
 async function getAll(req, res, next) {
 	try {
-		const resultado = await prisma.miembro.findMany()
+		const resultado = await prisma.modelo_coml.findMany()
 		res.status(200).json(resultado)
 	}
 	catch (err) {
@@ -13,8 +13,10 @@ async function getAll(req, res, next) {
 
 async function get(req, res, next) {
 	try {
-		const resultado = await prisma.miembro.findUnique({
-			where: { id_miembro: Number(req.params.id) }
+		const resultado = await prisma.modelo_coml.findUnique({
+			where: {
+				id_modelo_coml: Number(req.params.id)
+			}
 		})
 		res.status(200).json(resultado)
 	}
@@ -26,11 +28,9 @@ async function get(req, res, next) {
 async function add(req, res, next) {
 	body = req.body
 	try {
-		const resultado = await prisma.miembro.create({
+		const resultado = await prisma.modelo_coml.create({
 			data: {
-				usuario: body.usuario,
-				contrasegna: body.contrasegna,
-				es_administrador: body.es_administrador
+				id_isla: body.id_isla,
 			}
 		})
 		res.status(200).json(resultado)
@@ -42,8 +42,8 @@ async function add(req, res, next) {
 
 async function remove(req, res, next) {
 	try {
-		const resultado = await prisma.miembro.delete({
-			where: { id_miembro: Number(req.params.id) }
+		const resultado = await prisma.modelo_coml.delete({
+			where: { id_modelo_coml: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -55,13 +55,11 @@ async function remove(req, res, next) {
 async function update(req, res, next) {
 	body = req.body
 	try {
-		const resultado = await prisma.miembro.update({
-			where: { id_miembro: Number(req.params.id) },
+		const resultado = await prisma.modelo_coml.update({
+			where: { id_modelo_coml: Number(req.params.id) },
 			data: {
-				usuario: body.usuario,
-				contrasegna: body.contrasegna,
-				es_administrador: body.es_administrador
-			},
+				id_isla: body.id_isla,
+			}
 		})
 		res.status(200).json(resultado)
 	}
@@ -75,5 +73,5 @@ module.exports = {
 	get,
 	add,
 	remove,
-	update
+	update,
 }

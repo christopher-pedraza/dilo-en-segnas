@@ -15,7 +15,7 @@ async function get(req, res, next) {
 	try {
 		const resultado = await prisma.palabra.findUnique({
 			where: {
-				id_palabra: Number(req.params.id_palabra)
+				id_palabra: Number(req.params.id)
 			}
 		})
 		res.status(200).json(resultado)
@@ -29,7 +29,7 @@ async function getPalabrasByCategoria(req, res, next) {
 	try {
 		const resultado = await prisma.palabra.findMany({
 			where: {
-				id_isla: Number(req.params.id_isla)
+				id_isla: Number(req.params.id)
 			},
 		})
 		res.status(200).json(resultado)
@@ -60,7 +60,7 @@ async function add(req, res, next) {
 async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.palabra.delete({
-			where: { id_palabra: Number(req.params.id_palabra) }
+			where: { id_palabra: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -73,7 +73,7 @@ async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.palabra.update({
-			where: { id_palabra: Number(req.params.id_palabra) },
+			where: { id_palabra: Number(req.params.id) },
 			data: {
 				id_isla: body.id_isla,
 				palabra: body.palabra,
