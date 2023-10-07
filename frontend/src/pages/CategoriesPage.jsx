@@ -122,7 +122,10 @@ export default function CategoriesPage() {
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenCreate(false)}
+                    onClick={() => {
+                      setIsOpenCreate(false);
+                      setFormData({ nombre: "" });
+                    }}
                   >
                     Cancelar
                   </button>
@@ -168,7 +171,10 @@ export default function CategoriesPage() {
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenUpdate(false)}
+                    onClick={() => {
+                      setIsOpenCreate(false);
+                      setFormData({ nombre: "" });
+                    }}
                   >
                     Cancelar
                   </button>

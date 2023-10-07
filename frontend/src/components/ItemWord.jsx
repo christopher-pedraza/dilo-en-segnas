@@ -1,21 +1,29 @@
 /* eslint-disable react/prop-types */
 export default function ItemWord(props) {
+  console.log(props);
   let data = props.data;
+  // console.log(props.categoryData);
+  // let categoryData = props.categoryData;
+  // console.log("CategoryData: ", categoryData);
+  // const categoryId = categoryData.id_isla;
+  // console.log("Category ID: ", categoryId);
+  // let categoryData = props.categoryData;
+  // console.log(categoryData);
 
   // Funcion que se ejecuta cuando se da click en el boton de editar
   const handleEdit = () => {
-    props.onEdit(data.id_isla);
-    props.onSetEditID(data.id_isla);
+    props.onEdit(data.id_palabra);
+    props.onSetEditID(data.id_palabra);
   };
 
   // Funcion que se ejecuta cuando se da click en el boton de eliminar
   const handleDelete = () => {
-    props.onDelete(data.id_isla);
+    props.onDelete(data.id_palabra);
   };
 
   return (
     <div className="flex items-center justify-between border-4 rounded-lg py-2 px-4 my-4">
-      <h3 className="text-xl">{data.nombre}</h3>
+      <h3 className="text-xl">{data.palabra}</h3>
       <div className="flex items-center">
         <button onClick={handleEdit}>
           <svg
