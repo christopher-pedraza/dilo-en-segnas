@@ -6,22 +6,34 @@ import Navbar from "../components/Navbar";
 import Item from "../components/Item";
 
 export default function CategoriesPage() {
+  // Estados para controlar si el modal esta abierto o cerrado
   let [isOpenCreate, setIsOpenCreate] = useState(false);
   let [isOpenUpdate, setIsOpenUpdate] = useState(false);
+
+  // Estado para controlar el formulario
   const [formData, setFormData] = useState({
     nombre: "",
   });
+
+  // Estado para controlar las categorias
   const [categories, setCategories] = useState([]);
+
+  // Estado para controlar el ID de la categoria a editar
   const [editID, setEditID] = useState();
+
+  // Estado para controlar el refresh de la pagina
   const [refresh, setRefresh] = useState(0);
 
+  // Destructuring del formData
   const { nombre } = formData;
 
+  // Funcion que se ejecuta cada vez que se cambia el valor de un input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // Funcion que se ejecuta cuando se da click en el boton de crear
+  const handleCreate = (e) => {
     e.preventDefault();
     if (nombre) {
       axios
@@ -35,8 +47,8 @@ export default function CategoriesPage() {
     setIsOpenCreate(false);
   };
 
+  // Funcion que se ejecuta cuando se da click en el boton de actualizar
   const handleUpdate = () => {
-    // setIsOpenUpdate(true);
     if (nombre) {
       axios
         .put(`http://localhost:3000/categorias/update/${editID}`, formData)
@@ -49,6 +61,7 @@ export default function CategoriesPage() {
     setIsOpenUpdate(false);
   };
 
+  // Funcion que se ejecuta cuando se da click en el boton de eliminar
   const handleDelete = (deleteID) => {
     axios
       .delete(`http://localhost:3000/categorias/remove/${deleteID}`)
@@ -59,6 +72,7 @@ export default function CategoriesPage() {
       .catch((err) => console.log(err));
   };
 
+  // Funcion que se ejecuta cuando se da click en el boton de editar del componente Item
   const handleEdit = (editIDNotState) => {
     setIsOpenUpdate(true);
     axios
@@ -70,6 +84,7 @@ export default function CategoriesPage() {
       .catch((err) => console.log(err));
   };
 
+  // Funcion que obtiene todas las categorias y las actualiza cada que cambia el estado refresh
   useEffect(() => {
     axios
       .get("http://localhost:3000/categorias/getAll")
@@ -81,6 +96,7 @@ export default function CategoriesPage() {
 
   return (
     <>
+      {/* Dialogo Crear Categoría */}
       <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
         <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
           {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -114,7 +130,7 @@ export default function CategoriesPage() {
                     className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
                     style={{ background: "#8712E0" }}
                     type="submit"
-                    onClick={handleSubmit}
+                    onClick={handleCreate}
                   >
                     Crear
                   </button>
@@ -126,6 +142,7 @@ export default function CategoriesPage() {
         ;
       </Dialog>
 
+      {/* Dialogo Actualizar Categoría */}
       <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
         <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
           {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -172,6 +189,7 @@ export default function CategoriesPage() {
       </Dialog>
 
       <Navbar />
+
       <div className="max-w-3xl m-auto p-8">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl">Categorías</h2>
@@ -184,9 +202,7 @@ export default function CategoriesPage() {
           </button>
         </div>
         <div>
-          {/* {categories.map((category, index) => (
-            <Item key={index} data={category} onDelete={handleDeleteCategory} />
-          ))} */}
+          {/* Map que muestra cada categoría del array categories */}
           {categories.map((category, index) => (
             <Item
               key={index}
