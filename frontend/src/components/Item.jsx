@@ -1,6 +1,12 @@
+/* eslint-disable react/prop-types */
 export default function Item(props) {
   let data = props.data;
   // console.log(data);
+
+  const handleEdit = () => {
+    props.onEdit(data.id_isla);
+    props.onSetEditID(data.id_isla);
+  };
 
   const handleDelete = () => {
     props.onDelete(data.id_isla);
@@ -10,7 +16,7 @@ export default function Item(props) {
     <div className="flex items-center justify-between border-4 rounded-lg py-2 px-4 my-4">
       <h3 className="text-xl">{data.nombre}</h3>
       <div className="flex items-center">
-        <button>
+        <button onClick={handleEdit}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
