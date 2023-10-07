@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function Item(props) {
+export default function ItemWord(props) {
   let data = props.data;
 
   // Funcion que se ejecuta cuando se da click en el boton de editar

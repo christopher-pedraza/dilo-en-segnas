@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 import Navbar from "../components/Navbar";
-import Item from "../components/Item";
+import ItemCategory from "../components/ItemCategory";
 import ClipPart from "../components/ClipPart";
 
 export default function ClipsPage() {
@@ -115,9 +115,9 @@ export default function ClipsPage() {
           </button>
         </div>
         <div>
-          <Item />
-          <Item />
-          <Item />
+          <ItemCategory />
+          <ItemCategory />
+          <ItemCategory />
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 import Navbar from "../components/Navbar";
-import Item from "../components/Item";
+import ItemWord from "../components/ItemWord";
 
 export default function Wordspage() {
   let [isOpen, setIsOpen] = useState(false);
@@ -84,9 +84,9 @@ export default function Wordspage() {
           </button>
         </div>
         <div>
-          <Item />
-          <Item />
-          <Item />
+          <ItemWord />
+          <ItemWord />
+          <ItemWord />
         </div>
       </div>
     </>
