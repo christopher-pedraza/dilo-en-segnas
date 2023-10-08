@@ -138,7 +138,7 @@ export default function QuizPage() {
 
     if (isSelected) {
       // Agregar la palabra a las palabras seleccionadas
-      updatedPalabras.push({ id_palabra: palabraId });
+      updatedPalabras.push(palabraId);
     } else {
       // Remover la palabra de las palabras seleccionadas
       const indexToRemove = updatedPalabras.findIndex(
@@ -220,7 +220,10 @@ export default function QuizPage() {
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenCreate(false)}
+                    onClick={() => {
+                      setIsOpenUpdate(false);
+                      setFormData({ id_isla: 0, nombre: "", palabras: [] });
+                    }}
                   >
                     Cancelar
                   </button>
@@ -297,7 +300,10 @@ export default function QuizPage() {
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenUpdate(false)}
+                    onClick={() => {
+                      setIsOpenUpdate(false);
+                      setFormData({ id_isla: 0, nombre: "", palabras: [] });
+                    }}
                   >
                     Cancelar
                   </button>
@@ -305,7 +311,7 @@ export default function QuizPage() {
                     className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
                     style={{ background: "#8712E0" }}
                     type="submit"
-                    onClick={handleCreate}
+                    onClick={handleUpdate}
                   >
                     Actualizar
                   </button>
