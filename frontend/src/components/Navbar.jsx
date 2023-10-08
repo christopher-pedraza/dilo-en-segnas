@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="flex">
         <div className="mx-4">
           <a
-            href="#"
+            href="/categories"
             className="text-white text-xl hover:text-gray-300 hover:underline"
           >
             Categorías
@@ -28,18 +28,18 @@ export default function Navbar() {
         </div>
         <div className="mx-4">
           <a
-            href="#"
+            href="/quiz"
             className="text-white text-xl hover:text-gray-300 hover:underline"
           >
-            Clips
+            Quiz
           </a>
         </div>
         <div className="mx-4">
           <a
-            href="#"
+            href="/clips"
             className="text-white text-xl hover:text-gray-300 hover:underline"
           >
-            Quiz
+            Clips
           </a>
         </div>
       </div>

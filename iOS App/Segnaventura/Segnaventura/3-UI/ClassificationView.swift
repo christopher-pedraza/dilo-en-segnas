@@ -16,9 +16,9 @@ struct ClassificationView: View {
         ZStack {
             
             //[OPTIONAL] Edit background color here.
-//            Color.blue
-//                .opacity(0.5)
-//                .ignoresSafeArea()
+            Color.blue
+                .opacity(0.5)
+                .ignoresSafeArea()
 
             // DO NOT EDIT this section. This displays the classification camera
             GeometryReader { geo in
