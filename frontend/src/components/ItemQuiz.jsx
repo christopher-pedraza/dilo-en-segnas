@@ -5,13 +5,13 @@ export default function ItemQuiz(props) {
 
   // Funcion que se ejecuta cuando se da click en el boton de editar
   const handleEdit = () => {
-    // props.onEdit(data.id_palabra);
-    // props.onSetEditID(data.id_palabra);
+    props.onEdit(data.id_quiz);
+    props.onSetEditID(data.id_quiz);
   };
 
   // Funcion que se ejecuta cuando se da click en el boton de eliminar
   const handleDelete = () => {
-    // props.onDelete(data.id_palabra);
+    props.onDelete(data.id_quiz);
   };
 
   return (
