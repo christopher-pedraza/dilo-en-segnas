@@ -51,6 +51,34 @@ async function getPalabrasByQuiz(req, res, next) {
 	}
 }
 
+async function getComplete(req, res, next) {
+	try {
+		const resultado = await prisma.quiz.findMany({
+			where: {
+				id_quiz: Number(req.params.id)
+			},
+			include: {
+				detalles_quiz: {
+					select: {
+						palabra: {
+							select: {
+								id_palabra: true,
+								palabra: true,
+								id_video_segna: true,
+								url_icono: true
+							}
+						}
+					},
+				},
+			},
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function add(req, res, next) {
 	body = req.body
 	try {
@@ -83,7 +111,7 @@ async function addConPalabras(req, res, next) {
 			await prisma.detalles_quiz.create({
 				data: {
 					id_quiz: resultado.id_quiz,
-					id_palabra: palabras[i].id_palabra
+					id_palabra: palabras[i]
 				}
 			})
 		}
@@ -108,14 +136,28 @@ async function remove(req, res, next) {
 async function update(req, res, next) {
 	body = req.body
 	try {
-		const resultado = await prisma.quiz.update({
+		const res_quiz = await prisma.quiz.update({
 			where: { id_quiz: Number(req.params.id) },
 			data: {
 				id_isla: body.id_isla,
 				nombre: body.nombre,
 			}
 		})
-		res.status(200).json(resultado)
+
+		const res_remove = await prisma.detalles_quiz.deleteMany({
+			where: { id_quiz: Number(req.params.id) }
+		})
+
+		palabras = body.palabras
+		for (let i = 0; i < palabras.length; i++) {
+			await prisma.detalles_quiz.create({
+				data: {
+					id_quiz: Number(req.params.id),
+					id_palabra: palabras[i]
+				}
+			})
+		}
+		res.status(200).json(res_quiz)
 	}
 	catch (err) {
 		res.status(500).json({ "message": `${err}` })
@@ -160,6 +202,7 @@ module.exports = {
 	getAll,
 	get,
 	getPalabrasByQuiz,
+	getComplete,
 	add,
 	addConPalabras,
 	addPalabra,

@@ -100,15 +100,15 @@ model parte_video_cuestionario {
   id_video_cuestionario        Int
   url_video                    String
   indice                       Int
-  video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
   preguntas_video_cuestionario preguntas_video_cuestionario[]
 }
 
 model palabras_video_cuestionario {
   id_video_cuestionario Int
   id_palabra            Int
-  video_cuestionario    video_cuestionario @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
-  palabra               palabra            @relation(fields: [id_palabra], references: [id_palabra], onDelete: NoAction, onUpdate: NoAction)
+  video_cuestionario    video_cuestionario @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
+  palabra               palabra            @relation(fields: [id_palabra], references: [id_palabra], onDelete: Cascade, onUpdate: NoAction)
 
   @@id([id_video_cuestionario, id_palabra])
 }
@@ -117,7 +117,7 @@ model preguntas_video_cuestionario {
   id_preguntas_video_cuestionario Int                             @id @default(autoincrement())
   id_parte_video_cuestionario     Int
   pregunta                        String
-  parte_video_cuestionario        parte_video_cuestionario        @relation(fields: [id_parte_video_cuestionario], references: [id_parte_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  parte_video_cuestionario        parte_video_cuestionario        @relation(fields: [id_parte_video_cuestionario], references: [id_parte_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
   respuestas_video_cuestionario   respuestas_video_cuestionario[]
 }
 
@@ -126,14 +126,14 @@ model respuestas_video_cuestionario {
   id_preguntas_video_cuestionario  Int
   respuesta                        String
   es_correcta                      Boolean
-  preguntas_video_cuestionario     preguntas_video_cuestionario @relation(fields: [id_preguntas_video_cuestionario], references: [id_preguntas_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  preguntas_video_cuestionario     preguntas_video_cuestionario @relation(fields: [id_preguntas_video_cuestionario], references: [id_preguntas_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model detalles_quiz {
   id_quiz    Int
   id_palabra Int
-  quiz       quiz    @relation(fields: [id_quiz], references: [id_quiz], onDelete: NoAction, onUpdate: NoAction)
-  palabra    palabra @relation(fields: [id_palabra], references: [id_palabra], onDelete: NoAction, onUpdate: NoAction)
+  quiz       quiz    @relation(fields: [id_quiz], references: [id_quiz], onDelete: Cascade, onUpdate: NoAction)
+  palabra    palabra @relation(fields: [id_palabra], references: [id_palabra], onDelete: Cascade, onUpdate: NoAction)
 
   @@id([id_quiz, id_palabra])
 }

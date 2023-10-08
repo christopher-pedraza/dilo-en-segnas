@@ -150,22 +150,23 @@ ALTER TABLE "nivel" ADD CONSTRAINT "nivel_id_treasure_hunt_fkey" FOREIGN KEY ("i
 ALTER TABLE "palabra" ADD CONSTRAINT "palabra_id_isla_fkey" FOREIGN KEY ("id_isla") REFERENCES "isla"("id_isla") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "parte_video_cuestionario" ADD CONSTRAINT "parte_video_cuestionario_id_video_cuestionario_fkey" FOREIGN KEY ("id_video_cuestionario") REFERENCES "video_cuestionario"("id_video_cuestionario") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "parte_video_cuestionario" ADD CONSTRAINT "parte_video_cuestionario_id_video_cuestionario_fkey" FOREIGN KEY ("id_video_cuestionario") REFERENCES "video_cuestionario"("id_video_cuestionario") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "palabras_video_cuestionario" ADD CONSTRAINT "palabras_video_cuestionario_id_video_cuestionario_fkey" FOREIGN KEY ("id_video_cuestionario") REFERENCES "video_cuestionario"("id_video_cuestionario") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "palabras_video_cuestionario" ADD CONSTRAINT "palabras_video_cuestionario_id_video_cuestionario_fkey" FOREIGN KEY ("id_video_cuestionario") REFERENCES "video_cuestionario"("id_video_cuestionario") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "palabras_video_cuestionario" ADD CONSTRAINT "palabras_video_cuestionario_id_palabra_fkey" FOREIGN KEY ("id_palabra") REFERENCES "palabra"("id_palabra") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "palabras_video_cuestionario" ADD CONSTRAINT "palabras_video_cuestionario_id_palabra_fkey" FOREIGN KEY ("id_palabra") REFERENCES "palabra"("id_palabra") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "preguntas_video_cuestionario" ADD CONSTRAINT "preguntas_video_cuestionario_id_parte_video_cuestionario_fkey" FOREIGN KEY ("id_parte_video_cuestionario") REFERENCES "parte_video_cuestionario"("id_parte_video_cuestionario") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "preguntas_video_cuestionario" ADD CONSTRAINT "preguntas_video_cuestionario_id_parte_video_cuestionario_fkey" FOREIGN KEY ("id_parte_video_cuestionario") REFERENCES "parte_video_cuestionario"("id_parte_video_cuestionario") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "respuestas_video_cuestionario" ADD CONSTRAINT "respuestas_video_cuestionario_id_preguntas_video_cuestiona_fkey" FOREIGN KEY ("id_preguntas_video_cuestionario") REFERENCES "preguntas_video_cuestionario"("id_preguntas_video_cuestionario") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "respuestas_video_cuestionario" ADD CONSTRAINT "respuestas_video_cuestionario_id_preguntas_video_cuestiona_fkey" FOREIGN KEY ("id_preguntas_video_cuestionario") REFERENCES "preguntas_video_cuestionario"("id_preguntas_video_cuestionario") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "detalles_quiz" ADD CONSTRAINT "detalles_quiz_id_quiz_fkey" FOREIGN KEY ("id_quiz") REFERENCES "quiz"("id_quiz") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "detalles_quiz" ADD CONSTRAINT "detalles_quiz_id_quiz_fkey" FOREIGN KEY ("id_quiz") REFERENCES "quiz"("id_quiz") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "detalles_quiz" ADD CONSTRAINT "detalles_quiz_id_palabra_fkey" FOREIGN KEY ("id_palabra") REFERENCES "palabra"("id_palabra") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "detalles_quiz" ADD CONSTRAINT "detalles_quiz_id_palabra_fkey" FOREIGN KEY ("id_palabra") REFERENCES "palabra"("id_palabra") ON DELETE CASCADE ON UPDATE NO ACTION;
+
