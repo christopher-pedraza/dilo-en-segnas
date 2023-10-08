@@ -13,7 +13,7 @@ export default function QuizPage() {
 
   // Estado para controlar el formulario
   const [formData, setFormData] = useState({
-    id_isla: "default",
+    id_isla: 0,
     nombre: "",
     palabras: [],
   });
@@ -46,7 +46,11 @@ export default function QuizPage() {
     e.preventDefault();
     if (id_isla && nombre && palabras) {
       axios
-        .post("http://localhost:3000/quiz/addConPalabras", formData)
+        .post("http://localhost:3000/quiz/addConPalabras", {
+          id_isla: parseInt(id_isla), // Convertir a int
+          nombre: nombre,
+          palabras: palabras,
+        })
         .then((res) => {
           setQuizes([...quizes, res.data]);
           setFormData({ id_isla: "default", nombre: "", palabras: [] });
@@ -146,7 +150,7 @@ export default function QuizPage() {
                     name="id_isla"
                     id="id_isla"
                     className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
-                    value={id_isla}
+                    value={id_isla == 0 ? "default" : id_isla}
                     onChange={handleChange}
                   >
                     <option value="default" disabled>
