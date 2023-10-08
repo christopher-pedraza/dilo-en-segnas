@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
 
-export default function ItemToggle(props) {
-  const { data, onToggle } = props;
+export default function ItemToggle({ data, onToggle }) {
   const [enabled, setEnabled] = useState(false);
 
   const handleToggle = () => {
