@@ -11,11 +11,11 @@ async function getAll(req, res, next) {
 	}
 }
 
-async function getWithPalabras(req, res, next) {
+async function get(req, res, next) {
 	try {
-		const resultado = await prisma.isla.findMany({
-			include: {
-				palabra: true
+		const resultado = await prisma.isla.findUnique({
+			where: {
+				id_isla: Number(req.params.id)
 			}
 		})
 		res.status(200).json(resultado)
@@ -25,11 +25,23 @@ async function getWithPalabras(req, res, next) {
 	}
 }
 
-async function get(req, res, next) {
+async function getWithPalabras(req, res, next) {
 	try {
-		const resultado = await prisma.isla.findUnique({
+		const resultado = await prisma.isla.findMany({
+			select: {
+				id_isla: true,
+				nombre: true,
+				palabra: {
+					select: {
+						id_palabra: true,
+						palabra: true,
+						id_video_segna: true,
+						url_icono: true
+					}
+				}
+			},
 			where: {
-				id_isla: Number(req.params.id_isla)
+				id_isla: Number(req.params.id)
 			}
 		})
 		res.status(200).json(resultado)
@@ -59,7 +71,7 @@ async function add(req, res, next) {
 async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.isla.delete({
-			where: { id_isla: Number(req.params.id_isla) }
+			where: { id_isla: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -72,9 +84,11 @@ async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.isla.update({
-			where: { id_isla: Number(req.params.id_isla) },
+			where: { id_isla: Number(req.params.id) },
 			data: {
-				nombre: body.nombre
+				nombre: body.nombre,
+				modelo_general: body.modelo_general,
+				modelo_especifico: body.modelo_especifico
 			}
 		})
 		res.status(200).json(resultado)
@@ -87,8 +101,8 @@ async function update(req, res, next) {
 module.exports = {
 	getAll,
 	get,
+	getWithPalabras,
 	add,
 	remove,
-	update,
-	getWithPalabras
+	update
 }

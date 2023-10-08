@@ -39,11 +39,12 @@ model isla {
 }
 
 model video_cuestionario {
-  id_video_cuestionario    Int                        @id @default(autoincrement())
-  id_isla                  Int
-  isla                     isla                       @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
-  nivel                    nivel[]
-  parte_video_cuestionario parte_video_cuestionario[]
+  id_video_cuestionario       Int                           @id @default(autoincrement())
+  id_isla                     Int
+  isla                        isla                          @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
+  nivel                       nivel[]
+  parte_video_cuestionario    parte_video_cuestionario[]
+  palabras_video_cuestionario palabras_video_cuestionario[]
 }
 
 model quiz {
@@ -95,36 +96,37 @@ model palabra {
 }
 
 model parte_video_cuestionario {
-  id_parte_video_cuestionario   Int                             @id @default(autoincrement())
-  id_video_cuestionario         Int
-  video_cuestionario            video_cuestionario              @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
-  preguntas_video_cuestionario  preguntas_video_cuestionario[]
-  respuestas_video_cuestionario respuestas_video_cuestionario[]
-  palabras_video_cuestionario   palabras_video_cuestionario[]
+  id_parte_video_cuestionario  Int                            @id @default(autoincrement())
+  id_video_cuestionario        Int
+  url_video                    String
+  indice                       Int
+  video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  preguntas_video_cuestionario preguntas_video_cuestionario[]
 }
 
 model palabras_video_cuestionario {
-  id_parte_video_cuestionario Int
-  id_palabra                  Int
-  parte_video_cuestionario    parte_video_cuestionario @relation(fields: [id_parte_video_cuestionario], references: [id_parte_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
-  palabra                     palabra                  @relation(fields: [id_palabra], references: [id_palabra], onDelete: NoAction, onUpdate: NoAction)
+  id_video_cuestionario Int
+  id_palabra            Int
+  video_cuestionario    video_cuestionario @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  palabra               palabra            @relation(fields: [id_palabra], references: [id_palabra], onDelete: NoAction, onUpdate: NoAction)
 
-  @@id([id_parte_video_cuestionario, id_palabra])
+  @@id([id_video_cuestionario, id_palabra])
 }
 
 model preguntas_video_cuestionario {
-  id_preguntas_video_cuestionario Int                      @id @default(autoincrement())
+  id_preguntas_video_cuestionario Int                             @id @default(autoincrement())
   id_parte_video_cuestionario     Int
   pregunta                        String
-  parte_video_cuestionario        parte_video_cuestionario @relation(fields: [id_parte_video_cuestionario], references: [id_parte_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  parte_video_cuestionario        parte_video_cuestionario        @relation(fields: [id_parte_video_cuestionario], references: [id_parte_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  respuestas_video_cuestionario   respuestas_video_cuestionario[]
 }
 
 model respuestas_video_cuestionario {
-  id_respuestas_video_cuestionario Int                      @id @default(autoincrement())
-  id_parte_video_cuestionario      Int
+  id_respuestas_video_cuestionario Int                          @id @default(autoincrement())
+  id_preguntas_video_cuestionario  Int
   respuesta                        String
   es_correcta                      Boolean
-  parte_video_cuestionario         parte_video_cuestionario @relation(fields: [id_parte_video_cuestionario], references: [id_parte_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  preguntas_video_cuestionario     preguntas_video_cuestionario @relation(fields: [id_preguntas_video_cuestionario], references: [id_preguntas_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model detalles_quiz {

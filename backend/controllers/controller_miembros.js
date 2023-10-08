@@ -14,7 +14,7 @@ async function getAll(req, res, next) {
 async function get(req, res, next) {
 	try {
 		const resultado = await prisma.miembro.findUnique({
-			where: { id_miembro: Number(req.params.id_miembro) }
+			where: { id_miembro: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -30,7 +30,7 @@ async function add(req, res, next) {
 			data: {
 				usuario: body.usuario,
 				contrasegna: body.contrasegna,
-				es_administrador: body.es_administrador.toLowerCase() == "true"
+				es_administrador: body.es_administrador
 			}
 		})
 		res.status(200).json(resultado)
@@ -43,7 +43,7 @@ async function add(req, res, next) {
 async function remove(req, res, next) {
 	try {
 		const resultado = await prisma.miembro.delete({
-			where: { id_miembro: Number(req.params.id_miembro) }
+			where: { id_miembro: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -56,11 +56,11 @@ async function update(req, res, next) {
 	body = req.body
 	try {
 		const resultado = await prisma.miembro.update({
-			where: { id_miembro: Number(req.params.id_miembro) },
+			where: { id_miembro: Number(req.params.id) },
 			data: {
 				usuario: body.usuario,
 				contrasegna: body.contrasegna,
-				es_administrador: body.es_administrador.toLowerCase() == "true"
+				es_administrador: body.es_administrador
 			},
 		})
 		res.status(200).json(resultado)
