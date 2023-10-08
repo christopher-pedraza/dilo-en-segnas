@@ -8,21 +8,36 @@
         
 
         let customColor = UIColor(Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255)) // Replace with your RGB values
+        
+        let customColorBackground = Color(red: 205 / 255, green: 241 / 255, blue: 255 / 255) // Replace with your RGB values
+        
+
 
         //Para editar la navbar de la parte superior de la pantalla
         init() {
+            let customColorNavBar = UIColor(Color(red: 21 / 255, green: 17 / 255, blue: 28 / 255))
             let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.backgroundColor = customColor
-            UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-        }   
+            ///navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = customColorNavBar
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            // Set the appearance for compact navigation bars (when scrolling)
+            //navBarAppearance.compactAppearance = navBarAppearance
+            
+                
+                // Set the appearance for full-height navigation bars (when not scrolling)
+           // navBarAppearance.scrollEdgeAppearance = navBarAppearance
+        }
 
         var body: some View {
                 NavigationStack {
+                    
                     VStack {
+                        
                         List(VocabularioVM.vocabulario.categorias) { categoria in
                             CategoryView(category: categoria)
+                                .listRowBackground(customColorBackground)
                         }
+
                         .task {
                             do {
                                 try await VocabularioVM.getVocabularioData()
@@ -32,7 +47,7 @@
                         }
                         .listStyle(PlainListStyle()) // Remove list style to take full width
                     }
-                    
+
                     .frame(maxWidth: .infinity, alignment: .leading) // Make VStack take full width
                     .navigationTitle("Vocabulary")
                     .navigationBarTitleDisplayMode(.inline)
@@ -57,13 +72,17 @@
 
 //Vista de la categoria de objetos
         struct CategoryView: View {
+            let customColorVerMas = Color(red: 12 / 255, green: 153 / 255, blue: 255 / 255)
             let category: Categorias
             @State private var showAllObjects = false //Variable que controla si
             @State private var selectedVocabulary: Vocabulario? //Variable para definir vocabulario que selecciono el usuario
             @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
             var imageWidth: CGFloat {
-                return horizontalSizeClass == .compact ? 100 : 210
+                return horizontalSizeClass == .compact ? 90 : 160
+            }
+            var imageHeight: CGFloat {
+                return horizontalSizeClass == .compact ? 75 : 140
             }
 
             var objectFontSize: CGFloat {
@@ -73,79 +92,102 @@
             let customColor = Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255)
             
             
+            let customColorObjeto = Color(red: 228 / 255, green: 228 / 255, blue: 228 / 255)
+            
+            
 
             var body: some View {
-                VStack {
-                    Text(category.nombre_categoria)
-                        .font(.system(size: horizontalSizeClass == .compact ? 25 : 40))
-                        .font(.title)
-                        .padding(8)
-                        .foregroundColor(.black)
-                    
-                    //Limita objetos en una categoria a 6, checa si esta inclinado para definir numero de filas y  columnas
-                    let maxObjectsPerRow = isLandscape ? 2 : 3
-                    let objectsToDisplay = showAllObjects ? category.vocabulario.count : min(category.vocabulario.count, maxObjectsPerRow * 2)
-
-                    LazyVGrid(columns: columns(), spacing: 0) {
-                        ForEach(category.vocabulario.prefix(objectsToDisplay).indices, id: \.self) { index in
-                            let vocabulario = category.vocabulario[index]
-                            VStack {
-                                // Check if url_imagen is empty, and use a fallback image if true
-                                if vocabulario.url_imagen.isEmpty {
-                                    Image("imagenObjetoVacio")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: imageWidth, height: imageWidth)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                } else {
-                                    if let imageUrl = URL(string: vocabulario.url_imagen),
-                                       let imageData = try? Data(contentsOf: imageUrl),
-                                       let uiImage = UIImage(data: imageData) {
-                                        Image(uiImage: uiImage)
+                ZStack{
+                    //Color.black
+                    VStack {
+                        Text(category.nombre_categoria)
+                            .font(Font.custom("Poppins-SemiBold", size: 35))
+                        /*.font(.custom(
+                         "Poppins-SemiBold",
+                         size: horizontalSizeClass == .compact ? 25 : 40).bold())*/
+                        //  .font(.title)
+                            .padding(8)
+                            .foregroundColor(.black)
+                        
+                        //Limita objetos en una categoria a 6, checa si esta inclinado para definir numero de filas y  columnas
+                        let maxObjectsPerRow = isLandscape ? 2 : 3
+                        let objectsToDisplay = showAllObjects ? category.vocabulario.count : min(category.vocabulario.count,4)
+                        
+                        LazyVGrid(columns: columns(), spacing: 0) {
+                            ForEach(category.vocabulario.prefix(objectsToDisplay).indices, id: \.self) { index in
+                                let vocabulario = category.vocabulario[index]
+                                
+                                VStack (spacing:10) {
+                                    // Check if url_imagen is empty, and use a fallback image if true
+                                    if vocabulario.url_imagen.isEmpty {
+                                        Image("imagenObjetoVacio")
                                             .resizable()
-                                            .aspectRatio(contentMode: .fill)
+                                            .aspectRatio(contentMode: .fit)
                                             .frame(width: imageWidth, height: imageWidth)
                                             .background(Color.white)
-                                            .cornerRadius(30)
-                                            .onTapGesture {
-                                                selectedVocabulary = vocabulario // Set the selected vocabulary
-                                            }
+                                            .cornerRadius(15)
+                                    } else {
+                                        if let imageUrl = URL(string: vocabulario.url_imagen),
+                                           let imageData = try? Data(contentsOf: imageUrl),
+                                           let uiImage = UIImage(data: imageData) {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: imageWidth, height: imageWidth)
+                                                .padding(.top,20)
+                                                .onTapGesture {
+                                                    selectedVocabulary = vocabulario // Set the selected vocabulary
+                                                }
+                                        }
                                     }
+                                    
+                                    Text(vocabulario.palabra_espagnol)
+                                        .font(Font.custom("Poppins-SemiBold", size: objectFontSize)) // Adjust font size here
+                                        .font(.headline)
+                                    
+                                        .foregroundColor(.black)
+                                        .frame(width: 100)
+                                        .padding(.horizontal,30)
+                                        .padding(.vertical,10)
+                                        
                                 }
+                                .background(customColorObjeto)
+                                
+                                .contentShape(Rectangle()) // Make the whole cell tappable
+                                .cornerRadius(15)
+                                .padding(.horizontal,15)
+                                .padding(.vertical,15)
+                                .onTapGesture {
+                                    selectedVocabulary = vocabulario // Set the selected vocabulary when the cell is tapped
+                                }
+                            }
+                        }
+                        if category.vocabulario.count > 4 {
+                            Button(action: {
+                                showAllObjects.toggle()
+                            }) {
+                                Text(showAllObjects ? "Cerrar" : "Ver más")
+                                    .foregroundColor(customColorVerMas)
+                                    .font(.system(size: horizontalSizeClass == .compact ? 18 : 30))
+                            }
+                            .padding(.top, 5)
+                            .padding(.bottom, 5)
+                            .padding(.horizontal, 5)
+                            .background(
+                                RoundedRectangle(cornerRadius: 4) // Apply round corners to the button
+                                    .stroke(customColorVerMas, lineWidth: 1) // Set a blue outline with a line width of 2
+                            )
+                        }
+                    }
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    
+                    .sheet(item: $selectedVocabulary) { vocabulary in
+                        PopupView(vocabulary: vocabulary, videoID: vocabulary.id_video)
+                    }
+                }                            //.padding(.horizontal,35)
+                   // .padding(.vertical,35)
 
-                                Text(vocabulario.palabra_espagnol)
-                                    .font(.system(size: objectFontSize)) // Adjust font size here
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                                    .padding(.bottom,5)
-                            }
-                            
-                            .contentShape(Rectangle()) // Make the whole cell tappable
-                            .onTapGesture {
-                                selectedVocabulary = vocabulario // Set the selected vocabulary when the cell is tapped
-                            }
-                        }
-                    }
-                    if category.vocabulario.count > 6 {
-                        Button(action: {
-                            showAllObjects.toggle()
-                        }) {
-                            Text(showAllObjects ? "Cerrar" : "Ver más")
-                                .foregroundColor(Color(red: 0, green: 0, blue: 0.5))
-                                .font(.system(size: horizontalSizeClass == .compact ? 18 : 30))
-                        }
-                        .padding(.top, 8)
-                        .padding(.bottom, 8)
-                    }
-                }
-               
-                .background(customColor)
-                .cornerRadius(20)
-            .sheet(item: $selectedVocabulary) { vocabulary in
-                PopupView(vocabulary: vocabulary, videoID: vocabulary.id_video)
-            }
-            
             
             
         }
@@ -159,7 +201,8 @@
         var isLandscape: Bool {
             return UIDevice.current.orientation.isLandscape
         }
-    }
+        }
+
 
 //Vista del popup cuando usuario selecciona objeto
 struct PopupView: View {
