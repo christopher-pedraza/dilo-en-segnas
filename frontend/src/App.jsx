@@ -14,7 +14,7 @@ function App() {
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:id_category" element={<WordsPage />} />
         <Route path="/quiz" element={<QuizPage />} />
-        <Route path="/clips" element={<VideosPage />} />
+        <Route path="/videos" element={<VideosPage />} />
       </Routes>
     </BrowserRouter>
   );

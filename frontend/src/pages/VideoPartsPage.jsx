@@ -1,4 +1,4 @@
-export default function VideoPart() {
+export default function VideoPartsPage() {
   return (
     <>
       <label htmlFor="clipVideo" className="text-2xl font-bold">
