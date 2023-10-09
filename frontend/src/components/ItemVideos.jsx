@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function ItemClips(props) {
+export default function ItemVideos(props) {
   // console.log(props);
   let data = props.data;
 

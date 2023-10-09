@@ -39,7 +39,7 @@ export default function Navbar() {
             href="/clips"
             className="text-white text-xl hover:text-gray-300 hover:underline"
           >
-            Clips
+            Videos
           </a>
         </div>
       </div>

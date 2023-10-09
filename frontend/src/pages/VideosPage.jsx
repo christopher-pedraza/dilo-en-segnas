@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 import Navbar from "../components/Navbar";
-import ItemClips from "../components/ItemClips";
-import ClipPart from "../components/ClipPart";
+import ItemVideos from "../components/ItemVideos";
+import VideoPart from "../components/VideoPart";
 
-export default function ClipsPage() {
+export default function VideosPage() {
   let [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -76,8 +76,8 @@ export default function ClipsPage() {
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
                 />
                 <div>
-                  <ClipPart />
-                  <ClipPart />
+                  <VideoPart />
+                  <VideoPart />
                 </div>
                 <div className="flex items-center justify-end mt-1">
                   <button
@@ -105,19 +105,19 @@ export default function ClipsPage() {
       <Navbar />
       <div className="max-w-3xl m-auto p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl">Clips</h2>
+          <h2 className="text-3xl">Videos</h2>
           <button
             onClick={() => setIsOpen(true)}
             className="p-2 text-white rounded-md"
             style={{ background: "#8712E0" }}
           >
-            Crear Clip
+            Crear Video
           </button>
         </div>
         <div>
-          <ItemClips />
-          <ItemClips />
-          <ItemClips />
+          <ItemVideos />
+          <ItemVideos />
+          <ItemVideos />
         </div>
       </div>
     </>
