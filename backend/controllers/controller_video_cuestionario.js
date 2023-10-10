@@ -62,7 +62,7 @@ async function getData(req, res, next) {
 				id_video_cuestionario: Number(req.params.id)
 			},
 			select: {
-				titulo: true,
+				nombre: true,
 				_count: {
 					select: {
 						parte_video_cuestionario: true,
@@ -109,7 +109,7 @@ async function add(req, res, next) {
 		const resultado = await prisma.video_cuestionario.create({
 			data: {
 				id_isla: body.id_isla,
-				titulo: body.titulo,
+				nombre: body.nombre,
 			},
 		})
 		res.status(200).json(resultado)
@@ -125,7 +125,7 @@ async function addWithPalabras(req, res, next) {
 		const res_cuestionario = await prisma.video_cuestionario.create({
 			data: {
 				id_isla: body.id_isla,
-				titulo: body.titulo,
+				nombre: body.nombre,
 			},
 		})
 
@@ -151,6 +151,7 @@ async function addParte(req, res, next) {
 		const res_parte = await prisma.parte_video_cuestionario.create({
 			data: {
 				id_video_cuestionario: body.id_video_cuestionario,
+				nombre: body.nombre,
 				url_video: body.url_video,
 				indice: body.indice,
 			}
@@ -188,7 +189,7 @@ async function addComplete(req, res, next) {
 		const res_cuestionario = await prisma.video_cuestionario.create({
 			data: {
 				id_isla: body.id_isla,
-				titulo: body.titulo,
+				nombre: body.nombre,
 			},
 		})
 
@@ -205,6 +206,7 @@ async function addComplete(req, res, next) {
 			const res_parte = await prisma.parte_video_cuestionario.create({
 				data: {
 					id_video_cuestionario: res_cuestionario.id_video_cuestionario,
+					nombre: body.nombre,
 					url_video: body.partes[i].url_video,
 					indice: i,
 				}
@@ -256,7 +258,7 @@ async function update(req, res, next) {
 			where: { id_video_cuestionario: Number(req.params.id) },
 			data: {
 				id_isla: body.id_isla,
-				titulo: body.titulo,
+				nombre: body.nombre,
 			},
 		})
 
