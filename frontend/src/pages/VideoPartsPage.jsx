@@ -16,7 +16,7 @@ export default function VideoPartsPage() {
   // Estado para controlar el formulario
   const [formData, setFormData] = useState({
     id_video_cuestionario: 0,
-    indice: 0,
+    indice: -1,
     nombre: "",
     url_video: "",
     preguntas: [],
