@@ -40,6 +40,7 @@ model isla {
 
 model video_cuestionario {
   id_video_cuestionario       Int                           @id @default(autoincrement())
+  nombre                      String
   id_isla                     Int
   isla                        isla                          @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
   nivel                       nivel[]
@@ -100,6 +101,7 @@ model parte_video_cuestionario {
   id_video_cuestionario        Int
   url_video                    String
   indice                       Int
+  nombre                       String
   video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
   preguntas_video_cuestionario preguntas_video_cuestionario[]
 }
