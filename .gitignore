@@ -130,3 +130,8 @@ iOSInjectionProject/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+## API ##
+# backend/node_modules
+# Keep environment variables out of version control
+.env
