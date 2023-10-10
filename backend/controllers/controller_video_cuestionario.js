@@ -254,6 +254,21 @@ async function update(req, res, next) {
 				id_isla: body.id_isla,
 			}
 		})
+
+		const res_remove = await prisma.palabras_video_cuestionario.deleteMany({
+			where: { id_video_cuestionario: Number(req.params.id) }
+		})
+
+		palabras = body.palabras
+		for (let i = 0; i < palabras.length; i++) {
+			await prisma.palabras_video_cuestionario.create({
+				data: {
+					id_video_cuestionario: Number(req.params.id),
+					id_palabra: palabras[i]
+				}
+			})
+		}
+
 		res.status(200).json(resultado)
 	}
 	catch (err) {
