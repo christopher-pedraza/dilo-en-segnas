@@ -117,6 +117,68 @@ async function add(req, res, next) {
 	}
 }
 
+async function addWithPalabras(req, res, next) {
+	body = req.body
+	try {
+		const res_cuestionario = await prisma.video_cuestionario.create({
+			data: {
+				id_isla: body.id_isla,
+			}
+		})
+
+		for (let n = 0; n < body.palabras.length; n++) {
+			const res_palabras = await prisma.palabras_video_cuestionario.create({
+				data: {
+					id_video_cuestionario: res_cuestionario.id_video_cuestionario,
+					id_palabra: body.palabras[n]
+				}
+			})
+		}
+		res.status(200).json(res_cuestionario)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+		console.log(err)
+	}
+}
+
+async function addParte(req, res, next) {
+	body = req.body
+	try {
+		const res_parte = await prisma.parte_video_cuestionario.create({
+			data: {
+				id_video_cuestionario: body.id_video_cuestionario,
+				url_video: body.url_video,
+				indice: body.indice,
+			}
+		})
+
+		for (let j = 0; j < body.preguntas.length; j++) {
+			const res_pregunta = await prisma.preguntas_video_cuestionario.create({
+				data: {
+					id_parte_video_cuestionario: res_parte.id_parte_video_cuestionario,
+					pregunta: body.preguntas[j].pregunta,
+				}
+			})
+
+			for (let k = 0; k < body.preguntas[j].respuestas.length; k++) {
+				const res_respuesta = await prisma.respuestas_video_cuestionario.create({
+					data: {
+						id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+						respuesta: body.preguntas[j].respuestas[k].respuesta,
+						es_correcta: body.preguntas[j].respuestas[k].es_correcta,
+					}
+				})
+			}
+		}
+		res.status(200).json(res_parte)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+		console.log(err)
+	}
+}
+
 async function addComplete(req, res, next) {
 	body = req.body
 	try {
@@ -205,7 +267,9 @@ module.exports = {
 	getComplete,
 	getData,
 	add,
+	addWithPalabras,
+	addParte,
+	addComplete,
 	remove,
 	update,
-	addComplete,
 }
