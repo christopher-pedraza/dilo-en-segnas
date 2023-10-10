@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
+
 export default function ItemVideos(props) {
   // console.log(props);
   let data = props.data;
+  const navigate = useNavigate();
 
   // Funcion que se ejecuta cuando se da click en el boton de editar
   const handleEdit = () => {
@@ -14,9 +17,23 @@ export default function ItemVideos(props) {
     // props.onDelete(data.id_quiz);
   };
 
+  const handleCategoryClick = () => {
+    // Utiliza navigate para redirigir a la nueva página y pasar el estado en el objeto "state"
+    // navigate(`/videos/${data.id_isla}`, { state: { categoryData: data } });
+  };
+
   return (
     <div className="flex items-center justify-between border-4 rounded-lg py-2 px-4 my-4">
-      <h3 className="text-xl">{}</h3>
+      <h3
+        className="text-xl"
+        onClick={handleCategoryClick}
+        // Underline on hovered item
+        onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
+        onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
+        style={{ cursor: "pointer" }}
+      >
+        {}
+      </h3>
       <div className="flex items-center">
         <button onClick={handleEdit}>
           <svg
