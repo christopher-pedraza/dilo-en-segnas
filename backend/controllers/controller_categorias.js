@@ -51,6 +51,29 @@ async function getWithPalabras(req, res, next) {
 	}
 }
 
+async function getAllWithPalabras(req, res, next) {
+	try {
+		const resultado = await prisma.isla.findMany({
+			select: {
+				id_isla: true,
+				nombre: true,
+				palabra: {
+					select: {
+						id_palabra: true,
+						palabra: true,
+						id_video_segna: true,
+						url_icono: true
+					}
+				}
+			},
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function add(req, res, next) {
 	body = req.body
 	try {
@@ -102,6 +125,7 @@ module.exports = {
 	getAll,
 	get,
 	getWithPalabras,
+	getAllWithPalabras,
 	add,
 	remove,
 	update
