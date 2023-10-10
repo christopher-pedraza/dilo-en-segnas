@@ -36,10 +36,10 @@ export default function Navbar() {
         </div>
         <div className="mx-4">
           <a
-            href="/clips"
+            href="/videos"
             className="text-white text-xl hover:text-gray-300 hover:underline"
           >
-            Clips
+            Videos
           </a>
         </div>
       </div>
