@@ -67,11 +67,12 @@ async function getAllWithPalabras(req, res, next) {
 				}
 			},
 		})
-		res.status(200).json(resultado)
-	}
-	catch (err) {
-		res.status(500).json({ "message": `${err}` })
-	}
+        const response = { categorias: resultado };
+        res.status(200).json(response);
+      } catch (err) {
+        res.status(500).json({ "message": `${err}` });
+      }
+
 }
 
 async function add(req, res, next) {
