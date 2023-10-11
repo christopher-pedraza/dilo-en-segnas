@@ -24,6 +24,7 @@ struct SegnaventuraApp: App {
                 .environmentObject(VideoVM)
                 .environmentObject(fsm)
                 .environmentObject(palabraVideosVM)
+                .environmentObject(predictionStatus)
         }
     }
 }

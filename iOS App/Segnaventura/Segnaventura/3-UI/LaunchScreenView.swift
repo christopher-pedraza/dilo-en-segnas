@@ -27,7 +27,7 @@ struct LaunchScreenView: View {
                     // .frame(width: 250)
                     
                     // title
-                    Text("Señaventura")
+                    Text("Búsqueda del tesoro")
                         .font(.system(size: 52, weight: .bold))
                         .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                     
@@ -78,7 +78,7 @@ struct LaunchScreenView: View {
                     
                 }
                 .padding()
-                .frame(maxWidth: 500) // This sets the width of the white card
+                .frame(maxWidth: 370) // This sets the width of the white card
                 .background(Color.white) // This sets the background color of the card
                 .cornerRadius(25)
                 .shadow(radius: 5)
@@ -90,14 +90,6 @@ struct LaunchScreenView: View {
 
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            if #available(iOS 15.0, *) {
-                LaunchScreenView()
-                    .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch)"))
-                    .previewInterfaceOrientation(.landscapeLeft)
-            } else {
-                // Fallback on earlier versions
-            }
-        }
+                LaunchScreenView()  
     }
 }
