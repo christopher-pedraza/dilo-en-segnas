@@ -23,7 +23,6 @@ class VideoViewModel : ObservableObject {
                     print("Error: Invalid URL")
                     return
                 }
-            
             //  Realiza un request al URL
             let urlRequest = URLRequest(url: url)
             // Obtiene los datos del request

@@ -18,7 +18,7 @@ struct VideosActivity: View {
     var body: some View {
         TabView {
             // Se itera por las partes de la actividad
-            ForEach(VideoVM.videos.partes) { parte in
+            ForEach($VideoVM.videos.partes) { $parte in
                 // Por cada parte, creamos una vista
                 // A esta vista se le pasa el id del video, el arreglo de las
                 // preguntas, una variable de estado para que cada boton actualice

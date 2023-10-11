@@ -51,11 +51,11 @@ struct IndividualVideoActivity: View {
                             // correctas lleva por pregunta (para esto sirve el indice)
                             // y por ultimo, la cantidad de respuestas correctas por
                             // pregunta
-                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.es_correcta, index: index, correctAnswers: $correctAnswers, questionCorrectAnswers: $questionCorrectAnswers, cantidadCorrectas: pregunta.cantidadCorrectas)
+                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.es_correcta, index: index, correctAnswers: $correctAnswers, questionCorrectAnswers: $questionCorrectAnswers, cantidadCorrectas: pregunta.cantidadCorrectas.respuestas_video_cuestionario)
                         }
                     }
                     .onAppear {
-                        totalCorrectAnswers += pregunta.cantidadCorrectas
+                        totalCorrectAnswers += pregunta.cantidadCorrectas.respuestas_video_cuestionario
                     }
                 }
             }
