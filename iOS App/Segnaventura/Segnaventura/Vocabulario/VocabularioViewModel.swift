@@ -17,7 +17,7 @@ class VocabularioViewModel : ObservableObject {
     func getVocabularioData() async throws {
 
         // Guarda el URL donde esta almacenado el JSON
-        guard let url = URL(string: "https://api.npoint.io/9bb0462abe5af707401e")
+        guard let url = URL(string: "http://localhost:3000/categorias/getAllWithPalabras")
                 else {
                     print("Error: Invalid URL")
                     return
