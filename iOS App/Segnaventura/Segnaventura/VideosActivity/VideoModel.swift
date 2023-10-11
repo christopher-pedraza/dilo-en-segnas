@@ -10,30 +10,28 @@ import Foundation
 // Modelo general para la actividad de videos
 struct VideoModel : Decodable, Identifiable {
     var id = UUID()
-    var titulo : String = ""
+    var nombre : String = ""
     var cantidadPartes : Int = 0
-    var correctas : Int = 0
     var partes : [Partes] = [Partes]()
     
     enum CodingKeys : String, CodingKey {
-        case titulo
-        case cantidadPartes
-        case correctas
-        case partes
+        case nombre
+        case cantidadPartes = "_count"
+        case partes = "parte_video_cuestionario"
     }
 }
 
 // Partes de cada actividad
 struct Partes : Decodable, Identifiable {
     var id = UUID()
-    var titulo : String = ""
-    var idVideo : String = ""
+    var nombre : String = ""
+    var url_video : String = ""
     var preguntas : [Pregunta] = [Pregunta]()
     
     enum CodingKeys : String, CodingKey {
-        case titulo
-        case idVideo
-        case preguntas
+        case nombre
+        case url_video
+        case preguntas = "preguntas_video_cuestionario"
     }
 }
 
@@ -46,8 +44,8 @@ struct Pregunta : Decodable, Identifiable, Hashable {
     
     enum CodingKeys : String, CodingKey {
         case pregunta
-        case cantidadCorrectas
-        case respuestas
+        case cantidadCorrectas = "_count"
+        case respuestas = "respuestas_video_cuestionario"
     }
 }
 
@@ -55,10 +53,10 @@ struct Pregunta : Decodable, Identifiable, Hashable {
 struct Respuesta : Decodable, Identifiable, Hashable {
     var id = UUID()
     var respuesta : String = ""
-    var esCorrecta : Bool = false
+    var es_correcta : Bool = false
     
     enum CodingKeys : String, CodingKey {
         case respuesta
-        case esCorrecta
+        case es_correcta
     }
 }
