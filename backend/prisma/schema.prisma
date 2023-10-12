@@ -7,6 +7,7 @@
 // npx prisma migrate resolve --applied 0_init
 
 // Cada vez que se modifica el esquema correr "npx prisma generate"
+// npx prisma migrate reset
 
 generator client {
   provider      = "prisma-client-js"
