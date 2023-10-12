@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEE22AC3316B008F97F2 /* PredictionStatus.swift */; };
+		07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEE62AC331BF008F97F2 /* Comidasmodel.mlmodel */; };
+		07B7CEE92AC331D4008F97F2 /* mydata.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B7CEE82AC331D4008F97F2 /* mydata.json */; };
+		07B7CEEB2AC331EA008F97F2 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEEA2AC331EA008F97F2 /* Classification.swift */; };
+		07B7CEED2AC33213008F97F2 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEEC2AC33213008F97F2 /* TranslationView.swift */; };
+		07B7CEEF2AC33222008F97F2 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEEE2AC33222008F97F2 /* AudioView.swift */; };
+		07B7CEF32AC33242008F97F2 /* PredictiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEF22AC33242008F97F2 /* PredictiveLabelView.swift */; };
+		07B7CEF52AC3325B008F97F2 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEF42AC3325B008F97F2 /* LaunchScreenView.swift */; };
+		07B7CEF72AC33269008F97F2 /* ClassificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEF62AC33269008F97F2 /* ClassificationView.swift */; };
+		07B7CEF92AC33278008F97F2 /* PredictionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEF82AC33278008F97F2 /* PredictionResultView.swift */; };
+		07B7CEFB2AC33299008F97F2 /* ClassifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEFA2AC33299008F97F2 /* ClassifierViewModel.swift */; };
+		07B7CEFD2AC332AA008F97F2 /* RoundedRectButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEFC2AC332AA008F97F2 /* RoundedRectButtonStyle.swift */; };
+		07B7CEFF2AC332C1008F97F2 /* LiveCameraRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEFE2AC332C1008F97F2 /* LiveCameraRepresentable.swift */; };
+		07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF002AC332D4008F97F2 /* LiveCameraViewController.swift */; };
+		07B7CF032AC332F0008F97F2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF022AC332F0008F97F2 /* Helpers.swift */; };
+		07B7CF052AC332FC008F97F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF042AC332FC008F97F2 /* Constants.swift */; };
+		07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF062AC33308008F97F2 /* SoundPlayer.swift */; };
+		07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CF082AC3340C008F97F2 /* VideoViewCOML.swift */; };
+		9D0E59E62AB8C7A300EA57B9 /* IndividualVideoActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */; };
+		9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2922AB7CE980048411D /* VideoModel.swift */; };
+		9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2942AB7D6910048411D /* VideoViewModel.swift */; };
+		9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2962AB7DEF70048411D /*  PreguntasPalabrasActivity.swift */; };
+		9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2982AB7DF2B0048411D /* VideoView.swift */; };
+		9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */; };
+		BC45DAB52ACF4C840015A92D /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC45DAB42ACF4C840015A92D /* Poppins-SemiBold.ttf */; };
+		BC79D81E2AD22DC500E100FB /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC79D81D2AD22DC500E100FB /* Poppins-Regular.ttf */; };
+		BC7C31FD2AC615A0007713C9 /* PalabrasVideosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C31FC2AC615A0007713C9 /* PalabrasVideosModel.swift */; };
+		BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */; };
+		BCD6C8742ACB255E00E82C32 /* VideosActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */; };
+		BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */; };
+		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
+		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
+		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
+		FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE782AA7D89600C7124B /* ContentView.swift */; };
+		FB74CE7B2AA7D89700C7124B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB74CE7A2AA7D89700C7124B /* Assets.xcassets */; };
+		FB74CE7E2AA7D89700C7124B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */; };
+		FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */; };
+		FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */; };
+		FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		07B7CEE22AC3316B008F97F2 /* PredictionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStatus.swift; sourceTree = "<group>"; };
+		07B7CEE62AC331BF008F97F2 /* Comidasmodel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Comidasmodel.mlmodel; sourceTree = "<group>"; };
+		07B7CEE82AC331D4008F97F2 /* mydata.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mydata.json; sourceTree = "<group>"; };
+		07B7CEEA2AC331EA008F97F2 /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
+		07B7CEEC2AC33213008F97F2 /* TranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationView.swift; sourceTree = "<group>"; };
+		07B7CEEE2AC33222008F97F2 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
+		07B7CEF22AC33242008F97F2 /* PredictiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveLabelView.swift; sourceTree = "<group>"; };
+		07B7CEF42AC3325B008F97F2 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		07B7CEF62AC33269008F97F2 /* ClassificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationView.swift; sourceTree = "<group>"; };
+		07B7CEF82AC33278008F97F2 /* PredictionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionResultView.swift; sourceTree = "<group>"; };
+		07B7CEFA2AC33299008F97F2 /* ClassifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifierViewModel.swift; sourceTree = "<group>"; };
+		07B7CEFC2AC332AA008F97F2 /* RoundedRectButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButtonStyle.swift; sourceTree = "<group>"; };
+		07B7CEFE2AC332C1008F97F2 /* LiveCameraRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraRepresentable.swift; sourceTree = "<group>"; };
+		07B7CF002AC332D4008F97F2 /* LiveCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraViewController.swift; sourceTree = "<group>"; };
+		07B7CF022AC332F0008F97F2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		07B7CF042AC332FC008F97F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		07B7CF062AC33308008F97F2 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		07B7CF082AC3340C008F97F2 /* VideoViewCOML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewCOML.swift; sourceTree = "<group>"; };
+		9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualVideoActivity.swift; sourceTree = "<group>"; };
+		9D82A2922AB7CE980048411D /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		9D82A2942AB7D6910048411D /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		9D82A2962AB7DEF70048411D /*  PreguntasPalabrasActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " PreguntasPalabrasActivity.swift"; sourceTree = "<group>"; };
+		9D82A2982AB7DF2B0048411D /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoActivityEnd.swift; sourceTree = "<group>"; };
+		BC2456E32AD1CE3E00A32A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BC45DAB42ACF4C840015A92D /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-SemiBold.ttf"; path = "../../../../../segnaventuras-main 3/iOS App/Segnaventura/Segnaventura/Vocabulario/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		BC79D81D2AD22DC500E100FB /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		BC7C31FC2AC615A0007713C9 /* PalabrasVideosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalabrasVideosModel.swift; sourceTree = "<group>"; };
+		BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalabrasVideosViewModel.swift; sourceTree = "<group>"; };
+		BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosActivity.swift; sourceTree = "<group>"; };
+		BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualQuizActivity.swift; sourceTree = "<group>"; };
+		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
+		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
+		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnaventuraApp.swift; sourceTree = "<group>"; };
+		FB74CE782AA7D89600C7124B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FB74CE7A2AA7D89700C7124B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioModel.swift; sourceTree = "<group>"; };
+		FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioViewModel.swift; sourceTree = "<group>"; };
+		FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FB74CE702AA7D89600C7124B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07B7CED92AC33047008F97F2 /* 1-Model */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEE62AC331BF008F97F2 /* Comidasmodel.mlmodel */,
+				07B7CEE22AC3316B008F97F2 /* PredictionStatus.swift */,
+			);
+			path = "1-Model";
+			sourceTree = "<group>";
+		};
+		07B7CEDA2AC33051008F97F2 /* 2-Data */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEE82AC331D4008F97F2 /* mydata.json */,
+				07B7CEEA2AC331EA008F97F2 /* Classification.swift */,
+			);
+			path = "2-Data";
+			sourceTree = "<group>";
+		};
+		07B7CEDB2AC3305A008F97F2 /* 3-UI */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEE12AC330C2008F97F2 /* TranslationViews */,
+				07B7CEE02AC330B8008F97F2 /* PredictionViews */,
+				07B7CEF42AC3325B008F97F2 /* LaunchScreenView.swift */,
+				07B7CEF62AC33269008F97F2 /* ClassificationView.swift */,
+				07B7CEF82AC33278008F97F2 /* PredictionResultView.swift */,
+			);
+			path = "3-UI";
+			sourceTree = "<group>";
+		};
+		07B7CEDC2AC3306D008F97F2 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEDF2AC3309A008F97F2 /* Views */,
+				07B7CEDE2AC33087008F97F2 /* CameraViewControllers */,
+				07B7CEDD2AC3307F008F97F2 /* Helpers */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		07B7CEDD2AC3307F008F97F2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CF022AC332F0008F97F2 /* Helpers.swift */,
+				07B7CF042AC332FC008F97F2 /* Constants.swift */,
+				07B7CF062AC33308008F97F2 /* SoundPlayer.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		07B7CEDE2AC33087008F97F2 /* CameraViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEFE2AC332C1008F97F2 /* LiveCameraRepresentable.swift */,
+				07B7CF002AC332D4008F97F2 /* LiveCameraViewController.swift */,
+			);
+			path = CameraViewControllers;
+			sourceTree = "<group>";
+		};
+		07B7CEDF2AC3309A008F97F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEFA2AC33299008F97F2 /* ClassifierViewModel.swift */,
+				07B7CEFC2AC332AA008F97F2 /* RoundedRectButtonStyle.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		07B7CEE02AC330B8008F97F2 /* PredictionViews */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEF22AC33242008F97F2 /* PredictiveLabelView.swift */,
+			);
+			path = PredictionViews;
+			sourceTree = "<group>";
+		};
+		07B7CEE12AC330C2008F97F2 /* TranslationViews */ = {
+			isa = PBXGroup;
+			children = (
+				07B7CEEC2AC33213008F97F2 /* TranslationView.swift */,
+				07B7CEEE2AC33222008F97F2 /* AudioView.swift */,
+				07B7CF082AC3340C008F97F2 /* VideoViewCOML.swift */,
+			);
+			path = TranslationViews;
+			sourceTree = "<group>";
+		};
+		BC8385752AC889D90061B696 /* PalabrasVideos */ = {
+			isa = PBXGroup;
+			children = (
+				BC7C31FC2AC615A0007713C9 /* PalabrasVideosModel.swift */,
+				BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */,
+				9D82A2962AB7DEF70048411D /*  PreguntasPalabrasActivity.swift */,
+				BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */,
+			);
+			path = PalabrasVideos;
+			sourceTree = "<group>";
+		};
+		BC8385762AC889F70061B696 /* VideosActivity */ = {
+			isa = PBXGroup;
+			children = (
+				9D82A2922AB7CE980048411D /* VideoModel.swift */,
+				9D82A2942AB7D6910048411D /* VideoViewModel.swift */,
+				9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */,
+				9D0E59E52AB8C7A300EA57B9 /* IndividualVideoActivity.swift */,
+			);
+			path = VideosActivity;
+			sourceTree = "<group>";
+		};
+		BC8385772AC88A510061B696 /* Vocabulario */ = {
+			isa = PBXGroup;
+			children = (
+				BC45DAB42ACF4C840015A92D /* Poppins-SemiBold.ttf */,
+				BC79D81D2AD22DC500E100FB /* Poppins-Regular.ttf */,
+				FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */,
+				FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */,
+				FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */,
+			);
+			path = Vocabulario;
+			sourceTree = "<group>";
+		};
+		BC8385782AC88A7D0061B696 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */,
+				9D82A2982AB7DF2B0048411D /* VideoView.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		FB74CE6A2AA7D89600C7124B = {
+			isa = PBXGroup;
+			children = (
+				FB74CE752AA7D89600C7124B /* Segnaventura */,
+				FB74CE742AA7D89600C7124B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FB74CE742AA7D89600C7124B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB74CE732AA7D89600C7124B /* Segnaventura.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB74CE752AA7D89600C7124B /* Segnaventura */ = {
+			isa = PBXGroup;
+			children = (
+				BC2456E32AD1CE3E00A32A2C /* Info.plist */,
+				07B7CEDC2AC3306D008F97F2 /* Foundation */,
+				07B7CEDB2AC3305A008F97F2 /* 3-UI */,
+				07B7CEDA2AC33051008F97F2 /* 2-Data */,
+				07B7CED92AC33047008F97F2 /* 1-Model */,
+				BC8385772AC88A510061B696 /* Vocabulario */,
+				FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */,
+				BC8385752AC889D90061B696 /* PalabrasVideos */,
+				FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */,
+				FB74CE782AA7D89600C7124B /* ContentView.swift */,
+				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
+				BC8385782AC88A7D0061B696 /* Video */,
+				BC8385762AC889F70061B696 /* VideosActivity */,
+				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
+				FB74CE7C2AA7D89700C7124B /* Preview Content */,
+			);
+			path = Segnaventura;
+			sourceTree = "<group>";
+		};
+		FB74CE7C2AA7D89700C7124B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FB74CE722AA7D89600C7124B /* Segnaventura */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB74CE812AA7D89700C7124B /* Build configuration list for PBXNativeTarget "Segnaventura" */;
+			buildPhases = (
+				FB74CE6F2AA7D89600C7124B /* Sources */,
+				FB74CE702AA7D89600C7124B /* Frameworks */,
+				FB74CE712AA7D89600C7124B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Segnaventura;
+			productName = Segnaventura;
+			productReference = FB74CE732AA7D89600C7124B /* Segnaventura.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FB74CE6B2AA7D89600C7124B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					FB74CE722AA7D89600C7124B = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = FB74CE6E2AA7D89600C7124B /* Build configuration list for PBXProject "Segnaventura" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FB74CE6A2AA7D89600C7124B;
+			productRefGroup = FB74CE742AA7D89600C7124B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FB74CE722AA7D89600C7124B /* Segnaventura */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FB74CE712AA7D89600C7124B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B7CEE92AC331D4008F97F2 /* mydata.json in Resources */,
+				BC45DAB52ACF4C840015A92D /* Poppins-SemiBold.ttf in Resources */,
+				FB74CE7E2AA7D89700C7124B /* Preview Assets.xcassets in Resources */,
+				FB74CE7B2AA7D89700C7124B /* Assets.xcassets in Resources */,
+				BC79D81E2AD22DC500E100FB /* Poppins-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FB74CE6F2AA7D89600C7124B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */,
+				9D0E59E62AB8C7A300EA57B9 /* IndividualVideoActivity.swift in Sources */,
+				07B7CEF52AC3325B008F97F2 /* LaunchScreenView.swift in Sources */,
+				9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */,
+				07B7CEFD2AC332AA008F97F2 /* RoundedRectButtonStyle.swift in Sources */,
+				07B7CF052AC332FC008F97F2 /* Constants.swift in Sources */,
+				BC7C31FD2AC615A0007713C9 /* PalabrasVideosModel.swift in Sources */,
+				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
+				07B7CEF92AC33278008F97F2 /* PredictionResultView.swift in Sources */,
+				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
+				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
+				07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */,
+				BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */,
+				07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */,
+				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
+				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
+				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
+				07B7CEF32AC33242008F97F2 /* PredictiveLabelView.swift in Sources */,
+				07B7CEFB2AC33299008F97F2 /* ClassifierViewModel.swift in Sources */,
+				07B7CF032AC332F0008F97F2 /* Helpers.swift in Sources */,
+				07B7CEF72AC33269008F97F2 /* ClassificationView.swift in Sources */,
+				BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */,
+				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
+				07B7CEEB2AC331EA008F97F2 /* Classification.swift in Sources */,
+				9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */,
+				07B7CEEF2AC33222008F97F2 /* AudioView.swift in Sources */,
+				07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */,
+				07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */,
+				9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */,
+				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
+				07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */,
+				07B7CEED2AC33213008F97F2 /* TranslationView.swift in Sources */,
+				BCD6C8742ACB255E00E82C32 /* VideosActivity.swift in Sources */,
+				07B7CEFF2AC332C1008F97F2 /* LiveCameraRepresentable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FB74CE7F2AA7D89700C7124B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FB74CE802AA7D89700C7124B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FB74CE822AA7D89700C7124B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
+				DEVELOPMENT_TEAM = CND48JQ7YK;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Segnaventura/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita acceso a la cámara";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FB74CE832AA7D89700C7124B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
+				DEVELOPMENT_TEAM = CND48JQ7YK;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Segnaventura/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita acceso a la cámara";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FB74CE6E2AA7D89600C7124B /* Build configuration list for PBXProject "Segnaventura" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB74CE7F2AA7D89700C7124B /* Debug */,
+				FB74CE802AA7D89700C7124B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB74CE812AA7D89700C7124B /* Build configuration list for PBXNativeTarget "Segnaventura" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB74CE822AA7D89700C7124B /* Debug */,
+				FB74CE832AA7D89700C7124B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FB74CE6B2AA7D89600C7124B /* Project object */;
+}
