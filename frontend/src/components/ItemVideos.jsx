@@ -8,18 +8,18 @@ export default function ItemVideos(props) {
 
   // Funcion que se ejecuta cuando se da click en el boton de editar
   const handleEdit = () => {
-    // props.onEdit(data.id_quiz);
-    // props.onSetEditID(data.id_quiz);
+    props.onEdit(data.id_video_cuestionario);
+    props.onSetEditID(data.id_video_cuestionario);
   };
 
   // Funcion que se ejecuta cuando se da click en el boton de eliminar
   const handleDelete = () => {
-    // props.onDelete(data.id_quiz);
+    props.onDelete(data.id_video_cuestionario);
   };
 
   const handleCategoryClick = () => {
     // Utiliza navigate para redirigir a la nueva página y pasar el estado en el objeto "state"
-    // navigate(`/videos/${data.id_isla}`, { state: { categoryData: data } });
+    navigate(`/videos/${data.id_isla}`, { state: { categoryData: data } });
   };
 
   return (
@@ -32,7 +32,7 @@ export default function ItemVideos(props) {
         onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
         style={{ cursor: "pointer" }}
       >
-        {}
+        {data.nombre}
       </h3>
       <div className="flex items-center">
         <button onClick={handleEdit}>
