@@ -18,10 +18,15 @@ export default function VideoPartsPage() {
   // Estado para controlar el formulario
   const [formData, setFormData] = useState({
     id_video_cuestionario: videoData ? videoData.id_video_cuestionario : "",
-    indice: null,
+    indice: -1,
     nombre: "",
     url_video: "",
-    preguntas: [],
+    pregunta: "",
+    respuesta1: "",
+    respuesta2: "",
+    respuesta3: "",
+    respuesta4: "",
+    respuestaC: 0,
   });
 
   // Estado para controlar las partes de video
@@ -34,52 +39,108 @@ export default function VideoPartsPage() {
   const [refresh, setRefresh] = useState(0);
 
   // Destructuring del formData
-  const { id_video_cuestionario, indice, nombre, url_video, preguntas } =
-    formData;
+  const {
+    id_video_cuestionario,
+    indice,
+    nombre,
+    url_video,
+    pregunta,
+    respuesta1,
+    respuesta2,
+    respuesta3,
+    respuesta4,
+    respuestaC,
+  } = formData;
 
   // Funcion que se ejecuta cada vez que se cambia el valor de un input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // // Guarda la pregunta dentro del array preguntas del formData
+  // const handlePreguntaForm = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     preguntas: [{ pregunta: e.target.value }, { respuesta }],
+  //   });
+  // };
+
+  // // Guarda la respuesta dentro del array preguntas del form data
+  // const handleRespuestaForm1 = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     preguntas: [
+  //       { pregunta },
+  //       { respuestas: [{ respuesta1: e.target.value }] },
+  //     ],
+  //   });
+  // };
+
+  // const handleRespuestaForm2 = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     preguntas: [{ respuestas: [{ respuesta2: e.target.value }] }],
+  //   });
+  // };
+
+  // const handleRespuestaForm3 = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     preguntas: [{ respuestas: [{ respuesta3: e.target.value }] }],
+  //   });
+  // };
+
+  // const handleRespuestaForm4 = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     preguntas: [{ respuestas: [{ respuesta4: e.target.value }] }],
+  //   });
+  // };
+
   // Funcion que se ejecuta cuando se da click en el boton de crear
   const handleCreate = (e) => {
     e.preventDefault();
-    if (
-      id_video_cuestionario &&
-      indice >= 0 &&
-      nombre &&
-      url_video &&
-      preguntas
-    ) {
-      axios
-        .post("http://localhost:3000/video/addParte", formData)
-        .then((res) => {
-          setVideoParts([...videoParts, res.data]);
-          console.log(res.data);
-          setFormData({
-            id_video_cuestionario: videoData
-              ? videoData.id_video_cuestionario
-              : "",
-            indice: -1,
-            nombre: "",
-            url_video: "",
-            preguntas: [],
-          });
-        })
-        .catch((err) => console.log(err));
-    }
-    setIsOpenCreate(false);
+    axios
+      .post("http://localhost:3000/videos/addParte", {
+        id_video_cuestionario: parseInt(id_video_cuestionario),
+        indice: parseInt(indice),
+        nombre: nombre,
+        url_video: url_video,
+        pregunta: pregunta,
+        respuesta1: respuesta1,
+        respuesta2: respuesta2,
+        respuesta3: respuesta3,
+        respuesta4: respuesta4,
+        respuestaC: parseInt(respuestaC),
+      })
+      .then((res) => {
+        // console.log(res);
+        setRefresh(refresh + 1);
+        setIsOpenCreate(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // Funcion que se ejecuta cuando se da click en el boton de eliminar
+  const handleDelete = (deleteID) => {
+    axios
+      .delete(`http://localhost:3000/videos/removeParte/${deleteID}`)
+      .then((res) => {
+        console.log("DELETD RECORD::::", res);
+        setRefresh(refresh + 1);
+      })
+      .catch((err) => console.log(err));
   };
 
   // Funcion que obtiene todas las partes de video y las actualiza cada que se cambia el estado refresh
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3000/video/getComplete/${formData.id_video_cuestionario}`
+        `http://localhost:3000/videos/getPartes/${formData.id_video_cuestionario}`
       )
       .then((res) => {
-        setVideoParts(res.data.parte_video_cuestionario);
+        setVideoParts(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, [refresh, formData.id_video_cuestionario]);
@@ -133,62 +194,74 @@ export default function VideoPartsPage() {
                   value={url_video}
                   onChange={handleChange}
                 />
-                <label htmlFor="clipPregunta" className="text-2xl font-bold">
+                <label htmlFor="pregunta" className="text-2xl font-bold">
                   Pregunta
                 </label>
                 <input
                   type="text"
-                  id="clipPregunta"
-                  name="clipPregunta"
+                  id="pregunta"
+                  name="pregunta"
                   placeholder="Ingresa la pregunta del clip"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={pregunta}
+                  onChange={handleChange}
                 />
-                <label htmlFor="clipPRespuestas" className="text-2xl font-bold">
+                <label htmlFor="respuestas" className="text-2xl font-bold">
                   Posibles Respuestas
                 </label>
                 <input
                   type="text"
-                  id="clipPRespuesta1"
-                  name="clipPRespuesta1"
+                  id="respuesta1"
+                  name="respuesta1"
                   placeholder="Ingresa la posible respuesta 1"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta1}
+                  onChange={handleChange}
                 />
                 <input
                   type="text"
-                  id="clipPRespuesta2"
-                  name="clipPRespuesta2"
+                  id="respuesta2"
+                  name="respuesta2"
                   placeholder="Ingresa la posible respuesta 2"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta2}
+                  onChange={handleChange}
                 />
                 <input
                   type="text"
-                  id="clipPRespuesta3"
-                  name="clipPRespuesta3"
+                  id="respuesta3"
+                  name="respuesta3"
                   placeholder="Ingresa la posible respuesta 3"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta3}
+                  onChange={handleChange}
                 />
                 <input
                   type="text"
-                  id="clipPRespuesta4"
-                  name="clipPRespuesta4"
+                  id="respuesta4"
+                  name="respuesta4"
                   placeholder="Ingresa la posible respuesta 4"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta4}
+                  onChange={handleChange}
                 />
-                <label htmlFor="clipRespuestaC" className="text-2xl font-bold">
+                <label htmlFor="respuestaC" className="text-2xl font-bold">
                   Respuesta Correcta
                   <select
-                    name="clipRespuestaC"
-                    id="clipRespuestaC"
-                    defaultValue="default"
+                    name="respuestaC"
+                    id="respuestaC"
+                    // defaultValue="default"
                     className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
+                    value={respuestaC == 0 ? "default" : respuestaC}
+                    onChange={handleChange}
                   >
                     <option value="default" disabled>
                       --- Selecciona una respuesta correcta ---
                     </option>
-                    <option value="respuestac1">1</option>
-                    <option value="respuestac2">2</option>
-                    <option value="respuestac3">3</option>
-                    <option value="respuestac4">4</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
                   </select>
                 </label>
 
