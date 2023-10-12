@@ -37,5 +37,10 @@ npm i
 
 4. En la misma terminal, corre el siguiente comando para generar las tablas de la base de datos:
 ```
-npx prisma migrate deploy --name 8
+npx prisma migrate deploy
+```
+
+5. Corre el API desde la carpeta backend/ corriendo el comando:
+```
+npm run start
 ```
