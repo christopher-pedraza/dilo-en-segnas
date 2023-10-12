@@ -15,13 +15,25 @@
 
 # Señaventuras
 
-## Instrucciones para configurar la base de datos y el API
-
-1. Crea un usuario para que se conecte a la base de datos:
+## Instrucciones para configurar la base de datos
+1. Instala PostgreSQL de: ![Descargas PostgreSQL](https://www.postgresql.org/download/)
+ 
+2. Crea un usuario para que se conecte a la base de datos:
 ```
 CREATE ROLE NOMBRE_USUARIO PASSWORD 'CONTRASEÑA' NOSUPERUSER CREATEDB INHERIT LOGIN;
 ```
 Este usuario no tendrá permisos de superuser, podrá crear bases de datos, heredará permisos básicos y podrá hacer login.
+
+3. Crea una Base de Datos. Lo puedes hacer desde pgAdmin4 con el QueryTool o con una terminal/linea de comandos:
+    - Terminal/linea de comandos:
+        ```
+        CREATE DATABASE segnaventura;
+        ```
+    - QueryTool en pgAdmin:
+      ![image](https://github.com/christopher-pedraza/segnaventuras/assets/62347713/99eaaf08-3bdc-47b9-b7f5-7d1896403c36)
+
+
+## Instrucciones para configurar la API
 
 2. En la carpeta de backend/ crea un archivo ```.env``` y coloca la siguiente línea (utiliza el usuario que acabas de crear en el punto previo):
 ```
@@ -37,7 +49,7 @@ npm i
 
 4. En la misma terminal, corre el siguiente comando para generar las tablas de la base de datos:
 ```
-npx prisma migrate deploy
+npx prisma migrate reset
 ```
 
 5. Corre el API desde la carpeta backend/ corriendo el comando:
