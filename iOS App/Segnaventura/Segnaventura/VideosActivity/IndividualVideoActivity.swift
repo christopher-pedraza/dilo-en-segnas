@@ -19,6 +19,8 @@ struct IndividualVideoActivity: View {
     // Arreglo de enteros para contar la cantidad de respuestas correctas
     // por pregunta y asi saber si ya esta o no contestada la pregunta
     @State var questionCorrectAnswers : [Int]
+    // Cuenta la cantidad de respuestas correctas
+    @Binding var totalCorrectAnswers: Int
     
     // Funcion sin terminar para guardar los datos para tener persistencia
     func saveData() { }
@@ -49,7 +51,7 @@ struct IndividualVideoActivity: View {
                             // correctas lleva por pregunta (para esto sirve el indice)
                             // y por ultimo, la cantidad de respuestas correctas por
                             // pregunta
-                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.esCorrecta, index: index, correctAnswers: $correctAnswers, questionCorrectAnswers: $questionCorrectAnswers, cantidadCorrectas: pregunta.cantidadCorrectas)
+                            VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.es_correcta, index: index, correctAnswers: $correctAnswers, questionCorrectAnswers: $questionCorrectAnswers, cantidadCorrectas: pregunta.cantidadCorrectas.respuestas_video_cuestionario)
                         }
                     }
                 }
