@@ -32,7 +32,10 @@ struct VideosActivity: View {
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         .indexViewStyle(.page(backgroundDisplayMode: .always))
-        .onAppear(perform: downloadVideos)
+        .onAppear {
+            downloadVideos()
+        }
+        
     }
     
     // Funcion para descargar los datos de los videos usando el ViewModel
@@ -40,7 +43,20 @@ struct VideosActivity: View {
         Task {
             do {
                 try await VideoVM.getVideosData()
+                resetCount()
             } catch {
+            }
+        }
+    }
+    
+    func resetCount() {
+        totalCorrectAnswers = 0
+        correctAnswers = 0
+        for parte in VideoVM.videos.partes {
+            for pregunta in parte.preguntas {
+                print("\n")
+                print(totalCorrectAnswers)
+                totalCorrectAnswers += pregunta.cantidadCorrectas.respuestas_video_cuestionario
             }
         }
     }

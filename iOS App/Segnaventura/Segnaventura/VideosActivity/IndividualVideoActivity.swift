@@ -54,12 +54,12 @@ struct IndividualVideoActivity: View {
                             VideoQuizButton(text: respuesta.respuesta, esCorrecta: respuesta.es_correcta, index: index, correctAnswers: $correctAnswers, questionCorrectAnswers: $questionCorrectAnswers, cantidadCorrectas: pregunta.cantidadCorrectas.respuestas_video_cuestionario)
                         }
                     }
-                    .onAppear {
-                        totalCorrectAnswers += pregunta.cantidadCorrectas.respuestas_video_cuestionario
-                    }
                 }
             }
             .padding([.bottom], 40)
+            .onAppear {
+                
+            }
         }
     }
 }
