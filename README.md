@@ -14,3 +14,28 @@
 ![](https://badgen.net/github/closed-issues/christopher-pedraza/segnaventuras)
 
 # Señaventuras
+
+## Instrucciones para configurar la base de datos y el API
+
+1. Crea un usuario para que se conecte a la base de datos:
+```
+CREATE ROLE NOMBRE_USUARIO PASSWORD 'CONTRASEÑA' NOSUPERUSER CREATEDB INHERIT LOGIN;
+```
+Este usuario no tendrá permisos de superuser, podrá crear bases de datos, heredará permisos básicos y podrá hacer login.
+
+2. En la carpeta de backend/ crea un archivo ```.env``` y coloca la siguiente línea (utiliza el usuario que acabas de crear en el punto previo):
+```
+PORT = 3000
+DATABASE_URL="postgresql://USUARIO:CONTRASEÑA@localhost:PUERTO_BD/NOMBRE_BASE_DATOS?schema=NOMBRE_SCHEMA"
+```
+
+3. Abre una terminal/ventana de comandos en la carpeta backend/ y corre el siguiente comando para instalar todas las dependencias necesarias para el API
+   - Necesitas tener instalado Node.js para poder correr esto. Si nunca lo has instalado visita: ![Descargas Node.js](https://nodejs.org/es/download) 
+```
+npm i
+```
+
+4. En la misma terminal, corre el siguiente comando para generar las tablas de la base de datos:
+```
+npx prisma migrate deploy --name 8
+```
