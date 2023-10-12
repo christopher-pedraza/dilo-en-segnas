@@ -4,10 +4,12 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-// import ItemWord from "../components/ItemWord";
+import ItemVideoPart from "../components/ItemVideoPart";
 
 export default function VideoPartsPage() {
   const location = useLocation();
+  // Accede a videoData desde location.state si existe
+  const videoData = location.state ? location.state.videoData : null;
 
   // Estados para controlar si el modal esta abierto o cerrado
   let [isOpenCreate, setIsOpenCreate] = useState(false);
@@ -15,8 +17,8 @@ export default function VideoPartsPage() {
 
   // Estado para controlar el formulario
   const [formData, setFormData] = useState({
-    id_video_cuestionario: 0,
-    indice: -1,
+    id_video_cuestionario: videoData ? videoData.id_video_cuestionario : "",
+    indice: null,
     nombre: "",
     url_video: "",
     preguntas: [],
@@ -40,6 +42,48 @@ export default function VideoPartsPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Funcion que se ejecuta cuando se da click en el boton de crear
+  const handleCreate = (e) => {
+    e.preventDefault();
+    if (
+      id_video_cuestionario &&
+      indice >= 0 &&
+      nombre &&
+      url_video &&
+      preguntas
+    ) {
+      axios
+        .post("http://localhost:3000/video/addParte", formData)
+        .then((res) => {
+          setVideoParts([...videoParts, res.data]);
+          console.log(res.data);
+          setFormData({
+            id_video_cuestionario: videoData
+              ? videoData.id_video_cuestionario
+              : "",
+            indice: -1,
+            nombre: "",
+            url_video: "",
+            preguntas: [],
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+    setIsOpenCreate(false);
+  };
+
+  // Funcion que obtiene todas las partes de video y las actualiza cada que se cambia el estado refresh
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3000/video/getComplete/${formData.id_video_cuestionario}`
+      )
+      .then((res) => {
+        setVideoParts(res.data.parte_video_cuestionario);
+      })
+      .catch((err) => console.log(err));
+  }, [refresh, formData.id_video_cuestionario]);
+
   return (
     <>
       {/* Dialogo Crear Parte Video */}
@@ -53,27 +97,41 @@ export default function VideoPartsPage() {
             {/* The actual dialog panel  */}
             <Dialog.Panel className="flex w-full max-w-md flex-col rounded-lg bg-white p-6">
               <form>
-                <label htmlFor="palabra" className="text-2xl font-bold">
+                <label htmlFor="nombre" className="text-2xl font-bold">
                   Nombre
                 </label>
                 <input
                   type="text"
-                  id="palabra"
-                  name="palabra"
+                  id="nombre"
+                  name="nombre"
                   placeholder="Ingresa el nombre de la palabra"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
-                  // value={palabra}
-                  // onChange={handleChange}
+                  value={nombre}
+                  onChange={handleChange}
                 />
-                <label htmlFor="clipVideo" className="text-2xl font-bold">
+                <label htmlFor="indice" className="text-2xl font-bold">
+                  Indice
+                </label>
+                <input
+                  type="number"
+                  id="indice"
+                  name="indice"
+                  placeholder="Ingresa el numero de indice"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={indice}
+                  onChange={handleChange}
+                />
+                <label htmlFor="url_video" className="text-2xl font-bold">
                   Video
                 </label>
                 <input
                   type="text"
-                  id="clipVideo"
-                  name="clipVideo"
+                  id="url_video"
+                  name="url_video"
                   placeholder="Ingresa el URL del video"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={url_video}
+                  onChange={handleChange}
                 />
                 <label htmlFor="clipPregunta" className="text-2xl font-bold">
                   Pregunta
@@ -147,7 +205,7 @@ export default function VideoPartsPage() {
                     className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
                     style={{ background: "#8712E0" }}
                     type="submit"
-                    // onClick={handleCreate}
+                    onClick={handleCreate}
                   >
                     Crear
                   </button>
@@ -163,27 +221,27 @@ export default function VideoPartsPage() {
 
       <div className="max-w-3xl m-auto p-8">
         <div className="flex items-center justify-between">
-          {/* Add The category name to palabras () */}
-          <h2 className="text-3xl">Palabras ({})</h2>
+          {/* Add The video name to video parts () */}
+          <h2 className="text-3xl">Partes de Video ({videoData.nombre})</h2>
           <button
             onClick={() => setIsOpenCreate(true)}
             className="p-2 text-white rounded-md"
             style={{ background: "#8712E0" }}
           >
-            Crear Palabra
+            Crear Parte de Video
           </button>
         </div>
         <div>
-          {/* Map que muestra cada palabra del array words */}
-          {/* {words.map((word, index) => (
-            <ItemWord
+          {/* Map que muestra cada parte de video */}
+          {videoParts.map((videoPart, index) => (
+            <ItemVideoPart
               key={index}
-              data={word}
-              onDelete={handleDelete}
-              onEdit={handleEdit}
+              data={videoPart}
+              onEdit={setFormData}
               onSetEditID={setEditID}
+              onDelete={setRefresh}
             />
-          ))} */}
+          ))}
         </div>
       </div>
     </>

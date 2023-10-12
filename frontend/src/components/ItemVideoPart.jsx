@@ -1,39 +1,22 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from "react-router-dom";
-
-export default function ItemVideos(props) {
-  // console.log(props);
+export default function ItemVideoPart(props) {
+  console.log(props);
   let data = props.data;
-  const navigate = useNavigate();
 
   // Funcion que se ejecuta cuando se da click en el boton de editar
   const handleEdit = () => {
-    props.onEdit(data.id_video_cuestionario);
-    props.onSetEditID(data.id_video_cuestionario);
+    props.onEdit(data.id_palabra);
+    props.onSetEditID(data.id_palabra);
   };
 
   // Funcion que se ejecuta cuando se da click en el boton de eliminar
   const handleDelete = () => {
-    props.onDelete(data.id_video_cuestionario);
-  };
-
-  const handleCategoryClick = () => {
-    // Utiliza navigate para redirigir a la nueva página y pasar el estado en el objeto "state"
-    navigate(`/videos/${data.id_isla}`, { state: { videoData: data } });
+    props.onDelete(data.id_palabra);
   };
 
   return (
     <div className="flex items-center justify-between border-4 rounded-lg py-2 px-4 my-4">
-      <h3
-        className="text-xl"
-        onClick={handleCategoryClick}
-        // Underline on hovered item
-        onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
-        onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
-        style={{ cursor: "pointer" }}
-      >
-        {data.nombre}
-      </h3>
+      <h3 className="text-xl">{data.nombre}</h3>
       <div className="flex items-center">
         <button onClick={handleEdit}>
           <svg
