@@ -49,6 +49,8 @@ struct VideosActivity: View {
         }
     }
     
+    // Funcion para hacer un reset al conteo de las preguntas correctas (por si se
+    // sale de la actividad) y para contar el total de respuestas correctas
     func resetCount() {
         totalCorrectAnswers = 0
         correctAnswers = 0

@@ -57,9 +57,6 @@ struct IndividualVideoActivity: View {
                 }
             }
             .padding([.bottom], 40)
-            .onAppear {
-                
-            }
         }
     }
 }
