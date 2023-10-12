@@ -1,0 +1,68 @@
+[
+    {
+        "label": "Pan",
+        "image": "pan",
+        "video": "pan",
+        "audio": "pan.m4a"
+    },
+    {
+        "label": "Huevo",
+        "image": "huevo",
+        "video": "huevo",
+        "audio": "huevo.m4a"
+    },
+    {
+        "label": "Zanahoria",
+        "image": "zanahoria",
+        "video": "zanahoria",
+        "audio": "zanahoria.m4a"
+    },
+    {
+        "label": "Papa",
+        "image": "papa",
+        "video": "papa",
+        "audio": "papa.m4a"
+    },
+    {
+        "label": "Cebolla",
+        "image": "cebolla",
+        "video": "cebolla",
+        "audio": "cebolla.m4a"
+    },
+    {
+        "label": "Brócoli",
+        "image": "brocoli",
+        "video": "brocoli",
+        "audio": "brocoli.m4a"
+    },
+    {
+        "label": "Manzana",
+        "image": "manzana",
+        "video": "manzana",
+        "audio": "manzana.m4a"
+    },
+    {
+        "label": "Banana",
+        "image": "banana",
+        "video": "banana",
+        "audio": "banana.m4a"
+    },
+    {
+        "label": "Uvas",
+        "image": "uvas",
+        "video": "uvas",
+        "audio": "uvas.m4a"
+    },
+    {
+        "label": "Fresa",
+        "image": "fresa",
+        "video": "fresa",
+        "audio": "fresa.m4a"
+    },
+    {
+        "label": "Limón",
+        "image": "limon",
+        "video": "limon",
+        "audio": "limon.m4a"
+    }
+]
