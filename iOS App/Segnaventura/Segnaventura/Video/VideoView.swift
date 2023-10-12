@@ -13,7 +13,6 @@ struct VideoView: UIViewRepresentable {
     let videoID : String
     
     func makeUIView(context: Context) -> WKWebView {
-        print("Hello")
         return WKWebView()
     }
     

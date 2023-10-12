@@ -13,6 +13,7 @@ struct VideosActivity: View {
     // Variable para llevar un registro de la cantidad de respuestas
     // correctas que se llevan en todas las preguntas
     @State var correctAnswers : Int
+    @State var totalCorrectAnswers: Int = 0
     
     var body: some View {
         TabView {
@@ -23,15 +24,18 @@ struct VideosActivity: View {
                 // preguntas, una variable de estado para que cada boton actualice
                 // la cantidad de respuestas correctas, y arreglo para llevar
                 // registro de la cantidad de respuestas correctas por pregunta
-                IndividualVideoActivity(videoID: parte.idVideo, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count))
+                IndividualVideoActivity(videoID: parte.url_video, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count), totalCorrectAnswers: $totalCorrectAnswers)
             }
             // Pestaña final que despliega la cantidad de respuestas correctas y
             // deja terminar la actividad
-            VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: VideoVM.videos.correctas)
+            VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: totalCorrectAnswers)
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         .indexViewStyle(.page(backgroundDisplayMode: .always))
-        .onAppear(perform: downloadVideos)
+        .onAppear {
+            downloadVideos()
+        }
+        
     }
     
     // Funcion para descargar los datos de los videos usando el ViewModel
@@ -39,7 +43,22 @@ struct VideosActivity: View {
         Task {
             do {
                 try await VideoVM.getVideosData()
+                resetCount()
             } catch {
+            }
+        }
+    }
+    
+    // Funcion para hacer un reset al conteo de las preguntas correctas (por si se
+    // sale de la actividad) y para contar el total de respuestas correctas
+    func resetCount() {
+        totalCorrectAnswers = 0
+        correctAnswers = 0
+        for parte in VideoVM.videos.partes {
+            for pregunta in parte.preguntas {
+                print("\n")
+                print(totalCorrectAnswers)
+                totalCorrectAnswers += pregunta.cantidadCorrectas.respuestas_video_cuestionario
             }
         }
     }
