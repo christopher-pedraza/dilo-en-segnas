@@ -41,6 +41,66 @@ export default function VideosPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Funcion que se ejecuta cuando se da click en el boton de crear
+  const handleCreate = (e) => {
+    e.preventDefault();
+    if (nombre && palabras && id_isla) {
+      axios
+        .post("http://localhost:3000/videos/addWithPalabras", {
+          id_isla: parseInt(id_isla), // Convertir a int
+          nombre: nombre,
+          palabras: palabras,
+        })
+        .then((res) => {
+          setVideos([...videos, res.data]);
+          setFormData({ id_isla: "default", nombre: "", palabras: [] });
+        })
+        .catch((err) => console.log(err));
+    }
+    setIsOpenCreate(false);
+  };
+
+  // Funcion que se ejecuta cuando se da click en el boton de actualizar
+  const handleUpdate = () => {
+    if (id_isla && nombre && palabras) {
+      axios
+        .put(`http://localhost:3000/videos/update/${editID}`, {
+          id_isla: parseInt(id_isla), // Convertir a int
+          nombre: nombre,
+          palabras: palabras,
+        })
+        .then((res) => {
+          setFormData({ id_isla: "default", nombre: "", palabras: [] });
+          setRefresh(refresh + 1);
+        })
+        .catch((err) => console.log(err));
+    }
+    setIsOpenUpdate(false);
+  };
+
+  // Funcion que se ejecuta cuando se da click en el boton de eliminar
+  const handleDelete = (deleteID) => {
+    axios
+      .delete(`http://localhost:3000/videos/remove/${deleteID}`)
+      .then((res) => {
+        console.log("DELETD RECORD::::", res);
+        setRefresh(refresh + 1);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // Funcion que se ejecuta cuando se da click en el boton de editar
+  const handleEdit = (editIDNotState) => {
+    setIsOpenUpdate(true);
+    axios
+      .get(`http://localhost:3000/videos/get/${editIDNotState}`)
+      .then((res) => {
+        setFormData(res.data);
+        setEditID(editIDNotState);
+      })
+      .catch((err) => console.log(err));
+  };
+
   // Funcion que obtiene todos los videos y los actualiza cada que cambia el estado refresh
   useEffect(() => {
     axios
@@ -70,8 +130,38 @@ export default function VideosPage() {
       .catch((err) => console.log(err));
   }, [formData.id_isla]);
 
+  // Función para manejar la selección/deselección de palabras
+  const handleToggle = (palabraId, isSelected) => {
+    const updatedPalabras = formData.palabras.slice(); // Crear una copia del array de palabras
+
+    if (isSelected) {
+      // Agregar la palabra a las palabras seleccionadas
+      updatedPalabras.push(palabraId);
+    } else {
+      // Remover la palabra de las palabras seleccionadas
+      const indexToRemove = updatedPalabras.findIndex(
+        (p) => p.id_palabra === palabraId
+      );
+      updatedPalabras.splice(indexToRemove, 1);
+    }
+
+    setFormData({
+      ...formData,
+      palabras: updatedPalabras,
+    });
+  };
+
+  // Efecto para reiniciar las palabras cuando cambia la categoría
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      palabras: [],
+    });
+  }, [formData.id_isla]);
+
   return (
     <>
+      {/* Dialogo Crear Video */}
       <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
         <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
           {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -121,14 +211,17 @@ export default function VideosPage() {
                     <ItemToggle
                       key={index}
                       data={word}
-                      // onToggle={handleToggle}
+                      onToggle={handleToggle}
                     />
                   ))}
                 </div>
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
-                    onClick={() => setIsOpenCreate(false)}
+                    onClick={() => {
+                      setIsOpenCreate(false);
+                      setFormData({ id_isla: 0, nombre: "", palabras: [] });
+                    }}
                   >
                     Cancelar
                   </button>
@@ -136,7 +229,7 @@ export default function VideosPage() {
                     className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
                     style={{ background: "#8712E0" }}
                     type="submit"
-                    onClick={() => setIsOpenCreate(false)}
+                    onClick={handleCreate}
                   >
                     Crear
                   </button>
@@ -148,7 +241,88 @@ export default function VideosPage() {
         ;
       </Dialog>
 
+      {/* Dialogo Actualizar Video */}
+      <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
+        <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
+          {/* The backdrop, rendered as a fixed sibling to the panel container */}
+          <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
+          {/* Full-screen container to center the panel */}
+          <div className="fixed inset-0 grid place-items-center ">
+            {/* The actual dialog panel  */}
+            <Dialog.Panel className="flex w-full max-w-md flex-col rounded-lg bg-white p-6">
+              <form>
+                <label htmlFor="nombre" className="text-2xl font-bold">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Ingresa el nombre del quiz"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={nombre}
+                  onChange={handleChange}
+                />
+                <label htmlFor="id_isla" className="text-2xl font-bold">
+                  Categoría
+                  <select
+                    name="id_isla"
+                    id="id_isla"
+                    className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
+                    value={id_isla == 0 ? "default" : id_isla}
+                    onChange={handleChange}
+                  >
+                    <option value="default" disabled>
+                      --- Selecciona una categoria ---
+                    </option>
+                    {categories.map((category, index) => (
+                      <option key={index} value={category.id_isla}>
+                        {category.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label htmlFor="palabras" className="text-2xl font-bold">
+                  Palabras
+                </label>
+                <div className="mb-6">
+                  {words.map((word, index) => (
+                    <ItemToggle
+                      key={index}
+                      data={word}
+                      onToggle={handleToggle}
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center justify-end mt-1">
+                  <button
+                    className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
+                    onClick={() => {
+                      setIsOpenUpdate(false);
+                      setFormData({ id_isla: 0, nombre: "", palabras: [] });
+                    }}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
+                    style={{ background: "#8712E0" }}
+                    type="submit"
+                    onClick={handleUpdate}
+                  >
+                    Actualizar
+                  </button>
+                </div>
+              </form>
+            </Dialog.Panel>
+          </div>
+        </Dialog>
+        ;
+      </Dialog>
+
       <Navbar />
+
       <div className="max-w-3xl m-auto p-8">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl">Videos</h2>
@@ -161,9 +335,16 @@ export default function VideosPage() {
           </button>
         </div>
         <div>
-          <ItemVideos />
-          <ItemVideos />
-          <ItemVideos />
+          {/* Map que muestra cada video */}
+          {videos.map((video, index) => (
+            <ItemVideos
+              key={index}
+              data={video}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+              onSetEditID={setEditID}
+            />
+          ))}
         </div>
       </div>
     </>

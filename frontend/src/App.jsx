@@ -5,6 +5,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import WordsPage from "./pages/WordsPage";
 import QuizPage from "./pages/QuizPage";
 import VideosPage from "./pages/VideosPage";
+import VideoPartssPage from "./pages/VideoPartsPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/categories/:id_category" element={<WordsPage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/videos" element={<VideosPage />} />
+        <Route path="/videos/:id_isla" element={<VideoPartssPage />} />
       </Routes>
     </BrowserRouter>
   );
