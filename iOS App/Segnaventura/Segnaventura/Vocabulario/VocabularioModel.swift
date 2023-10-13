@@ -1,55 +1,45 @@
-//
-//  VocabularioModel.swift
-//  Segnaventura
-//
-//  Christopher Pedraza Pohlenz
-//
-
 import Foundation
 
-// Modelo general que contiene una lista de las categorias del vocabulario
-struct VocabularioModel : Decodable, Identifiable {
+// Modelo general que contains a list of the vocabulary categories
+struct VocabularioModel: Decodable, Identifiable {
     var id = UUID()
-    var categorias : [Categorias] = [Categorias]()
+    var categorias: [Categorias] = [Categorias]()
     
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case categorias
     }
-    
 }
 
-// Categorias del vocabulario.
-// Identificado por su id y nombre
-// Contiene a su vez una lista de vocabulario
+// Categories of the vocabulary.
+// Identified by their id and name
+// Contains a list of vocabulary items
 struct Categorias: Decodable, Identifiable {
     var id = UUID()
-    var id_categoria : String = ""
-    var nombre_categoria : String = ""
-    var vocabulario : [Vocabulario] = [Vocabulario]()
+    var id_isla: Int = 0 // Change the data type to Int
+    var nombre: String = ""
+    var palabra: [Vocabulario] = [Vocabulario]()
     
-    enum CodingKeys : String, CodingKey {
-        case id_categoria
-        case nombre_categoria
-        case vocabulario
+    enum CodingKeys: String, CodingKey {
+        case id_isla
+        case nombre
+        case palabra
     }
 }
 
-// Vocabulario
-// Identificado por su id
-// Contiene otros datos como la palabra en espagnol, y los urls al audio, video e imagen
+// Vocabulary
+// Identified by its id
+// Contains other data such as the Spanish word and URLs to audio, video, and image
 struct Vocabulario: Decodable, Identifiable {
     var id = UUID()
-    var id_palabra : String = ""
-    var palabra_espagnol : String = ""
-    var url_audio : String = ""
-    var id_video : String = ""
-    var url_imagen : String = ""
+    var id_palabra: Int = 0 // Change the data type to Int
+    var palabra: String = ""
+    var id_video_segna: String = ""
+    var url_icono: String = ""
     
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id_palabra
-        case palabra_espagnol
-        case url_audio
-        case id_video
-        case url_imagen
+        case palabra
+        case id_video_segna
+        case url_icono
     }
 }

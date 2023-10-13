@@ -16,20 +16,18 @@ struct ClassificationView: View {
         ZStack {
             
             //[OPTIONAL] Edit background color here.
-            Color.blue
-                .opacity(0.5)
-                .ignoresSafeArea()
 
             // DO NOT EDIT this section. This displays the classification camera
             GeometryReader { geo in
-                HStack(alignment: .top) {
+                ZStack(alignment: .top) {
                     LiveCameraRepresentable() {
                         predictionStatus.setLivePrediction(with: $0, label: $1, confidence: $2)
                     }
-                    
-                    PredictionResultView(labelData: classifierViewModel.getPredictionData(label: predictionLabel))
-                    
-                }// HStack
+                    HStack(alignment: .center) {
+                        PredictionResultView(labelData: classifierViewModel.getPredictionData(label: predictionLabel))
+                    } // HStack 2
+                        
+                }// ZStack
                 .onAppear(perform: classifierViewModel.loadJSON)
                 .frame(width: geo.size.width)
             }

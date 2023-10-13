@@ -4,7 +4,8 @@ import "./App.css";
 import CategoriesPage from "./pages/CategoriesPage";
 import WordsPage from "./pages/WordsPage";
 import QuizPage from "./pages/QuizPage";
-import ClipsPage from "./pages/ClipsPage";
+import VideosPage from "./pages/VideosPage";
+import VideoPartssPage from "./pages/VideoPartsPage";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:id_category" element={<WordsPage />} />
         <Route path="/quiz" element={<QuizPage />} />
-        <Route path="/clips" element={<ClipsPage />} />
+        <Route path="/videos" element={<VideosPage />} />
+        <Route path="/videos/:id_isla" element={<VideoPartssPage />} />
       </Routes>
     </BrowserRouter>
   );

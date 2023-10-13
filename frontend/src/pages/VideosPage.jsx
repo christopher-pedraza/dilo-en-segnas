@@ -3,10 +3,10 @@ import { Dialog } from "@headlessui/react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-import ItemQuiz from "../components/ItemQuiz";
+import ItemVideos from "../components/ItemVideos";
 import ItemToggle from "../components/ItemToggle";
 
-export default function QuizPage() {
+export default function VideosPage() {
   // Estados para controlar si el modal esta abierto o cerrado
   let [isOpenCreate, setIsOpenCreate] = useState(false);
   let [isOpenUpdate, setIsOpenUpdate] = useState(false);
@@ -18,8 +18,8 @@ export default function QuizPage() {
     palabras: [],
   });
 
-  // Estado para controlar los quizes
-  const [quizes, setQuizes] = useState([]);
+  // Estado para controlar los videos
+  const [videos, setVideos] = useState([]);
 
   // Estado para controlar las categorias
   const [categories, setCategories] = useState([]);
@@ -44,15 +44,15 @@ export default function QuizPage() {
   // Funcion que se ejecuta cuando se da click en el boton de crear
   const handleCreate = (e) => {
     e.preventDefault();
-    if (id_isla && nombre && palabras) {
+    if (nombre && palabras && id_isla) {
       axios
-        .post("http://localhost:3000/quiz/addConPalabras", {
+        .post("http://localhost:3000/videos/addWithPalabras", {
           id_isla: parseInt(id_isla), // Convertir a int
           nombre: nombre,
           palabras: palabras,
         })
         .then((res) => {
-          setQuizes([...quizes, res.data]);
+          setVideos([...videos, res.data]);
           setFormData({ id_isla: "default", nombre: "", palabras: [] });
         })
         .catch((err) => console.log(err));
@@ -64,7 +64,7 @@ export default function QuizPage() {
   const handleUpdate = () => {
     if (id_isla && nombre && palabras) {
       axios
-        .put(`http://localhost:3000/quiz/update/${editID}`, {
+        .put(`http://localhost:3000/videos/update/${editID}`, {
           id_isla: parseInt(id_isla), // Convertir a int
           nombre: nombre,
           palabras: palabras,
@@ -81,7 +81,7 @@ export default function QuizPage() {
   // Funcion que se ejecuta cuando se da click en el boton de eliminar
   const handleDelete = (deleteID) => {
     axios
-      .delete(`http://localhost:3000/quiz/remove/${deleteID}`)
+      .delete(`http://localhost:3000/videos/remove/${deleteID}`)
       .then((res) => {
         console.log("DELETD RECORD::::", res);
         setRefresh(refresh + 1);
@@ -93,7 +93,7 @@ export default function QuizPage() {
   const handleEdit = (editIDNotState) => {
     setIsOpenUpdate(true);
     axios
-      .get(`http://localhost:3000/quiz/get/${editIDNotState}`)
+      .get(`http://localhost:3000/videos/get/${editIDNotState}`)
       .then((res) => {
         setFormData(res.data);
         setEditID(editIDNotState);
@@ -101,13 +101,11 @@ export default function QuizPage() {
       .catch((err) => console.log(err));
   };
 
-  // Funcion que obtiene todos los quizes y los actualiza cada que cambia el estado refresh
+  // Funcion que obtiene todos los videos y los actualiza cada que cambia el estado refresh
   useEffect(() => {
     axios
-      .get("http://localhost:3000/quiz/getAll")
-      .then((res) => {
-        setQuizes(res.data);
-      })
+      .get("http://localhost:3000/videos/getAll")
+      .then((res) => setVideos(res.data))
       .catch((err) => console.log(err));
   }, [refresh]);
 
@@ -163,7 +161,7 @@ export default function QuizPage() {
 
   return (
     <>
-      {/* Dialogo Crear Quiz */}
+      {/* Dialogo Crear Video */}
       <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
         <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
           {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -221,7 +219,7 @@ export default function QuizPage() {
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
                     onClick={() => {
-                      setIsOpenUpdate(false);
+                      setIsOpenCreate(false);
                       setFormData({ id_isla: 0, nombre: "", palabras: [] });
                     }}
                   >
@@ -243,7 +241,7 @@ export default function QuizPage() {
         ;
       </Dialog>
 
-      {/* Dialogo Editar Quiz */}
+      {/* Dialogo Actualizar Video */}
       <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
         <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
           {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -327,21 +325,21 @@ export default function QuizPage() {
 
       <div className="max-w-3xl m-auto p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl">Quiz</h2>
+          <h2 className="text-3xl">Videos</h2>
           <button
             onClick={() => setIsOpenCreate(true)}
             className="p-2 text-white rounded-md"
             style={{ background: "#8712E0" }}
           >
-            Crear Quiz
+            Crear Video
           </button>
         </div>
         <div>
-          {/* Map que muestra cada quiz del array quizes */}
-          {quizes.map((quiz, index) => (
-            <ItemQuiz
+          {/* Map que muestra cada video */}
+          {videos.map((video, index) => (
+            <ItemVideos
               key={index}
-              data={quiz}
+              data={video}
               onDelete={handleDelete}
               onEdit={handleEdit}
               onSetEditID={setEditID}
