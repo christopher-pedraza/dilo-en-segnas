@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 export default function ItemVideoPart(props) {
-  console.log(props);
+  // console.log(props);
   let data = props.data;
 
   // Funcion que se ejecuta cuando se da click en el boton de editar
