@@ -82,7 +82,6 @@ async function login(req, res, next) {
 				},
 			},
 		})
-		console.log(resultado)
 		if (resultado.length != 0) {
 			res.status(200).json(true)
 		} else {
