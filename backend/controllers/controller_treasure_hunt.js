@@ -25,7 +25,7 @@ async function get(req, res, next) {
 	}
 }
 
-async function getPalabrasByNivel(req, res, next) {
+async function getPalabrasByActividad(req, res, next) {
 	try {
 		const th = await prisma.treasure_hunt.findUnique({
 			where: {
@@ -97,7 +97,7 @@ async function update(req, res, next) {
 module.exports = {
 	getAll,
 	get,
-	getPalabrasByNivel,
+	getPalabrasByActividad,
 	add,
 	remove,
 	update,
