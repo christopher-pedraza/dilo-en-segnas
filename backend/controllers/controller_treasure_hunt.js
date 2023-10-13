@@ -25,6 +25,20 @@ async function get(req, res, next) {
 	}
 }
 
+async function getPalabrasByNivel(req, res, next) {
+	try {
+		const resultado = await prisma.treasure_hunt.findUnique({
+			where: {
+				id_treasure_hunt: Number(req.params.id)
+			}
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function add(req, res, next) {
 	body = req.body
 	try {
