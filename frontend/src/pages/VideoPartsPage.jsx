@@ -57,68 +57,91 @@ export default function VideoPartsPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // // Guarda la pregunta dentro del array preguntas del formData
-  // const handlePreguntaForm = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     preguntas: [{ pregunta: e.target.value }, { respuesta }],
-  //   });
-  // };
-
-  // // Guarda la respuesta dentro del array preguntas del form data
-  // const handleRespuestaForm1 = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     preguntas: [
-  //       { pregunta },
-  //       { respuestas: [{ respuesta1: e.target.value }] },
-  //     ],
-  //   });
-  // };
-
-  // const handleRespuestaForm2 = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     preguntas: [{ respuestas: [{ respuesta2: e.target.value }] }],
-  //   });
-  // };
-
-  // const handleRespuestaForm3 = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     preguntas: [{ respuestas: [{ respuesta3: e.target.value }] }],
-  //   });
-  // };
-
-  // const handleRespuestaForm4 = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     preguntas: [{ respuestas: [{ respuesta4: e.target.value }] }],
-  //   });
-  // };
-
   // Funcion que se ejecuta cuando se da click en el boton de crear
   const handleCreate = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3000/videos/addParteSimplified", {
-        id_video_cuestionario: parseInt(id_video_cuestionario),
-        indice: parseInt(indice),
-        nombre: nombre,
-        url_video: url_video,
-        pregunta: pregunta,
-        respuesta1: respuesta1,
-        respuesta2: respuesta2,
-        respuesta3: respuesta3,
-        respuesta4: respuesta4,
-        respuestaC: parseInt(respuestaC),
-      })
-      .then((res) => {
-        // console.log(res);
-        setRefresh(refresh + 1);
-        setIsOpenCreate(false);
-      })
-      .catch((err) => console.log(err));
+    if (
+      id_video_cuestionario.length &&
+      indice >= 0 &&
+      nombre &&
+      url_video &&
+      pregunta &&
+      respuesta1 &&
+      respuesta2 &&
+      respuesta3 &&
+      respuesta4 &&
+      respuestaC
+    ) {
+      axios
+        .post("http://localhost:3000/videos/addParteSimplified", {
+          id_video_cuestionario: parseInt(id_video_cuestionario),
+          indice: parseInt(indice),
+          nombre: nombre,
+          url_video: url_video,
+          pregunta: pregunta,
+          respuesta1: respuesta1,
+          respuesta2: respuesta2,
+          respuesta3: respuesta3,
+          respuesta4: respuesta4,
+          respuestaC: parseInt(respuestaC),
+        })
+        .then((res) => {
+          // console.log(res);
+          setRefresh(refresh + 1);
+          setIsOpenCreate(false);
+        })
+        .catch((err) => console.log(err));
+    }
+    setIsOpenCreate(false);
+  };
+
+  // Funcion que se ejecuta cuando se da click en el boton de actualizar
+  const handleUpdate = () => {
+    if (
+      id_video_cuestionario.length &&
+      indice >= 0 &&
+      nombre &&
+      url_video &&
+      pregunta &&
+      respuesta1 &&
+      respuesta2 &&
+      respuesta3 &&
+      respuesta4 &&
+      respuestaC
+    ) {
+      axios
+        .put(`http://localhost:3000/videos/updateParteSimplified/${editID}`, {
+          id_video_cuestionario: parseInt(id_video_cuestionario),
+          indice: parseInt(indice),
+          nombre: nombre,
+          url_video: url_video,
+          pregunta: pregunta,
+          respuesta1: respuesta1,
+          respuesta2: respuesta2,
+          respuesta3: respuesta3,
+          respuesta4: respuesta4,
+          respuestaC: parseInt(respuestaC),
+        })
+        .then((res) => {
+          setFormData({
+            id_video_cuestionario: videoData
+              ? videoData.id_video_cuestionario
+              : "",
+            indice: -1,
+            nombre: "",
+            url_video: "",
+            pregunta: "",
+            respuesta1: "",
+            respuesta2: "",
+            respuesta3: "",
+            respuesta4: "",
+            respuestaC: 0,
+          });
+          setRefresh(refresh + 1);
+        })
+        .catch((err) => console.log(err));
+    }
+    setIsOpenUpdate(false);
   };
 
   // Funcion que se ejecuta cuando se da click en el boton de eliminar
@@ -128,6 +151,18 @@ export default function VideoPartsPage() {
       .then((res) => {
         console.log("DELETD RECORD::::", res);
         setRefresh(refresh + 1);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // Funcion que se ejecuta cuando se da click en el boton de editar
+  const handleEdit = (editIDNotState) => {
+    setIsOpenUpdate(true);
+    axios
+      .get(`http://localhost:3000/quiz/getParteSimplified/${editIDNotState}`)
+      .then((res) => {
+        setFormData(res.data);
+        setEditID(editIDNotState);
       })
       .catch((err) => console.log(err));
   };
@@ -290,6 +325,149 @@ export default function VideoPartsPage() {
         ;
       </Dialog>
 
+      {/* Dialogo Actualizar Parte Video */}
+      <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
+        <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
+          {/* The backdrop, rendered as a fixed sibling to the panel container */}
+          <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
+          {/* Full-screen container to center the panel */}
+          <div className="fixed inset-0 grid place-items-center ">
+            {/* The actual dialog panel  */}
+            <Dialog.Panel className="flex w-full max-w-md flex-col rounded-lg bg-white p-6">
+              <form>
+                <label htmlFor="nombre" className="text-2xl font-bold">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Ingresa el nombre de la palabra"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={nombre}
+                  onChange={handleChange}
+                />
+                <label htmlFor="indice" className="text-2xl font-bold">
+                  Indice
+                </label>
+                <input
+                  type="number"
+                  id="indice"
+                  name="indice"
+                  placeholder="Ingresa el numero de indice"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={indice}
+                  onChange={handleChange}
+                />
+                <label htmlFor="url_video" className="text-2xl font-bold">
+                  Video
+                </label>
+                <input
+                  type="text"
+                  id="url_video"
+                  name="url_video"
+                  placeholder="Ingresa el URL del video"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={url_video}
+                  onChange={handleChange}
+                />
+                <label htmlFor="pregunta" className="text-2xl font-bold">
+                  Pregunta
+                </label>
+                <input
+                  type="text"
+                  id="pregunta"
+                  name="pregunta"
+                  placeholder="Ingresa la pregunta del clip"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={pregunta}
+                  onChange={handleChange}
+                />
+                <label htmlFor="respuestas" className="text-2xl font-bold">
+                  Posibles Respuestas
+                </label>
+                <input
+                  type="text"
+                  id="respuesta1"
+                  name="respuesta1"
+                  placeholder="Ingresa la posible respuesta 1"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta1}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  id="respuesta2"
+                  name="respuesta2"
+                  placeholder="Ingresa la posible respuesta 2"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta2}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  id="respuesta3"
+                  name="respuesta3"
+                  placeholder="Ingresa la posible respuesta 3"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta3}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  id="respuesta4"
+                  name="respuesta4"
+                  placeholder="Ingresa la posible respuesta 4"
+                  className="w-full rounded-lg border border-slate-400 p-2 my-2"
+                  value={respuesta4}
+                  onChange={handleChange}
+                />
+                <label htmlFor="respuestaC" className="text-2xl font-bold">
+                  Respuesta Correcta
+                  <select
+                    name="respuestaC"
+                    id="respuestaC"
+                    // defaultValue="default"
+                    className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
+                    value={respuestaC == 0 ? "default" : respuestaC}
+                    onChange={handleChange}
+                  >
+                    <option value="default" disabled>
+                      --- Selecciona una respuesta correcta ---
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </label>
+
+                <div className="flex items-center justify-end mt-1">
+                  <button
+                    className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
+                    onClick={() => {
+                      setIsOpenCreate(false);
+                    }}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
+                    style={{ background: "#8712E0" }}
+                    type="submit"
+                    onClick={handleCreate}
+                  >
+                    Actualizar
+                  </button>
+                </div>
+              </form>
+            </Dialog.Panel>
+          </div>
+        </Dialog>
+        ;
+      </Dialog>
+
       <Navbar />
 
       <div className="max-w-3xl m-auto p-8">
@@ -310,9 +488,9 @@ export default function VideoPartsPage() {
             <ItemVideoPart
               key={index}
               data={videoPart}
-              onEdit={setFormData}
-              onSetEditID={setEditID}
               onDelete={handleDelete}
+              onEdit={handleEdit}
+              onSetEditID={setEditID}
             />
           ))}
         </div>
