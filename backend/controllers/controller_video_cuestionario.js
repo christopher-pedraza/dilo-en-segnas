@@ -108,6 +108,7 @@ async function getPartes(req, res, next) {
 				id_video_cuestionario: Number(req.params.id)
 			},
 			select: {
+				id_parte_video_cuestionario: true,
 				nombre: true,
 				url_video: true,
 				indice: true,
