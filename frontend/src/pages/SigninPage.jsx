@@ -66,7 +66,7 @@ export default function SigninPage() {
             Contraseña
           </label>
           <input
-            type="contrasegna"
+            type="password"
             id="contrasegna"
             name="contrasegna"
             placeholder="Ingresa tu contraseña"

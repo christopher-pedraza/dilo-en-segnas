@@ -25,11 +25,14 @@ export default function LoginPage() {
     e.preventDefault();
     if (usuario.length > 1 && contrasegna.length > 1) {
       axios
-        .get("http://localhost:3000/miembros/login", loginData)
+        .post("http://localhost:3000/miembros/login", loginData)
         .then((res) => {
           console.log(res);
-          navigate("/categories");
-          // alert("Usuario creado con exito");
+          if (res.data == true) {
+            navigate("/categories");
+          } else {
+            alert("Error al iniciar sesión");
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -63,7 +66,7 @@ export default function LoginPage() {
             Contraseña
           </label>
           <input
-            type="contrasegna"
+            type="password"
             id="contrasegna"
             name="contrasegna"
             placeholder="Ingresa tu contraseña"
