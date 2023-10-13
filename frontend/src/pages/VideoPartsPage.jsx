@@ -60,88 +60,75 @@ export default function VideoPartsPage() {
   // Funcion que se ejecuta cuando se da click en el boton de crear
   const handleCreate = (e) => {
     e.preventDefault();
-    if (
-      id_video_cuestionario.length &&
-      indice >= 0 &&
-      nombre &&
-      url_video &&
-      pregunta &&
-      respuesta1 &&
-      respuesta2 &&
-      respuesta3 &&
-      respuesta4 &&
-      respuestaC
-    ) {
-      axios
-        .post("http://localhost:3000/videos/addParteSimplified", {
-          id_video_cuestionario: parseInt(id_video_cuestionario),
-          indice: parseInt(indice),
-          nombre: nombre,
-          url_video: url_video,
-          pregunta: pregunta,
-          respuesta1: respuesta1,
-          respuesta2: respuesta2,
-          respuesta3: respuesta3,
-          respuesta4: respuesta4,
-          respuestaC: parseInt(respuestaC),
-        })
-        .then((res) => {
-          // console.log(res);
-          setRefresh(refresh + 1);
-          setIsOpenCreate(false);
-        })
-        .catch((err) => console.log(err));
-    }
+    axios
+      .post("http://localhost:3000/videos/addParteSimplified", {
+        id_video_cuestionario: parseInt(id_video_cuestionario),
+        indice: parseInt(indice),
+        nombre: nombre,
+        url_video: url_video,
+        pregunta: pregunta,
+        respuesta1: respuesta1,
+        respuesta2: respuesta2,
+        respuesta3: respuesta3,
+        respuesta4: respuesta4,
+        respuestaC: parseInt(respuestaC),
+      })
+      .then((res) => {
+        console.log(res);
+        setFormData({
+          id_video_cuestionario: videoData
+            ? videoData.id_video_cuestionario
+            : "",
+          indice: -1,
+          nombre: "",
+          url_video: "",
+          pregunta: "",
+          respuesta1: "",
+          respuesta2: "",
+          respuesta3: "",
+          respuesta4: "",
+          respuestaC: 0,
+        });
+        setRefresh(refresh + 1);
+      })
+      .catch((err) => console.log(err));
     setIsOpenCreate(false);
   };
 
   // Funcion que se ejecuta cuando se da click en el boton de actualizar
   const handleUpdate = () => {
-    if (
-      id_video_cuestionario.length &&
-      indice >= 0 &&
-      nombre &&
-      url_video &&
-      pregunta &&
-      respuesta1 &&
-      respuesta2 &&
-      respuesta3 &&
-      respuesta4 &&
-      respuestaC
-    ) {
-      axios
-        .put(`http://localhost:3000/videos/updateParteSimplified/${editID}`, {
-          id_video_cuestionario: parseInt(id_video_cuestionario),
-          indice: parseInt(indice),
-          nombre: nombre,
-          url_video: url_video,
-          pregunta: pregunta,
-          respuesta1: respuesta1,
-          respuesta2: respuesta2,
-          respuesta3: respuesta3,
-          respuesta4: respuesta4,
-          respuestaC: parseInt(respuestaC),
-        })
-        .then((res) => {
-          console.log(res);
-          setFormData({
-            id_video_cuestionario: videoData
-              ? videoData.id_video_cuestionario
-              : "",
-            indice: -1,
-            nombre: "",
-            url_video: "",
-            pregunta: "",
-            respuesta1: "",
-            respuesta2: "",
-            respuesta3: "",
-            respuesta4: "",
-            respuestaC: 0,
-          });
-          setRefresh(refresh + 1);
-        })
-        .catch((err) => console.log(err));
-    }
+    axios
+      .put(`http://localhost:3000/videos/updateParteSimplified/${editID}`, {
+        id_video_cuestionario: parseInt(id_video_cuestionario),
+        indice: parseInt(indice),
+        nombre: nombre,
+        url_video: url_video,
+        pregunta: pregunta,
+        respuesta1: respuesta1,
+        respuesta2: respuesta2,
+        respuesta3: respuesta3,
+        respuesta4: respuesta4,
+        respuestaC: parseInt(respuestaC),
+      })
+      .then((res) => {
+        console.log(res);
+        setFormData({
+          id_video_cuestionario: videoData
+            ? videoData.id_video_cuestionario
+            : "",
+          indice: -1,
+          nombre: "",
+          url_video: "",
+          pregunta: "",
+          respuesta1: "",
+          respuesta2: "",
+          respuesta3: "",
+          respuesta4: "",
+          respuestaC: 0,
+        });
+        setRefresh(refresh + 1);
+      })
+      .catch((err) => console.log(err));
     setIsOpenUpdate(false);
   };
 
@@ -181,6 +168,23 @@ export default function VideoPartsPage() {
       .catch((err) => console.log(err));
   }, [refresh, formData.id_video_cuestionario]);
 
+  // Efecto para reiniciar las palabras cuando cambia la categoría
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      id_video_cuestionario: videoData ? videoData.id_video_cuestionario : "",
+      indice: -1,
+      nombre: "",
+      url_video: "",
+      pregunta: "",
+      respuesta1: "",
+      respuesta2: "",
+      respuesta3: "",
+      respuesta4: "",
+      respuestaC: 0,
+    });
+  }, [formData.id_video_cuestionario]);
+
   return (
     <>
       {/* Dialogo Crear Parte Video */}
@@ -215,7 +219,7 @@ export default function VideoPartsPage() {
                   name="indice"
                   placeholder="Ingresa el numero de indice"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
-                  value={indice}
+                  value={indice == -1 ? "" : indice}
                   onChange={handleChange}
                 />
                 <label htmlFor="url_video" className="text-2xl font-bold">
@@ -306,6 +310,20 @@ export default function VideoPartsPage() {
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
                     onClick={() => {
                       setIsOpenCreate(false);
+                      setFormData({
+                        id_video_cuestionario: videoData
+                          ? videoData.id_video_cuestionario
+                          : "",
+                        indice: -1,
+                        nombre: "",
+                        url_video: "",
+                        pregunta: "",
+                        respuesta1: "",
+                        respuesta2: "",
+                        respuesta3: "",
+                        respuesta4: "",
+                        respuestaC: 0,
+                      });
                     }}
                   >
                     Cancelar
@@ -358,7 +376,7 @@ export default function VideoPartsPage() {
                   name="indice"
                   placeholder="Ingresa el numero de indice"
                   className="w-full rounded-lg border border-slate-400 p-2 my-2"
-                  value={indice}
+                  value={indice == -1 ? "" : indice}
                   onChange={handleChange}
                 />
                 <label htmlFor="url_video" className="text-2xl font-bold">
