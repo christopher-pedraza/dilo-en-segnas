@@ -111,7 +111,7 @@ export default function VideoPartsPage() {
         respuestaC: parseInt(respuestaC),
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setFormData({
           id_video_cuestionario: videoData
             ? videoData.id_video_cuestionario
@@ -147,7 +147,7 @@ export default function VideoPartsPage() {
   const handleEdit = (editIDNotState) => {
     setIsOpenUpdate(true);
     axios
-      .get(`http://localhost:3000/quiz/getParteSimplified/${editIDNotState}`)
+      .get(`http://localhost:3000/videos/getParteSimplified/${editIDNotState}`)
       .then((res) => {
         setFormData(res.data);
         setEditID(editIDNotState);
@@ -163,10 +163,10 @@ export default function VideoPartsPage() {
       )
       .then((res) => {
         setVideoParts(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }, [refresh, formData.id_video_cuestionario]);
+  }, [refresh]);
 
   // Efecto para reiniciar las palabras cuando cambia la categoría
   useEffect(() => {
