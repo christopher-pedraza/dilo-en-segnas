@@ -1,15 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../components/NavbarLogin";
+import axios from "axios";
 
 export default function SigninPage() {
+  const navigate = useNavigate();
+
   // Estado para controlar los valores del formulario de inicio de sesión
   const [loginData, setLoginData] = useState({
-    username: "",
-    password: "",
+    usuario: "",
+    contrasegna: "",
+    es_administrador: true,
   });
 
   // Destructuring del loginData
-  const { username, password } = loginData;
+  const { usuario, contrasegna } = loginData;
 
   // Función que se ejecuta cada vez que se cambia el valor de un input
   const handleChange = (e) => {
@@ -19,8 +24,20 @@ export default function SigninPage() {
   // Función que se ejecuta cuando se da click en el botón de Iniciar Sesión
   const handleLogin = (e) => {
     e.preventDefault();
-    // Aquí eventualmente agregaríamos la lógica para conectar con la API y autenticar al usuario
-    console.log("Iniciando sesión con:", loginData);
+    if (usuario.length > 1 && contrasegna.length > 1) {
+      axios
+        .post("http://localhost:3000/miembros/add", loginData)
+        .then((res) => {
+          navigate("/login");
+          // console.log(res);
+          // alert("Usuario creado con exito");
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Error al crear usuario");
+        });
+      // console.log("Iniciando sesión con:", loginData);
+    }
   };
 
   return (
@@ -31,29 +48,31 @@ export default function SigninPage() {
         <h2 className="text-3xl mb-4 text-center">Registrarse</h2>
 
         <form>
-          <label htmlFor="username" className="block text-lg font-bold mb-2">
+          <label htmlFor="usuario" className="block text-lg font-bold mb-2">
             Usuario
           </label>
           <input
             type="text"
-            id="username"
-            name="username"
+            id="usuario"
+            name="usuario"
             placeholder="Ingresa tu usuario"
             className="w-full rounded-lg border border-slate-400 p-2 my-2"
-            value={username}
+            required
+            value={usuario}
             onChange={handleChange}
           />
 
-          <label htmlFor="password" className="block text-lg font-bold mb-2">
+          <label htmlFor="contrasegna" className="block text-lg font-bold mb-2">
             Contraseña
           </label>
           <input
-            type="password"
-            id="password"
-            name="password"
+            type="contrasegna"
+            id="contrasegna"
+            name="contrasegna"
             placeholder="Ingresa tu contraseña"
             className="w-full rounded-lg border border-slate-400 p-2 my-2"
-            value={password}
+            required
+            value={contrasegna}
             onChange={handleChange}
           />
 
