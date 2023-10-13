@@ -33,8 +33,8 @@ import AVFoundation
                    navBarAppearance.backgroundColor = customColorNavBar
                    
                    // Customize the font for the navigation bar title text
-                   let titleFont = UIFont(name: "Poppins-SemiBold", size: 24)!
-                   navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: titleFont]
+                   // let titleFont = UIFont(name: "Poppins-SemiBold", size: 24)!
+                   // navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: titleFont]
                    
                    // Set backgroundEffect to nil to remove the white space
                    navBarAppearance.backgroundEffect = nil
