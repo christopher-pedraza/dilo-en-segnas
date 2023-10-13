@@ -6,12 +6,16 @@ import WordsPage from "./pages/WordsPage";
 import QuizPage from "./pages/QuizPage";
 import VideosPage from "./pages/VideosPage";
 import VideoPartssPage from "./pages/VideoPartsPage";
+import LoginPage from "./pages/LoginPage";
+import SigninPage from "./pages/SigninPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<CategoriesPage />} />
+        <Route index element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signin" element={<SigninPage />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:id_category" element={<WordsPage />} />
         <Route path="/quiz" element={<QuizPage />} />
