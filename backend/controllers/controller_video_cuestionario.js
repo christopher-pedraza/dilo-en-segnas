@@ -101,6 +101,50 @@ async function getData(req, res, next) {
 	}
 }
 
+async function getParteSimplified(req, res, next) {
+	try {
+		const parte = await prisma.parte_video_cuestionario.findUnique({
+			where: {
+				id_parte_video_cuestionario: Number(req.params.id)
+			},
+		})
+		const pregunta = await prisma.preguntas_video_cuestionario.findFirst({
+			where: {
+				id_parte_video_cuestionario: parte.id_parte_video_cuestionario
+			},
+		})
+		const respuestas = await prisma.respuestas_video_cuestionario.findMany({
+			where: {
+				id_preguntas_video_cuestionario: pregunta.id_preguntas_video_cuestionario
+			},
+		})
+
+		correctaIndex = 0
+		for (let index = 1; index <= respuestas.length; index++) {
+			if (respuestas[index - 1].es_correcta) {
+				correctaIndex = index
+				break
+			}
+
+		}
+		res.status(200).json({
+			id_parte_video_cuestionario: parte.id_parte_video_cuestionario,
+			indice: parte.indice,
+			nombre: parte.nombre,
+			url_video: parte.url_video,
+			pregunta: pregunta.pregunta,
+			respuesta1: respuestas[0].respuesta,
+			respuesta2: respuestas[1].respuesta,
+			respuesta3: respuestas[2].respuesta,
+			respuesta4: respuestas[3].respuesta,
+			respuestaC: correctaIndex
+		})
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function getPartes(req, res, next) {
 	try {
 		const resultado = await prisma.parte_video_cuestionario.findMany({
@@ -108,6 +152,7 @@ async function getPartes(req, res, next) {
 				id_video_cuestionario: Number(req.params.id)
 			},
 			select: {
+				id_parte_video_cuestionario: true,
 				nombre: true,
 				url_video: true,
 				indice: true,
@@ -461,6 +506,7 @@ module.exports = {
 	getComplete,
 	getData,
 	getPartes,
+	getParteSimplified,
 	add,
 	addWithPalabras,
 	addParte,
