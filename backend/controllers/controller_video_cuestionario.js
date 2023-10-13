@@ -344,7 +344,7 @@ async function remove(req, res, next) {
 async function removeParte(req, res, next) {
 	try {
 		const resultado = await prisma.parte_video_cuestionario.delete({
-			where: { id_video_cuestionario: Number(req.params.id) }
+			where: { id_parte_video_cuestionario: Number(req.params.id) }
 		})
 		res.status(200).json(resultado)
 	}
@@ -390,10 +390,10 @@ async function updateParteSimplified(req, res, next) {
 		// Parte
 		const res_parte = await prisma.parte_video_cuestionario.update({
 			where: {
-				id_video_cuestionario: Number(req.params.id)
+				id_parte_video_cuestionario: Number(req.params.id)
 			},
 			data: {
-				id_video_cuestionario: Number(req.params.id),
+				id_video_cuestionario: body.id_video_cuestionario,
 				nombre: body.nombre,
 				url_video: body.url_video,
 				indice: body.indice,
@@ -401,17 +401,20 @@ async function updateParteSimplified(req, res, next) {
 		})
 
 		// Pregunta
-		const res_pregunta = await prisma.preguntas_video_cuestionario.update({
+		await prisma.preguntas_video_cuestionario.deleteMany({
 			where: {
-				id_parte_video_cuestionario: res_parte.id_parte_video_cuestionario,
+				id_parte_video_cuestionario: Number(req.params.id),
 			},
+		})
+		const res_pregunta = await prisma.preguntas_video_cuestionario.create({
 			data: {
+				id_parte_video_cuestionario: Number(req.params.id),
 				pregunta: body.pregunta,
 			}
 		})
 
 		// Respuestas
-		prisma.respuestas_video_cuestionario.deleteMany({
+		await prisma.respuestas_video_cuestionario.deleteMany({
 			where: {
 				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
 			},
