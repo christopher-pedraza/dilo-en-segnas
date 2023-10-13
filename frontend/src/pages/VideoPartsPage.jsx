@@ -101,7 +101,7 @@ export default function VideoPartsPage() {
   const handleCreate = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/videos/addParte", {
+      .post("http://localhost:3000/videos/addParteSimplified", {
         id_video_cuestionario: parseInt(id_video_cuestionario),
         indice: parseInt(indice),
         nombre: nombre,
@@ -312,7 +312,7 @@ export default function VideoPartsPage() {
               data={videoPart}
               onEdit={setFormData}
               onSetEditID={setEditID}
-              onDelete={setRefresh}
+              onDelete={handleDelete}
             />
           ))}
         </div>
