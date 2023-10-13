@@ -27,24 +27,22 @@ async function get(req, res, next) {
 
 async function getPalabrasByQuiz(req, res, next) {
 	try {
-		const resultado = await prisma.quiz.findMany({
+		const th = await prisma.quiz.findUnique({
 			where: {
 				id_quiz: Number(req.params.id)
 			},
-			select: {
-				detalles_quiz: {
-					select: {
-						palabra: {
-							select: {
-								palabra: true,
-								id_video_segna: true
-							}
-						}
-					}
-				}
-			}
 		})
-		res.status(200).json(resultado)
+		const palabras = await prisma.palabra.findMany({
+			where: {
+				id_isla: th.id_isla
+			},
+			select: {
+				palabra: true,
+				url_icono: true,
+				id_video_segna: true,
+			},
+		})
+		res.status(200).json(palabras)
 	}
 	catch (err) {
 		res.status(500).json({ "message": `${err}` })

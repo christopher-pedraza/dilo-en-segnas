@@ -25,14 +25,24 @@ async function get(req, res, next) {
 	}
 }
 
-async function getPalabrasByNivel(req, res, next) {
+async function getPalabrasByActividad(req, res, next) {
 	try {
-		const resultado = await prisma.treasure_hunt.findUnique({
+		const th = await prisma.treasure_hunt.findUnique({
 			where: {
 				id_treasure_hunt: Number(req.params.id)
-			}
+			},
 		})
-		res.status(200).json(resultado)
+		const palabras = await prisma.palabra.findMany({
+			where: {
+				id_isla: th.id_isla
+			},
+			select: {
+				palabra: true,
+				url_icono: true,
+				id_video_segna: true,
+			},
+		})
+		res.status(200).json(palabras)
 	}
 	catch (err) {
 		res.status(500).json({ "message": `${err}` })
@@ -87,6 +97,7 @@ async function update(req, res, next) {
 module.exports = {
 	getAll,
 	get,
+	getPalabrasByActividad,
 	add,
 	remove,
 	update,
