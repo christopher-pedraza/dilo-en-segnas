@@ -11,8 +11,11 @@ struct VideoViewCOML: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        let videoHTML = """
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/WJfUZ8jcml0?si=j__udeKpMX1DsVRS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        let videoHTML =
+        """
+        <div style="border-radius: 30px; overflow: hidden; width: 100%; height: 100%; flex; justify-content: center; align-items: center;">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WJfUZ8jcml0?si=j__udeKpMX1DsVRS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
         """
 
         uiView.loadHTMLString(videoHTML, baseURL: nil)

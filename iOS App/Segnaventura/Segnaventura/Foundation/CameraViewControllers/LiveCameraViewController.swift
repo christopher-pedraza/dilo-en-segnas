@@ -50,7 +50,32 @@ final class LiveCameraViewController: UIViewController {
         super.viewDidLoad()
         liveVideoFeedDisplayLayer = view.layer
         setUpLiveCapture()
+        // Agregar observador para cambios de orientación
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOrientationChange), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Reaunudar camara
+        do {
+            try runSession()
+        } catch {
+            // manejar el error si es necesario
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //Detener la camara
+        stopCamera()
+        // Eliminar el observador cuando la vista desaparezca
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    @objc func handleOrientationChange() {
+           // Actualizar la orientación del previewLayer cuando cambie la orientación del dispositivo
+           previewLayer?.connection?.videoOrientation = videoOrientationFromCurrentDeviceOrientation()
+       }
     
     /// Builds vision requests using the provided URL and starts the session
     ///
@@ -58,6 +83,22 @@ final class LiveCameraViewController: UIViewController {
     func runSession() throws {
         self.model = try? VNCoreMLModel(for: PredictionStatus().modelObject.model)
         session.startRunning()
+    }
+    
+    // Función para detener la cámara
+    func stopCamera() {
+        session.stopRunning()
+    }
+    
+    func captureStaticImage() -> UIImage? {
+        guard let videoPreviewLayer = self.previewLayer else {
+            return nil
+        }
+        let outputImage = UIGraphicsImageRenderer(size: videoPreviewLayer.frame.size).image { _ in
+            videoPreviewLayer.render(in: UIGraphicsGetCurrentContext()!)
+        }
+        return outputImage
+        
     }
     
     // MARK:- Live Capture

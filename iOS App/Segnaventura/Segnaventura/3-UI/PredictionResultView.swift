@@ -26,15 +26,15 @@ struct PredictionResultView: View {
                     TranslationView(labelData: labelData)
                 } label: {
                     Text("Confirmar")
-                    
-                }.buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+                }
+                .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: -10, trailing: 0))
                 
-            }
+            } //VStack
             .padding(30)
 
 
-        }
+        } //ZStack
         //[OPTIONAL] Change the size of the frame.
         .frame(width: 300, height: 270, alignment: .bottom)
         .cornerRadius(10)

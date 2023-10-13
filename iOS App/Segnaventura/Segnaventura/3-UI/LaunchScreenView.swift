@@ -15,8 +15,12 @@ struct LaunchScreenView: View {
             ZStack {
                 
                 //[OPTIONAL] Edit background color here. You can also replace this with a background image.
-                Color(hex: 0xD5F4FF, opacity: 1.0)
-                    .ignoresSafeArea()
+                //Color(hex: 0xD5F4FF, opacity: 1.0)
+                    //.ignoresSafeArea()
+                Image("Wallpaper")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     // header image:
@@ -90,6 +94,6 @@ struct LaunchScreenView: View {
 
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-                LaunchScreenView()  
+                LaunchScreenView()
     }
 }
