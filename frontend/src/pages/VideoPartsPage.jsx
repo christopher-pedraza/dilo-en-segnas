@@ -123,6 +123,7 @@ export default function VideoPartsPage() {
           respuestaC: parseInt(respuestaC),
         })
         .then((res) => {
+          console.log(res);
           setFormData({
             id_video_cuestionario: videoData
               ? videoData.id_video_cuestionario
@@ -326,8 +327,8 @@ export default function VideoPartsPage() {
       </Dialog>
 
       {/* Dialogo Actualizar Parte Video */}
-      <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
-        <Dialog open={isOpenCreate} onClose={() => setIsOpenCreate(false)}>
+      <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
+        <Dialog open={isOpenUpdate} onClose={() => setIsOpenUpdate(false)}>
           {/* The backdrop, rendered as a fixed sibling to the panel container */}
           <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
@@ -447,7 +448,21 @@ export default function VideoPartsPage() {
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
                     onClick={() => {
-                      setIsOpenCreate(false);
+                      setIsOpenUpdate(false);
+                      setFormData({
+                        id_video_cuestionario: videoData
+                          ? videoData.id_video_cuestionario
+                          : "",
+                        indice: -1,
+                        nombre: "",
+                        url_video: "",
+                        pregunta: "",
+                        respuesta1: "",
+                        respuesta2: "",
+                        respuesta3: "",
+                        respuesta4: "",
+                        respuestaC: 0,
+                      });
                     }}
                   >
                     Cancelar
@@ -456,7 +471,7 @@ export default function VideoPartsPage() {
                     className="rounded-lg border border-slate-400 px-4 py-2 text-white ml-2"
                     style={{ background: "#8712E0" }}
                     type="submit"
-                    onClick={handleCreate}
+                    onClick={handleUpdate}
                   >
                     Actualizar
                   </button>
