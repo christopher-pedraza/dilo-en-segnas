@@ -11,8 +11,11 @@ router.get('/getPartes/:id', controller.getPartes)
 router.post('/add', controller.add)
 router.post('/addWithPalabras', controller.addWithPalabras)
 router.post('/addParte', controller.addParte)
+router.post('/addParteSimplified', controller.addParteSimplified)
 router.post('/addComplete', controller.addComplete)
 router.delete('/remove/:id', controller.remove)
+router.delete('/removeParte/:id', controller.removeParte)
 router.put('/update/:id', controller.update)
+router.put('/updateParteSimplified/:id', controller.updateParteSimplified)
 
 module.exports = router

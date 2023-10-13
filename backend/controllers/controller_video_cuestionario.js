@@ -215,6 +215,62 @@ async function addParte(req, res, next) {
 	}
 }
 
+async function addParteSimplified(req, res, next) {
+	body = req.body
+	try {
+		// Parte
+		const res_parte = await prisma.parte_video_cuestionario.create({
+			data: {
+				id_video_cuestionario: body.id_video_cuestionario,
+				nombre: body.nombre,
+				url_video: body.url_video,
+				indice: body.indice,
+			}
+		})
+		// Pregunta
+		const res_pregunta = await prisma.preguntas_video_cuestionario.create({
+			data: {
+				id_parte_video_cuestionario: res_parte.id_parte_video_cuestionario,
+				pregunta: body.pregunta,
+			}
+		})
+		// Respuestas
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta1,
+				es_correcta: 1 == body.respuestaC,
+			}
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta2,
+				es_correcta: 2 == body.respuestaC,
+			}
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta3,
+				es_correcta: 3 == body.respuestaC,
+			}
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta4,
+				es_correcta: 4 == body.respuestaC,
+			}
+		})
+		res.status(200).json(res_parte)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+		console.log(err)
+	}
+}
+
 async function addComplete(req, res, next) {
 	body = req.body
 	try {
@@ -283,6 +339,18 @@ async function remove(req, res, next) {
 	}
 }
 
+async function removeParte(req, res, next) {
+	try {
+		const resultado = await prisma.parte_video_cuestionario.delete({
+			where: { id_video_cuestionario: Number(req.params.id) }
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 async function update(req, res, next) {
 	body = req.body
 	try {
@@ -315,6 +383,74 @@ async function update(req, res, next) {
 	}
 }
 
+async function updateParteSimplified(req, res, next) {
+	body = req.body
+	try {
+		// Parte
+		const res_parte = await prisma.parte_video_cuestionario.update({
+			where: {
+				id_video_cuestionario: Number(req.params.id)
+			},
+			data: {
+				id_video_cuestionario: Number(req.params.id),
+				nombre: body.nombre,
+				url_video: body.url_video,
+				indice: body.indice,
+			}
+		})
+
+		// Pregunta
+		const res_pregunta = await prisma.preguntas_video_cuestionario.update({
+			where: {
+				id_parte_video_cuestionario: res_parte.id_parte_video_cuestionario,
+			},
+			data: {
+				pregunta: body.pregunta,
+			}
+		})
+
+		// Respuestas
+		prisma.respuestas_video_cuestionario.deleteMany({
+			where: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+			},
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta1,
+				es_correcta: 1 == body.respuestaC,
+			}
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta2,
+				es_correcta: 2 == body.respuestaC,
+			}
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta3,
+				es_correcta: 3 == body.respuestaC,
+			}
+		})
+		await prisma.respuestas_video_cuestionario.create({
+			data: {
+				id_preguntas_video_cuestionario: res_pregunta.id_preguntas_video_cuestionario,
+				respuesta: body.respuesta4,
+				es_correcta: 4 == body.respuestaC,
+			}
+		})
+		res.status(200).json(res_parte)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+		console.log(err)
+	}
+}
+
 module.exports = {
 	getAll,
 	get,
@@ -324,7 +460,10 @@ module.exports = {
 	add,
 	addWithPalabras,
 	addParte,
+	addParteSimplified,
 	addComplete,
 	remove,
+	removeParte,
 	update,
+	updateParteSimplified,
 }
