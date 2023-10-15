@@ -27,21 +27,27 @@ async function get(req, res, next) {
 
 async function getPalabrasByQuiz(req, res, next) {
 	try {
-		const th = await prisma.quiz.findUnique({
+		const detalles = await prisma.detalles_quiz.findMany({
 			where: {
 				id_quiz: Number(req.params.id)
-			},
+			}
 		})
-		const palabras = await prisma.palabra.findMany({
-			where: {
-				id_isla: th.id_isla
-			},
-			select: {
-				palabra: true,
-				url_icono: true,
-				id_video_segna: true,
-			},
-		})
+
+		let palabras = []
+		for (let i = 0; i < detalles.length; i++) {
+			const palabra = await prisma.palabra.findUnique({
+				where: {
+					id_palabra: detalles[i].id_palabra
+				},
+				select: {
+					palabra: true,
+					id_video_segna: true,
+					url_icono: true,
+				},
+			})
+			palabras.push(palabra)
+		}
+
 		res.status(200).json(palabras)
 	}
 	catch (err) {
@@ -63,7 +69,8 @@ async function getComplete(req, res, next) {
 								id_palabra: true,
 								palabra: true,
 								id_video_segna: true,
-								url_icono: true
+								url_icono: true,
+								escaneable: true,
 							}
 						}
 					},
@@ -102,7 +109,6 @@ async function addConPalabras(req, res, next) {
 				nombre: body.nombre,
 			}
 		})
-		res.status(200).json(resultado)
 
 		palabras = body.palabras
 		for (let i = 0; i < palabras.length; i++) {
@@ -113,6 +119,8 @@ async function addConPalabras(req, res, next) {
 				}
 			})
 		}
+
+		res.status(200).json(resultado)
 	}
 	catch (err) {
 		res.status(500).json({ "message": `${err}` })
