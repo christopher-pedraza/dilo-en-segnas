@@ -25,6 +25,7 @@ struct PreguntasPalabrasActivity: View {
     @State private var bindingTapped: Bool = false
     
     
+    
     var body: some View {
             VStack {
                 if currentQuestionIndex < PalabrasVideosVM.palabras.count {
