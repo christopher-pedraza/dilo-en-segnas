@@ -2,11 +2,7 @@ const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/controller_progreso.js')
 
-// Rutas disponibles y las funciones que se llaman
-router.get('/getAll', controller.getAll)
-router.get('/get/:id', controller.get)
-router.post('/add', controller.add)
-router.delete('/remove/:id', controller.remove)
-router.put('/update/:id', controller.update)
+router.post('/descubrir_isla/:id', controller.descubrir_isla)
+router.post('/actualizar_progreso/:id', controller.actualizar_progreso)
 
 module.exports = router
