@@ -30,9 +30,9 @@ async function actualizar_progreso(req, res, next) {
 				data: {
 					id_miembro: Number(req.params.id),
 					id_nivel: body.id_nivel,
-					completada_treasure_hunt: false ? body.completada_treasure_hunt == "" : body.completada_treasure_hunt,
-					completada_videos_cuestionario: false ? body.completada_videos_cuestionario == "" : body.completada_videos_cuestionario,
-					completada_quiz: false ? body.completada_quiz == "" : body.completada_quiz,
+					completada_treasure_hunt: body.completada_treasure_hunt == null ? false : body.completada_treasure_hunt,
+					completada_videos_cuestionario: body.completada_videos_cuestionario == null ? false : body.completada_videos_cuestionario,
+					completada_quiz: body.completada_quiz == null ? false : body.completada_quiz,
 				},
 			})
 			res.status(200).json(progreso)
@@ -49,9 +49,9 @@ async function actualizar_progreso(req, res, next) {
 				data: {
 					id_miembro: Number(req.params.id),
 					id_nivel: body.id_nivel,
-					completada_treasure_hunt: progreso_actual.completada_treasure_hunt ? body.completada_treasure_hunt == "" : body.completada_treasure_hunt,
-					completada_videos_cuestionario: progreso_actual.completada_videos_cuestionario ? body.completada_videos_cuestionario == "" : body.completada_videos_cuestionario,
-					completada_quiz: progreso_actual.completada_videos_cuestionario ? body.completada_quiz == "" : body.completada_quiz,
+					completada_treasure_hunt: body.completada_treasure_hunt == null ? progreso_actual.completada_treasure_hunt : body.completada_treasure_hunt,
+					completada_videos_cuestionario: body.completada_videos_cuestionario == null ? progreso_actual.completada_videos_cuestionario : body.completada_videos_cuestionario,
+					completada_quiz: body.completada_quiz == null ? progreso_actual.completada_quiz : body.completada_quiz,
 				},
 			})
 			res.status(200).json(progreso)
@@ -62,7 +62,57 @@ async function actualizar_progreso(req, res, next) {
 	}
 }
 
+async function get_islas_descubiertas(req, res, next) {
+	try {
+		const resultado = await prisma.progreso_islas.findMany({
+			where: {
+				id_miembro: Number(req.params.id),
+			},
+			select: {
+				isla: {
+					select: {
+						id_isla: true,
+						nombre: true,
+					},
+				},
+			},
+		})
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
+async function get_islas_descubiertas_v2(req, res, next) {
+	try {
+		const islas = await prisma.progreso_islas.findMany({
+			where: {
+				id_miembro: Number(req.params.id),
+			},
+			select: {
+				isla: {
+					select: {
+						id_isla: true,
+						nombre: true,
+					},
+				},
+			},
+		})
+		let resultado = []
+		islas.forEach(isla => {
+			resultado.push({ id_isla: isla.isla.id_isla, nombre: isla.isla.nombre })
+		});
+		res.status(200).json(resultado)
+	}
+	catch (err) {
+		res.status(500).json({ "message": `${err}` })
+	}
+}
+
 module.exports = {
 	descubrir_isla,
 	actualizar_progreso,
+	get_islas_descubiertas,
+	get_islas_descubiertas_v2,
 }
