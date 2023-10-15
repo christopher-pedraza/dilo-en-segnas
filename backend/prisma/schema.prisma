@@ -102,11 +102,11 @@ model progreso_islas {
 model progreso_nivel {
   id_miembro                     Int
   id_nivel                       Int
-  completada_treasure_hunt       Boolean
-  completada_videos_cuestionario Boolean
-  completada_quiz                Boolean
-  miembro                        miembro @relation(fields: [id_miembro], references: [id_miembro], onDelete: NoAction, onUpdate: NoAction)
-  nivel                          nivel   @relation(fields: [id_nivel], references: [id_nivel], onDelete: NoAction, onUpdate: NoAction)
+  completada_treasure_hunt       Boolean?
+  completada_videos_cuestionario Boolean?
+  completada_quiz                Boolean?
+  miembro                        miembro  @relation(fields: [id_miembro], references: [id_miembro], onDelete: NoAction, onUpdate: NoAction)
+  nivel                          nivel    @relation(fields: [id_nivel], references: [id_nivel], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([id_miembro, id_nivel])
 }

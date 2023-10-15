@@ -62,17 +62,23 @@ async function actualizar_progreso(req, res, next) {
 	}
 }
 
-async function get_islas_descubiertas(req, res, next) {
+async function get_data_islas_descubiertas(req, res, next) {
 	try {
 		const resultado = await prisma.progreso_islas.findMany({
 			where: {
 				id_miembro: Number(req.params.id),
 			},
-			select: {
+			include: {
 				isla: {
-					select: {
-						id_isla: true,
-						nombre: true,
+					include: {
+						nivel: {
+							include: {
+								quiz: true,
+								treasure_hunt: true,
+								video_cuestionario: true,
+								progreso_nivel: true,
+							},
+						},
 					},
 				},
 			},
@@ -84,7 +90,7 @@ async function get_islas_descubiertas(req, res, next) {
 	}
 }
 
-async function get_islas_descubiertas_v2(req, res, next) {
+async function get_islas_descubiertas(req, res, next) {
 	try {
 		const islas = await prisma.progreso_islas.findMany({
 			where: {
@@ -113,6 +119,6 @@ async function get_islas_descubiertas_v2(req, res, next) {
 module.exports = {
 	descubrir_isla,
 	actualizar_progreso,
+	get_data_islas_descubiertas,
 	get_islas_descubiertas,
-	get_islas_descubiertas_v2,
 }

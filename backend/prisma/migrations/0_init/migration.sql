@@ -76,9 +76,9 @@ CREATE TABLE "progreso_islas" (
 CREATE TABLE "progreso_nivel" (
     "id_miembro" INTEGER NOT NULL,
     "id_nivel" INTEGER NOT NULL,
-    "completada_treasure_hunt" BOOLEAN NOT NULL,
-    "completada_videos_cuestionario" BOOLEAN NOT NULL,
-    "completada_quiz" BOOLEAN NOT NULL,
+    "completada_treasure_hunt" BOOLEAN,
+    "completada_videos_cuestionario" BOOLEAN,
+    "completada_quiz" BOOLEAN,
 
     CONSTRAINT "progreso_nivel_pkey" PRIMARY KEY ("id_miembro","id_nivel")
 );
