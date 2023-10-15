@@ -16,49 +16,5 @@
 # Señaventuras
 
 ## Índice de instrucciones para configurar el proyecto
-- [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/tree/main#instrucciones-para-configurar-la-base-de-datos)
-- [Configurar la API](https://github.com/christopher-pedraza/segnaventuras/tree/main/README.md#instrucciones-para-configurar-la-api)
-
-### Instrucciones para configurar la base de datos
-**NOTA:** En las próximas instrucciones, los elementos entre ```[]``` son donde introduces los datos que quieras, pero es necesario quitar los ```[]``` y solo dejar el dato.
-
-1. Instala PostgreSQL de: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
-
-2. Crea un usuario para que se conecte a la base de datos:
-```
-CREATE ROLE [NOMBRE_USUARIO] PASSWORD '[CONTRASEÑA]' NOSUPERUSER CREATEDB INHERIT LOGIN;
-```
-Este usuario no tendrá permisos de superuser, podrá crear bases de datos, heredará permisos básicos y podrá hacer login.
-
-3. Crea una Base de Datos con el rol recien creado como dueño. Lo puedes hacer desde pgAdmin4 con el QueryTool o con una terminal/linea de comandos:
-    - Terminal/linea de comandos:
-        ```
-        CREATE DATABASE segnaventura OWNER [ROL];
-        ```
-    - QueryTool en pgAdmin4:
-      ![Instrucciones para crear base de datos en pgAdmin4](https://github.com/christopher-pedraza/segnaventuras/assets/62347713/99eaaf08-3bdc-47b9-b7f5-7d1896403c36)
-
-
-### Instrucciones para configurar la API
-
-1. En la carpeta de backend/ crea un archivo ```.env``` y coloca las siguientes líneas (utiliza el usuario que acabas de crear):
-```
-PORT = 3000
-DATABASE_URL="postgresql://[USUARIO]:[CONTRASEÑA]@localhost:[PUERTO_BD]/[NOMBRE_BASE_DATOS]?schema=[NOMBRE_SCHEMA]"
-```
-
-2. Abre una terminal/ventana de comandos en la carpeta backend/ y corre el siguiente comando para instalar todas las dependencias necesarias para el API
-   - Necesitas tener instalado Node.js para poder correr esto. Si nunca lo has instalado visita: [https://nodejs.org/es/download](https://nodejs.org/es/download) 
-```
-npm i
-```
-
-3. En la misma terminal, corre el siguiente comando para generar las tablas de la base de datos:
-```
-npx prisma migrate reset
-```
-
-4. Corre el API desde la carpeta backend/ corriendo el comando:
-```
-npm run start
-```
+- [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/wiki/Configuraci%C3%B3n-Base-de-Datos)
+- [Configurar la API](https://github.com/christopher-pedraza/segnaventuras/wiki/Configuraci%C3%B3n-API)
