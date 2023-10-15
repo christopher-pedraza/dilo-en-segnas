@@ -15,7 +15,11 @@
 
 # Señaventuras
 
-## Instrucciones para configurar la base de datos
+## Índice de instrucciones para configurar el proyecto
+- [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/edit/api&db_documentation/README.md#instrucciones-para-configurar-la-base-de-datos)
+- [Configurar la API](https://github.com/christopher-pedraza/segnaventuras/edit/api&db_documentation/README.md#instrucciones-para-configurar-la-api)
+
+### Instrucciones para configurar la base de datos
 **NOTA:** En las próximas instrucciones, los elementos entre ```[]``` son donde introduces los datos que quieras, pero es necesario quitar los ```[]``` y solo dejar el dato.
 
 1. Instala PostgreSQL de: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
@@ -35,7 +39,7 @@ Este usuario no tendrá permisos de superuser, podrá crear bases de datos, here
       ![Instrucciones para crear base de datos en pgAdmin4](https://github.com/christopher-pedraza/segnaventuras/assets/62347713/99eaaf08-3bdc-47b9-b7f5-7d1896403c36)
 
 
-## Instrucciones para configurar la API
+### Instrucciones para configurar la API
 
 1. En la carpeta de backend/ crea un archivo ```.env``` y coloca las siguientes líneas (utiliza el usuario que acabas de crear):
 ```
