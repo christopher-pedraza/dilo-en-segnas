@@ -56,12 +56,31 @@ CREATE TABLE "treasure_hunt" (
 -- CreateTable
 CREATE TABLE "nivel" (
     "id_nivel" SERIAL NOT NULL,
-    "id_isla" INTEGER NOT NULL,
-    "id_video_cuestionario" INTEGER NOT NULL,
-    "id_quiz" INTEGER NOT NULL,
-    "id_treasure_hunt" INTEGER NOT NULL,
+    "id_isla" INTEGER,
+    "id_video_cuestionario" INTEGER,
+    "id_quiz" INTEGER,
+    "id_treasure_hunt" INTEGER,
 
     CONSTRAINT "nivel_pkey" PRIMARY KEY ("id_nivel")
+);
+
+-- CreateTable
+CREATE TABLE "progreso_islas" (
+    "id_miembro" INTEGER NOT NULL,
+    "id_isla" INTEGER NOT NULL,
+
+    CONSTRAINT "progreso_islas_pkey" PRIMARY KEY ("id_miembro","id_isla")
+);
+
+-- CreateTable
+CREATE TABLE "progreso_nivel" (
+    "id_miembro" INTEGER NOT NULL,
+    "id_nivel" INTEGER NOT NULL,
+    "completada_treasure_hunt" BOOLEAN,
+    "completada_videos_cuestionario" BOOLEAN,
+    "completada_quiz" BOOLEAN,
+
+    CONSTRAINT "progreso_nivel_pkey" PRIMARY KEY ("id_miembro","id_nivel")
 );
 
 -- CreateTable
@@ -71,6 +90,7 @@ CREATE TABLE "palabra" (
     "palabra" TEXT NOT NULL,
     "id_video_segna" TEXT NOT NULL,
     "url_icono" TEXT NOT NULL,
+    "escaneable" BOOLEAN NOT NULL,
 
     CONSTRAINT "palabra_pkey" PRIMARY KEY ("id_palabra")
 );
@@ -147,6 +167,18 @@ ALTER TABLE "nivel" ADD CONSTRAINT "nivel_id_quiz_fkey" FOREIGN KEY ("id_quiz") 
 
 -- AddForeignKey
 ALTER TABLE "nivel" ADD CONSTRAINT "nivel_id_treasure_hunt_fkey" FOREIGN KEY ("id_treasure_hunt") REFERENCES "treasure_hunt"("id_treasure_hunt") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "progreso_islas" ADD CONSTRAINT "progreso_islas_id_miembro_fkey" FOREIGN KEY ("id_miembro") REFERENCES "miembro"("id_miembro") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "progreso_islas" ADD CONSTRAINT "progreso_islas_id_isla_fkey" FOREIGN KEY ("id_isla") REFERENCES "isla"("id_isla") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "progreso_nivel" ADD CONSTRAINT "progreso_nivel_id_miembro_fkey" FOREIGN KEY ("id_miembro") REFERENCES "miembro"("id_miembro") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "progreso_nivel" ADD CONSTRAINT "progreso_nivel_id_nivel_fkey" FOREIGN KEY ("id_nivel") REFERENCES "nivel"("id_nivel") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
 ALTER TABLE "palabra" ADD CONSTRAINT "palabra_id_isla_fkey" FOREIGN KEY ("id_isla") REFERENCES "isla"("id_isla") ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -47,8 +47,9 @@ async function add(req, res, next) {
 				id_isla: body.id_isla,
 				palabra: body.palabra,
 				id_video_segna: body.id_video_segna,
-				url_icono: body.url_icono
-			}
+				url_icono: body.url_icono,
+				escaneable: body.escaneable,
+			},
 		})
 		res.status(200).json(resultado)
 	}
@@ -78,8 +79,9 @@ async function update(req, res, next) {
 				id_isla: body.id_isla,
 				palabra: body.palabra,
 				id_video_segna: body.id_video_segna,
-				url_icono: body.url_icono
-			}
+				url_icono: body.url_icono,
+				escaneable: body.escaneable,
+			},
 		})
 		res.status(200).json(resultado)
 	}

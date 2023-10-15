@@ -34,7 +34,11 @@ async function getPalabrasByActividad(req, res, next) {
 		})
 		const palabras = await prisma.palabra.findMany({
 			where: {
-				id_isla: th.id_isla
+				AND: {
+					id_isla: th.id_isla,
+					escaneable: { not: false, },
+				},
+
 			},
 			select: {
 				palabra: true,

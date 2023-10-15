@@ -9,5 +9,6 @@ router.use('/nivel', require('./routes_nivel.js'))
 router.use('/treasure', require('./routes_treasure_hunt.js'))
 router.use('/modelo', require('./routes_modelo_coml.js'))
 router.use('/videos', require('./routes_video_cuestionario.js'))
+router.use('/progreso', require('./routes_progreso.js'))
 
 module.exports = router

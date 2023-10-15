@@ -36,9 +36,10 @@ async function getWithPalabras(req, res, next) {
 						id_palabra: true,
 						palabra: true,
 						id_video_segna: true,
-						url_icono: true
-					}
-				}
+						url_icono: true,
+						escaneable: true,
+					},
+				},
 			},
 			where: {
 				id_isla: Number(req.params.id)
@@ -62,16 +63,17 @@ async function getAllWithPalabras(req, res, next) {
 						id_palabra: true,
 						palabra: true,
 						id_video_segna: true,
-						url_icono: true
-					}
-				}
+						url_icono: true,
+						escaneable: true,
+					},
+				},
 			},
 		})
-        const response = { categorias: resultado };
-        res.status(200).json(response);
-      } catch (err) {
-        res.status(500).json({ "message": `${err}` });
-      }
+		const response = { categorias: resultado };
+		res.status(200).json(response);
+	} catch (err) {
+		res.status(500).json({ "message": `${err}` });
+	}
 
 }
 
