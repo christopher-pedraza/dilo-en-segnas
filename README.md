@@ -16,43 +16,45 @@
 # Señaventuras
 
 ## Instrucciones para configurar la base de datos
-1. Instala PostgreSQL de: ![Descargas PostgreSQL](https://www.postgresql.org/download/)
- 
+**NOTA:** En las próximas instrucciones, los elementos entre ```[]``` son donde introduces los datos que quieras, pero es necesario quitar los ```[]``` y solo dejar el dato.
+
+1. Instala PostgreSQL de: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
+
 2. Crea un usuario para que se conecte a la base de datos:
 ```
-CREATE ROLE NOMBRE_USUARIO PASSWORD 'CONTRASEÑA' NOSUPERUSER CREATEDB INHERIT LOGIN;
+CREATE ROLE [NOMBRE_USUARIO] PASSWORD '[CONTRASEÑA]' NOSUPERUSER CREATEDB INHERIT LOGIN;
 ```
 Este usuario no tendrá permisos de superuser, podrá crear bases de datos, heredará permisos básicos y podrá hacer login.
 
-3. Crea una Base de Datos. Lo puedes hacer desde pgAdmin4 con el QueryTool o con una terminal/linea de comandos:
+3. Crea una Base de Datos con el rol recien creado como dueño. Lo puedes hacer desde pgAdmin4 con el QueryTool o con una terminal/linea de comandos:
     - Terminal/linea de comandos:
         ```
-        CREATE DATABASE segnaventura;
+        CREATE DATABASE segnaventura OWNER [ROL];
         ```
-    - QueryTool en pgAdmin:
-      ![image](https://github.com/christopher-pedraza/segnaventuras/assets/62347713/99eaaf08-3bdc-47b9-b7f5-7d1896403c36)
+    - QueryTool en pgAdmin4:
+      ![Instrucciones para crear base de datos en pgAdmin4](https://github.com/christopher-pedraza/segnaventuras/assets/62347713/99eaaf08-3bdc-47b9-b7f5-7d1896403c36)
 
 
 ## Instrucciones para configurar la API
 
-2. En la carpeta de backend/ crea un archivo ```.env``` y coloca la siguiente línea (utiliza el usuario que acabas de crear en el punto previo):
+1. En la carpeta de backend/ crea un archivo ```.env``` y coloca las siguientes líneas (utiliza el usuario que acabas de crear):
 ```
 PORT = 3000
-DATABASE_URL="postgresql://USUARIO:CONTRASEÑA@localhost:PUERTO_BD/NOMBRE_BASE_DATOS?schema=NOMBRE_SCHEMA"
+DATABASE_URL="postgresql://[USUARIO]:[CONTRASEÑA]@localhost:[PUERTO_BD]/[NOMBRE_BASE_DATOS]?schema=[NOMBRE_SCHEMA]"
 ```
 
-3. Abre una terminal/ventana de comandos en la carpeta backend/ y corre el siguiente comando para instalar todas las dependencias necesarias para el API
-   - Necesitas tener instalado Node.js para poder correr esto. Si nunca lo has instalado visita: ![Descargas Node.js](https://nodejs.org/es/download) 
+2. Abre una terminal/ventana de comandos en la carpeta backend/ y corre el siguiente comando para instalar todas las dependencias necesarias para el API
+   - Necesitas tener instalado Node.js para poder correr esto. Si nunca lo has instalado visita: [https://nodejs.org/es/download](https://nodejs.org/es/download) 
 ```
 npm i
 ```
 
-4. En la misma terminal, corre el siguiente comando para generar las tablas de la base de datos:
+3. En la misma terminal, corre el siguiente comando para generar las tablas de la base de datos:
 ```
 npx prisma migrate reset
 ```
 
-5. Corre el API desde la carpeta backend/ corriendo el comando:
+4. Corre el API desde la carpeta backend/ corriendo el comando:
 ```
 npm run start
 ```
