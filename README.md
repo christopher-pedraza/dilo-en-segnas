@@ -16,8 +16,8 @@
 # Señaventuras
 
 ## Índice de instrucciones para configurar el proyecto
-- [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/edit/api&db_documentation/README.md#instrucciones-para-configurar-la-base-de-datos)
-- [Configurar la API](https://github.com/christopher-pedraza/segnaventuras/edit/api&db_documentation/README.md#instrucciones-para-configurar-la-api)
+- [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/tree/main#instrucciones-para-configurar-la-base-de-datos)
+- [Configurar la API](https://github.com/christopher-pedraza/segnaventuras/tree/main/README.md#instrucciones-para-configurar-la-api)
 
 ### Instrucciones para configurar la base de datos
 **NOTA:** En las próximas instrucciones, los elementos entre ```[]``` son donde introduces los datos que quieras, pero es necesario quitar los ```[]``` y solo dejar el dato.
