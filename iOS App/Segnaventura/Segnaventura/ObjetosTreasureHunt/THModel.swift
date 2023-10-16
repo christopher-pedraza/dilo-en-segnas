@@ -8,7 +8,7 @@
 import Foundation
 
 // Modelo general que contains a list of the vocabulary categories
-struct THModel: Decodable, Equatable, Identifiable {
+struct THModel: Decodable, Identifiable {
     var id = UUID()
     var palabra : String = ""
     var url_icono : String = ""
@@ -21,4 +21,4 @@ struct THModel: Decodable, Equatable, Identifiable {
     }
 }
 
-typealias THModelList = [THModel]
+//typealias THModelList = [THModel]

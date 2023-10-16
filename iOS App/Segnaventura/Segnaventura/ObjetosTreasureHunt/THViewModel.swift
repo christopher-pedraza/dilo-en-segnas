@@ -9,14 +9,14 @@ import SwiftUI
 
 class THViewModel : ObservableObject {
     // Estructura para deserializar el JSON
-    @Published var tesoro: THModel?
+    @Published var palabras = [THModel]()
     
     // Funcion para leer un JSON de un API en linea y desearizarlo para poder guardarlo
     // en un objeto que se pueda luego usar en la aplicacion
     func getObjetoData() async throws {
 
         // Guarda el URL donde esta almacenado el JSON
-        guard let url = URL(string: "http://localhost:3000/treasure/getPalabrasByActividad")
+        guard let url = URL(string: "http://localhost:3000/treasure/getPalabrasByActividad/2")
                 else {
                     print("Error: Invalid URL")
                     return
@@ -34,9 +34,9 @@ class THViewModel : ObservableObject {
             
             // Los datos obtenidos del API se decodifican usando la estructura en el VocabularioModel
             // Para crear un objeto de VocabularioModel
-            let results = try JSONDecoder().decode(THModel.self, from: data)
+            let results = try JSONDecoder().decode([THModel].self, from: data)
             DispatchQueue.main.async {
-                self.tesoro = results
+                self.palabras = results
             }
     }
 }

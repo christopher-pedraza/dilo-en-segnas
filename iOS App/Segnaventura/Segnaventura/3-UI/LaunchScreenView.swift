@@ -10,7 +10,7 @@ import SwiftUI
 struct LaunchScreenView: View {
     
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var viewModel = THViewModel() // Instancia de THViewModel
+    @EnvironmentObject var THVM: THViewModel
     
     var body: some View {
         ZStack {
@@ -38,23 +38,16 @@ struct LaunchScreenView: View {
                 .multilineTextAlignment(.center)
                 
                 // Item list
-                if let tesoro = viewModel.tesoro {
+                
                     VStack {
                         // Este Text mostrará el nombre del objeto
-                        Text(tesoro.palabra)
+                        Text(THVM.palabras.first?.palabra ?? "Hola")
                     }
                     .padding()
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding()
-                } else {
-                    // Mostrará un texto de "Cargando..." mientras espera los datos
-                    Text("Cargando...")
-                        .padding()
-                        .background(Color(UIColor.secondarySystemBackground))
-                        .cornerRadius(10)
-                        .padding()
-                }
+               
                 
                 // Botón para empezar
                 NavigationLink(destination: ClassificationView()){
@@ -71,7 +64,7 @@ struct LaunchScreenView: View {
             .shadow(radius: 5)
             .onAppear { // Llamar a getObjetoData en onAppear
                 Task {
-                    try? await viewModel.getObjetoData()
+                    try? await THVM.getObjetoData()
                 }
             }
             .navigationBarHidden(true)
