@@ -16,6 +16,7 @@ struct SegnaventuraApp: App {
     @StateObject var fsm = FileSystemManager()
     @StateObject private var predictionStatus = PredictionStatus()
     @StateObject var palabraVideosVM = PalabraVideosViewModel()
+    @StateObject var AccesoVM = AccesoViewModel()
     
     init() {
         

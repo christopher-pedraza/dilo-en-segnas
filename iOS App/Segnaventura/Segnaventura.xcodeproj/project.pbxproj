@@ -49,6 +49,7 @@
 		FBB388172ADD9AEA00FBCAE6 /* IslasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */; };
 		FBB388192ADDA8E700FBCAE6 /* image-centercropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */; };
 		FBB3881B2ADDB66A00FBCAE6 /* AccesoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */; };
+		FBB3881D2ADDB6E000FBCAE6 /* AccesoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3881C2ADDB6E000FBCAE6 /* AccesoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslasView.swift; sourceTree = "<group>"; };
 		FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "image-centercropped.swift"; sourceTree = "<group>"; };
 		FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesoModel.swift; sourceTree = "<group>"; };
+		FBB3881C2ADDB6E000FBCAE6 /* AccesoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 		BC8385762AC889F70061B696 /* VideosActivity */ = {
 			isa = PBXGroup;
 			children = (
+				BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */,
 				9D82A2922AB7CE980048411D /* VideoModel.swift */,
 				9D82A2942AB7D6910048411D /* VideoViewModel.swift */,
 				9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */,
@@ -231,7 +234,6 @@
 		BC8385782AC88A7D0061B696 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */,
 				9D82A2982AB7DF2B0048411D /* VideoView.swift */,
 			);
 			path = Video;
@@ -289,6 +291,7 @@
 			children = (
 				FBB388132ADD924500FBCAE6 /* Acceso.swift */,
 				FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */,
+				FBB3881C2ADDB6E000FBCAE6 /* AccesoViewModel.swift */,
 				FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */,
 				FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */,
 			);
@@ -383,6 +386,7 @@
 				BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */,
 				07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */,
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
+				FBB3881D2ADDB6E000FBCAE6 /* AccesoViewModel.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
 				FBB3881B2ADDB66A00FBCAE6 /* AccesoModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,

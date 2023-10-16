@@ -21,6 +21,7 @@ struct Acceso: View {
 }
 
 struct Login: View {
+    @EnvironmentObject var AccesoVM : AccesoViewModel
     @State private var username = ""
     @State private var password = ""
     
@@ -67,15 +68,15 @@ struct Login: View {
     
     @ViewBuilder
     func chooseDestination() -> some View {
-        let valor : Bool = (username == "test" && password == "test")
+        let valor : Bool = AccesoVM.accesoValido
         switch valor {
         case true: IslasView()
         case false: Login()
         }
     }
     
-    func autenticarUsuario(username: String, password: String) {
-        
+    func autenticarUsuario(username: String, password: String) async {
+        await AccesoVM.validarAcceso()
     }
 }
 
