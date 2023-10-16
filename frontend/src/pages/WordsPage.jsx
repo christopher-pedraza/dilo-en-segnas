@@ -23,6 +23,7 @@ export default function Wordspage(props) {
     palabra: "",
     id_video_segna: "",
     url_icono: "",
+    escaneable: false,
   });
 
   // Estado para controlar las palabras
@@ -35,7 +36,7 @@ export default function Wordspage(props) {
   const [refresh, setRefresh] = useState(0);
 
   // Destructuring del formData
-  const { id_isla, palabra, id_video_segna, url_icono } = formData;
+  const { id_isla, palabra, id_video_segna, url_icono, escaneable } = formData;
 
   // Funcion que se ejecuta cada vez que se cambia el valor de un input
   const handleChange = (e) => {
@@ -47,7 +48,13 @@ export default function Wordspage(props) {
     e.preventDefault();
     if (id_isla && palabra && id_video_segna && url_icono) {
       axios
-        .post("http://localhost:3000/palabras/add", formData)
+        .post("http://localhost:3000/palabras/add", {
+          id_isla: id_isla,
+          palabra: palabra,
+          id_video_segna: id_video_segna,
+          url_icono: url_icono,
+          escaneable: escaneable == "true" ? true : false,
+        })
         .then((res) => {
           console.log("res", res);
           setWords([...words, res.data]);
@@ -56,6 +63,7 @@ export default function Wordspage(props) {
             palabra: "",
             id_video_segna: "",
             url_icono: "",
+            escaneable: false,
           });
         })
         .catch((err) => console.log(err));
@@ -67,13 +75,20 @@ export default function Wordspage(props) {
   const handleUpdate = () => {
     if (id_isla && palabra && id_video_segna && url_icono) {
       axios
-        .put(`http://localhost:3000/palabras/update/${editID}`, formData)
+        .put(`http://localhost:3000/palabras/update/${editID}`, {
+          id_isla: id_isla,
+          palabra: palabra,
+          id_video_segna: id_video_segna,
+          url_icono: url_icono,
+          escaneable: escaneable == "true" ? true : false,
+        })
         .then((res) => {
           setFormData({
             id_isla: categoryData ? categoryData.id_isla : "",
             palabra: "",
             id_video_segna: "",
             url_icono: "",
+            escaneable: false,
           });
           setRefresh(refresh + 1);
         })
@@ -164,6 +179,22 @@ export default function Wordspage(props) {
                   value={id_video_segna}
                   onChange={handleChange}
                 />
+                <label htmlFor="escaneable" className="text-2xl font-bold">
+                  ¿Es escaneable?
+                  <select
+                    name="escaneable"
+                    id="escaneable"
+                    className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
+                    value={escaneable == false ? "default" : escaneable}
+                    onChange={handleChange}
+                  >
+                    <option value="default" disabled>
+                      --- Selecciona una opción ---
+                    </option>
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                  </select>
+                </label>
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
@@ -236,6 +267,22 @@ export default function Wordspage(props) {
                   value={id_video_segna}
                   onChange={handleChange}
                 />
+                <label htmlFor="escaneable" className="text-2xl font-bold">
+                  ¿Es escaneable?
+                  <select
+                    name="escaneable"
+                    id="escaneable"
+                    className="w-full rounded-lg border border-slate-400 p-2 my-2 text-base font-normal inactive"
+                    value={escaneable == false ? "default" : escaneable}
+                    onChange={handleChange}
+                  >
+                    <option value="default" disabled>
+                      --- Selecciona una opción ---
+                    </option>
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                  </select>
+                </label>
                 <div className="flex items-center justify-end mt-1">
                   <button
                     className="rounded-lg border border-slate-400 bg-black px-4 py-2 text-white ml-2"
