@@ -10,90 +10,78 @@ import SwiftUI
 struct LaunchScreenView: View {
     
     @Environment(\.colorScheme) var colorScheme
+    @StateObject private var viewModel = THViewModel() // Instancia de THViewModel
     
     var body: some View {
-            ZStack {
+        ZStack {
+            
+            Image("Wallpaper")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                // Título
+                Text("Búsqueda del tesoro")
+                    .font(.system(size: 52, weight: .bold))
+                    .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                 
-                //[OPTIONAL] Edit background color here. You can also replace this with a background image.
-                //Color(hex: 0xD5F4FF, opacity: 1.0)
-                    //.ignoresSafeArea()
-                Image("Wallpaper")
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
+                Divider().frame(maxWidth: 300)
                 
-                VStack {
-                    // header image:
-                    // TODO: replace with your own image.  Drag an image from your computer to assets.xcassets and add the name of your image below
-                    // Image("random_objects_logo")
-                    // .resizable()
-                    // .aspectRatio(contentMode: .fit)
-                    // .frame(width: 250)
-                    
-                    // title
-                    Text("Búsqueda del tesoro")
-                        .font(.system(size: 52, weight: .bold))
+                // Info
+                VStack(spacing: 20) {
+                    Text("Posiciona la cámara de tu dispositivo para buscar el objeto a identificar")
+                        .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
-                    
-                    Divider().frame(maxWidth: 300)
-                    
-                    // info
-                    // TODO: Replace with description of your app
-                    VStack(spacing: 20) {
-                        Text("Posiciona un objeto que quieras identificar en la cámara de tu dispositivo")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
+                }
+                .padding()
+                .multilineTextAlignment(.center)
+                
+                // Item list
+                if let tesoro = viewModel.tesoro {
+                    VStack {
+                        // Este Text mostrará el nombre del objeto
+                        Text(tesoro.palabra)
                     }
                     .padding()
-                    .multilineTextAlignment(.center)
-                    
-                    // item list
-                    // TODO: replace with the names of your items
-                    HStack(spacing: 10) {
-                        
-                        VStack {
-                            Text("🍎")
-                            Text("Manzana")
-                        }
-                        .padding()
-                        
-                        VStack {
-                            Text("🍌")
-                            Text("Banana")
-                        }
-                        .padding()
-                        
-                        VStack {
-                            Text("🍓")
-                            Text("Fresa")
-                        }
-                        .padding()
-                    }
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding()
-                    
-                    // start button
-                    NavigationLink(destination: ClassificationView()){
-                        Text("Escanear")
-                    }
-                    .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
-                    .padding()
-                    
+                } else {
+                    // Mostrará un texto de "Cargando..." mientras espera los datos
+                    Text("Cargando...")
+                        .padding()
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(10)
+                        .padding()
                 }
-                .padding()
-                .frame(maxWidth: 370) // This sets the width of the white card
-                .background(Color.white) // This sets the background color of the card
-                .cornerRadius(25)
-                .shadow(radius: 5)
                 
-            }// VStack
+                // Botón para empezar
+                NavigationLink(destination: ClassificationView()){
+                    Text("Escanear")
+                }
+                .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+                .padding()
+                
+            } // Fin de VStack principal
+            .padding()
+            .frame(maxWidth: 370) // Establece el ancho del fondo blanco
+            .background(Color.white) // Establece el color de fondo de la tarjeta
+            .cornerRadius(25)
+            .shadow(radius: 5)
+            .onAppear { // Llamar a getObjetoData en onAppear
+                Task {
+                    try? await viewModel.getObjetoData()
+                }
+            }
             .navigationBarHidden(true)
+            
+        } // Fin de ZStack
     }
 }
 
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-                LaunchScreenView()
+        LaunchScreenView()
     }
 }
