@@ -26,6 +26,10 @@ struct ContentView: View {
         // Tab view con las dos demos de las funcionalidades
         NavigationView {
             TabView {
+                Acceso()
+                    .tabItem {
+                        Label("Acceso", systemImage: "gearshape.2.fill")
+                    }
                 VocabularioDataDemo()
                     .tabItem {
                         Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}

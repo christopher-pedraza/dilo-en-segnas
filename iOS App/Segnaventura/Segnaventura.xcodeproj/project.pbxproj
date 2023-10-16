@@ -45,6 +45,10 @@
 		FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */; };
 		FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */; };
 		FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */; };
+		FBB388142ADD924500FBCAE6 /* Acceso.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388132ADD924500FBCAE6 /* Acceso.swift */; };
+		FBB388172ADD9AEA00FBCAE6 /* IslasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */; };
+		FBB388192ADDA8E700FBCAE6 /* image-centercropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */; };
+		FBB3881B2ADDB66A00FBCAE6 /* AccesoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +92,10 @@
 		FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioModel.swift; sourceTree = "<group>"; };
 		FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioViewModel.swift; sourceTree = "<group>"; };
 		FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemManager.swift; sourceTree = "<group>"; };
+		FBB388132ADD924500FBCAE6 /* Acceso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceso.swift; sourceTree = "<group>"; };
+		FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslasView.swift; sourceTree = "<group>"; };
+		FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "image-centercropped.swift"; sourceTree = "<group>"; };
+		FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +270,7 @@
 				BC8385782AC88A7D0061B696 /* Video */,
 				BC8385762AC889F70061B696 /* VideosActivity */,
 				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
+				FBB388152ADD9ACF00FBCAE6 /* Acceso */,
 				FB74CE7C2AA7D89700C7124B /* Preview Content */,
 			);
 			path = Segnaventura;
@@ -273,6 +282,17 @@
 				FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FBB388152ADD9ACF00FBCAE6 /* Acceso */ = {
+			isa = PBXGroup;
+			children = (
+				FBB388132ADD924500FBCAE6 /* Acceso.swift */,
+				FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */,
+				FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */,
+				FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */,
+			);
+			path = Acceso;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +376,7 @@
 				BC7C31FD2AC615A0007713C9 /* PalabrasVideosModel.swift in Sources */,
 				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
 				07B7CEF92AC33278008F97F2 /* PredictionResultView.swift in Sources */,
+				FBB388172ADD9AEA00FBCAE6 /* IslasView.swift in Sources */,
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
 				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
 				07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */,
@@ -363,11 +384,13 @@
 				07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */,
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
+				FBB3881B2ADDB66A00FBCAE6 /* AccesoModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
 				07B7CEF32AC33242008F97F2 /* PredictiveLabelView.swift in Sources */,
 				07B7CEFB2AC33299008F97F2 /* ClassifierViewModel.swift in Sources */,
 				07B7CF032AC332F0008F97F2 /* Helpers.swift in Sources */,
 				07B7CEF72AC33269008F97F2 /* ClassificationView.swift in Sources */,
+				FBB388142ADD924500FBCAE6 /* Acceso.swift in Sources */,
 				BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */,
 				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
 				07B7CEEB2AC331EA008F97F2 /* Classification.swift in Sources */,
@@ -379,6 +402,7 @@
 				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
 				07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */,
 				07B7CEED2AC33213008F97F2 /* TranslationView.swift in Sources */,
+				FBB388192ADDA8E700FBCAE6 /* image-centercropped.swift in Sources */,
 				BCD6C8742ACB255E00E82C32 /* VideosActivity.swift in Sources */,
 				07B7CEFF2AC332C1008F97F2 /* LiveCameraRepresentable.swift in Sources */,
 			);
@@ -509,7 +533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = LV754DNZQ7;
+				DEVELOPMENT_TEAM = Q4L5GLAD5L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -524,7 +548,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -540,7 +564,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = LV754DNZQ7;
+				DEVELOPMENT_TEAM = Q4L5GLAD5L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -555,7 +579,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
