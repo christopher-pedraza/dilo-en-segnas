@@ -31,6 +31,8 @@
 		9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2962AB7DEF70048411D /*  PreguntasPalabrasActivity.swift */; };
 		9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D82A2982AB7DF2B0048411D /* VideoView.swift */; };
 		9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */; };
+		9DF86E212ADFAA9B0023DF7C /* ActionButton in Frameworks */ = {isa = PBXBuildFile; productRef = 9DF86E202ADFAA9B0023DF7C /* ActionButton */; };
+		9DF86E232ADFAAFF0023DF7C /* Acceso_v2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF86E222ADFAAFF0023DF7C /* Acceso_v2.swift */; };
 		BC79D81E2AD22DC500E100FB /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC79D81D2AD22DC500E100FB /* Poppins-Regular.ttf */; };
 		BC7C31FD2AC615A0007713C9 /* PalabrasVideosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C31FC2AC615A0007713C9 /* PalabrasVideosModel.swift */; };
 		BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */; };
@@ -48,7 +50,6 @@
 		FBB388142ADD924500FBCAE6 /* Acceso.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388132ADD924500FBCAE6 /* Acceso.swift */; };
 		FBB388172ADD9AEA00FBCAE6 /* IslasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */; };
 		FBB388192ADDA8E700FBCAE6 /* image-centercropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */; };
-		FBB3881B2ADDB66A00FBCAE6 /* AccesoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */; };
 		FBB3881D2ADDB6E000FBCAE6 /* AccesoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3881C2ADDB6E000FBCAE6 /* AccesoViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		9D82A2962AB7DEF70048411D /*  PreguntasPalabrasActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " PreguntasPalabrasActivity.swift"; sourceTree = "<group>"; };
 		9D82A2982AB7DF2B0048411D /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		9DE27CD02ABCD02600759E80 /* VideoActivityEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoActivityEnd.swift; sourceTree = "<group>"; };
+		9DF86E222ADFAAFF0023DF7C /* Acceso_v2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Acceso_v2.swift; path = ../../../../../../../Acceso_v2.swift; sourceTree = "<group>"; };
 		BC2456E32AD1CE3E00A32A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BC79D81D2AD22DC500E100FB /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		BC7C31FC2AC615A0007713C9 /* PalabrasVideosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalabrasVideosModel.swift; sourceTree = "<group>"; };
@@ -96,7 +98,6 @@
 		FBB388132ADD924500FBCAE6 /* Acceso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceso.swift; sourceTree = "<group>"; };
 		FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslasView.swift; sourceTree = "<group>"; };
 		FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "image-centercropped.swift"; sourceTree = "<group>"; };
-		FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesoModel.swift; sourceTree = "<group>"; };
 		FBB3881C2ADDB6E000FBCAE6 /* AccesoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF86E212ADFAA9B0023DF7C /* ActionButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				FBB388132ADD924500FBCAE6 /* Acceso.swift */,
-				FBB3881A2ADDB66A00FBCAE6 /* AccesoModel.swift */,
+				9DF86E222ADFAAFF0023DF7C /* Acceso_v2.swift */,
 				FBB3881C2ADDB6E000FBCAE6 /* AccesoViewModel.swift */,
 				FBB388182ADDA8E700FBCAE6 /* image-centercropped.swift */,
 				FBB388162ADD9AEA00FBCAE6 /* IslasView.swift */,
@@ -314,6 +316,9 @@
 			dependencies = (
 			);
 			name = Segnaventura;
+			packageProductDependencies = (
+				9DF86E202ADFAA9B0023DF7C /* ActionButton */,
+			);
 			productName = Segnaventura;
 			productReference = FB74CE732AA7D89600C7124B /* Segnaventura.app */;
 			productType = "com.apple.product-type.application";
@@ -342,6 +347,9 @@
 				Base,
 			);
 			mainGroup = FB74CE6A2AA7D89600C7124B;
+			packageReferences = (
+				9DF86E1F2ADFAA9B0023DF7C /* XCRemoteSwiftPackageReference "action-button" */,
+			);
 			productRefGroup = FB74CE742AA7D89600C7124B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -388,7 +396,6 @@
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
 				FBB3881D2ADDB6E000FBCAE6 /* AccesoViewModel.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
-				FBB3881B2ADDB66A00FBCAE6 /* AccesoModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
 				07B7CEF32AC33242008F97F2 /* PredictiveLabelView.swift in Sources */,
 				07B7CEFB2AC33299008F97F2 /* ClassifierViewModel.swift in Sources */,
@@ -403,6 +410,7 @@
 				07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */,
 				07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */,
 				9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */,
+				9DF86E232ADFAAFF0023DF7C /* Acceso_v2.swift in Sources */,
 				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
 				07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */,
 				07B7CEED2AC33213008F97F2 /* TranslationView.swift in Sources */,
@@ -613,6 +621,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9DF86E1F2ADFAA9B0023DF7C /* XCRemoteSwiftPackageReference "action-button" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftui-library/action-button";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9DF86E202ADFAA9B0023DF7C /* ActionButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9DF86E1F2ADFAA9B0023DF7C /* XCRemoteSwiftPackageReference "action-button" */;
+			productName = ActionButton;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB74CE6B2AA7D89600C7124B /* Project object */;
 }

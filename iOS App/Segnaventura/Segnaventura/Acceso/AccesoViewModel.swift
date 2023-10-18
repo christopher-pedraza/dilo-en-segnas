@@ -7,25 +7,62 @@
 
 import Foundation
 import SwiftUI
+import ActionButton
+import Combine
 
+@MainActor
 class AccesoViewModel : ObservableObject {
     // Estructura para deserializar el JSON
     @Published var accesoValido: Bool = false
-    var user: String = ""
-    var password: String = ""
+    @Published var user: String = ""
+    @Published var password: String = ""
+    @Published var buttonState: ActionButtonState = .disabled(title: "Llena todos los campos!", systemImage: "exclamationmark.circle")
     
-    // Funcion para leer un JSON de un API en linea y desearizarlo para poder guardarlo
-    // en un objeto que se pueda luego usar en la aplicacion
+    private var cancellables: Set<AnyCancellable> = []
+    
+    private var userIsValidPublisher: AnyPublisher<Bool, Never> {
+        $user
+            .map { value in
+                !value.isEmpty
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private var passwordIsValidPublisher: AnyPublisher<Bool, Never> {
+        $password
+            .map { value in
+                !value.isEmpty
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    init() {
+        userIsValidPublisher
+            .combineLatest(passwordIsValidPublisher)
+            .map { val1, val2 in
+                val1 && val2
+            }
+            .map { fieldsValid -> ActionButtonState in
+                if fieldsValid {
+                    return .enabled(title: "Acceder", systemImage: "checkmark.circle")
+                }
+                return .disabled(title: "Llena todos los campos!", systemImage: "exclamationmark.circle")
+            }
+            .assign(to: \.buttonState, on: self)
+            .store(in: &cancellables)
+    }
+    
     func validarAcceso() async throws {
-        // Guarda el URL donde esta almacenado el JSON
+        buttonState = .loading(title: "Procesando", systemImage: "person")
+        
         // https://localhost:3000/miembros/login_app
-        guard let url = URL(string: "https://api.npoint.io/a0cf4bef432c171ee4a4")
+        guard let url = URL(string: "https://api.npoint.io/b0de62cb730e50a028a9")
         else {
             print("Error: Invalid URL")
             return
         }
-        //  Realiza un request al URL
         var urlRequest = URLRequest(url: url)
+        /*
         urlRequest.httpMethod = "POST"
         
         let body: [String: Any] = ["usuario": user, "contrasegna": password]
@@ -34,21 +71,20 @@ class AccesoViewModel : ObservableObject {
         urlRequest.setValue("\(String(describing: jsonData?.count))", forHTTPHeaderField: "Content-Length")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpBody = jsonData
+         */
         
-        // Obtiene los datos del request
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        // Si es que hubo un error en el request
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             print("Error: HTTP Request Failed")
             return
         }
-        
-        // Los datos obtenidos del API se decodifican usando la estructura en el Model
         let results = try JSONDecoder().decode(accesoModel.self, from: data)
-        DispatchQueue.main.async {
-            self.accesoValido = results.tiene_acceso
-            print(results)
+        DispatchQueue.main.async { [weak self] in
+            print(results.tiene_acceso)
+            self?.accesoValido = results.tiene_acceso
+            self?.buttonState = .enabled(title: "Acceder", systemImage: "checkmark.circle")
         }
+        
     }
 }
 
