@@ -45,6 +45,8 @@
 		FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */; };
 		FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */; };
 		FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */; };
+		FBCC53B02ADD95F5001295C7 /* THModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC53AF2ADD95F5001295C7 /* THModel.swift */; };
+		FBCC53B22ADD95FB001295C7 /* THViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC53B12ADD95FB001295C7 /* THViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioModel.swift; sourceTree = "<group>"; };
 		FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioViewModel.swift; sourceTree = "<group>"; };
 		FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemManager.swift; sourceTree = "<group>"; };
+		FBCC53AF2ADD95F5001295C7 /* THModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THModel.swift; sourceTree = "<group>"; };
+		FBCC53B12ADD95FB001295C7 /* THViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +255,7 @@
 				BC2456E32AD1CE3E00A32A2C /* Info.plist */,
 				07B7CEDC2AC3306D008F97F2 /* Foundation */,
 				07B7CEDB2AC3305A008F97F2 /* 3-UI */,
+				FBCC53AE2ADD95DE001295C7 /* ObjetosTreasureHunt */,
 				07B7CEDA2AC33051008F97F2 /* 2-Data */,
 				07B7CED92AC33047008F97F2 /* 1-Model */,
 				BC8385772AC88A510061B696 /* Vocabulario */,
@@ -273,6 +278,15 @@
 				FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FBCC53AE2ADD95DE001295C7 /* ObjetosTreasureHunt */ = {
+			isa = PBXGroup;
+			children = (
+				FBCC53AF2ADD95F5001295C7 /* THModel.swift */,
+				FBCC53B12ADD95FB001295C7 /* THViewModel.swift */,
+			);
+			path = ObjetosTreasureHunt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +370,7 @@
 				BC7C31FD2AC615A0007713C9 /* PalabrasVideosModel.swift in Sources */,
 				FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */,
 				07B7CEF92AC33278008F97F2 /* PredictionResultView.swift in Sources */,
+				FBCC53B02ADD95F5001295C7 /* THModel.swift in Sources */,
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
 				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
 				07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */,
@@ -374,6 +389,7 @@
 				9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */,
 				07B7CEEF2AC33222008F97F2 /* AudioView.swift in Sources */,
 				07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */,
+				FBCC53B22ADD95FB001295C7 /* THViewModel.swift in Sources */,
 				07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */,
 				9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */,
 				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
