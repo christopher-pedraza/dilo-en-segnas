@@ -41,7 +41,7 @@ struct LaunchScreenView: View {
                 
                     VStack {
                         // Este Text mostrará el nombre del objeto
-                        Text(THVM.palabras.first?.palabra ?? "Hola")
+                        Text(THVM.palabras.randomElement()?.palabra ?? "No hay objetos para buscar")
                     }
                     .padding()
                     .background(Color(UIColor.secondarySystemBackground))
