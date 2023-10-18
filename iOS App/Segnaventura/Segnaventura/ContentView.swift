@@ -11,6 +11,19 @@ import Combine
 
 struct ContentView: View {
     
+    init() {
+           // Customize the TabView appearance
+           let tabBarAppearance = UITabBarAppearance()
+           tabBarAppearance.backgroundColor = UIColor(Color(red: 21 / 255, green: 17 / 255, blue: 28 / 255))
+           tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.white
+           tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
+           tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.gray
+           tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
+
+           UITabBar.appearance().standardAppearance = tabBarAppearance
+           UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+       }
+
     var body: some View {
         // Tab view con las dos demos de las funcionalidades
         NavigationView {
