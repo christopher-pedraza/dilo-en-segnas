@@ -16,25 +16,33 @@ struct VideosActivity: View {
     @State var totalCorrectAnswers: Int = 0
     
     var body: some View {
-        TabView {
-            // Se itera por las partes de la actividad
-            ForEach($VideoVM.videos.partes) { $parte in
-                // Por cada parte, creamos una vista
-                // A esta vista se le pasa el id del video, el arreglo de las
-                // preguntas, una variable de estado para que cada boton actualice
-                // la cantidad de respuestas correctas, y arreglo para llevar
-                // registro de la cantidad de respuestas correctas por pregunta
-                IndividualVideoActivity(videoID: parte.url_video, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count), totalCorrectAnswers: $totalCorrectAnswers)
+        let customPurple = Color(red: 148 / 255, green: 0 / 255, blue: 122 / 255)
+
+        ZStack{
+            TabView {
+                // Se itera por las partes de la actividad
+                ForEach($VideoVM.videos.partes) { $parte in
+                    // Por cada parte, creamos una vista
+                    // A esta vista se le pasa el id del video, el arreglo de las
+                    // preguntas, una variable de estado para que cada boton actualice
+                    // la cantidad de respuestas correctas, y arreglo para llevar
+                    // registro de la cantidad de respuestas correctas por pregunta
+                    IndividualVideoActivity(videoID: parte.url_video, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count), totalCorrectAnswers: $totalCorrectAnswers)
+                }
+                // Pestaña final que despliega la cantidad de respuestas correctas y
+                // deja terminar la actividad
+                VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: totalCorrectAnswers)
+                
             }
-            // Pestaña final que despliega la cantidad de respuestas correctas y
-            // deja terminar la actividad
-            VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: totalCorrectAnswers)
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .accentColor(customPurple)
+            .onAppear {
+                downloadVideos()
+            }
+            .background(customPurple)
         }
-        .tabViewStyle(.page(indexDisplayMode: .always))
-        .indexViewStyle(.page(backgroundDisplayMode: .always))
-        .onAppear {
-            downloadVideos()
-        }
+        
         
     }
     

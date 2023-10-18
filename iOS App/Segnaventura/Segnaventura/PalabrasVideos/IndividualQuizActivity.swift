@@ -9,12 +9,36 @@ struct IndividualQuizActivity: View {
     @State var correctAnswerVideo: Bool = false
     @State var bindingTapped: Bool = false
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
+    
     
     
     
 
     var body: some View {
-        NavigationView{
+        
+        
+        var imageWidth: CGFloat {
+            return horizontalSizeClass == .compact ? 45 : 100
+        }
+        var imageHeight: CGFloat {
+            return horizontalSizeClass == .compact ? 60 : 120
+        }
+
+        var objectFontSize: CGFloat {
+            return horizontalSizeClass == .compact ? 35 : 50
+        }
+        
+        var objectRowSize: CGFloat {
+            return horizontalSizeClass == .compact ? 90 : 140
+        }
+        
+        var objectSeparation: CGFloat {
+            return horizontalSizeClass == .compact ? 10 : 20
+        }
+        
+        NavigationStack{
             
             VStack {
                 let randomNumber = Int.random(in: 0...1)
@@ -28,8 +52,21 @@ struct IndividualQuizActivity: View {
                     }
                     
                     if randomNumber == 1 {
-                        Text(preguntasArr.preguntas[currentQuestionIndex].pregunta)
-                            .font(.system(size: 35))
+                        HStack (alignment: .center, spacing: 10) {
+                            Text(preguntasArr.preguntas[currentQuestionIndex].pregunta)
+                                .font(.system(size: objectFontSize))
+                            
+                            if let imageUrl = URL(string: preguntasArr.preguntas[currentQuestionIndex].url_icono),
+                               let imageData = try? Data(contentsOf: imageUrl),
+                               let uiImage = UIImage(data: imageData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: imageWidth, height: imageHeight)
+                                
+                                
+                            }
+                        }
                     }
                     
                     if randomNumber == 0 {
@@ -40,10 +77,11 @@ struct IndividualQuizActivity: View {
                                     let pregunta = preguntasArr.preguntas[currentQuestionIndex]
                                     ForEach(pregunta.respuestas.indices, id: \.self) { answerIndex in
                                         let respuesta = pregunta.respuestas[answerIndex]
-                                        HStack {
+                                        HStack (alignment: .center, spacing: 10){
                                             QuizButton(
                                                 randomNum: randomNumber,
                                                 text: respuesta.respuesta_palabra,
+                                                url_icono: respuesta.respuesta_icono,
                                                 video_id: respuesta.respuesta_video,
                                                 esCorrecta: respuesta.esCorrecta,
                                                 numeroArr: preguntasArr.preguntas.count,
@@ -55,7 +93,7 @@ struct IndividualQuizActivity: View {
                                                 correctAnswerVideo: $correctAnswerVideo,
                                                 bindingTapped: $bindingTapped
                                             )
-                                            .frame(height: 90)
+                                            .frame(height: objectRowSize)
                                             .background(getBackgroundColor(for: answerIndex))
                                             
                                         }
@@ -70,18 +108,19 @@ struct IndividualQuizActivity: View {
                     
                     if randomNumber == 1 {
                         let pregunta = preguntasArr.preguntas[currentQuestionIndex]
-                        Text(pregunta.pregunta)
-                            .font(.system(size: 35))
+                        //Text(pregunta.pregunta)
+                        //    .font(.system(size: 35))
                         
                         List(preguntasArr.preguntas.indices, id: \.self) { index in
                             if index == currentQuestionIndex {
                                 let pregunta = preguntasArr.preguntas[currentQuestionIndex]
                                 ForEach(pregunta.respuestas.indices, id: \.self) { answerIndex in
                                     let respuesta = pregunta.respuestas[answerIndex]
-                                    HStack {
+                                    HStack (alignment: .center, spacing: 10){
                                         QuizButton(
                                             randomNum: randomNumber,
                                             text: respuesta.respuesta_palabra,
+                                            url_icono: respuesta.respuesta_icono,
                                             video_id: respuesta.respuesta_video,
                                             esCorrecta: respuesta.esCorrecta,
                                             numeroArr: preguntasArr.preguntas.count,
@@ -117,6 +156,7 @@ struct QuizButton: View {
     @State private var isCorrectAnswerSelected: Bool = false
     let randomNum: Int
     let text: String
+    let url_icono: String
     let video_id: String
     let esCorrecta: Bool
     let numeroArr: Int
@@ -127,8 +167,28 @@ struct QuizButton: View {
     var cantidadCorrectas: Int
     @Binding var correctAnswerVideo: Bool
     @Binding var bindingTapped: Bool
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
 
     var body: some View {
+        
+        
+        var imageWidth: CGFloat {
+            return horizontalSizeClass == .compact ? 45 : 100
+        }
+        var imageHeight: CGFloat {
+            return horizontalSizeClass == .compact ? 60 : 120
+        }
+
+        var objectFontSize: CGFloat {
+            return horizontalSizeClass == .compact ? 35 : 50
+        }
+        
+        var objectSeparation: CGFloat {
+            return horizontalSizeClass == .compact ? 10 : 25
+        }
+        
         Button(action: {
             self.didTap = true
             bindingTapped = true
@@ -146,15 +206,31 @@ struct QuizButton: View {
             }
         }) {
             if randomNum == 0 {
-                Text(text)
-                    .frame(maxWidth: .infinity)
-                    .font(.system(size: 27))
-                    .foregroundColor(
-                        !didTap ? Color.white :
-                            (didTap && isCorrectAnswerSelected) ? Color.green :
-                            (didTap && !isCorrectAnswerSelected) ? Color.red :
-                            Color.white
-                    )
+                HStack(alignment: .center, spacing: objectSeparation){
+                    Spacer(minLength: 50)
+                    Text(text)
+                        //.frame(maxWidth: .fit)
+                        .font(.system(size: objectFontSize - 10))
+                        .foregroundColor(
+                            !didTap ? Color.white :
+                                (didTap && isCorrectAnswerSelected) ? Color.green :
+                                (didTap && !isCorrectAnswerSelected) ? Color.red :
+                                Color.white
+                        )
+                    
+                    if let imageUrl = URL(string: url_icono),
+                       let imageData = try? Data(contentsOf: imageUrl),
+                       let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: imageWidth, height: imageHeight)
+                        
+                        
+                    }
+                    Spacer(minLength: 50)
+                }.frame(maxWidth: .infinity)
+
             }
             if randomNum == 1 {
                 HStack {
@@ -162,7 +238,7 @@ struct QuizButton: View {
                         .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height)
                         .cornerRadius(12)
                     Text("Seleccionar")
-                        .font(.system(size: 20))
+                        .font(.system(size: objectFontSize - 15))
                         .foregroundColor(
                             !didTap ? Color.white :
                                 (didTap && isCorrectAnswerSelected) ? Color.green :
