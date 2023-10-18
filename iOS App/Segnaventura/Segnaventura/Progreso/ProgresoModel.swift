@@ -19,8 +19,8 @@ struct Isla: Decodable, Identifiable {
     var id = UUID()
     var id_isla: Int = 0
     var nombre: String = ""
-    var modelo_general: String = ""
-    var modelo_especifico: String = ""
+//    var modelo_general: String = ""
+//    var modelo_especifico: String = ""
     var nivel: [Nivel] = [Nivel]()
 }
 
