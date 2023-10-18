@@ -16,8 +16,9 @@ struct VideosActivity: View {
     @State var totalCorrectAnswers: Int = 0
     
     var body: some View {
+        let customPurple = Color(red: 148 / 255, green: 0 / 255, blue: 122 / 255)
+
         ZStack{
-            Color.purple
             TabView {
                 // Se itera por las partes de la actividad
                 ForEach($VideoVM.videos.partes) { $parte in
@@ -35,11 +36,11 @@ struct VideosActivity: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            .accentColor(Color.purple)
+            .accentColor(customPurple)
             .onAppear {
                 downloadVideos()
             }
-            .background(Color.purple)
+            .background(customPurple)
         }
         
         
