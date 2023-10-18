@@ -1,0 +1,27 @@
+[
+  {
+    "libraryIdentifier" : "5d47a563c623db9d0510bef04d3ffe1a",
+    "format" : "model",
+    "displayName" : "plane.usdz"
+  },
+  {
+    "libraryIdentifier" : "459a629a2d9f87a3755a193d9f2b1fb5",
+    "format" : "model",
+    "displayName" : "fruit_island_gltf.usdz"
+  },
+  {
+    "libraryIdentifier" : "2baf714da93f9486cdfb543dd02e772d",
+    "format" : "model",
+    "displayName" : "unknown_island.usdz"
+  },
+  {
+    "libraryIdentifier" : "fd8621cec1e8d9e591f5ce7db64c554a",
+    "format" : "model",
+    "displayName" : "Panel_3.usdz"
+  },
+  {
+    "libraryIdentifier" : "834f30592de57d6e86112c5b634a9a50",
+    "format" : "model",
+    "displayName" : "Panel_3.usdz"
+  }
+]
