@@ -7,33 +7,33 @@
 
 import SwiftUI
 import ActionButton
+import TogglableSecureField
 
 struct Acceso: View {
-    @State private var isLoggedIn = false
+    @EnvironmentObject var AccesoVM : AccesoViewModel
     
     var body: some View {
-        if isLoggedIn {
+        if AccesoVM.accesoValido {
             IslasView()
         } else {
-            Login(isLoggedIn: $isLoggedIn)
+            Login()
             /*
-            TabView {
-                Login(isLoggedIn: $isLoggedIn)
-            }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+             TabView {
+             Login(isLoggedIn: $isLoggedIn)
+             }
+             .tabViewStyle(.page(indexDisplayMode: .always))
+             .indexViewStyle(.page(backgroundDisplayMode: .always))
              */
         }
     }
 }
 
-enum FocusableField: View {
+enum FocusableField: Hashable {
     case user, password
 }
 
 struct Login: View {
     @EnvironmentObject var AccesoVM : AccesoViewModel
-    @Binding var isLoggedIn: Bool
     @State private var isPerformingTask = false
     @FocusState private var focus: FocusableField?
     
@@ -64,30 +64,28 @@ struct Login: View {
                     .onSubmit {
                         focus = .password
                     }
-                SecureField("Contraseña", text: $AccesoVM.password)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
+                TogglableSecureField("Password",
+                                     secureContent: $AccesoVM.password,
+                                     onCommit: {
+                    guard !AccesoVM.password.isEmpty else { return }
+                })
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
+                .focused($focus, equals: .password)
+                .submitLabel(.go)
+                .onSubmit {
+                    Task {
+                        await autenticarUsuario()
+                    }
+                }
                 ActionButton(state: $AccesoVM.buttonState, onTap: {
-                    
-                }, backgroundColor: .primary)
-//                Button(action: {
-//                    isPerformingTask = true
-//
-//                    Task {
-//                        await autenticarUsuario()
-//                        isLoggedIn = AccesoVM.accesoValido
-//                        isPerformingTask = false
-//                    }
-//                }) {
-//                    Text("Acceder")
-//                        .foregroundColor(.white)
-//                        .frame(width: 300, height: 50)
-//                        .background(Color.blue)
-//                        .cornerRadius(10)
-//                }
-//                .disabled(isPerformingTask)
+                    Task {
+                        await autenticarUsuario()
+                    }
+                }, backgroundColor: .blue)
+                .frame(width: 300, height: 50)
             }
         }
     }

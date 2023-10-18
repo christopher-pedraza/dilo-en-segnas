@@ -56,12 +56,13 @@ class AccesoViewModel : ObservableObject {
         buttonState = .loading(title: "Procesando", systemImage: "person")
         
         // https://localhost:3000/miembros/login_app
-        guard let url = URL(string: "https://api.npoint.io/b0de62cb730e50a028a9")
+        guard let url = URL(string: "https://api.npoint.io/b46d652b7819266d5f48")
         else {
             print("Error: Invalid URL")
             return
         }
         var urlRequest = URLRequest(url: url)
+        
         /*
         urlRequest.httpMethod = "POST"
         
@@ -78,17 +79,17 @@ class AccesoViewModel : ObservableObject {
             print("Error: HTTP Request Failed")
             return
         }
+        
         let results = try JSONDecoder().decode(accesoModel.self, from: data)
-        DispatchQueue.main.async { [weak self] in
-            print(results.tiene_acceso)
-            self?.accesoValido = results.tiene_acceso
-            self?.buttonState = .enabled(title: "Acceder", systemImage: "checkmark.circle")
+        DispatchQueue.main.async {
+            self.accesoValido = results.tiene_acceso
+            self.buttonState = .enabled(title: "Acceder", systemImage: "checkmark.circle")
         }
         
     }
 }
 
-struct accesoModel: Codable {
+struct accesoModel: Decodable {
     var tiene_acceso: Bool = false
     
     enum CodingKeys: CodingKey {
