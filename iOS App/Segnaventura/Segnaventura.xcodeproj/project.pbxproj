@@ -46,6 +46,29 @@
 		FB74CE7E2AA7D89700C7124B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */; };
 		FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */; };
 		FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */; };
+		FB9EF2A32AE08437003FDBE6 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF29D2AE08437003FDBE6 /* Experience.rcproject */; };
+		FB9EF2A42AE08437003FDBE6 /* all_Islands.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF29E2AE08437003FDBE6 /* all_Islands.rcproject */; };
+		FB9EF2A52AE08437003FDBE6 /* fruit_island_RC.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF29F2AE08437003FDBE6 /* fruit_island_RC.rcproject */; };
+		FB9EF2A62AE08437003FDBE6 /* islands_final.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF2A02AE08437003FDBE6 /* islands_final.rcproject */; };
+		FB9EF2A72AE08437003FDBE6 /* islands.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF2A12AE08437003FDBE6 /* islands.rcproject */; };
+		FB9EF2A82AE08437003FDBE6 /* modified.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF2A22AE08437003FDBE6 /* modified.rcproject */; };
+		FB9EF2B92AE08488003FDBE6 /* unknown_island.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2A92AE08487003FDBE6 /* unknown_island.usdz */; };
+		FB9EF2BA2AE08488003FDBE6 /* TH_btn_true.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2AA2AE08487003FDBE6 /* TH_btn_true.usdz */; };
+		FB9EF2BB2AE08488003FDBE6 /* quiz_btn_true.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2AB2AE08487003FDBE6 /* quiz_btn_true.usdz */; };
+		FB9EF2BC2AE08488003FDBE6 /* quiz_btn_false.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2AC2AE08487003FDBE6 /* quiz_btn_false.usdz */; };
+		FB9EF2BD2AE08488003FDBE6 /* video_btn_true.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2AD2AE08487003FDBE6 /* video_btn_true.usdz */; };
+		FB9EF2BE2AE08488003FDBE6 /* fruit_island.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2AE2AE08487003FDBE6 /* fruit_island.usdz */; };
+		FB9EF2BF2AE08488003FDBE6 /* lvl_btn_true.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2AF2AE08487003FDBE6 /* lvl_btn_true.usdz */; };
+		FB9EF2C02AE08488003FDBE6 /* panel_false.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B02AE08487003FDBE6 /* panel_false.usdz */; };
+		FB9EF2C12AE08488003FDBE6 /* lvl_btn_false.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B12AE08487003FDBE6 /* lvl_btn_false.usdz */; };
+		FB9EF2C22AE08488003FDBE6 /* video_btn_false.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B22AE08487003FDBE6 /* video_btn_false.usdz */; };
+		FB9EF2C32AE08488003FDBE6 /* Panel_3.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B32AE08487003FDBE6 /* Panel_3.usdz */; };
+		FB9EF2C42AE08488003FDBE6 /* panel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B42AE08487003FDBE6 /* panel.usdz */; };
+		FB9EF2C52AE08488003FDBE6 /* plane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B52AE08488003FDBE6 /* plane.usdz */; };
+		FB9EF2C62AE08488003FDBE6 /* panel_true.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B62AE08488003FDBE6 /* panel_true.usdz */; };
+		FB9EF2C72AE08488003FDBE6 /* TH_btn_false.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B72AE08488003FDBE6 /* TH_btn_false.usdz */; };
+		FB9EF2C82AE08488003FDBE6 /* boton.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FB9EF2B82AE08488003FDBE6 /* boton.usdz */; };
+		FB9EF2CA2AE084C4003FDBE6 /* ARExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF2C92AE084C4003FDBE6 /* ARExperience.swift */; };
 		FBB36A4E2AAA591300720B20 /* FileSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */; };
 		FBCC53B02ADD95F5001295C7 /* THModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC53AF2ADD95F5001295C7 /* THModel.swift */; };
 		FBCC53B22ADD95FB001295C7 /* THViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC53B12ADD95FB001295C7 /* THViewModel.swift */; };
@@ -93,6 +116,29 @@
 		FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioModel.swift; sourceTree = "<group>"; };
 		FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioViewModel.swift; sourceTree = "<group>"; };
+		FB9EF29D2AE08437003FDBE6 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
+		FB9EF29E2AE08437003FDBE6 /* all_Islands.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = all_Islands.rcproject; sourceTree = "<group>"; };
+		FB9EF29F2AE08437003FDBE6 /* fruit_island_RC.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = fruit_island_RC.rcproject; sourceTree = "<group>"; };
+		FB9EF2A02AE08437003FDBE6 /* islands_final.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = islands_final.rcproject; sourceTree = "<group>"; };
+		FB9EF2A12AE08437003FDBE6 /* islands.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = islands.rcproject; sourceTree = "<group>"; };
+		FB9EF2A22AE08437003FDBE6 /* modified.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = modified.rcproject; sourceTree = "<group>"; };
+		FB9EF2A92AE08487003FDBE6 /* unknown_island.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = unknown_island.usdz; sourceTree = "<group>"; };
+		FB9EF2AA2AE08487003FDBE6 /* TH_btn_true.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = TH_btn_true.usdz; sourceTree = "<group>"; };
+		FB9EF2AB2AE08487003FDBE6 /* quiz_btn_true.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = quiz_btn_true.usdz; sourceTree = "<group>"; };
+		FB9EF2AC2AE08487003FDBE6 /* quiz_btn_false.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = quiz_btn_false.usdz; sourceTree = "<group>"; };
+		FB9EF2AD2AE08487003FDBE6 /* video_btn_true.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = video_btn_true.usdz; sourceTree = "<group>"; };
+		FB9EF2AE2AE08487003FDBE6 /* fruit_island.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = fruit_island.usdz; sourceTree = "<group>"; };
+		FB9EF2AF2AE08487003FDBE6 /* lvl_btn_true.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lvl_btn_true.usdz; sourceTree = "<group>"; };
+		FB9EF2B02AE08487003FDBE6 /* panel_false.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = panel_false.usdz; sourceTree = "<group>"; };
+		FB9EF2B12AE08487003FDBE6 /* lvl_btn_false.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lvl_btn_false.usdz; sourceTree = "<group>"; };
+		FB9EF2B22AE08487003FDBE6 /* video_btn_false.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = video_btn_false.usdz; sourceTree = "<group>"; };
+		FB9EF2B32AE08487003FDBE6 /* Panel_3.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Panel_3.usdz; sourceTree = "<group>"; };
+		FB9EF2B42AE08487003FDBE6 /* panel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = panel.usdz; sourceTree = "<group>"; };
+		FB9EF2B52AE08488003FDBE6 /* plane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = plane.usdz; sourceTree = "<group>"; };
+		FB9EF2B62AE08488003FDBE6 /* panel_true.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = panel_true.usdz; sourceTree = "<group>"; };
+		FB9EF2B72AE08488003FDBE6 /* TH_btn_false.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = TH_btn_false.usdz; sourceTree = "<group>"; };
+		FB9EF2B82AE08488003FDBE6 /* boton.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = boton.usdz; sourceTree = "<group>"; };
+		FB9EF2C92AE084C4003FDBE6 /* ARExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARExperience.swift; sourceTree = "<group>"; };
 		FBB36A4D2AAA591300720B20 /* FileSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemManager.swift; sourceTree = "<group>"; };
 		FBCC53AF2ADD95F5001295C7 /* THModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THModel.swift; sourceTree = "<group>"; };
 		FBCC53B12ADD95FB001295C7 /* THViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THViewModel.swift; sourceTree = "<group>"; };
@@ -265,6 +311,9 @@
 		FB74CE752AA7D89600C7124B /* Segnaventura */ = {
 			isa = PBXGroup;
 			children = (
+				FB9EF2C92AE084C4003FDBE6 /* ARExperience.swift */,
+				FB9EF29C2AE083F1003FDBE6 /* 3D_Scenes */,
+				FB9EF29A2AE081B6003FDBE6 /* 3D_Assets */,
 				BC2456E32AD1CE3E00A32A2C /* Info.plist */,
 				07B7CEDC2AC3306D008F97F2 /* Foundation */,
 				07B7CEDB2AC3305A008F97F2 /* 3-UI */,
@@ -292,6 +341,42 @@
 				FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FB9EF29A2AE081B6003FDBE6 /* 3D_Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FB9EF2B82AE08488003FDBE6 /* boton.usdz */,
+				FB9EF2AE2AE08487003FDBE6 /* fruit_island.usdz */,
+				FB9EF2B12AE08487003FDBE6 /* lvl_btn_false.usdz */,
+				FB9EF2AF2AE08487003FDBE6 /* lvl_btn_true.usdz */,
+				FB9EF2B32AE08487003FDBE6 /* Panel_3.usdz */,
+				FB9EF2B02AE08487003FDBE6 /* panel_false.usdz */,
+				FB9EF2B62AE08488003FDBE6 /* panel_true.usdz */,
+				FB9EF2B42AE08487003FDBE6 /* panel.usdz */,
+				FB9EF2B52AE08488003FDBE6 /* plane.usdz */,
+				FB9EF2AC2AE08487003FDBE6 /* quiz_btn_false.usdz */,
+				FB9EF2AB2AE08487003FDBE6 /* quiz_btn_true.usdz */,
+				FB9EF2B72AE08488003FDBE6 /* TH_btn_false.usdz */,
+				FB9EF2AA2AE08487003FDBE6 /* TH_btn_true.usdz */,
+				FB9EF2A92AE08487003FDBE6 /* unknown_island.usdz */,
+				FB9EF2B22AE08487003FDBE6 /* video_btn_false.usdz */,
+				FB9EF2AD2AE08487003FDBE6 /* video_btn_true.usdz */,
+			);
+			path = 3D_Assets;
+			sourceTree = "<group>";
+		};
+		FB9EF29C2AE083F1003FDBE6 /* 3D_Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				FB9EF29E2AE08437003FDBE6 /* all_Islands.rcproject */,
+				FB9EF29D2AE08437003FDBE6 /* Experience.rcproject */,
+				FB9EF29F2AE08437003FDBE6 /* fruit_island_RC.rcproject */,
+				FB9EF2A02AE08437003FDBE6 /* islands_final.rcproject */,
+				FB9EF2A12AE08437003FDBE6 /* islands.rcproject */,
+				FB9EF2A22AE08437003FDBE6 /* modified.rcproject */,
+			);
+			path = 3D_Scenes;
 			sourceTree = "<group>";
 		};
 		FBCC53AE2ADD95DE001295C7 /* ObjetosTreasureHunt */ = {
@@ -362,9 +447,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B7CEE92AC331D4008F97F2 /* mydata.json in Resources */,
+				FB9EF2BD2AE08488003FDBE6 /* video_btn_true.usdz in Resources */,
+				FB9EF2BF2AE08488003FDBE6 /* lvl_btn_true.usdz in Resources */,
+				FB9EF2C12AE08488003FDBE6 /* lvl_btn_false.usdz in Resources */,
+				FB9EF2C82AE08488003FDBE6 /* boton.usdz in Resources */,
+				FB9EF2C22AE08488003FDBE6 /* video_btn_false.usdz in Resources */,
 				FB74CE7E2AA7D89700C7124B /* Preview Assets.xcassets in Resources */,
+				FB9EF2BE2AE08488003FDBE6 /* fruit_island.usdz in Resources */,
+				FB9EF2BA2AE08488003FDBE6 /* TH_btn_true.usdz in Resources */,
+				FB9EF2C72AE08488003FDBE6 /* TH_btn_false.usdz in Resources */,
 				FB74CE7B2AA7D89700C7124B /* Assets.xcassets in Resources */,
+				FB9EF2BB2AE08488003FDBE6 /* quiz_btn_true.usdz in Resources */,
+				FB9EF2BC2AE08488003FDBE6 /* quiz_btn_false.usdz in Resources */,
 				BC79D81E2AD22DC500E100FB /* Poppins-Regular.ttf in Resources */,
+				FB9EF2C52AE08488003FDBE6 /* plane.usdz in Resources */,
+				FB9EF2C32AE08488003FDBE6 /* Panel_3.usdz in Resources */,
+				FB9EF2C62AE08488003FDBE6 /* panel_true.usdz in Resources */,
+				FB9EF2C02AE08488003FDBE6 /* panel_false.usdz in Resources */,
+				FB9EF2C42AE08488003FDBE6 /* panel.usdz in Resources */,
+				FB9EF2B92AE08488003FDBE6 /* unknown_island.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,10 +487,13 @@
 				07B7CEF92AC33278008F97F2 /* PredictionResultView.swift in Sources */,
 				FBCC53B02ADD95F5001295C7 /* THModel.swift in Sources */,
 				FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */,
+				FB9EF2A42AE08437003FDBE6 /* all_Islands.rcproject in Sources */,
 				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
+				FB9EF2A32AE08437003FDBE6 /* Experience.rcproject in Sources */,
 				07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */,
 				BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */,
 				07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */,
+				FB9EF2CA2AE084C4003FDBE6 /* ARExperience.swift in Sources */,
 				0721E0972ADF82FA000D14AC /* ProgresoModel.swift in Sources */,
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
@@ -398,13 +502,17 @@
 				07B7CEFB2AC33299008F97F2 /* ClassifierViewModel.swift in Sources */,
 				07B7CF032AC332F0008F97F2 /* Helpers.swift in Sources */,
 				07B7CEF72AC33269008F97F2 /* ClassificationView.swift in Sources */,
+				FB9EF2A62AE08437003FDBE6 /* islands_final.rcproject in Sources */,
 				BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */,
 				FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */,
 				07B7CEEB2AC331EA008F97F2 /* Classification.swift in Sources */,
 				9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */,
+				FB9EF2A82AE08437003FDBE6 /* modified.rcproject in Sources */,
 				07B7CEEF2AC33222008F97F2 /* AudioView.swift in Sources */,
 				07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */,
+				FB9EF2A72AE08437003FDBE6 /* islands.rcproject in Sources */,
 				FBCC53B22ADD95FB001295C7 /* THViewModel.swift in Sources */,
+				FB9EF2A52AE08437003FDBE6 /* fruit_island_RC.rcproject in Sources */,
 				07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */,
 				9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */,
 				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
@@ -541,7 +649,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = LV754DNZQ7;
+				DEVELOPMENT_TEAM = 9PMUHTYDWQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -551,12 +659,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -572,7 +681,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = LV754DNZQ7;
+				DEVELOPMENT_TEAM = 9PMUHTYDWQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -582,12 +691,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
