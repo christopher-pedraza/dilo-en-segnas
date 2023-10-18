@@ -20,7 +20,7 @@ struct SegnaventuraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Acceso()
                 .environmentObject(VocabularioVM)
                 .environmentObject(VideoVM)
                 .environmentObject(fsm)
