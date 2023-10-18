@@ -10,16 +10,10 @@ import AVKit
 
 struct TranslationView: View {
     private(set) var labelData: Classification
-    
     @State var soundPlayer = SoundPlayer()
-    @State private var elementTH: THModel? = nil
-    
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var THVM: THViewModel
-    
-    
+
     var body: some View {
-        
         ZStack {
             Image("Wallpaper")
                 .resizable()
@@ -28,9 +22,9 @@ struct TranslationView: View {
             //Color(hex: 0xD5F4FF, opacity: 1.0)
                 .ignoresSafeArea()
             
-            
             VStack(alignment: .center) {
-                VideoView(videoID: elementTH?.id_video_segna ?? "WJfUZ8jcml0?si=j__udeKpMX1DsVRS")
+                
+                VideoViewCOML(videoURL: URL(string: "https://www.youtube.com/embed/WJfUZ8jcml0?si=j__udeKpMX1DsVRS")!)
                     .frame(width: 350, height: 210)
                     .padding(EdgeInsets(top: 40, leading: 20, bottom: 10, trailing: 20))
                     .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -61,31 +55,10 @@ struct TranslationView: View {
                     
                 } //HStack
                 
-//                Image(labelData.image)
-//                    .resizable()
-//                    .frame(width: 200, height: 200)
-//                    .padding(EdgeInsets(top: -30, leading: 0, bottom: 0, trailing: 0))
-                AsyncImage(url: URL(string: elementTH?.url_icono ?? "")) { phase in
-                    switch phase {
-                    case .empty:
-                        // Puedes mostrar un placeholder o indicador de carga aquí
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .frame(width: 200, height: 200)
-                            .padding(EdgeInsets(top: -30, leading: 0, bottom: 0, trailing: 0))
-                    case .failure:
-                        // Puedes mostrar un indicador de error o imagen de reemplazo aquí
-                        Image(systemName: "exclamationmark.triangle")
-                            .resizable()
-                            .frame(width: 200, height: 200)
-                            .padding(EdgeInsets(top: -30, leading: 0, bottom: 0, trailing: 0))
-                    @unknown default:
-                        // Puedes manejar otros casos aquí
-                        ProgressView()
-                    }
-                }
+                Image(labelData.image)
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .padding(EdgeInsets(top: -30, leading: 0, bottom: 0, trailing: 0))
                 
                 NavigationLink(destination: VocabularioDataDemo()){
                     Text("Guardar")
@@ -98,48 +71,9 @@ struct TranslationView: View {
             .background(Color.white) // This sets the background color of the card
             .cornerRadius(20)
             .shadow(radius: 5)
-            .onAppear { // Llamar a getVideoId en onAppear
-                Task {
-                    elementTH = await getElementTH()
-                    print(elementTH)
-                }
-            }
+
             
         } //ZStack
-    }
-    
-    func getElementTH() async -> THModel? {
-        
-        let th_data = THVM.palabras //.randomElement()?.id_video_segna
-        let label_palabra = labelData.label
-        
-        print("THVM.palabras: \(th_data)")
-        print("labelData.label: \(label_palabra)")
-        
-        for index in 0..<th_data.count {
-            let currentElement = th_data[index]
-            
-            // Accede a las propiedades del elemento actual
-            let currentPalabra = currentElement.palabra
-            let currentVideoId = currentElement.id_video_segna
-            
-            print("Elemento en el índice \(index):")
-            print("Palabra: \(currentPalabra)")
-            print("Video ID: \(currentVideoId)")
-            
-            if currentPalabra == label_palabra {
-                print("\(label_palabra) existe en th_data.")
-                print(currentElement.palabra)
-                print(currentElement.id_video_segna)
-                print(currentElement)
-                return currentElement //.id_video_segna
-                // Hacer algo con currentVideoId si es necesario
-            } else {
-                print("\(label_palabra) NO existe en th_data.")
-            }
-        }
-        // Si llegamos a este punto, no se encontró una coincidencia
-        return nil
     }
 }
 
@@ -148,5 +82,3 @@ struct TranslationView_Previews: PreviewProvider {
         TranslationView(labelData: Classification())
     }
 }
-
-
