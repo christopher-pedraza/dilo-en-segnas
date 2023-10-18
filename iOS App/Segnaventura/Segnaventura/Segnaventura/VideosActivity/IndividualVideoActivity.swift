@@ -74,6 +74,6 @@ struct VideoQuizButton: View {
                 .foregroundColor(.white)
                 .cornerRadius(12)
         }
-        .disabled(questionCorrectAnswers[questionIndex] == cantidadCorrectas)
+        
     }
 }
