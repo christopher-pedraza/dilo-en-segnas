@@ -18,7 +18,8 @@ class AccesoViewModel : ObservableObject {
     // en un objeto que se pueda luego usar en la aplicacion
     func validarAcceso() async throws {
         // Guarda el URL donde esta almacenado el JSON
-        guard let url = URL(string: "https://localhost:3000/miembros/login_app")
+        // https://localhost:3000/miembros/login_app
+        guard let url = URL(string: "https://api.npoint.io/a0cf4bef432c171ee4a4")
         else {
             print("Error: Invalid URL")
             return

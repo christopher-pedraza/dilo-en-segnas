@@ -24,8 +24,17 @@ struct Login: View {
     @EnvironmentObject var AccesoVM : AccesoViewModel
     @State private var username = ""
     @State private var password = ""
+    @State private var isLoggedIn = false
     
     var body: some View {
+        if isLoggedIn {
+            IslasView()
+        } else {
+            content
+        }
+    }
+    
+    var content: some View {
         NavigationStack {
             ZStack {
                 Image("Wallpaper_azul")
@@ -41,18 +50,30 @@ struct Login: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
-                    TextField("Usuario", text: $username)
+                    TextField("Usuario", text: $AccesoVM.user)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
-                    SecureField("Contraseña", text: $password)
+                    SecureField("Contraseña", text: $AccesoVM.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
+                    Button(action: {
+                        Task {
+                            await autenticarUsuario()
+                        }
+                    }) {
+                        Text("Acceder")
+                            .foregroundColor(.white)
+                            .frame(width: 300, height: 50)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    /*
                     NavigationLink(destination: chooseDestination()) {
                         Text("Acceder")
                             .foregroundColor(.white)
@@ -60,6 +81,8 @@ struct Login: View {
                             .background(Color.blue)
                             .cornerRadius(10)
                     }
+                     */
+                    
                 }
             }
         }
@@ -75,8 +98,11 @@ struct Login: View {
         }
     }
     
-    func autenticarUsuario(username: String, password: String) async {
-        await AccesoVM.validarAcceso()
+    func autenticarUsuario() async {
+        do {
+            try await AccesoVM.validarAcceso()
+        } catch {
+        }
     }
 }
 
