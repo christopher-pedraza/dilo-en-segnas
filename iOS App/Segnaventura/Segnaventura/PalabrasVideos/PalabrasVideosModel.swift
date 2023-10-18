@@ -12,14 +12,15 @@ struct PalabrasVideosModel : Decodable, Equatable,Identifiable {
    var id = UUID()
    var palabra: String = ""
    var id_video_segna: String = ""
+   var url_icono: String = ""
+   
    
    //var categorias : [Categorias] = [Categorias]()
    
    enum CodingKeys : String, CodingKey {
-       //case id
        case palabra
        case id_video_segna
-       
+       case url_icono
        
        
    }
@@ -50,6 +51,7 @@ struct PreguntasPalabrasVideosArr : Decodable, Identifiable, Hashable{
        var id = UUID()
        var pregunta : String = ""
        var id_video : String = ""
+       var url_icono : String = ""
        var cantidadCorrectas = 0
        var esCorrecta = false
        var respuestas : [RespuestaPalabrasVideos] = [RespuestaPalabrasVideos]()
@@ -57,6 +59,7 @@ struct PreguntasPalabrasVideosArr : Decodable, Identifiable, Hashable{
        enum CodingKeys : String, CodingKey {
            case pregunta
            case id_video
+           case url_icono
            case cantidadCorrectas
            case esCorrecta
            case respuestas
@@ -70,11 +73,13 @@ struct PreguntasPalabrasVideosArr : Decodable, Identifiable, Hashable{
     struct RespuestaPalabrasVideos : Decodable, Identifiable, Hashable {
         var id = UUID()
         var respuesta_palabra : String = ""
+        var respuesta_icono : String = ""
         var respuesta_video : String = ""
         var esCorrecta : Bool = false
         
         enum CodingKeys : String, CodingKey {
             case respuesta_palabra
+            case respuesta_icono
             case respuesta_video
             case esCorrecta
         }

@@ -25,32 +25,54 @@ struct PreguntasPalabrasActivity: View {
     @State private var bindingTapped: Bool = false
     
     
+
+    
+    
+    
+    
     
     var body: some View {
+        let customPurple = Color(red: 148 / 255, green: 0 / 255, blue: 122 / 255)
+        
+        
+        
+        
+        
+        ZStack{
             VStack {
                 if currentQuestionIndex < PalabrasVideosVM.palabras.count {
                     let currentPreguntasArr = generateQuestionsForPalabras(PalabrasVideosVM.palabras)
                     
                     IndividualQuizActivity(
-                            preguntasArr: currentPreguntasArr,
-                            correctAnswers: $correctAnswers,
-                            questionCorrectAnswers: $questionCorrectAnswers,
-                            currentQuestionIndex: $currentQuestionIndex
+                        preguntasArr: currentPreguntasArr,
+                        correctAnswers: $correctAnswers,
+                        questionCorrectAnswers: $questionCorrectAnswers,
+                        currentQuestionIndex: $currentQuestionIndex
                     )
                     
                 } else {
                     // Display the end of the activity when all questions are answered
-                   VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: PalabrasVideosVM.palabras.count) // Navigate to the next view
+                    VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: PalabrasVideosVM.palabras.count) // Navigate to the next view
                     
-                        
+                    
                     
                     
                     // You can also add a button to manually trigger the navigation if needed
                     
                 }
+                
+                
             }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .accentColor(customPurple)
+            
             .onAppear(perform: downloadVideos)
+            .background(Color.purple)
         }
+        
+        
+    }
     
     // Funcion para descargar los datos de los videos usando el ViewModel
     func downloadVideos() {
@@ -69,7 +91,7 @@ struct PreguntasPalabrasActivity: View {
 
         for palabra in palabras {
             // Create a Respuesta instance for the correct answer
-            let correctAnswer = RespuestaPalabrasVideos(respuesta_palabra:palabra.palabra,respuesta_video: palabra.id_video_segna, esCorrecta: true)
+            let correctAnswer = RespuestaPalabrasVideos(respuesta_palabra:palabra.palabra,respuesta_icono:palabra.url_icono, respuesta_video: palabra.id_video_segna, esCorrecta: true)
             // Create Respuesta instances for three incorrect answers
             var incorrectRespuestas = [RespuestaPalabrasVideos]()
 
@@ -79,7 +101,7 @@ struct PreguntasPalabrasActivity: View {
 
             for _ in 0..<3 {
                 if let incorrectPalabra = remainingPalabras.popLast() {
-                    incorrectRespuestas.append(RespuestaPalabrasVideos(respuesta_palabra: incorrectPalabra.palabra,respuesta_video: incorrectPalabra.id_video_segna, esCorrecta: false))
+                    incorrectRespuestas.append(RespuestaPalabrasVideos(respuesta_palabra: incorrectPalabra.palabra,respuesta_icono: incorrectPalabra.url_icono,respuesta_video: incorrectPalabra.id_video_segna, esCorrecta: false))
                 }
             }
 
@@ -91,7 +113,7 @@ struct PreguntasPalabrasActivity: View {
             let shuffledAnswers = allAnswers.shuffled()
 
             // Create the question with the shuffled answers
-            let pregunta = PreguntaPalabrasVideos(pregunta: palabra.palabra, id_video: palabra.id_video_segna, cantidadCorrectas: 1, respuestas: shuffledAnswers)
+            let pregunta = PreguntaPalabrasVideos(pregunta: palabra.palabra, id_video: palabra.id_video_segna,url_icono: palabra.url_icono, cantidadCorrectas: 1, respuestas: shuffledAnswers)
 
             questions.append(pregunta)
         }
