@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0721E0972ADF82FA000D14AC /* ProgresoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721E0962ADF82FA000D14AC /* ProgresoModel.swift */; };
+		0721E0992ADF830B000D14AC /* ProgresoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721E0982ADF830B000D14AC /* ProgresoViewModel.swift */; };
 		07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEE22AC3316B008F97F2 /* PredictionStatus.swift */; };
 		07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 07B7CEE62AC331BF008F97F2 /* Comidasmodel.mlmodel */; };
 		07B7CEE92AC331D4008F97F2 /* mydata.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B7CEE82AC331D4008F97F2 /* mydata.json */; };
@@ -73,6 +75,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0721E0962ADF82FA000D14AC /* ProgresoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresoModel.swift; sourceTree = "<group>"; };
+		0721E0982ADF830B000D14AC /* ProgresoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresoViewModel.swift; sourceTree = "<group>"; };
 		07B7CEE22AC3316B008F97F2 /* PredictionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStatus.swift; sourceTree = "<group>"; };
 		07B7CEE62AC331BF008F97F2 /* Comidasmodel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Comidasmodel.mlmodel; sourceTree = "<group>"; };
 		07B7CEE82AC331D4008F97F2 /* mydata.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mydata.json; sourceTree = "<group>"; };
@@ -151,6 +155,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0721E0952ADF82CF000D14AC /* Progreso */ = {
+			isa = PBXGroup;
+			children = (
+				0721E0962ADF82FA000D14AC /* ProgresoModel.swift */,
+				0721E0982ADF830B000D14AC /* ProgresoViewModel.swift */,
+			);
+			path = Progreso;
+			sourceTree = "<group>";
+		};
 		07B7CED92AC33047008F97F2 /* 1-Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +328,7 @@
 				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
 				BC8385782AC88A7D0061B696 /* Video */,
 				BC8385762AC889F70061B696 /* VideosActivity */,
+				0721E0952ADF82CF000D14AC /* Progreso */,
 				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
 				FB74CE7C2AA7D89700C7124B /* Preview Content */,
 			);
@@ -480,6 +494,7 @@
 				BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */,
 				07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */,
 				FB9EF2CA2AE084C4003FDBE6 /* ARExperience.swift in Sources */,
+				0721E0972ADF82FA000D14AC /* ProgresoModel.swift in Sources */,
 				FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */,
 				FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */,
 				FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */,
@@ -503,6 +518,7 @@
 				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
 				07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */,
 				07B7CEED2AC33213008F97F2 /* TranslationView.swift in Sources */,
+				0721E0992ADF830B000D14AC /* ProgresoViewModel.swift in Sources */,
 				BCD6C8742ACB255E00E82C32 /* VideosActivity.swift in Sources */,
 				07B7CEFF2AC332C1008F97F2 /* LiveCameraRepresentable.swift in Sources */,
 			);
