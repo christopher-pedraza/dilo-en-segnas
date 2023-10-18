@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActionButton
 
 struct Acceso: View {
     @State private var isLoggedIn = false
@@ -26,20 +27,25 @@ struct Acceso: View {
     }
 }
 
+enum FocusableField: View {
+    case user, password
+}
+
 struct Login: View {
     @EnvironmentObject var AccesoVM : AccesoViewModel
     @Binding var isLoggedIn: Bool
     @State private var isPerformingTask = false
+    @FocusState private var focus: FocusableField?
     
     var body: some View {
         ZStack {
             Image("Wallpaper_azul")
                 .centerCropped()
             Circle()
-                .scale(1.9)
+                .scale(0.9)
                 .foregroundColor(.white.opacity(0.15))
             Circle()
-                .scale(1.7)
+                .scale(0.7)
                 .foregroundColor(.white.opacity(0.90))
             VStack {
                 Text("Inicio de sesión")
@@ -53,27 +59,35 @@ struct Login: View {
                     .cornerRadius(10)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
+                    .submitLabel(.next)
+                    .focused($focus, equals: .user)
+                    .onSubmit {
+                        focus = .password
+                    }
                 SecureField("Contraseña", text: $AccesoVM.password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                Button(action: {
-                    isPerformingTask = true
+                ActionButton(state: $AccesoVM.buttonState, onTap: {
                     
-                    Task {
-                        await autenticarUsuario()
-                        isLoggedIn = AccesoVM.accesoValido
-                        isPerformingTask = false
-                    }
-                }) {
-                    Text("Acceder")
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-                .disabled(isPerformingTask)
+                }, backgroundColor: .primary)
+//                Button(action: {
+//                    isPerformingTask = true
+//
+//                    Task {
+//                        await autenticarUsuario()
+//                        isLoggedIn = AccesoVM.accesoValido
+//                        isPerformingTask = false
+//                    }
+//                }) {
+//                    Text("Acceder")
+//                        .foregroundColor(.white)
+//                        .frame(width: 300, height: 50)
+//                        .background(Color.blue)
+//                        .cornerRadius(10)
+//                }
+//                .disabled(isPerformingTask)
             }
         }
     }
