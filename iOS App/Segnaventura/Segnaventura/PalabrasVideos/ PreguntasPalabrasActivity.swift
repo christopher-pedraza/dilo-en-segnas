@@ -11,6 +11,7 @@ struct PreguntasPalabrasActivity: View {
     // Modelo con los datos del JSON para la actividad
    // @EnvironmentObject var VideoVM : VideoViewModel
     @EnvironmentObject var PalabrasVideosVM: PalabraVideosViewModel
+    @EnvironmentObject var ARVM: ARExperience
     // Variable para llevar un registr  o de la cantidad de respuestas
     // correctas que se llevan en todas las preguntas
     

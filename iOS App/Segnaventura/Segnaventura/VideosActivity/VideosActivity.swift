@@ -10,9 +10,10 @@ import SwiftUI
 struct VideosActivity: View {
     // Modelo con los datos del JSON para la actividad
     @EnvironmentObject var VideoVM : VideoViewModel
+    @EnvironmentObject var ARVM: ARExperience
     // Variable para llevar un registro de la cantidad de respuestas
     // correctas que se llevan en todas las preguntas
-    @State var correctAnswers : Int
+    @State var correctAnswers : Int = 0
     @State var totalCorrectAnswers: Int = 0
     
     var body: some View {

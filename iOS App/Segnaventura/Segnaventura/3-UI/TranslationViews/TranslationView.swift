@@ -13,8 +13,8 @@ struct TranslationView: View {
     private(set) var labelData: Classification
     
     @State var soundPlayer = SoundPlayer()
+    @EnvironmentObject var ARVM: ARExperience
     @State private var elementTH: THModel? = nil
-    
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var THVM: THViewModel
     
