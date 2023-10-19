@@ -31,14 +31,14 @@ struct ContentView: View {
                 TabView {
                     VocabularioDataDemo()
                         .tabItem {
-                            Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
+                            Label("Album", systemImage: "gearshape.2.fill")}
                     PreguntasPalabrasActivity()
                         .tabItem {
                             Label("Quiz", systemImage: "gearshape.2.fill")
                         }
                     VideosActivity(correctAnswers: 0)
                         .tabItem {
-                            Label("VideosDemo", systemImage: "gearshape.2.fill")
+                            Label("Videos", systemImage: "gearshape.2.fill")
                         }
                     LaunchScreenView()
                         .tabItem {
@@ -58,6 +58,7 @@ struct ContentView: View {
         } else {
             Login()
         }
+
     }
 }
 

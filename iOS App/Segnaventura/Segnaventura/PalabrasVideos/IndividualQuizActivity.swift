@@ -31,16 +31,26 @@ struct IndividualQuizActivity: View {
         }
         
         var objectRowSize: CGFloat {
-            return horizontalSizeClass == .compact ? 90 : 140
+            return horizontalSizeClass == .compact ? 90 : 155
         }
         
         var objectSeparation: CGFloat {
-            return horizontalSizeClass == .compact ? 10 : 20
+            return horizontalSizeClass == .compact ? 2 : 20
         }
         
-        NavigationStack{
+        var objectSeparation2: CGFloat {
+            return horizontalSizeClass == .compact ? 10 : 0
+        }
+        
+        NavigationStack(){
             
-            VStack {
+            VStack (alignment: .center, spacing: objectSeparation) {
+                
+                
+                Spacer(minLength: 15)
+                
+                
+                
                 let randomNumber = Int.random(in: 0...1)
                 
                 if (currentQuestionIndex < preguntasArr.preguntas.count) {
@@ -54,7 +64,8 @@ struct IndividualQuizActivity: View {
                     if randomNumber == 1 {
                         HStack (alignment: .center, spacing: 10) {
                             Text(preguntasArr.preguntas[currentQuestionIndex].pregunta)
-                                .font(.system(size: objectFontSize))
+                                .font(.system(size: objectFontSize + 8,weight: .bold))
+                                .foregroundStyle(Color.white)
                             
                             if let imageUrl = URL(string: preguntasArr.preguntas[currentQuestionIndex].url_icono),
                                let imageData = try? Data(contentsOf: imageUrl),
@@ -102,7 +113,7 @@ struct IndividualQuizActivity: View {
                                     .listRowBackground(Color.clear)
                                 }
                             }.listStyle(PlainListStyle())
-                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .frame(width: geometry.size.width, height: geometry.size.height + 20)
                         }
                     }
                     
@@ -110,6 +121,10 @@ struct IndividualQuizActivity: View {
                         let pregunta = preguntasArr.preguntas[currentQuestionIndex]
                         //Text(pregunta.pregunta)
                         //    .font(.system(size: 35))
+                        
+                        var objectRowHeight: CGFloat {
+                            return horizontalSizeClass == .compact ? 110 : 200
+                        }
                         
                         List(preguntasArr.preguntas.indices, id: \.self) { index in
                             if index == currentQuestionIndex {
@@ -132,15 +147,18 @@ struct IndividualQuizActivity: View {
                                             correctAnswerVideo: $correctAnswerVideo,
                                             bindingTapped: $bindingTapped
                                         )
-                                        .frame(height: 108)
+                                        .frame(height: objectRowHeight + 10)
                                         .padding(.all, 10)
                                         .background(getBackgroundColor(for: answerIndex))
                                     }
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    .padding(.all, 10)
                                 }
                                 .listRowBackground(Color.clear)
                             }
                         }.listStyle(PlainListStyle())
+                            
+                          //  .frame(width: 100, height: 100)
                     }
                 }
             }
@@ -185,8 +203,24 @@ struct QuizButton: View {
             return horizontalSizeClass == .compact ? 35 : 50
         }
         
+        var objectFontSize2: CGFloat {
+            return horizontalSizeClass == .compact ? 45 : 50
+        }
+        
         var objectSeparation: CGFloat {
             return horizontalSizeClass == .compact ? 10 : 25
+        }
+        
+        var objectHeight: CGFloat {
+            return horizontalSizeClass == .compact ? 10 : 25
+        }
+        
+        var objectSpaceWidth: CGFloat {
+            return horizontalSizeClass == .compact ? 100 : 120
+        }
+        
+        var videoWidth: CGFloat {
+            return horizontalSizeClass == .compact ? 0.8 : 0.62
         }
         
         Button(action: {
@@ -233,18 +267,43 @@ struct QuizButton: View {
 
             }
             if randomNum == 1 {
-                HStack {
-                    VideoView(videoID: video_id)
-                        .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height)
-                        .cornerRadius(12)
-                    Text("Seleccionar")
-                        .font(.system(size: objectFontSize - 15))
-                        .foregroundColor(
-                            !didTap ? Color.white :
-                                (didTap && isCorrectAnswerSelected) ? Color.green :
-                                (didTap && !isCorrectAnswerSelected) ? Color.red :
-                                Color.white
-                        )
+                    HStack (alignment: .center) {
+                        if horizontalSizeClass != .compact {
+                            Spacer(minLength: objectSpaceWidth - 20)
+
+                            GeometryReader { geometry in
+                                VideoView(videoID: video_id)
+                                    .frame(maxWidth: geometry.size.width * videoWidth) // Adjust the width as needed
+                                    
+                                    .cornerRadius(12)
+                                    .padding(.vertical, 10)
+                            }
+                            .frame(height: UIScreen.main.bounds.height * 0.25)
+                            
+                            // .frame(maxWidth: 350, minHeight: 0, maxHeight: UIScreen.main.bounds.height)
+                            .cornerRadius(12)
+                        }else{
+                            VideoView(videoID: video_id)
+                                .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height * 0.7)
+                            
+                                
+                                .cornerRadius(12)
+                                .padding(.vertical, 10)
+                        }
+                        
+                        Text("Seleccionar")
+                            .frame(maxHeight: UIScreen.main.bounds.height * 0.3)
+                            .frame(maxWidth:117)
+                            .font(.system(size: objectFontSize2 - 27))
+                            .foregroundColor(
+                                !didTap ? Color.white :
+                                    (didTap && isCorrectAnswerSelected) ? Color.green :
+                                    (didTap && !isCorrectAnswerSelected) ? Color.red :
+                                    Color.white
+                            )
+                        if horizontalSizeClass != .compact {
+                            Spacer(minLength: objectSpaceWidth  - 40)
+                        }
                 }
             }
         }
@@ -258,7 +317,7 @@ func getBackgroundColor(for answerIndex: Int) -> Color {
     case 1:
         return Color.yellow
     case 2:
-        return Color.red
+        return Color.mint
     case 3:
         return Color.blue
     default:
