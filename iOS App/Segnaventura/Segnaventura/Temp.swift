@@ -14,16 +14,48 @@ struct Temp: View {
     @EnvironmentObject var ARVM: ARExperience
     
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
         
-        NavigationView {
-            NavigationLink(
-                destination: LaunchScreenView(),
-                isActive: $ARVM.isTH_Active
-            ) {
-                EmptyView()
+        ZStack {
+            ARViewContainer().edgesIgnoringSafeArea(.all)
+            
+            switch true {
+            case ARVM.isTH_Active:
+                AnyView(LaunchScreenView())
+            case ARVM.isQuiz_Active:
+                AnyView(PreguntasPalabrasActivity())
+            case ARVM.isVideo_Active:
+                AnyView(VideosActivity())
+            default:
+                AnyView(ARViewContainer().edgesIgnoringSafeArea(.all))
             }
-            .hidden()
+            
+            /*
+             NavigationView {
+             NavigationLink(
+             destination: LaunchScreenView(),
+             isActive: $ARVM.isTH_Active
+             ) {
+             EmptyView()
+             }
+             .hidden()
+             
+             NavigationLink(
+             destination: PreguntasPalabrasActivity(),
+             isActive: $ARVM.isQuiz_Active
+             ) {
+             EmptyView()
+             }
+             .hidden()
+             
+             NavigationLink(
+             destination: VideosActivity(),
+             isActive: $ARVM.isVideo_Active
+             ) {
+             EmptyView()
+             }
+             .hidden()
+             }
+             */
         }
     }
 }
@@ -32,16 +64,10 @@ struct Temp: View {
 struct ARViewContainer: UIViewRepresentable {
     @EnvironmentObject var ARVM: ARExperience
     //var arExperience: ARExperience
-
+    
     func makeUIView(context: Context) -> ARView {
         return ARVM.arView
     }
-
+    
     func updateUIView(_ uiView: ARView, context: Context) {}
-}
-
-struct Temp_Previews: PreviewProvider {
-    static var previews: some View {
-        Temp()
-    }
 }

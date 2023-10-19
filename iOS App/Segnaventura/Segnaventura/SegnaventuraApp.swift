@@ -21,6 +21,7 @@ struct SegnaventuraApp: App {
     @StateObject var  ARVM = ARExperience()
     @StateObject var AccesoVM = AccesoViewModel()
     
+    
     init() {
         
         /*
@@ -64,6 +65,9 @@ struct SegnaventuraApp: App {
                 .environmentObject(PVM)
                 .environmentObject(ARVM)
                 .environmentObject(AccesoVM)
+                //.environmentObject(menuIndex())
         }
     }
 }
+
+
