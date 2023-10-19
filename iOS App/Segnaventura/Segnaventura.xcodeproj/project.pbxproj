@@ -38,7 +38,6 @@
 		BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */; };
 		BCD6C8742ACB255E00E82C32 /* VideosActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */; };
 		BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */; };
-		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
 		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
 		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
 		FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE782AA7D89600C7124B /* ContentView.swift */; };
@@ -112,7 +111,6 @@
 		BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalabrasVideosViewModel.swift; sourceTree = "<group>"; };
 		BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosActivity.swift; sourceTree = "<group>"; };
 		BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualQuizActivity.swift; sourceTree = "<group>"; };
-		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
 		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
 		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnaventuraApp.swift; sourceTree = "<group>"; };
@@ -335,7 +333,6 @@
 				BC8385752AC889D90061B696 /* PalabrasVideos */,
 				FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */,
 				FB74CE782AA7D89600C7124B /* ContentView.swift */,
-				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
 				BC8385782AC88A7D0061B696 /* Video */,
 				BC8385762AC889F70061B696 /* VideosActivity */,
 				0721E0952ADF82CF000D14AC /* Progreso */,
@@ -505,7 +502,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */,
 				9D0E59E62AB8C7A300EA57B9 /* IndividualVideoActivity.swift in Sources */,
 				07B7CEF52AC3325B008F97F2 /* LaunchScreenView.swift in Sources */,
 				9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */,

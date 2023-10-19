@@ -31,10 +31,6 @@ struct ContentView: View {
                 VocabularioDataDemo()
                     .tabItem {
                         Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
-                FileManagerDemo()
-                    .tabItem {
-                        Label("FileManagerDemo", systemImage: "gearshape.2.fill")
-                    }
                 PreguntasPalabrasActivity()
                     .tabItem {
                         Label("Quiz", systemImage: "gearshape.2.fill")
