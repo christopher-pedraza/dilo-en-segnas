@@ -11,6 +11,7 @@ import SwiftUI
 struct VideoActivityEnd: View {
     // Binding con la cantidad de respuestas correctas para llevar un registro
     @Binding var correctAnswers : Int
+    @EnvironmentObject var MI: menuIndex
     // Cantidad maxima de respuestas que puede tener la actividad
     let maxCorrectas : Int
     
@@ -22,7 +23,7 @@ struct VideoActivityEnd: View {
                     .font(.system(size: 70))
                     .foregroundStyle(Color.white)
                 Button(action: {
-                    
+                    MI.index = 1
                 }) {
                     Text("Terminar")
                         .font(.system(size: 24))

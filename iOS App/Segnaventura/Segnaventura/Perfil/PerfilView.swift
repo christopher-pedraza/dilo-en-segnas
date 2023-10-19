@@ -10,6 +10,7 @@ import SwiftUI
 struct PerfilView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var AccesoVM : AccesoViewModel
+    @EnvironmentObject var MI: menuIndex
     
     var body: some View {
         VStack {
@@ -26,12 +27,16 @@ struct PerfilView: View {
             .background(Color.black.opacity(0.05))
             .foregroundColor(colorScheme == .dark ? .white : Color.black)
             .cornerRadius(10)
+            Spacer()
+            
+            Button("Regresar") {
+                MI.index = 1
+            }
+            .padding()
+            .frame(width: 300, height: 50)
+            .background(Color.black.opacity(0.05))
+            .foregroundColor(colorScheme == .dark ? .white : Color.black)
+            .cornerRadius(10)
         }
-    }
-}
-
-struct PerfilView_Previews: PreviewProvider {
-    static var previews: some View {
-        PerfilView()
     }
 }

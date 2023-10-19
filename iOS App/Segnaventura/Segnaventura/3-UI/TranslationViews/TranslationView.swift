@@ -101,12 +101,15 @@ struct TranslationView: View {
                     }
                 }
                 
+                
+                
+                /*
                 NavigationLink(destination: VocabularioDataDemo()){
                     Text("Guardar")
                 }
                 .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 40, trailing: 0))
-                
+                */
             } //VStack
             .frame(maxWidth: 370) // This sets the width of the white card
             .background(Color.white) // This sets the background color of the card
@@ -154,12 +157,6 @@ struct TranslationView: View {
         }
         // Si llegamos a este punto, no se encontró una coincidencia
         return nil
-    }
-}
-
-struct TranslationView_Previews: PreviewProvider {
-    static var previews: some View {
-        TranslationView(labelData: Classification())
     }
 }
 

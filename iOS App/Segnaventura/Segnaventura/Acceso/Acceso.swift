@@ -15,6 +15,7 @@ struct Acceso: View {
     var body: some View {
         if AccesoVM.accesoValido {
             ContentView()
+                .environmentObject(menuIndex())
         } else {
             TabView {
                 Login()
@@ -24,6 +25,10 @@ struct Acceso: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
     }
+}
+
+class menuIndex : ObservableObject {
+    @Published var index: Int = 1
 }
 
 enum FocusableField: Hashable {

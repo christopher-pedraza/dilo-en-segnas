@@ -34,6 +34,9 @@ class ARExperience: ObservableObject {
     //var generalSceneAnchor: AllIslands.GeneralIslands
     var generalSceneAnchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
     var specificSceneAnchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
+    
+    @EnvironmentObject var MI: menuIndex
+
     //var specificSceneAnchor: AllIslands.Nothing
     //var specificSceneAnchor: AllIslands.SpecFruitIsland
     //var specificSceneAnchor: AnchorEntity = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.001, 0.001)))
