@@ -35,6 +35,7 @@ struct Login: View {
     @State private var isPerformingTask = false
     @FocusState private var focus: FocusableField?
     let device = UIDevice.current.userInterfaceIdiom
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         GeometryReader { geo in
@@ -56,10 +57,12 @@ struct Login: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
+                        .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                     TextField("Usuario", text: $AccesoVM.user)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
+                        .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                         .cornerRadius(10)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
@@ -75,6 +78,7 @@ struct Login: View {
                     })
                     .padding()
                     .frame(width: 300, height: 50)
+                    .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
                     .focused($focus, equals: .password)
@@ -108,6 +112,7 @@ struct Register: View {
     @State private var isPerformingTask = false
     @FocusState private var focus: FocusableField?
     let device = UIDevice.current.userInterfaceIdiom
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         GeometryReader { geo in
@@ -129,10 +134,12 @@ struct Register: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
+                        .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                     TextField("Usuario", text: $AccesoVM.user)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
+                        .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                         .cornerRadius(10)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
@@ -149,6 +156,7 @@ struct Register: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
+                    .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
                     .cornerRadius(10)
                     .focused($focus, equals: .password)
                     .submitLabel(.go)

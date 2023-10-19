@@ -10,6 +10,7 @@ import RealityKit
 import Combine
 
 struct ContentView: View {
+    @EnvironmentObject var AccesoVM : AccesoViewModel
     
     init() {
            // Customize the TabView appearance
@@ -25,31 +26,38 @@ struct ContentView: View {
        }
 
     var body: some View {
-        // Tab view con las dos demos de las funcionalidades
-        NavigationView {
-            TabView {
-                VocabularioDataDemo()
-                    .tabItem {
-                        Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
-                PreguntasPalabrasActivity()
-                    .tabItem {
-                        Label("Quiz", systemImage: "gearshape.2.fill")
-                    }
-                VideosActivity(correctAnswers: 0)
-                    .tabItem {
-                        Label("VideosDemo", systemImage: "gearshape.2.fill")
-                    }
-                LaunchScreenView()
-                    .tabItem {
-                        Label("Scanner", systemImage: "gearshape.2.fill")
-                    }
-                ARViewContainer(arExperience: ARExperience())
+        if AccesoVM.accesoValido {
+            NavigationView {
+                TabView {
+                    VocabularioDataDemo()
+                        .tabItem {
+                            Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
+                    PreguntasPalabrasActivity()
+                        .tabItem {
+                            Label("Quiz", systemImage: "gearshape.2.fill")
+                        }
+                    VideosActivity(correctAnswers: 0)
+                        .tabItem {
+                            Label("VideosDemo", systemImage: "gearshape.2.fill")
+                        }
+                    LaunchScreenView()
+                        .tabItem {
+                            Label("Scanner", systemImage: "gearshape.2.fill")
+                        }
+                    ARViewContainer(arExperience: ARExperience())
                     //.edgesIgnoringSafeArea(.all)
-                    .tabItem {
-                        Label("AR", systemImage: "gearshape.2.fill")
-                    }
-            }
-        }.navigationViewStyle(StackNavigationViewStyle())
+                        .tabItem {
+                            Label("AR", systemImage: "gearshape.2.fill")
+                        }
+                    PerfilView()
+                        .tabItem {
+                            Label("Perfil", systemImage: "person.crop.circle")
+                        }
+                }
+            }.navigationViewStyle(StackNavigationViewStyle())
+        } else {
+            Login()
+        }
     }
 }
 
