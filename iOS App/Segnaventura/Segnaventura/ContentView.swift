@@ -100,34 +100,35 @@ struct menuPage: View {
     var body: some View {
         
         VStack {
-
-            Button("AR"){
-                MI.index = 2
-            }
-            .padding()
-            .background(.blue)
-            .foregroundStyle(.white)
-            .cornerRadius(10)
-            .frame(width: 300, height: 50)
             
-            Button("Vocabulario"){
-                MI.index = 3
-            }
-            .padding()
-            .background(.blue)
-            .foregroundStyle(.white)
-            .cornerRadius(10)
-            .frame(width: 300, height: 50)
-
+            Temp()
             
-            Button("Perfil"){
-                MI.index = 4
+            HStack {
+                
+                Spacer()
+                
+                Button("Vocabulario"){
+                    MI.index = 3
+                }
+                .padding()
+                .background(.blue)
+                .foregroundStyle(.white)
+                .cornerRadius(10)
+                //.frame(width: 200, height: 50)
+
+                Spacer()
+                
+                Button("Perfil"){
+                    MI.index = 4
+                }
+                .padding()
+                .background(.blue)
+                .foregroundStyle(.white)
+                .cornerRadius(10)
+                //.frame(width: 200, height: 50)
+                
+                Spacer()
             }
-            .padding()
-            .background(.blue)
-            .foregroundStyle(.white)
-            .cornerRadius(10)
-            .frame(width: 300, height: 50)
 
         }
         
