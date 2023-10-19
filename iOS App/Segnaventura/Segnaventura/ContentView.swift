@@ -107,27 +107,32 @@ struct menuPage: View {
                 
                 Spacer()
                 
-                Button("Vocabulario"){
+                Button {
                     MI.index = 3
+                } label: {
+                    Label("Vocabulario", systemImage: "character.book.closed.fill")
+                        .padding()
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(10)
+                        //.frame(width: 200, height: 50)
                 }
-                .padding()
-                .background(.blue)
-                .foregroundStyle(.white)
-                .cornerRadius(10)
-                //.frame(width: 200, height: 50)
+                
 
                 Spacer()
                 
-                Button("Perfil"){
+                Button {
                     MI.index = 4
+                } label: {
+                    Label("Perfil", systemImage: "person.circle.fill")
+                        .padding()
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(10)
+                        //.frame(width: 200, height: 50)
                 }
-                .padding()
-                .background(.blue)
-                .foregroundStyle(.white)
-                .cornerRadius(10)
-                //.frame(width: 200, height: 50)
                 
-                Spacer()
+                Spacer ()
             }
 
         }
