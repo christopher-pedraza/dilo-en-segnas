@@ -207,7 +207,7 @@ class ARExperience: ObservableObject {
         
         var TH_buttonContainer: Entity = Entity()
         TH_buttonContainer.name = "TH_1"
-        TH_buttonContainer.addChild(try! Entity.load(named: "TH_btn_false"))
+        TH_buttonContainer.addChild(try! Entity.load(named: "TH_btn_true"))
         //TH_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
         TH_buttonContainer.position = SIMD3(0.3, 0, 1.5)
         TH_buttonContainer.generateCollisionShapes(recursive: true)
@@ -464,6 +464,7 @@ class ARExperience: ObservableObject {
         
         // se actualiza el objeto en 3D a la isla normal
         // if let newObject = try? Entity.load(named: islandName) {
+        // nombre del asset directo
         if let newObject = try? Entity.load(named: "fruit_island") {
             
             // buscar el contenedor de isla con el nombre ingresado
@@ -564,6 +565,107 @@ class ARExperience: ObservableObject {
         self.isTH_Active = false
         self.isQuiz_Active = false
         self.isVideo_Active = false
+    }
+    
+    func updateLevel(actName: String) -> Void {
+        
+        print("completada la actividad \(actName)")
+        print("completada la actividad \(actName)")
+        print("completada la actividad \(actName)")
+        print("completada la actividad \(actName)")
+        
+        var oldButton: String = ""
+        var newButton: String = ""
+        var completedActivities = 0
+        
+        if actName == "TH_1" {
+            oldButton = "TH_1"
+            newButton = "TH_btn_true"
+        } else if actName == "quiz_1" {
+            oldButton = "quiz_1"
+            newButton = "quiz_btn_true"
+        } else if actName == "video_1" {
+            oldButton = "video_1"
+            newButton = "video_btn_true"
+        }
+        
+        // contar todas las actividades completadas
+        if case let buttonContainer? = self.specificSceneAnchor.findEntity(named: "TH_btn_true") {
+            print("TH encontrado")
+            print("TH encontrado")
+            print("TH encontrado")
+            print("TH encontrado")
+            print("TH encontrado")
+        } else {
+            print("TH no encontrado")
+            print("TH no encontrado")
+            print("TH no encontrado")
+            print("TH no encontrado")
+            print("TH no encontrado")
+        }
+        
+        if let childEntity = self.specificSceneAnchor.findEntity(named: "TH_btn_true") {
+            completedActivities += 1
+        }
+        
+        if let childEntity = self.specificSceneAnchor.findEntity(named: "quiz_btn_true") {
+            completedActivities += 1
+        }
+        
+        if let childEntity = self.specificSceneAnchor.findEntity(named: "video_btn_true") {
+            completedActivities += 1
+        }
+        
+        // obtener el nombre del nuevo boton con base en las sentenccias
+        if let newObject = try? Entity.load(named: newButton) {
+            
+            // buscar el contenedor del boton viejo
+            if case let buttonContainer? = self.specificSceneAnchor.findEntity(named: oldButton) {
+                
+                print(buttonContainer.name)
+                print(buttonContainer.children)
+                
+                // eliminar el boton viejo
+                buttonContainer.children.removeAll()
+                
+                // agregar la nueva entidad al contenedor
+                newObject.generateCollisionShapes(recursive: true)
+                buttonContainer.addChild(newObject)
+                
+                // si se completaron todas las actividades se actualiza el color del panel y del nivel
+                print("===========================")
+                print("===========================")
+                print("Completed Activities: \(completedActivities)")
+                print("===========================")
+                print("===========================")
+                if (completedActivities+1) == 3 {
+                    print("===========================")
+                    print("===========================")
+                    print("TODAS LAS ACTIVIDADES COMPLETADAS")
+                    print("===========================")
+                    print("===========================")
+                    if let newPanel = try? Entity.load(named: "panel_true") {
+                        if case let panel = self.specificSceneAnchor.findEntity(named: "panel") {
+                            // conservando los hijos del panel anterior
+                            //var panelChildren = panel!.children.removeAll()
+                            if let newModelComponent = newPanel.components[ModelComponent.self] {
+
+                                // Reemplaza el componente ModelComponent de la entidad original con el del nuevo asset
+                                panel!.components[ModelComponent.self] = newModelComponent
+                            }
+                        }
+                    }
+                    
+                    if let newLvl = try? Entity.load(named: "lvl_btn_true") {
+                        if case let lvl = self.specificSceneAnchor.findEntity(named: "lvl_btn_false") {
+                            if let newModelComponent = newLvl.components[ModelComponent.self] {
+                                lvl!.components[ModelComponent.self] = newModelComponent
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -53,7 +53,7 @@ struct PreguntasPalabrasActivity: View {
                 
             } else {
                 // Display the end of the activity when all questions are answered
-                VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: PalabrasVideosVM.palabras.count) // Navigate to the next view
+                VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: PalabrasVideosVM.palabras.count, actName: "quiz_1") // Navigate to the next view
                 
                 
                 

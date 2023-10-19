@@ -15,6 +15,7 @@ struct VideoActivityEnd: View {
     @EnvironmentObject var ARVM: ARExperience
     // Cantidad maxima de respuestas que puede tener la actividad
     let maxCorrectas : Int
+    var actName: String
     
     var body: some View {
         ZStack{
@@ -28,6 +29,7 @@ struct VideoActivityEnd: View {
                     ARVM.isTH_Active = false
                     ARVM.isQuiz_Active = false
                     ARVM.isVideo_Active = false
+                    ARVM.updateLevel(actName: actName)
                 }) {
                     Text("Terminar")
                         .font(.system(size: 24))

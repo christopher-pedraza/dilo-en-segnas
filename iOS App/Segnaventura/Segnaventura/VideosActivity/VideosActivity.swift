@@ -32,7 +32,7 @@ struct VideosActivity: View {
                 }
                 // Pestaña final que despliega la cantidad de respuestas correctas y
                 // deja terminar la actividad
-                VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: totalCorrectAnswers)
+                VideoActivityEnd(correctAnswers: $correctAnswers, maxCorrectas: totalCorrectAnswers, actName: "video_1")
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
