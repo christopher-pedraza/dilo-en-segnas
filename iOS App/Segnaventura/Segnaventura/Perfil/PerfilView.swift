@@ -17,14 +17,14 @@ struct PerfilView: View {
                 .font(.largeTitle)
                 .bold()
                 .padding()
-                .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
             Button("Cerrar Sesión") {
                 AccesoVM.logout()
             }
             .padding()
             .frame(width: 300, height: 50)
             .background(Color.black.opacity(0.05))
-            .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
+            .foregroundColor(colorScheme == .dark ? .white : Color.black)
             .cornerRadius(10)
         }
     }
