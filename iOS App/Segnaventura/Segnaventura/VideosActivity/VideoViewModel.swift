@@ -38,6 +38,7 @@ class VideoViewModel : ObservableObject {
             let results = try JSONDecoder().decode(VideoModel.self, from: data)
             DispatchQueue.main.async {
                 self.videos = results
+                print("results:")
                 print(results)
             }
     }
