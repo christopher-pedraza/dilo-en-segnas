@@ -18,7 +18,7 @@ class THViewModel : ObservableObject {
 
         // Guarda el URL donde esta almacenado el JSON
 //        guard let url = URL(string: "http://localhost:3000/treasure/getPalabrasByActividad/\(id_treasure_hunt)")
-        guard let url = URL(string: "https://api.npoint.io/9f74e98fd247a194639b")
+        guard let url = URL(string: "https://api.npoint.io/ecdd9b3922e3b2928256")
                 else {
                     print("Error: Invalid URL")
                     return

@@ -681,7 +681,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4L5GLAD5L;
+				DEVELOPMENT_TEAM = CND48JQ7YK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -697,7 +697,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -713,7 +713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4L5GLAD5L;
+				DEVELOPMENT_TEAM = CND48JQ7YK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -729,7 +729,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
