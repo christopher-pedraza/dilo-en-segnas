@@ -28,7 +28,7 @@ struct ContentView: View {
             TabView {
                 VocabularioDataDemo()
                     .tabItem {
-                        Label("VocabularioDataDemo", systemImage: "gearshape.2.fill")}
+                        Label("Album", systemImage: "gearshape.2.fill")}
                 FileManagerDemo()
                     .tabItem {
                         Label("FileManagerDemo", systemImage: "gearshape.2.fill")
@@ -39,7 +39,7 @@ struct ContentView: View {
                     }
                 VideosActivity(correctAnswers: 0)
                     .tabItem {
-                        Label("VideosDemo", systemImage: "gearshape.2.fill")
+                        Label("Videos Quiz", systemImage: "gearshape.2.fill")
                     }
                 LaunchScreenView()
                     .tabItem {
