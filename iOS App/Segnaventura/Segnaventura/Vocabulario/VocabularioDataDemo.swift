@@ -37,6 +37,10 @@ import AVFoundation
                    // navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: titleFont]
                    
                    // Set backgroundEffect to nil to remove the white space
+           
+           let titleFont = UIFont.systemFont(ofSize: 24, weight: .bold)
+           navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: titleFont]
+
                    navBarAppearance.backgroundEffect = nil
                    
                    UINavigationBar.appearance().standardAppearance = navBarAppearance
@@ -97,6 +101,10 @@ import AVFoundation
            @State private var showAllObjects = false //Variable que controla si
            @State private var selectedVocabulary: Vocabulario? //Variable para definir vocabulario que selecciono el usuario
            @Environment(\.horizontalSizeClass) var horizontalSizeClass
+           
+           var frameWidth: CGFloat {
+               return horizontalSizeClass == .compact ? 100 : 300
+           }
 
            var imageWidth: CGFloat {
                return horizontalSizeClass == .compact ? 45 : 100
@@ -107,6 +115,13 @@ import AVFoundation
 
            var objectFontSize: CGFloat {
                return horizontalSizeClass == .compact ? 20 : 35
+           }
+           var objectTitleFontSize: CGFloat {
+               return horizontalSizeClass == .compact ? 35 : 55
+           }
+           
+           var objectTitlePadding: CGFloat {
+               return horizontalSizeClass == .compact ? 5 : 30
            }
            
            let customColor = Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255)
@@ -120,13 +135,16 @@ import AVFoundation
                ZStack{
                    //Color.black
                    VStack {
-                       Text(category.nombre)
-                           .font(Font.custom("Poppins-SemiBold", size: 35))
+                       Text(category.nombre)                    
+                           .font(.system(size: objectTitleFontSize + 4, weight: .bold))
+
+                           
                        /*.font(.custom(
                         "Poppins-SemiBold",
                         size: horizontalSizeClass == .compact ? 25 : 40).bold())*/
                        //  .font(.title)
-                           .padding(.top,5)
+                           .padding(.top,objectTitlePadding)
+                           .padding(.leading,objectTitlePadding)
                            .foregroundColor(.black)
                            .frame(maxWidth: .infinity, alignment: .leading)
                        
@@ -163,11 +181,11 @@ import AVFoundation
                                    }
                                    
                                    Text(vocabulario.palabra)
-                                       .font(Font.custom("Poppins-Regular", size: objectFontSize)) // Adjust font size here
+                                       .font(Font.custom("Poppins-Regular", size: objectFontSize + 3)) // Adjust font size here
                                        .font(.headline)
                                    
                                        .foregroundColor(.black)
-                                       .frame(width: 100)
+                                       .frame(width: frameWidth)
                                        .padding(.horizontal,10)
                                        .padding(.vertical,10)
                                        
@@ -190,6 +208,7 @@ import AVFoundation
                                Text(showAllObjects ? "Cerrar" : "Ver más")
                                    .foregroundColor(customColorVerMas)
                                    .font(.system(size: horizontalSizeClass == .compact ? 18 : 30))
+                                   .padding(.bottom,10)
                            }
                            .padding(.top, 5)
                            .padding(.bottom, 3)
@@ -250,15 +269,21 @@ struct PopupView: View {
                        .padding()
                }
            }
+           
+
+           // Embed the YouTube video using VideoView
+           VideoView(videoID: videoID)
+               .frame(width: horizontalSizeClass == .compact ? 300 : 550, height: horizontalSizeClass == .compact ? 240 : 400) // Adjust size based on size class
+               .cornerRadius(30)
+           
            HStack {
                            Text(vocabulary.palabra)
-                               .font(.title)
-                               .font(.system(size: horizontalSizeClass == .compact ? 25 : 80))
+                               .font(.system(size: horizontalSizeClass == .compact ? 26 : 53))
                            
                            Button(action: {
                                // Pronounce the word in Spanish
                                let utterance = AVSpeechUtterance(string: vocabulary.palabra)
-                               utterance.voice = AVSpeechSynthesisVoice(language: "es-ES") // Spanish voice
+                               utterance.voice = AVSpeechSynthesisVoice(language: "es-MX") // Spanish voice
                                synthesizer.speak(utterance)
                            }) {
                                Image(systemName: "speaker.2.fill")
@@ -266,11 +291,6 @@ struct PopupView: View {
                                    .foregroundColor(.black)
                            }
                        }
-
-           // Embed the YouTube video using VideoView
-           VideoView(videoID: videoID)
-               .frame(width: horizontalSizeClass == .compact ? 300 : 550, height: horizontalSizeClass == .compact ? 220 : 400) // Adjust size based on size class
-               .cornerRadius(30)
 
            if let imageUrl = URL(string: vocabulary.url_icono),
               let imageData = try? Data(contentsOf: imageUrl),
