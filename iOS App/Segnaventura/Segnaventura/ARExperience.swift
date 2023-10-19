@@ -205,26 +205,26 @@ class ARExperience: ObservableObject {
         panel.transform.rotation = rotation
         panel.setScale(SIMD3<Float>(0, 0, 0), relativeTo: specificSceneAnchor)
         
-        var TH_buttonContainer: Entity = Entity()
-        TH_buttonContainer.name = "TH_1"
-        TH_buttonContainer.addChild(try! Entity.load(named: "TH_btn_true"))
-        //TH_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
-        TH_buttonContainer.position = SIMD3(0.3, 0, 1.5)
-        TH_buttonContainer.generateCollisionShapes(recursive: true)
-        
         var quiz_buttonContainer: Entity = Entity()
         quiz_buttonContainer.name = "quiz_1"
         quiz_buttonContainer.addChild(try! Entity.load(named: "quiz_btn_false"))
         //quiz_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
-        quiz_buttonContainer.position = SIMD3(0.3, 0, 0)
+        quiz_buttonContainer.position = SIMD3(0.3, 0, 1.5)
         quiz_buttonContainer.generateCollisionShapes(recursive: true)
         
         var video_buttonContainer: Entity = Entity()
         video_buttonContainer.name = "video_1"
         video_buttonContainer.addChild(try! Entity.load(named: "video_btn_false"))
         //video_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
-        video_buttonContainer.position = SIMD3(0.3, 0, -1.5)
+        video_buttonContainer.position = SIMD3(0.3, 0, 0)
         video_buttonContainer.generateCollisionShapes(recursive: true)
+        
+        var TH_buttonContainer: Entity = Entity()
+        TH_buttonContainer.name = "TH_1"
+        TH_buttonContainer.addChild(try! Entity.load(named: "TH_btn_false"))
+        //TH_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
+        TH_buttonContainer.position = SIMD3(0.3, 0, -1.5)
+        TH_buttonContainer.generateCollisionShapes(recursive: true)
         
         self.lvlContainer.addChild(lvl_buttonContainer)
         self.lvlContainer.addChild(panel)

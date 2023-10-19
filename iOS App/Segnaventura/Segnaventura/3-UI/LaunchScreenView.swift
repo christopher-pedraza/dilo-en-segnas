@@ -13,32 +13,33 @@ struct LaunchScreenView: View {
     @EnvironmentObject var THVM: THViewModel
     
     var body: some View {
-        ZStack {
-            
-            Image("Wallpaper")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                // Título
-                Text("Búsqueda del tesoro")
-                    .font(.system(size: 52, weight: .bold))
-                    .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
+        NavigationStack {
+            ZStack {
                 
-                Divider().frame(maxWidth: 300)
+                Image("Wallpaper")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
                 
-                // Info
-                VStack(spacing: 20) {
-                    Text("Posiciona la cámara de tu dispositivo para buscar el objeto a identificar")
-                        .fixedSize(horizontal: false, vertical: true)
+                VStack {
+                    // Título
+                    Text("Búsqueda del tesoro")
+                        .font(.system(size: 52, weight: .bold))
                         .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
-                }
-                .padding()
-                .multilineTextAlignment(.center)
-                
-                // Item list
-                
+                    
+                    Divider().frame(maxWidth: 300)
+                    
+                    // Info
+                    VStack(spacing: 20) {
+                        Text("Posiciona la cámara de tu dispositivo para buscar el objeto a identificar")
+                            .fixedSize(horizontal: false, vertical: true)
+                            .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
+                    }
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    
+                    // Item list
+                    
                     VStack {
                         // Este Text mostrará el nombre del objeto
                         Text(THVM.palabras.randomElement()?.palabra ?? "No hay objetos para buscar")
@@ -47,29 +48,29 @@ struct LaunchScreenView: View {
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding()
-               
-                
-                // Botón para empezar
-                NavigationLink(destination: ClassificationView()){
-                    Text("Escanear")
-                }
-                .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+                    
+                    // Botón para empezar
+                    NavigationLink(destination: ClassificationView()){
+                        Text("Escanear")
+                    }
+                    .buttonStyle(RoundedRectButtonStyle(buttonColor: .blue))
+                    .padding()
+                    
+                } // Fin de VStack principal
                 .padding()
-                
-            } // Fin de VStack principal
-            .padding()
-            .frame(maxWidth: 370) // Establece el ancho del fondo blanco
-            .background(Color.white) // Establece el color de fondo de la tarjeta
-            .cornerRadius(25)
-            .shadow(radius: 5)
-            .onAppear { // Llamar a getObjetoData en onAppear
-                Task {
-                    try? await THVM.getObjetoData()
+                .frame(maxWidth: 370) // Establece el ancho del fondo blanco
+                .background(Color.white) // Establece el color de fondo de la tarjeta
+                .cornerRadius(25)
+                .shadow(radius: 5)
+                .onAppear { // Llamar a getObjetoData en onAppear
+                    Task {
+                        try? await THVM.getObjetoData()
+                    }
                 }
-            }
-            .navigationBarHidden(true)
-            
-        } // Fin de ZStack
+                .navigationBarHidden(true)
+                
+            } // Fin de ZStack
+        }
     }
 }
 
