@@ -559,6 +559,12 @@ class ARExperience: ObservableObject {
         }
         return currentEntity
     }
+    
+    func resetActivities() -> Void {
+        self.isTH_Active = false
+        self.isQuiz_Active = false
+        self.isVideo_Active = false
+    }
 }
 
 /*
