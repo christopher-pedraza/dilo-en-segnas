@@ -18,7 +18,7 @@ class VideoViewModel : ObservableObject {
     // en un objeto que se pueda luego usar en la aplicacion
     func getVideosData() async throws {
         // Guarda el URL donde esta almacenado el JSON
-        guard let url = URL(string: "http://localhost:3000/videos/getData/7")
+        guard let url = URL(string: "https://api.npoint.io/d4cc6b207a4c8317be09")
                 else {
                     print("Error: Invalid URL")
                     return
