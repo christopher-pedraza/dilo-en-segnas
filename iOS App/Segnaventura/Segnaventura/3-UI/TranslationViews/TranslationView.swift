@@ -149,4 +149,3 @@ struct TranslationView_Previews: PreviewProvider {
     }
 }
 
-
