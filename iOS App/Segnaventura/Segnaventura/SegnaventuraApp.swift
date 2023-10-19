@@ -18,6 +18,7 @@ struct SegnaventuraApp: App {
     @StateObject var palabraVideosVM = PalabraVideosViewModel()
     @StateObject var THVM = THViewModel()
     @StateObject var PVM = ProgresoViewModel()
+    @StateObject var AccesoVM = AccesoViewModel()
     
     init() {
         
@@ -52,7 +53,7 @@ struct SegnaventuraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Acceso()
                 .environmentObject(VocabularioVM)
                 .environmentObject(VideoVM)
                 .environmentObject(fsm)
@@ -60,6 +61,7 @@ struct SegnaventuraApp: App {
                 .environmentObject(predictionStatus)
                 .environmentObject(THVM)
                 .environmentObject(PVM)
+                .environmentObject(AccesoVM)
         }
     }
 }
