@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import AVFoundation
 
 struct TranslationView: View {
     private(set) var labelData: Classification
@@ -16,6 +17,8 @@ struct TranslationView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var THVM: THViewModel
+    
+    let synthesizer = AVSpeechSynthesizer()
     
     
     var body: some View {
@@ -40,14 +43,25 @@ struct TranslationView: View {
                         .font(.largeTitle).bold()
                         .foregroundColor(colorScheme == .dark ? Color("Background") : Color.black)
 
-                    Button {action: do {
-                        
-                        let audioFile = labelData.audio.lowercased()
-                            soundPlayer.playAudioFile(audioFile) // put in just the file name, including the file extension. Any audio file should work.
-                        } // Button
-                            
-                    } label: {
-                        Image("audioIcon")
+//                    Button {action: do {
+//                        
+//                        let audioFile = labelData.audio.lowercased()
+//                            soundPlayer.playAudioFile(audioFile) // put in just the file name, including the file extension. Any audio file should work.
+//                        } // Button
+//                            
+//                    } label: {
+//                        Image("audioIcon")
+//                    }
+                    
+                    Button(action: {
+                        // Pronounce the word in Spanish
+                        let utterance = AVSpeechUtterance(string: labelData.label)
+                        utterance.voice = AVSpeechSynthesisVoice(language: "es-MX") // Spanish voice
+                        synthesizer.speak(utterance)
+                    }) {
+                        Image(systemName: "speaker.2.fill")
+                            .font(.title)
+                            .foregroundColor(.black)
                     }
                     
 //                    Button("Audio", action: {
