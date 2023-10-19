@@ -11,6 +11,8 @@ import Combine
 
 struct ContentView: View {
     
+    @EnvironmentObject var ARVM: ARExperience
+    
     init() {
            // Customize the TabView appearance
            let tabBarAppearance = UITabBarAppearance()
@@ -25,7 +27,21 @@ struct ContentView: View {
        }
 
     var body: some View {
+        
         // Tab view con las dos demos de las funcionalidades
+        /*
+        switch true {
+        case ARVM.isTH_Active:
+            return AnyView(LaunchScreenView())
+        case ARVM.isQuiz_Active:
+            return AnyView(PreguntasPalabrasActivity())
+        case ARVM.isVideo_Active:
+            return AnyView(VideosActivity())
+        default:
+            return AnyView(ARViewContainer().edgesIgnoringSafeArea(.all))
+        }
+        */
+        
         NavigationView {
             TabView {
                 VocabularioDataDemo()
@@ -47,7 +63,7 @@ struct ContentView: View {
                     .tabItem {
                         Label("Scanner", systemImage: "gearshape.2.fill")
                     }
-                ARViewContainer(arExperience: ARExperience())
+                Temp()
                     //.edgesIgnoringSafeArea(.all)
                     .tabItem {
                         Label("AR", systemImage: "gearshape.2.fill")
@@ -55,17 +71,7 @@ struct ContentView: View {
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
-}
-
-// Esta estructura es un adaptador que permite integrar la vista de AR en SwiftUI
-struct ARViewContainer: UIViewRepresentable {
-    let arExperience: ARExperience
-
-    func makeUIView(context: Context) -> ARView {
-        return arExperience.arView
-    }
-
-    func updateUIView(_ uiView: ARView, context: Context) {}
+         
 }
 
 struct ContentView_Previews: PreviewProvider {

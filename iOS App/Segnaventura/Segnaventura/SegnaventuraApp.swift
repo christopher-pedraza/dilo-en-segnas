@@ -18,6 +18,7 @@ struct SegnaventuraApp: App {
     @StateObject var palabraVideosVM = PalabraVideosViewModel()
     @StateObject var THVM = THViewModel()
     @StateObject var PVM = ProgresoViewModel()
+    @StateObject var  ARVM = ARExperience()
     
     init() {
         
@@ -60,6 +61,7 @@ struct SegnaventuraApp: App {
                 .environmentObject(predictionStatus)
                 .environmentObject(THVM)
                 .environmentObject(PVM)
+                .environmentObject(ARVM)
         }
     }
 }

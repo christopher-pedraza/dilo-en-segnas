@@ -11,6 +11,7 @@ import AVKit
 struct TranslationView: View {
     private(set) var labelData: Classification
     @State var soundPlayer = SoundPlayer()
+    @EnvironmentObject var ARVM: ARExperience
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {

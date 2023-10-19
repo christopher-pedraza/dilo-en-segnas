@@ -26,7 +26,7 @@ func fetch_api_data() -> [String: (Int, Bool, Any, Any)] {
     return tempData
 }
 
-class ARExperience {
+class ARExperience: ObservableObject {
     // atributos de la clase
     var arView: ARView
     //var generalSceneAnchor: AllIslands.GenIslands
@@ -48,9 +48,10 @@ class ARExperience {
     var fullData: [String: (Int, Bool, Any, Any)] = fetch_api_data()
     //var fullData: [Bool] = [true, false]
     
-    @Published var isHW1Active: Bool = false // Agrega un enlace a un estado de SwiftUI
-    @Published var isHW2Active: Bool = false // Agrega un enlace a un estado de SwiftUI
-    @Published var isHW3Active: Bool = false // Agrega un enlace a un estado de SwiftUI
+    @Published var isTH_Active: Bool = false // Agrega un enlace a un estado de SwiftUI
+    @Published var isQuiz_Active: Bool = false // Agrega un enlace a un estado de SwiftUI
+    @Published var isVideo_Active: Bool = false // Agrega un enlace a un estado de SwiftUI
+    
     @Published var isPanelVisible: Bool = false // Agrega un enlace a un estado de SwiftUI
     
     var levelsArray: [Entity] = [] // Entidades de los niveles de la isla especifica
@@ -296,11 +297,6 @@ class ARExperience {
          */
         
     }
-
-    func showHelloWorld() {
-        // Cambia el estado para mostrar HelloWorld
-        isHW1Active = true
-    }
     
     func loadScenesGestures() {
         // carga los gestos de las 2 escenas de AR
@@ -349,6 +345,30 @@ class ARExperience {
             else if tappedEntity.name == "return" {
                 arView.scene.anchors.removeAll()
                 arView.scene.addAnchor(self.generalSceneAnchor)
+            }
+            // cargar vista de SwiftUI de TH
+            else if tappedEntity.parent!.name.hasPrefix("TH_btn") {
+                // establecer las demas vistas como apagadas
+                self.isQuiz_Active = false
+                self.isVideo_Active = false
+                self.isTH_Active = true
+            } else if tappedEntity.parent!.name.hasPrefix("quiz_btn") {
+                // establecer las demas vistas como apagadas
+                self.isVideo_Active = false
+                self.isTH_Active = false
+                self.isQuiz_Active = true
+                print("================ DEBUG =================")
+                print("================ DEBUG =================")
+                print("================ DEBUG =================")
+                print("================ DEBUG =================")
+            } else if tappedEntity.parent!.name.hasPrefix("video_btn") {
+                self.isTH_Active = false
+                self.isQuiz_Active = false
+                self.isVideo_Active = true
+                print("================ DEBUG =================")
+                print("================ DEBUG =================")
+                print("================ DEBUG =================")
+                print("================ DEBUG =================")
             }
             // se toco el boton de un nivel, solo se accede al padre porque se sabe que ese es el contenedor
             else if tappedEntity.parent!.name.hasPrefix("lvl") {
