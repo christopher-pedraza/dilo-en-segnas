@@ -104,14 +104,31 @@ struct menuPage: View {
             Button("AR"){
                 MI.index = 2
             }
+            .padding()
+            .background(.blue)
+            .foregroundStyle(.white)
+            .cornerRadius(10)
+            .frame(width: 300, height: 50)
             
             Button("Vocabulario"){
                 MI.index = 3
             }
+            .padding()
+            .background(.blue)
+            .foregroundStyle(.white)
+            .cornerRadius(10)
+            .frame(width: 300, height: 50)
+
             
             Button("Perfil"){
                 MI.index = 4
             }
+            .padding()
+            .background(.blue)
+            .foregroundStyle(.white)
+            .cornerRadius(10)
+            .frame(width: 300, height: 50)
+
         }
         
     }

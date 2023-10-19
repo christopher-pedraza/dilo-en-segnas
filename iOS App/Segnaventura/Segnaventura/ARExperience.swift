@@ -214,14 +214,14 @@ class ARExperience: ObservableObject {
         
         var quiz_buttonContainer: Entity = Entity()
         quiz_buttonContainer.name = "quiz_1"
-        quiz_buttonContainer.addChild(try! Entity.load(named: "quiz_btn_true"))
+        quiz_buttonContainer.addChild(try! Entity.load(named: "quiz_btn_false"))
         //quiz_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
         quiz_buttonContainer.position = SIMD3(0.3, 0, 0)
         quiz_buttonContainer.generateCollisionShapes(recursive: true)
         
         var video_buttonContainer: Entity = Entity()
         video_buttonContainer.name = "video_1"
-        video_buttonContainer.addChild(try! Entity.load(named: "video_btn_true"))
+        video_buttonContainer.addChild(try! Entity.load(named: "video_btn_false"))
         //video_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
         video_buttonContainer.position = SIMD3(0.3, 0, -1.5)
         video_buttonContainer.generateCollisionShapes(recursive: true)
