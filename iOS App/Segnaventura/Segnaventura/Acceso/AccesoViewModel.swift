@@ -87,6 +87,10 @@ class AccesoViewModel : ObservableObject {
         }
         
     }
+    
+    func logout() {
+        self.accesoValido = false
+    }
 }
 
 struct accesoModel: Decodable {
