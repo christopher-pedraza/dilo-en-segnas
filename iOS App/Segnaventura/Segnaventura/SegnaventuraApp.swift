@@ -19,6 +19,7 @@ struct SegnaventuraApp: App {
     @StateObject var THVM = THViewModel()
     @StateObject var PVM = ProgresoViewModel()
     @StateObject var  ARVM = ARExperience()
+    @StateObject var AccesoVM = AccesoViewModel()
     
     init() {
         
@@ -53,7 +54,7 @@ struct SegnaventuraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Acceso()
                 .environmentObject(VocabularioVM)
                 .environmentObject(VideoVM)
                 .environmentObject(fsm)
@@ -62,6 +63,7 @@ struct SegnaventuraApp: App {
                 .environmentObject(THVM)
                 .environmentObject(PVM)
                 .environmentObject(ARVM)
+                .environmentObject(AccesoVM)
         }
     }
 }

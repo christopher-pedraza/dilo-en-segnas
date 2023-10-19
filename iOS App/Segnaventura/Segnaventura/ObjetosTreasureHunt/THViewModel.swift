@@ -10,14 +10,15 @@ import SwiftUI
 class THViewModel : ObservableObject {
     // Estructura para deserializar el JSON
     @Published var palabras = [THModel]()
-    var id_treasure_hunt = 1
+//    var id_treasure_hunt = 1
     
     // Funcion para leer un JSON de un API en linea y desearizarlo para poder guardarlo
     // en un objeto que se pueda luego usar en la aplicacion
     func getObjetoData() async throws {
 
         // Guarda el URL donde esta almacenado el JSON
-        guard let url = URL(string: "http://localhost:3000/treasure/getPalabrasByActividad/\(id_treasure_hunt)")
+//        guard let url = URL(string: "http://localhost:3000/treasure/getPalabrasByActividad/\(id_treasure_hunt)")
+        guard let url = URL(string: "https://api.npoint.io/ecdd9b3922e3b2928256")
                 else {
                     print("Error: Invalid URL")
                     return
@@ -36,7 +37,7 @@ class THViewModel : ObservableObject {
             // Los datos obtenidos del API se decodifican usando la estructura en el VocabularioModel
             // Para crear un objeto de VocabularioModel
             let results = try JSONDecoder().decode([THModel].self, from: data)
-            // print(results)
+            print(results)
             DispatchQueue.main.async {
                 self.palabras = results
             }

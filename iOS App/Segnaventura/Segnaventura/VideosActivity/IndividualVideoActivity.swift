@@ -6,6 +6,7 @@ struct IndividualVideoActivity: View {
     @Binding var correctAnswers: Int
     @State var questionCorrectAnswers: [Int]
     @Binding var totalCorrectAnswers: Int
+    let parteString: String
 
     func saveData() {}
 
@@ -13,6 +14,8 @@ struct IndividualVideoActivity: View {
         let customPurple = Color(red: 148 / 255, green: 0 / 255, blue: 122 / 255)
 
         VStack {
+            Spacer(minLength: 10)
+            Text(parteString).foregroundStyle(Color.white).font(.system(size: 31,weight:.bold))
             VideoView(videoID: videoID)
                 .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height * 0.3)
                 .cornerRadius(12)
@@ -20,7 +23,11 @@ struct IndividualVideoActivity: View {
 
             List {
                 ForEach(Array(preguntas.enumerated()), id: \.offset) { questionIndex, pregunta in
-                    Section(header: Text(pregunta.pregunta)) {
+                    Section(header:
+                                Text(pregunta.pregunta)
+                                    .font(.system(size: 24, weight: .bold))
+                                    .foregroundColor(.white)
+                            ){
                         ForEach(pregunta.respuestas.indices, id: \.self) { optionIndex in
                             VideoQuizButton(
                                 text: pregunta.respuestas[optionIndex].respuesta,
@@ -56,7 +63,7 @@ struct VideoQuizButton: View {
     @Binding var correctAnswers: Int
     @Binding var questionCorrectAnswers: [Int]
 
-    let buttonColors: [Color] = [Color.orange, Color.yellow, Color.red, Color.blue] // Customize as needed
+    let buttonColors: [Color] = [Color.orange, Color.yellow, Color.mint, Color.blue] // Customize as needed
 
     var body: some View {
         Button(action: {

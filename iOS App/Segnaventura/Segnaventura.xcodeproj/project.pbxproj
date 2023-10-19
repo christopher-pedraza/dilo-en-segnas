@@ -38,7 +38,7 @@
 		BC7C31FF2AC615AF007713C9 /* PalabrasVideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */; };
 		BCD6C8742ACB255E00E82C32 /* VideosActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */; };
 		BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */; };
-		FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */; };
+		FB2E95C92AE0BEB000831AB5 /* PerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E95C82AE0BEB000831AB5 /* PerfilView.swift */; };
 		FB367B9E2AAFAB0E002236BA /* VocabularioDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */; };
 		FB74CE772AA7D89600C7124B /* SegnaventuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */; };
 		FB74CE792AA7D89600C7124B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE782AA7D89600C7124B /* ContentView.swift */; };
@@ -46,6 +46,11 @@
 		FB74CE7E2AA7D89700C7124B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */; };
 		FB74CE872AA7DF3B00C7124B /* VocabularioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */; };
 		FB74CE892AA7E25400C7124B /* VocabularioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */; };
+		FB89FAEB2AE0A703007293C9 /* Acceso.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB89FAEA2AE0A703007293C9 /* Acceso.swift */; };
+		FB89FAEE2AE0A763007293C9 /* AccesoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB89FAED2AE0A763007293C9 /* AccesoViewModel.swift */; };
+		FB89FAF22AE0A7A1007293C9 /* image-centercropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB89FAF12AE0A7A1007293C9 /* image-centercropped.swift */; };
+		FB89FAF52AE0A951007293C9 /* ActionButton in Frameworks */ = {isa = PBXBuildFile; productRef = FB89FAF42AE0A951007293C9 /* ActionButton */; };
+		FB89FAF82AE0A966007293C9 /* TogglableSecureField in Frameworks */ = {isa = PBXBuildFile; productRef = FB89FAF72AE0A966007293C9 /* TogglableSecureField */; };
 		FB9EF2A32AE08437003FDBE6 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF29D2AE08437003FDBE6 /* Experience.rcproject */; };
 		FB9EF2A42AE08437003FDBE6 /* all_Islands.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF29E2AE08437003FDBE6 /* all_Islands.rcproject */; };
 		FB9EF2A52AE08437003FDBE6 /* fruit_island_RC.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = FB9EF29F2AE08437003FDBE6 /* fruit_island_RC.rcproject */; };
@@ -108,7 +113,7 @@
 		BC7C31FE2AC615AF007713C9 /* PalabrasVideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalabrasVideosViewModel.swift; sourceTree = "<group>"; };
 		BCD6C8732ACB255E00E82C32 /* VideosActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosActivity.swift; sourceTree = "<group>"; };
 		BCD6C8752ACB296000E82C32 /* IndividualQuizActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualQuizActivity.swift; sourceTree = "<group>"; };
-		FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDemo.swift; sourceTree = "<group>"; };
+		FB2E95C82AE0BEB000831AB5 /* PerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilView.swift; sourceTree = "<group>"; };
 		FB367B9D2AAFAB0E002236BA /* VocabularioDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioDataDemo.swift; sourceTree = "<group>"; };
 		FB74CE732AA7D89600C7124B /* Segnaventura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnaventura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnaventuraApp.swift; sourceTree = "<group>"; };
@@ -117,6 +122,9 @@
 		FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB74CE862AA7DF3B00C7124B /* VocabularioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioModel.swift; sourceTree = "<group>"; };
 		FB74CE882AA7E25400C7124B /* VocabularioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularioViewModel.swift; sourceTree = "<group>"; };
+		FB89FAEA2AE0A703007293C9 /* Acceso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceso.swift; sourceTree = "<group>"; };
+		FB89FAED2AE0A763007293C9 /* AccesoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccesoViewModel.swift; sourceTree = "<group>"; };
+		FB89FAF12AE0A7A1007293C9 /* image-centercropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "image-centercropped.swift"; sourceTree = "<group>"; };
 		FB9EF29D2AE08437003FDBE6 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		FB9EF29E2AE08437003FDBE6 /* all_Islands.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = all_Islands.rcproject; sourceTree = "<group>"; };
 		FB9EF29F2AE08437003FDBE6 /* fruit_island_RC.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = fruit_island_RC.rcproject; sourceTree = "<group>"; };
@@ -151,6 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB89FAF82AE0A966007293C9 /* TogglableSecureField in Frameworks */,
+				FB89FAF52AE0A951007293C9 /* ActionButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +304,14 @@
 			path = Video;
 			sourceTree = "<group>";
 		};
+		FB2E95CA2AE0BEBC00831AB5 /* Perfil */ = {
+			isa = PBXGroup;
+			children = (
+				FB2E95C82AE0BEB000831AB5 /* PerfilView.swift */,
+			);
+			path = Perfil;
+			sourceTree = "<group>";
+		};
 		FB74CE6A2AA7D89600C7124B = {
 			isa = PBXGroup;
 			children = (
@@ -328,11 +346,12 @@
 				BC8385752AC889D90061B696 /* PalabrasVideos */,
 				FB74CE762AA7D89600C7124B /* SegnaventuraApp.swift */,
 				FB74CE782AA7D89600C7124B /* ContentView.swift */,
-				FB367B9B2AAFAAB5002236BA /* FileManagerDemo.swift */,
 				BC8385782AC88A7D0061B696 /* Video */,
 				BC8385762AC889F70061B696 /* VideosActivity */,
 				0721E0952ADF82CF000D14AC /* Progreso */,
 				FB74CE7A2AA7D89700C7124B /* Assets.xcassets */,
+				FB2E95CA2AE0BEBC00831AB5 /* Perfil */,
+				FB89FAEC2AE0A74B007293C9 /* Acceso */,
 				FB74CE7C2AA7D89700C7124B /* Preview Content */,
 			);
 			path = Segnaventura;
@@ -344,6 +363,16 @@
 				FB74CE7D2AA7D89700C7124B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FB89FAEC2AE0A74B007293C9 /* Acceso */ = {
+			isa = PBXGroup;
+			children = (
+				FB89FAEA2AE0A703007293C9 /* Acceso.swift */,
+				FB89FAED2AE0A763007293C9 /* AccesoViewModel.swift */,
+				FB89FAF12AE0A7A1007293C9 /* image-centercropped.swift */,
+			);
+			path = Acceso;
 			sourceTree = "<group>";
 		};
 		FB9EF29A2AE081B6003FDBE6 /* 3D_Assets */ = {
@@ -407,6 +436,10 @@
 			dependencies = (
 			);
 			name = Segnaventura;
+			packageProductDependencies = (
+				FB89FAF42AE0A951007293C9 /* ActionButton */,
+				FB89FAF72AE0A966007293C9 /* TogglableSecureField */,
+			);
 			productName = Segnaventura;
 			productReference = FB74CE732AA7D89600C7124B /* Segnaventura.app */;
 			productType = "com.apple.product-type.application";
@@ -435,6 +468,10 @@
 				Base,
 			);
 			mainGroup = FB74CE6A2AA7D89600C7124B;
+			packageReferences = (
+				FB89FAF32AE0A951007293C9 /* XCRemoteSwiftPackageReference "action-button" */,
+				FB89FAF62AE0A966007293C9 /* XCRemoteSwiftPackageReference "TogglableSecureField" */,
+			);
 			productRefGroup = FB74CE742AA7D89600C7124B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -479,7 +516,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB367B9C2AAFAAB5002236BA /* FileManagerDemo.swift in Sources */,
 				9D0E59E62AB8C7A300EA57B9 /* IndividualVideoActivity.swift in Sources */,
 				07B7CEF52AC3325B008F97F2 /* LaunchScreenView.swift in Sources */,
 				9D82A2952AB7D6910048411D /* VideoViewModel.swift in Sources */,
@@ -494,6 +530,7 @@
 				9D82A2932AB7CE980048411D /* VideoModel.swift in Sources */,
 				FB9EF2A32AE08437003FDBE6 /* Experience.rcproject in Sources */,
 				07B7CF072AC33308008F97F2 /* SoundPlayer.swift in Sources */,
+				FB89FAEB2AE0A703007293C9 /* Acceso.swift in Sources */,
 				BCD6C8762ACB296000E82C32 /* IndividualQuizActivity.swift in Sources */,
 				07B7CEE32AC3316B008F97F2 /* PredictionStatus.swift in Sources */,
 				FB9EF2CA2AE084C4003FDBE6 /* ARExperience.swift in Sources */,
@@ -512,12 +549,15 @@
 				9D82A2992AB7DF2B0048411D /* VideoView.swift in Sources */,
 				FB9EF2A82AE08437003FDBE6 /* modified.rcproject in Sources */,
 				07B7CEEF2AC33222008F97F2 /* AudioView.swift in Sources */,
+				FB89FAF22AE0A7A1007293C9 /* image-centercropped.swift in Sources */,
 				07B7CF012AC332D4008F97F2 /* LiveCameraViewController.swift in Sources */,
 				FB9EF2A72AE08437003FDBE6 /* islands.rcproject in Sources */,
+				FB89FAEE2AE0A763007293C9 /* AccesoViewModel.swift in Sources */,
 				FBCC53B22ADD95FB001295C7 /* THViewModel.swift in Sources */,
 				FB9EF2A52AE08437003FDBE6 /* fruit_island_RC.rcproject in Sources */,
 				FB9EF2CC2AE0E19E003FDBE6 /* Temp.swift in Sources */,
 				07B7CEE72AC331BF008F97F2 /* Comidasmodel.mlmodel in Sources */,
+				FB2E95C92AE0BEB000831AB5 /* PerfilView.swift in Sources */,
 				9DE27CD12ABCD02600759E80 /* VideoActivityEnd.swift in Sources */,
 				9D82A2972AB7DEF70048411D /*  PreguntasPalabrasActivity.swift in Sources */,
 				07B7CF092AC3340C008F97F2 /* VideoViewCOML.swift in Sources */,
@@ -653,7 +693,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PMUHTYDWQ;
+
+				DEVELOPMENT_TEAM = CND48JQ7YK;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -669,7 +711,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura1;
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura11;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -685,7 +729,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Segnaventura/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PMUHTYDWQ;
+				DEVELOPMENT_TEAM = CND48JQ7YK;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Segnaventura/Info.plist;
@@ -701,7 +746,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura1;
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.itesm.Segnaventura11;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -731,6 +778,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB89FAF32AE0A951007293C9 /* XCRemoteSwiftPackageReference "action-button" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftui-library/action-button";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		FB89FAF62AE0A966007293C9 /* XCRemoteSwiftPackageReference "TogglableSecureField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/perfaram/TogglableSecureField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB89FAF42AE0A951007293C9 /* ActionButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB89FAF32AE0A951007293C9 /* XCRemoteSwiftPackageReference "action-button" */;
+			productName = ActionButton;
+		};
+		FB89FAF72AE0A966007293C9 /* TogglableSecureField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB89FAF62AE0A966007293C9 /* XCRemoteSwiftPackageReference "TogglableSecureField" */;
+			productName = TogglableSecureField;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB74CE6B2AA7D89600C7124B /* Project object */;
 }

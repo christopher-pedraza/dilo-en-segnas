@@ -28,7 +28,7 @@ struct VideosActivity: View {
                     // preguntas, una variable de estado para que cada boton actualice
                     // la cantidad de respuestas correctas, y arreglo para llevar
                     // registro de la cantidad de respuestas correctas por pregunta
-                    IndividualVideoActivity(videoID: parte.url_video, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count), totalCorrectAnswers: $totalCorrectAnswers)
+                    IndividualVideoActivity(videoID: parte.url_video, preguntas: parte.preguntas, correctAnswers: $correctAnswers, questionCorrectAnswers: Array(repeating: 0, count: parte.preguntas.count), totalCorrectAnswers: $totalCorrectAnswers,parteString: parte.nombre)
                 }
                 // Pestaña final que despliega la cantidad de respuestas correctas y
                 // deja terminar la actividad

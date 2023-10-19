@@ -39,8 +39,8 @@ struct PreguntasPalabrasActivity: View {
         
         
         
-        ZStack{
-            VStack {
+        
+            VStack(alignment: .center) {
                 if currentQuestionIndex < PalabrasVideosVM.palabras.count {
                     let currentPreguntasArr = generateQuestionsForPalabras(PalabrasVideosVM.palabras)
                     
@@ -69,8 +69,7 @@ struct PreguntasPalabrasActivity: View {
             .accentColor(customPurple)
             
             .onAppear(perform: downloadVideos)
-            .background(Color.purple)
-        }
+        
         
         
     }

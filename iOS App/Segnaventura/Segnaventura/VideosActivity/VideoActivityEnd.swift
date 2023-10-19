@@ -15,19 +15,25 @@ struct VideoActivityEnd: View {
     let maxCorrectas : Int
     
     var body: some View {
-        VStack {
-            Text("\(correctAnswers)/\(maxCorrectas)")
-                .font(.system(size: 48))
-            Button(action: {
+        ZStack{
+            Color.purple
+            VStack {
+                Text("\(correctAnswers)/\(maxCorrectas)")
+                    .font(.system(size: 70))
+                    .foregroundStyle(Color.white)
+                Button(action: {
+                    
+                }) {
+                    Text("Terminar")
+                        .font(.system(size: 24))
+                }
+                // El boton estara deshabilitado hasta que se tengan todas las respuestas
+                // correctas
+                .disabled(correctAnswers != maxCorrectas)
+                .padding(.top, 40)
                 
-            }) {
-                Text("Terminar")
-                    .font(.system(size: 24))
             }
-            // El boton estara deshabilitado hasta que se tengan todas las respuestas
-            // correctas
-            .disabled(correctAnswers != maxCorrectas)
-            .padding(.top, 40)
+            .background(Color.purple)
         }
     }
 }
