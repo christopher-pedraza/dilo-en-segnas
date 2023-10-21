@@ -15,6 +15,13 @@
 
 # Señaventuras
 
-## Índice de instrucciones para configurar el proyecto
-- [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/wiki/Configuraci%C3%B3n-Base-de-Datos)
+## Que es lo que contiene el stack
+- Aplicación de Swift en [iOS] (https://www.apple.com/mx/ios/ios-17/)
+- BD [Postgres] (https://www.postgresql.org/)
+- ORM BD con [Prisma] (https://prisma.io/)
+
+
+## Configuraciones
+- Postgres: [Configurar la base de datos](https://github.com/christopher-pedraza/segnaventuras/wiki/Configuraci%C3%B3n-Base-de-Datos)
 - [Configurar la API](https://github.com/christopher-pedraza/segnaventuras/wiki/Configuraci%C3%B3n-API)
+- Correr el app de Swift en la versión mas nueva de Xcode en algún dispositivo actualizado iPhone o iPad
