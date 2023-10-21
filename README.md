@@ -15,9 +15,9 @@
 
 # Señaventuras
 
-## Que es lo que contiene el stack
+## Lo que contiene el stack
 - Aplicación de Swift en [iOS](https://www.apple.com/mx/ios/ios-17/)
-- BD [Postgres](https://www.postgresql.org/)
+- BD de: [Postgres](https://www.postgresql.org/)
 - ORM BD con [Prisma](https://prisma.io/)
 
 
