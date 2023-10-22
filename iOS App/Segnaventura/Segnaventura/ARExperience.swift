@@ -217,21 +217,21 @@ class ARExperience: ObservableObject {
         TH_buttonContainer.name = "THContainer_1"
         TH_buttonContainer.addChild(try! Entity.load(named: "TH_btn_true"))
         //TH_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
-        TH_buttonContainer.position = SIMD3(0.3, 0, 1.5)
+        TH_buttonContainer.position = SIMD3(0.3, 0, -1.5)
         TH_buttonContainer.generateCollisionShapes(recursive: true)
-        
+
         var quiz_buttonContainer: Entity = Entity()
         quiz_buttonContainer.name = "quizContainer_1"
         quiz_buttonContainer.addChild(try! Entity.load(named: "quiz_btn_false"))
         //quiz_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
-        quiz_buttonContainer.position = SIMD3(0.3, 0, 0)
+        quiz_buttonContainer.position = SIMD3(0.3, 0, 1.5)
         quiz_buttonContainer.generateCollisionShapes(recursive: true)
         
         var video_buttonContainer: Entity = Entity()
         video_buttonContainer.name = "videoContainer_1"
         video_buttonContainer.addChild(try! Entity.load(named: "video_btn_false"))
         //video_buttonContainer.setScale(SIMD3<Float>(0.1, 0.1, 0.1), relativeTo: specificSceneAnchor)
-        video_buttonContainer.position = SIMD3(0.3, 0, -1.5)
+        video_buttonContainer.position = SIMD3(0.3, 0, 0)
         video_buttonContainer.generateCollisionShapes(recursive: true)
         
         /*
@@ -240,6 +240,7 @@ class ARExperience: ObservableObject {
          solo tiene una entidad hija sin nombre porque al actualizar el nivel solo hay que eliminar
          todas las entidades del contenedor del nivel y agregar el nivel actualizado
          */
+
         self.lvlContainer.addChild(lvl_buttonContainer)
         self.lvlContainer.addChild(panelContainer)
         panelContainer.addChild(panel)
