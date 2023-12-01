@@ -6,7 +6,7 @@
 //
 // Archivos que usan la funcion updateLevel:
 // VideosActivity/VideosActivity -> llama a VideoActivityEnd con el string "video_x"
-// PalabrasVideo/PreguntasPalabrasActivity -> llama a VideoActivityEnd con el string "quiz_x"
+// PalabrasVideo/PreguntasPalabrasActivity -> llama a VideoActivityEnd con el  string "quiz_x"
 // TH: pendiente
 
 import SwiftUI
@@ -893,6 +893,20 @@ class ARExperience: ObservableObject {
  let position = Entity.transform.matrix.columns.3
  print("X: \(position.x), Y: \(position.y), Z: \(position.z)")
  
+ Aparecer y hacer invisible una entidad:
+ if tappedEntity.name == "assemblyButton" {
+     if self.assembled ==  true {
+         self.disassembleCar()
+         self.assembled = false
+         self.assemblyButton.isEnabled = false
+     } else {
+         self.assembleCar()
+         self.assembled = true
+         self.assemblyButton.isEnabled = false
+     }
+ }
+El codigo anterior solo es un ejemplo, y si aparee y desaparece una entidad pero es brusco y de inmediato no hay ninguna animacion suave que haga una transicion entre el boton visible e invisible eso se tiene que programar manualmente
+ 
  Positions and orients the entity to look at a target from a given position (https://developer.apple.com/documentation/realitykit/hastransform/look(at:from:upvector:relativeto:)) ->
  func look(at target: SIMD3<Float>, from position: SIMD3<Float>, upVector: SIMD3<Float> = SIMD3<Float>(0, 1, 0), relativeTo referenceEntity: Entity?)
  
@@ -903,6 +917,22 @@ class ARExperience: ObservableObject {
  * https://developer.apple.com/documentation/realitykit/hashierarchy
  * https://developer.apple.com/documentation/realitykit/entity/childcollection
  * Animar un objeto (rotar) de forma infinita -> https://rozengain.medium.com/quick-realitykit-tutorial-2-looping-animations-gestures-ee518b06b7f6
+ 
+ 
+ Un problema que puedo presentar es cuando quiera aplicar diferentes transformaciones a diferentes entidades y que todas las transformaciones se ejecuten como animaciones o como sea al mismo tiempo, eso se hace facil en Reality Composer con un trigger al objeto que detona las distintas animaciones en todos los objetos diferentes pero desde Xcode es diferente porque si todos los objetos reciben diferentes animaciones o diferentes transformaciones habria que iterar y llamar cada una de forma secuencial y realmente no estan empezando al mismo tiempo como si se hace en Reality Composer, quizas todo se haga en milesimas de segundos que son imperceptibles pero si hay que ejecutar demasiadas sentencias if y procesamiento de datos pesado antes de ejecutar la animacion de cada Entidad puede haber un desfase muy notorio entre el inicio de la animacion de la primera Entidad iterada y el inicio de la animacion de la ultima Entidad iterada. A pesar de que todas las animaciones se ejecutan de forma asincrona (no hay que esperar a que termine la animacion de la Entidad previa para que comience la de la Entidad actual) las animaciones van empezando a medida que se van llamando las animaciones en la iteracion de cada Entidad y todas se estan ejecutando al mismo tiempo en el hilo principal pero eso no quita el hecho de que no estan iniciando todas al mismo tiempo. La solucion mas cercana y realista es tener un arreglo de tuplas donde cada tupla contiene la entidad afectada y la transformacion a aplicar y despues en una sentencia asincrona se itera sobre cada elemento del arreglo de tuplas aplicando directamente la transformacion a la entidad, las animaciones no son simultaneas pero es la solucion mas rapida ademas de que en el momento de que se crean las tuplas de datos se hace el procesamiento de datos pesado y al terminar el procesamiento se ejecuta la animacion de cada una de forma rapida. Ejemplo de pseudocodigo:
+ let entitiesToAnimate: [(entity: Entity, transform: Transform)] = [
+     // El procesamiento pesado de datos ocurre aqui de modo que no afecta la coordinacion
+     // de inicio de todas las animaciones o transformaciones, solo se declaran las tuplas
+     (entity1, transform1),
+     (entity2, transform2),
+     // ...
+ ]
+ DispatchQueue.main.async {
+     // Programar las animaciones para que se inicien en el siguiente ciclo del run loop
+     for (entity, transform) in entitiesToAnimate {
+         entity.move(to: transform, relativeTo: entity.parent, duration: 5, timingFunction: .easeInOut)
+     }
+ }
  */
 
 
