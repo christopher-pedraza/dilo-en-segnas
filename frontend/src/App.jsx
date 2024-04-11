@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import Root from "./components/Root/Root";
+import Root from "./pages/Parents/Root";
+import NotFound from "./pages/Rutas/NotFound";
 import CategoriesPage from "./pages/CategoriesPage";
 import WordsPage from "./pages/WordsPage";
 import QuizPage from "./pages/QuizPage";
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signin" element={<SigninPage />} />
+      <Route path="/categories" element={<CategoriesPage />} />
       {/* <Route
           path="home"
           element={
@@ -69,7 +71,8 @@ const router = createBrowserRouter(
             </ProtectedRoutes>
           }
         />
-        <Route path="*" element={<NotFound />} /> */}
+         */}
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
