@@ -109,12 +109,12 @@ async function loginWeb(req, res, next) {
         expiresIn: "1d",
       });
       console.log("Token: ", token);
-      res.status(200).json({ token: token });
+      res.status(200).json({ autenticado: true, token: token });
     } else {
-      res.status(403).json({ token: "" });
+      res.status(403).json({ autenticado: false, token: "" });
     }
   } catch (err) {
-    res.status(500).json({ token: "", message: `${err}` });
+    res.status(500).json({ autenticado: false, token: "", message: `${err}` });
   }
 }
 

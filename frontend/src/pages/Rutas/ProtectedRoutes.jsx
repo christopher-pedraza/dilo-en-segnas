@@ -9,7 +9,7 @@ import { post } from "./Database";
 
 import { Navigate } from "react-router-dom";
 
-import { getFromLocalStorage } from "../../utils/Storage";
+import { getFromSessionStorage } from "../../utils/Storage";
 
 function ProtectedRoutes({ children }) {
   // Obtener el estado de autenticación del store de redux
@@ -29,7 +29,7 @@ function ProtectedRoutes({ children }) {
     async function validateToken() {
       try {
         const data = await post("authToken", {
-          token: getFromLocalStorage("token") || "",
+          token: getFromSessionStorage("token") || "",
         });
 
         // la api regresa un booleano que indica si el token es válido o no
