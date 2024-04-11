@@ -3,9 +3,9 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setAuth, selectAuth } from "../redux/Slices/userSlice";
+import { setAuth, selectAuth } from "../../redux/Slices/userSlice.js";
 
-import { post } from "./Database";
+import { post } from "../../utils/ApiRequests.js";
 
 import { Navigate } from "react-router-dom";
 
@@ -28,13 +28,13 @@ function ProtectedRoutes({ children }) {
     // Llamada a la API para validar el token
     async function validateToken() {
       try {
-        const data = await post("authToken", {
+        const data = await post("miembros/authToken", {
           token: getFromSessionStorage("token") || "",
         });
 
         // la api regresa un booleano que indica si el token es válido o no
         // Si todavía no se recibe nada de la api, authVal se queda en false
-        setAuthVal(data || false);
+        setAuthVal(data.autenticado || false);
       } catch (error) {
         // Si hay un error, se asume que el token no es válido
         setAuthVal(false);

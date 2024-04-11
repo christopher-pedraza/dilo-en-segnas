@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../components/NavbarLogin";
-import axios from "axios";
 
 import { post } from "../utils/ApiRequests";
 import { saveToSessionStorage } from "../utils/Storage";
