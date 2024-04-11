@@ -9,7 +9,7 @@ import { post } from "./Database";
 
 import { Navigate } from "react-router-dom";
 
-import { getFromLocalStorage } from "./Storage";
+import { getFromLocalStorage } from "../../utils/Storage";
 
 function ProtectedRoutes({ children }) {
   // Obtener el estado de autenticación del store de redux

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../components/NavbarLogin";
 import axios from "axios";
+
+import { post } from "../utils/ApiRequests";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -24,8 +26,8 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
     if (usuario.length > 1 && contrasegna.length > 1) {
-      axios
-        .post("http://localhost:3000/miembros/login", loginData)
+      console.log(loginData);
+      post("miembros/loginWeb", loginData)
         .then((res) => {
           console.log(res);
           if (res.data == true) {
@@ -38,6 +40,21 @@ export default function LoginPage() {
           console.log(error);
           alert("Error al iniciar sesión");
         });
+
+      // axios
+      //   .post("http://localhost:3000/miembros/login", loginData)
+      // .then((res) => {
+      //   console.log(res);
+      //   if (res.data == true) {
+      //     navigate("/categories");
+      //   } else {
+      //     alert("Error al iniciar sesión");
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      //   alert("Error al iniciar sesión");
+      // });
     }
   };
 
