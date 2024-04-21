@@ -16,6 +16,7 @@ import VideosPage from "./pages/NewActividadVideo";
 import VideoPartssPage from "./pages/VideoPartsPage";
 import LoginPage from "./pages/LoginPage";
 import SigninPage from "./pages/SigninPage";
+import Niveles from "./pages/Niveles";
 
 function secured(Component) {
     return function WrappedComponent(props) {
@@ -47,6 +48,7 @@ const router = createBrowserRouter(
                 path="videos/:id_isla"
                 element={secured(VideoPartssPage)()}
             />
+            <Route path="niveles" element={secured(Niveles)()} />
             <Route path="*" element={<NotFound />} />
         </Route>
     )

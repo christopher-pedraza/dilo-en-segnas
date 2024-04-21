@@ -9,7 +9,7 @@ export const nivelSlice = createSlice({
     initialState,
     reducers: {
         setNivel: (state, action) => {
-            state.nivel = action.payload;
+            state.current_nivel = action.payload;
         },
     },
 });
