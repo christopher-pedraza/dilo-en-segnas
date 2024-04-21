@@ -1,7 +1,10 @@
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectNivel } from "src/redux/Slices/nivelSlice";
 
 function NewActividadVideo() {
+    const nivel = useSelector(selectNivel);
     // Get the id from the URL
     const { id_isla } = useParams();
     console.log(id_isla);
@@ -19,7 +22,7 @@ function NewActividadVideo() {
                         Agregar Parte
                     </button>
                 </div>
-                <div></div>
+                <div>{nivel}</div>
             </div>
         </div>
     );

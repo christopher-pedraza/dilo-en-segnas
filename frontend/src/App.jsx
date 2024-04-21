@@ -40,14 +40,11 @@ const router = createBrowserRouter(
                 element={secured(WordsPage)()}
             />
             <Route path="quiz" element={secured(QuizPage)()} />
-            <Route
-                path="videos/:id_actividad"
-                element={secured(VideosPage)()}
-            />
-            <Route
+            <Route path="videos" element={secured(VideosPage)()} />
+            {/* <Route
                 path="videos/:id_isla"
                 element={secured(VideoPartssPage)()}
-            />
+            /> */}
             <Route path="niveles" element={secured(Niveles)()} />
             <Route path="*" element={<NotFound />} />
         </Route>
