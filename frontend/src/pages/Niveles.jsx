@@ -12,7 +12,7 @@ function Niveles() {
     const nivel = useSelector(selectNivel);
 
     useEffect(() => {
-        get("niveles").then((data) => {
+        get("niveles/getByIsla/1").then((data) => {
             console.log(data);
             setNiveles(data);
         });

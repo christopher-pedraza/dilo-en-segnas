@@ -15,6 +15,20 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/getByIsla/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await prisma.nivel.findMany({
+            where: {
+                id_isla: parseInt(id),
+            },
+        });
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ message: `${err}` });
+    }
+});
+
 module.exports = router;
 
 /*
