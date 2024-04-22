@@ -23,7 +23,6 @@ export default function Navbar() {
                     <NavLink
                         to="/niveles"
                         className="text-white text-xl hover:text-gray-300 hover:underline"
-                        activeClassName="text-gray-300"
                     >
                         Niveles
                     </NavLink>
@@ -32,7 +31,6 @@ export default function Navbar() {
                     <NavLink
                         to="/categories"
                         className="text-white text-xl hover:text-gray-300 hover:underline"
-                        activeClassName="text-gray-300"
                     >
                         Categorías
                     </NavLink>
@@ -41,7 +39,6 @@ export default function Navbar() {
                     <NavLink
                         to="/quiz"
                         className="text-white text-xl hover:text-gray-300 hover:underline"
-                        activeClassName="text-gray-300"
                     >
                         Quiz
                     </NavLink>
@@ -50,7 +47,6 @@ export default function Navbar() {
                     <NavLink
                         to="/videos"
                         className="text-white text-xl hover:text-gray-300 hover:underline"
-                        activeClassName="text-gray-300"
                     >
                         Videos
                     </NavLink>

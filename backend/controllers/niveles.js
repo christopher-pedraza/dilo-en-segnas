@@ -33,14 +33,26 @@ module.exports = router;
 
 /*
 INSERT INTO public.isla(
-	nombre, modelo_general, modelo_especifico)
-	VALUES ('Isla', null, null);
-	
-INSERT INTO public.video_cuestionario(
-	nombre)
-	VALUES ('Video1');
+	id_isla, nombre, modelo_general, modelo_especifico)
+	VALUES (1, 'Isla', null, null);
 
 INSERT INTO public.nivel(
-	id_isla, id_video_cuestionario)
+	id_nivel, id_isla)
 	VALUES (1, 1);
+
+INSERT INTO public.nivel(
+	id_isla)
+	VALUES (1);
+	
+INSERT INTO public.nivel(
+	id_isla)
+	VALUES (1);
+
+INSERT INTO public.nivel(
+	id_isla)
+	VALUES (1);
+	
+INSERT INTO public.nivel(
+	id_isla)
+	VALUES (1);
 */

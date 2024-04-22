@@ -1,4 +1,5 @@
 const niveles = require("../controllers/niveles.js");
+const partesVideo = require("../controllers/partesVideo.js");
 
 const express = require("express");
 const router = express.Router();
@@ -14,5 +15,6 @@ router.use("/videos", require("./routes_video_cuestionario.js"));
 router.use("/progreso", require("./routes_progreso.js"));
 
 router.use("/niveles", niveles);
+router.use("/partesVideo", partesVideo);
 
 module.exports = router;

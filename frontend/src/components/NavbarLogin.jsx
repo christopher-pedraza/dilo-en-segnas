@@ -23,7 +23,6 @@ export default function NavbarLogin() {
                     <NavLink
                         to="/login"
                         className="text-white text-xl hover:text-gray-300 hover:underline"
-                        activeClassName="text-gray-300"
                     >
                         Iniciar Sesión
                     </NavLink>
@@ -32,7 +31,6 @@ export default function NavbarLogin() {
                     <NavLink
                         to="/signin"
                         className="text-white text-xl hover:text-gray-300 hover:underline"
-                        activeClassName="text-gray-300"
                     >
                         Registrarse
                     </NavLink>
