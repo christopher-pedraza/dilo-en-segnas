@@ -5,6 +5,18 @@ import { selectNivel } from "src/redux/Slices/nivelSlice";
 import { useEffect, useState } from "react";
 import { get } from "src/utils/ApiRequests";
 
+// Fontawesome icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// Trash icon
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+// Pencil icon
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+// Plus icon
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+// Nextui components
+import { Button, Input, Textarea } from "@nextui-org/react";
+
 function NewActividadVideo() {
     const nivel = useSelector(selectNivel);
     const [partes, setPartes] = useState([]);
@@ -21,12 +33,12 @@ function NewActividadVideo() {
             <div className="max-w-3xl m-auto p-8">
                 <div className="flex items-center justify-between">
                     <h2 className="text-3xl">Actividad de Videos</h2>
-                    <button
-                        className="p-2 text-white rounded-md"
-                        style={{ background: "#8712E0" }}
+                    <Button
+                        startContent={<FontAwesomeIcon icon={faPlus} />}
+                        color="success"
                     >
-                        Agregar Parte
-                    </button>
+                        Parte
+                    </Button>
                 </div>
                 <div>
                     {partes.map((parte) => (
@@ -39,18 +51,12 @@ function NewActividadVideo() {
                                 <p>{parte.url_video}</p>
                             </div>
                             <div>
-                                <button
-                                    className="p-2 text-white rounded-md"
-                                    style={{ background: "#8712E0" }}
-                                >
-                                    Editar
-                                </button>
-                                <button
-                                    className="p-2 text-white rounded-md"
-                                    style={{ background: "#8712E0" }}
-                                >
-                                    Eliminar
-                                </button>
+                                <Button isIconOnly={true} color="info">
+                                    <FontAwesomeIcon icon={faPencilAlt} />
+                                </Button>
+                                <Button isIconOnly={true} color="danger">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Button>
                             </div>
                         </div>
                     ))}
