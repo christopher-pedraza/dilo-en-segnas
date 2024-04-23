@@ -15,7 +15,7 @@ import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // Nextui components
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 function NewActividadVideo() {
     const nivel = useSelector(selectNivel);
