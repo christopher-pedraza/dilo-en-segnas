@@ -29,6 +29,20 @@ router.get("/getByIsla/:id", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    try {
+        const { id_isla } = req.body;
+        const resultado = await prisma.nivel.create({
+            data: {
+                id_isla: id_isla,
+            },
+        });
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ message: `${err}` });
+    }
+});
+
 module.exports = router;
 
 /*

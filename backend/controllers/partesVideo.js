@@ -29,6 +29,23 @@ router.get("/getByNivel/:id", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    try {
+        const { id_nivel, url_video, indice, nombre } = req.body;
+        const resultado = await prisma.parte_video_cuestionario.create({
+            data: {
+                id_nivel: id_nivel,
+                url_video: url_video,
+                indice: indice,
+                nombre: nombre,
+            },
+        });
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ message: `${err}` });
+    }
+});
+
 module.exports = router;
 
 /*
