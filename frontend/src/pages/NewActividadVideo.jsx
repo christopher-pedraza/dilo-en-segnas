@@ -23,9 +23,18 @@ function NewActividadVideo() {
 
     useEffect(() => {
         get(`partesVideo/getByNivel/${nivel}`).then((data) => {
+            console.log(data);
             setPartes(data);
         });
     }, [nivel]);
+
+    const handleEdit = (id_parte) => {
+        console.log("Editando: ", id_parte);
+    };
+
+    const handleDelete = (id_parte) => {
+        console.log("Eliminando: ", id_parte);
+    };
 
     return (
         <div>
@@ -43,7 +52,7 @@ function NewActividadVideo() {
                 <div>
                     {partes.map((parte) => (
                         <div
-                            key={parte.id_pvc}
+                            key={parte.id_parte_video_cuestionario}
                             className="flex items-center justify-between p-4 my-4 bg-white rounded-md shadow-md"
                         >
                             <div>
@@ -51,10 +60,26 @@ function NewActividadVideo() {
                                 <p>{parte.url_video}</p>
                             </div>
                             <div>
-                                <Button isIconOnly={true} color="info">
+                                <Button
+                                    isIconOnly={true}
+                                    color="info"
+                                    onPress={() => {
+                                        handleEdit(
+                                            parte.id_parte_video_cuestionario
+                                        );
+                                    }}
+                                >
                                     <FontAwesomeIcon icon={faPencilAlt} />
                                 </Button>
-                                <Button isIconOnly={true} color="danger">
+                                <Button
+                                    isIconOnly={true}
+                                    color="danger"
+                                    onPress={() => {
+                                        handleDelete(
+                                            parte.id_parte_video_cuestionario
+                                        );
+                                    }}
+                                >
                                     <FontAwesomeIcon icon={faTrash} />
                                 </Button>
                             </div>
