@@ -10,10 +10,10 @@ function NewActividadVideo() {
     const [partes, setPartes] = useState([]);
 
     useEffect(() => {
-        get("partesVideo/getByNivel/1").then((data) => {
+        get(`partesVideo/getByNivel/${nivel}`).then((data) => {
             setPartes(data);
         });
-    }, []);
+    }, [nivel]);
 
     return (
         <div>
