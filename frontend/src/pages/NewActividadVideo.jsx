@@ -1,7 +1,10 @@
-import { useSelector } from "react-redux";
-import { selectNivel } from "src/redux/Slices/nivelSlice";
 import { useEffect, useState } from "react";
+
+// Llamadas a la API
 import { get, post, del, put } from "src/utils/ApiRequests";
+
+// Enrutamiento
+import { useNavigate, useParams } from "react-router-dom";
 
 // Components
 import Navbar from "../components/Navbar";
@@ -34,7 +37,6 @@ import {
 } from "@nextui-org/react";
 
 function NewActividadVideo() {
-    const nivel = useSelector(selectNivel);
     const [partes, setPartes] = useState([]);
     // Variable para que se actualice la lista de partes cuando se elimina una
     const [refresh, setRefresh] = useState(false);
@@ -51,15 +53,20 @@ function NewActividadVideo() {
     const createDisclosure = useDisclosure();
     const videoDisclosure = useDisclosure();
 
+    const { id_nivel } = useParams();
+
+    const navigate = useNavigate();
+
     useEffect(() => {
-        get(`partesVideo/getByNivel/${nivel}`).then((data) => {
+        get(`partesVideo/getByNivel/${id_nivel}`).then((data) => {
             // Ordenar las partes por el índice
             data.sort((a, b) => a.indice - b.indice);
             setPartes(data);
         });
-    }, [nivel, refresh]);
+    }, [id_nivel, refresh]);
 
     const handleEdit = (id_parte) => {
+        navigate(`/videos/${id_nivel}/parte/${id_parte}`);
         console.log("Editando: ", id_parte);
     };
 
@@ -71,7 +78,7 @@ function NewActividadVideo() {
     const handleMoveUp = (id_parte) => {
         put(`partesVideo/cambiarIndice/${id_parte}`, {
             direccion: "up",
-            id_nivel: nivel,
+            id_nivel: id_nivel,
         }).then(() => {
             setRefresh((prev) => !prev);
         });
@@ -80,7 +87,7 @@ function NewActividadVideo() {
     const handleMoveDown = (id_parte) => {
         put(`partesVideo/cambiarIndice/${id_parte}`, {
             direccion: "down",
-            id_nivel: nivel,
+            id_nivel: id_nivel,
         }).then(() => {
             setRefresh((prev) => !prev);
         });
@@ -102,7 +109,7 @@ function NewActividadVideo() {
 
     const confirmCreate = () => {
         post("partesVideo", {
-            id_nivel: nivel,
+            id_nivel: id_nivel,
             url_video: urlVideoNuevo,
             indice: 0,
             nombre: nombreNuevo,

@@ -12,8 +12,8 @@ import ProtectedRoutes from "./pages/Rutas/ProtectedRoutes";
 import CategoriesPage from "./pages/CategoriesPage";
 import WordsPage from "./pages/WordsPage";
 import QuizPage from "./pages/QuizPage";
-import VideosPage from "./pages/NewActividadVideo";
-import VideoPartssPage from "./pages/VideoPartsPage";
+import ActividadVideo from "./pages/NewActividadVideo";
+import ParteVideo from "./pages/ParteVideo";
 import LoginPage from "./pages/LoginPage";
 import SigninPage from "./pages/SigninPage";
 import Niveles from "./pages/Niveles";
@@ -40,7 +40,14 @@ const router = createBrowserRouter(
                 element={secured(WordsPage)()}
             />
             <Route path="quiz" element={secured(QuizPage)()} />
-            <Route path="videos" element={secured(VideosPage)()} />
+            <Route
+                path="videos/:id_nivel"
+                element={secured(ActividadVideo)()}
+            />
+            <Route
+                path="videos/:id_nivel/parte/:id_parte"
+                element={secured(ParteVideo)()}
+            />
             {/* <Route
                 path="videos/:id_isla"
                 element={secured(VideoPartssPage)()}

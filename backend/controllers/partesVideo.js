@@ -29,6 +29,20 @@ router.get("/getByNivel/:id", async (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await prisma.parte_video_cuestionario.findUnique({
+            where: {
+                id_parte_video_cuestionario: parseInt(id),
+            },
+        });
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ message: `${err}` });
+    }
+});
+
 function extractVideoID(url) {
     const regex =
         /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
@@ -198,9 +212,6 @@ router.put("/cambiarIndice/:id", async (req, res) => {
             },
             data: { indice: swapPart.indice },
         });
-
-        console.log("swapped: " + part.nombre + " with " + swapPart.nombre);
-
         res.json({ message: "Indices updated successfully" });
     } catch (err) {
         res.status(500).json({ message: `${err}` });
