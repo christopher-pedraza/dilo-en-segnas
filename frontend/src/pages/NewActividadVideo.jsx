@@ -14,6 +14,10 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 // Plus icon
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+// Up icon
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+// Down icon
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 // Nextui components
 import {
@@ -44,6 +48,8 @@ function NewActividadVideo() {
 
     useEffect(() => {
         get(`partesVideo/getByNivel/${nivel}`).then((data) => {
+            // Ordenar las partes por el índice
+            data.sort((a, b) => a.indice - b.indice);
             setPartes(data);
         });
     }, [nivel, refresh]);

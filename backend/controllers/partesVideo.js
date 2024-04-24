@@ -31,7 +31,26 @@ router.get("/getByNivel/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const { id_nivel, url_video, indice, nombre } = req.body;
+        const { id_nivel, url_video, nombre } = req.body;
+
+        // Obtener el índice más alto para el id_nivel dado
+        const maxIndiceRecord = await prisma.parte_video_cuestionario.findFirst(
+            {
+                where: {
+                    id_nivel: id_nivel,
+                },
+                // Al ordenarlos de manera descendente, el primer registro será el que tenga el índice más alto
+                orderBy: {
+                    indice: "desc",
+                },
+            }
+        );
+
+        // Si no existe ningun registro, el índice será 1, de lo contrario, se
+        // incrementa en 1 el índice del registro con el índice más alto
+        // encontrado
+        const indice = maxIndiceRecord ? maxIndiceRecord.indice + 1 : 1;
+
         const resultado = await prisma.parte_video_cuestionario.create({
             data: {
                 id_nivel: id_nivel,
