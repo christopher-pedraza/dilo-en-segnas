@@ -24,6 +24,7 @@ import {
     ModalBody,
     ModalFooter,
     useDisclosure,
+    Input,
 } from "@nextui-org/react";
 
 function NewActividadVideo() {
@@ -33,10 +34,13 @@ function NewActividadVideo() {
     const [refresh, setRefresh] = useState(false);
     // ID de la parte seleccionada que se quiere eliminar
     const [idToDelete, setIdToDelete] = useState(null);
+    // Datos de la parte que se quiere agregar
+    const [nombreNuevo, setNombreNuevo] = useState("");
+    const [urlVideoNuevo, setUrlVideoNuevo] = useState("");
 
     // Disclosures para el modal
     const deleteDisclosure = useDisclosure();
-    const editDisclosure = useDisclosure();
+    const createDisclosure = useDisclosure();
 
     useEffect(() => {
         get(`partesVideo/getByNivel/${nivel}`).then((data) => {
@@ -64,16 +68,22 @@ function NewActividadVideo() {
     };
 
     const handleCreate = () => {
-        console.log("Creando");
+        createDisclosure.onOpen();
+    };
+
+    const confirmCreate = () => {
         post("partesVideo", {
             id_nivel: nivel,
-            url_video: "url",
+            url_video: urlVideoNuevo,
             indice: 0,
-            nombre: "nombre",
+            nombre: nombreNuevo,
         }).then((data) => {
             console.log(data);
             setPartes([...partes, data]);
         });
+        createDisclosure.onClose();
+        setNombreNuevo("");
+        setUrlVideoNuevo("");
     };
 
     return (
@@ -128,6 +138,53 @@ function NewActividadVideo() {
                     ))}
                 </div>
             </div>
+            <Modal
+                isOpen={createDisclosure.isOpen}
+                onOpenChange={createDisclosure.onOpenChange}
+                backdrop="blur"
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">
+                                Agregar nueva parte
+                            </ModalHeader>
+                            <ModalBody>
+                                <Input
+                                    autoFocus
+                                    label="Nombre"
+                                    variant="bordered"
+                                    value={nombreNuevo}
+                                    onChange={(e) => {
+                                        setNombreNuevo(e.target.value);
+                                    }}
+                                />
+                                <Input
+                                    label="URL del video"
+                                    variant="bordered"
+                                    value={urlVideoNuevo}
+                                    onChange={(e) => {
+                                        setUrlVideoNuevo(e.target.value);
+                                    }}
+                                />
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    color="danger"
+                                    variant="light"
+                                    onPress={onClose}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Button color="success" onPress={confirmCreate}>
+                                    Agregar
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
+
             <Modal
                 isOpen={deleteDisclosure.isOpen}
                 onOpenChange={deleteDisclosure.onOpenChange}
