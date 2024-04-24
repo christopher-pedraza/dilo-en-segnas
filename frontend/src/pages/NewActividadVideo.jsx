@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectNivel } from "src/redux/Slices/nivelSlice";
 import { useEffect, useState } from "react";
-import { get, post, del } from "src/utils/ApiRequests";
+import { get, post, del, put } from "src/utils/ApiRequests";
 
 // Components
 import Navbar from "../components/Navbar";
@@ -63,6 +63,22 @@ function NewActividadVideo() {
         deleteDisclosure.onOpen();
     };
 
+    const handleMoveUp = (id_parte) => {
+        put(`partesVideo/cambiarIndice/${id_parte}`, { direccion: "up" }).then(
+            () => {
+                setRefresh((prev) => !prev);
+            }
+        );
+    };
+
+    const handleMoveDown = (id_parte) => {
+        put(`partesVideo/cambiarIndice/${id_parte}`, {
+            direccion: "down",
+        }).then(() => {
+            setRefresh((prev) => !prev);
+        });
+    };
+
     const confirmDelete = () => {
         if (idToDelete !== null) {
             del(`partesVideo/${idToDelete}`).then(() => {
@@ -107,7 +123,7 @@ function NewActividadVideo() {
                     </Button>
                 </div>
                 <div>
-                    {partes.map((parte) => (
+                    {partes.map((parte, index) => (
                         <div
                             key={parte.id_parte_video_cuestionario}
                             className="flex items-center justify-between p-4 my-4 bg-white rounded-md shadow-md"
@@ -121,12 +137,14 @@ function NewActividadVideo() {
                                 <div className="flex items-center">
                                     <Button
                                         isIconOnly={true}
-                                        color="info"
+                                        color="secondary"
+                                        variant="light"
                                         onPress={() => {
                                             handleEdit(
                                                 parte.id_parte_video_cuestionario
                                             );
                                         }}
+                                        className="mr-4"
                                     >
                                         <FontAwesomeIcon icon={faPencilAlt} />
                                     </Button>
@@ -138,26 +156,33 @@ function NewActividadVideo() {
                                                 parte.id_parte_video_cuestionario
                                             );
                                         }}
+                                        className="mr-4"
                                     >
                                         <FontAwesomeIcon icon={faTrash} />
                                     </Button>
                                 </div>
-                                <div className="flex flex-col ml-4">
+                                <div className="flex flex-col">
                                     <Button
                                         isIconOnly={true}
-                                        color="info"
+                                        variant="light"
                                         onPress={() => {
-                                            // handleMoveUp(parte.id_parte_video_cuestionario);
+                                            handleMoveUp(
+                                                parte.id_parte_video_cuestionario
+                                            );
                                         }}
+                                        isDisabled={index === 0}
                                     >
                                         <FontAwesomeIcon icon={faArrowUp} />
                                     </Button>
                                     <Button
                                         isIconOnly={true}
-                                        color="info"
+                                        variant="light"
                                         onPress={() => {
-                                            // handleMoveDown(parte.id_parte_video_cuestionario);
+                                            handleMoveDown(
+                                                parte.id_parte_video_cuestionario
+                                            );
                                         }}
+                                        isDisabled={index === partes.length - 1}
                                     >
                                         <FontAwesomeIcon icon={faArrowDown} />
                                     </Button>

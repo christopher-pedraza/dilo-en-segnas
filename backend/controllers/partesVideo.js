@@ -119,6 +119,58 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+router.put("/cambiarIndice/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { direccion } = req.body;
+
+        // Se obtiene el registro que se va a cambiar de posicion o indice
+        const part = await prisma.parte_video_cuestionario.findUnique({
+            where: { id_parte_video_cuestionario: Number(id) },
+        });
+        if (!part) {
+            return res.status(404).json({ message: "Part not found" });
+        }
+
+        // Obtenemos el registro con el que se va a intercambiar de posicion.
+        // Este puede ser el registro con un indice con 1 mas o 1 menos que el
+        // indice del registro que se va a cambiar de posicion. Esto dependera
+        // de la direccion en la que se quiere cambiar el indice
+        const swapPart = await prisma.parte_video_cuestionario.findFirst({
+            where: {
+                indice: direccion === "up" ? part.indice - 1 : part.indice + 1,
+            },
+        });
+        if (!swapPart) {
+            return res.status(404).json({ message: "Swap part not found" });
+        }
+
+        // Intercambiamos los indices de los registros
+        const temp = part.indice;
+        part.indice = swapPart.indice;
+        swapPart.indice = temp;
+
+        // Se actualizan los registros con los nuevos indices
+        await prisma.parte_video_cuestionario.update({
+            where: {
+                id_parte_video_cuestionario: part.id_parte_video_cuestionario,
+            },
+            data: { indice: part.indice },
+        });
+        await prisma.parte_video_cuestionario.update({
+            where: {
+                id_parte_video_cuestionario:
+                    swapPart.id_parte_video_cuestionario,
+            },
+            data: { indice: swapPart.indice },
+        });
+
+        res.json({ message: "Indices updated successfully" });
+    } catch (err) {
+        res.status(500).json({ message: `${err}` });
+    }
+});
+
 module.exports = router;
 
 /*
