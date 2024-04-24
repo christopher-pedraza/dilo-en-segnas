@@ -115,6 +115,7 @@ function NewActividadVideo() {
                             <div>
                                 <h3 className="text-xl">{parte.nombre}</h3>
                                 <p>{parte.url_video}</p>
+                                <p>Índice: {parte.indice}</p>
                             </div>
                             <div>
                                 <Button

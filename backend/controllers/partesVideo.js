@@ -68,11 +68,51 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         const { id } = req.params;
+
+        // Obtener el registro que se va a eliminar para obtener su índice. Esto
+        // servira para poder luego actualizar todos los registros con un índice
+        // mayor al índice del registro eliminado
+        const recordToDelete = await prisma.parte_video_cuestionario.findUnique(
+            {
+                where: {
+                    id_parte_video_cuestionario: parseInt(id),
+                },
+            }
+        );
+
+        // Elimnar el registro
         const resultado = await prisma.parte_video_cuestionario.delete({
             where: {
                 id_parte_video_cuestionario: parseInt(id),
             },
         });
+
+        // Se obtienen todos los registros con un índice mayor al índice del
+        // registro eliminado para poder actualizarlos
+        const recordsToUpdate = await prisma.parte_video_cuestionario.findMany({
+            where: {
+                indice: {
+                    // gt = greater than
+                    gt: recordToDelete.indice,
+                },
+            },
+        });
+
+        // Actualizar los registros con un índice mayor al índice del registro
+        // reduciendo en 1 su índice
+        const updatePromises = recordsToUpdate.map((record) =>
+            prisma.parte_video_cuestionario.update({
+                where: {
+                    id_parte_video_cuestionario:
+                        record.id_parte_video_cuestionario,
+                },
+                data: {
+                    indice: record.indice - 1,
+                },
+            })
+        );
+        await Promise.all(updatePromises);
+
         res.status(200).json(resultado);
     } catch (err) {
         res.status(500).json({ message: `${err}` });
