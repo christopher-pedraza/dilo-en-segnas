@@ -64,16 +64,18 @@ function NewActividadVideo() {
     };
 
     const handleMoveUp = (id_parte) => {
-        put(`partesVideo/cambiarIndice/${id_parte}`, { direccion: "up" }).then(
-            () => {
-                setRefresh((prev) => !prev);
-            }
-        );
+        put(`partesVideo/cambiarIndice/${id_parte}`, {
+            direccion: "up",
+            id_nivel: nivel,
+        }).then(() => {
+            setRefresh((prev) => !prev);
+        });
     };
 
     const handleMoveDown = (id_parte) => {
         put(`partesVideo/cambiarIndice/${id_parte}`, {
             direccion: "down",
+            id_nivel: nivel,
         }).then(() => {
             setRefresh((prev) => !prev);
         });

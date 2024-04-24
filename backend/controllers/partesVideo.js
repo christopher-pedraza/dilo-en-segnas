@@ -148,7 +148,7 @@ router.delete("/:id", async (req, res) => {
 router.put("/cambiarIndice/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const { direccion } = req.body;
+        const { direccion, id_nivel } = req.body;
 
         // Se obtiene el registro que se va a cambiar de posicion o indice
         const part = await prisma.parte_video_cuestionario.findUnique({
@@ -164,7 +164,15 @@ router.put("/cambiarIndice/:id", async (req, res) => {
         // de la direccion en la que se quiere cambiar el indice
         const swapPart = await prisma.parte_video_cuestionario.findFirst({
             where: {
-                indice: direccion === "up" ? part.indice - 1 : part.indice + 1,
+                AND: [
+                    {
+                        indice:
+                            direccion === "up"
+                                ? part.indice - 1
+                                : part.indice + 1,
+                    },
+                    { id_nivel: id_nivel },
+                ],
             },
         });
         if (!swapPart) {
@@ -190,6 +198,8 @@ router.put("/cambiarIndice/:id", async (req, res) => {
             },
             data: { indice: swapPart.indice },
         });
+
+        console.log("swapped: " + part.nombre + " with " + swapPart.nombre);
 
         res.json({ message: "Indices updated successfully" });
     } catch (err) {
