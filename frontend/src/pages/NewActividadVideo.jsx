@@ -117,29 +117,51 @@ function NewActividadVideo() {
                                 <p>{parte.url_video}</p>
                                 <p>Índice: {parte.indice}</p>
                             </div>
-                            <div>
-                                <Button
-                                    isIconOnly={true}
-                                    color="info"
-                                    onPress={() => {
-                                        handleEdit(
-                                            parte.id_parte_video_cuestionario
-                                        );
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faPencilAlt} />
-                                </Button>
-                                <Button
-                                    isIconOnly={true}
-                                    color="danger"
-                                    onPress={() => {
-                                        handleDelete(
-                                            parte.id_parte_video_cuestionario
-                                        );
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </Button>
+                            <div className="flex justify-end">
+                                <div className="flex items-center">
+                                    <Button
+                                        isIconOnly={true}
+                                        color="info"
+                                        onPress={() => {
+                                            handleEdit(
+                                                parte.id_parte_video_cuestionario
+                                            );
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faPencilAlt} />
+                                    </Button>
+                                    <Button
+                                        isIconOnly={true}
+                                        color="danger"
+                                        onPress={() => {
+                                            handleDelete(
+                                                parte.id_parte_video_cuestionario
+                                            );
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </Button>
+                                </div>
+                                <div className="flex flex-col ml-4">
+                                    <Button
+                                        isIconOnly={true}
+                                        color="info"
+                                        onPress={() => {
+                                            // handleMoveUp(parte.id_parte_video_cuestionario);
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faArrowUp} />
+                                    </Button>
+                                    <Button
+                                        isIconOnly={true}
+                                        color="info"
+                                        onPress={() => {
+                                            // handleMoveDown(parte.id_parte_video_cuestionario);
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faArrowDown} />
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     ))}
