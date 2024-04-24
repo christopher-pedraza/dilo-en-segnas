@@ -18,6 +18,8 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 // Down icon
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+// Youtube icon
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 // Nextui components
 import {
@@ -41,10 +43,13 @@ function NewActividadVideo() {
     // Datos de la parte que se quiere agregar
     const [nombreNuevo, setNombreNuevo] = useState("");
     const [urlVideoNuevo, setUrlVideoNuevo] = useState("");
+    // ID del video a desplegar
+    const [idVideo, setIdVideo] = useState(null);
 
     // Disclosures para el modal
     const deleteDisclosure = useDisclosure();
     const createDisclosure = useDisclosure();
+    const videoDisclosure = useDisclosure();
 
     useEffect(() => {
         get(`partesVideo/getByNivel/${nivel}`).then((data) => {
@@ -110,6 +115,11 @@ function NewActividadVideo() {
         setUrlVideoNuevo("");
     };
 
+    const handleViewVideo = (id_video) => {
+        setIdVideo(id_video);
+        videoDisclosure.onOpen();
+    };
+
     return (
         <div>
             <Navbar />
@@ -137,6 +147,17 @@ function NewActividadVideo() {
                             </div>
                             <div className="flex justify-end">
                                 <div className="flex items-center">
+                                    <Button
+                                        isIconOnly={true}
+                                        color="primary"
+                                        variant="light"
+                                        onPress={() => {
+                                            handleViewVideo(parte.url_video);
+                                        }}
+                                        className="mr-4"
+                                    >
+                                        <FontAwesomeIcon icon={faYoutube} />
+                                    </Button>
                                     <Button
                                         isIconOnly={true}
                                         color="secondary"
@@ -272,6 +293,23 @@ function NewActividadVideo() {
                             </ModalFooter>
                         </>
                     )}
+                </ModalContent>
+            </Modal>
+
+            <Modal
+                isOpen={videoDisclosure.isOpen}
+                onOpenChange={videoDisclosure.onOpenChange}
+                backdrop="opaque"
+                size="3xl"
+            >
+                <ModalContent>
+                    <iframe
+                        width={"100%"}
+                        height={"432px"}
+                        src={`https://www.youtube.com/embed/${idVideo}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                    />
                 </ModalContent>
             </Modal>
         </div>
