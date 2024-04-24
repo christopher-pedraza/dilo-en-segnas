@@ -1,9 +1,10 @@
-import Navbar from "../components/Navbar";
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectNivel } from "src/redux/Slices/nivelSlice";
 import { useEffect, useState } from "react";
-import { get } from "src/utils/ApiRequests";
+import { get, post, del } from "src/utils/ApiRequests";
+
+// Components
+import Navbar from "../components/Navbar";
 
 // Fontawesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,25 +16,64 @@ import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // Nextui components
-import { Button } from "@nextui-org/react";
+import {
+    Button,
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    useDisclosure,
+} from "@nextui-org/react";
 
 function NewActividadVideo() {
     const nivel = useSelector(selectNivel);
     const [partes, setPartes] = useState([]);
+    // Variable para que se actualice la lista de partes cuando se elimina una
+    const [refresh, setRefresh] = useState(false);
+    // ID de la parte seleccionada que se quiere eliminar
+    const [idToDelete, setIdToDelete] = useState(null);
+
+    // Disclosures para el modal
+    const deleteDisclosure = useDisclosure();
+    const editDisclosure = useDisclosure();
 
     useEffect(() => {
         get(`partesVideo/getByNivel/${nivel}`).then((data) => {
-            console.log(data);
             setPartes(data);
         });
-    }, [nivel]);
+    }, [nivel, refresh]);
 
     const handleEdit = (id_parte) => {
         console.log("Editando: ", id_parte);
     };
 
     const handleDelete = (id_parte) => {
-        console.log("Eliminando: ", id_parte);
+        setIdToDelete(id_parte);
+        deleteDisclosure.onOpen();
+    };
+
+    const confirmDelete = () => {
+        if (idToDelete !== null) {
+            del(`partesVideo/${idToDelete}`).then(() => {
+                setRefresh((prev) => !prev);
+            });
+        }
+        deleteDisclosure.onClose(); // Close the delete confirmation modal
+        setIdToDelete(null); // Reset the id to delete
+    };
+
+    const handleCreate = () => {
+        console.log("Creando");
+        post("partesVideo", {
+            id_nivel: nivel,
+            url_video: "url",
+            indice: 0,
+            nombre: "nombre",
+        }).then((data) => {
+            console.log(data);
+            setPartes([...partes, data]);
+        });
     };
 
     return (
@@ -45,6 +85,7 @@ function NewActividadVideo() {
                     <Button
                         startContent={<FontAwesomeIcon icon={faPlus} />}
                         color="success"
+                        onPress={handleCreate}
                     >
                         Parte
                     </Button>
@@ -87,6 +128,39 @@ function NewActividadVideo() {
                     ))}
                 </div>
             </div>
+            <Modal
+                isOpen={deleteDisclosure.isOpen}
+                onOpenChange={deleteDisclosure.onOpenChange}
+                backdrop="blur"
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">
+                                Eliminar parte
+                            </ModalHeader>
+                            <ModalBody>
+                                <p>
+                                    ¿Estás seguro que deseas eliminar esta parte
+                                    de la actividad?
+                                </p>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    color="primary"
+                                    variant="light"
+                                    onPress={onClose}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Button color="danger" onPress={confirmDelete}>
+                                    Eliminar
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </div>
     );
 }

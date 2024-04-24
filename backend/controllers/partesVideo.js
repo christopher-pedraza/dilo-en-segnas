@@ -46,6 +46,20 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.delete("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await prisma.parte_video_cuestionario.delete({
+            where: {
+                id_parte_video_cuestionario: parseInt(id),
+            },
+        });
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ message: `${err}` });
+    }
+});
+
 module.exports = router;
 
 /*

@@ -73,29 +73,34 @@ export default MyComponent;
 const defaultURL = "http://localhost:3000/";
 
 async function apiRequest(
-  method,
-  url,
-  data = null,
-  successActions = () => {},
-  errorActions = () => {}
+    method,
+    url,
+    data = null,
+    successActions = () => {},
+    errorActions = () => {}
 ) {
-  try {
-    const response = await axios({
-      method,
-      url: defaultURL + url,
-      data,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "*/*",
-      },
-    });
+    try {
+        const options = {
+            method,
+            url: defaultURL + url,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "*/*",
+            },
+        };
 
-    successActions();
-    return response.data;
-  } catch (error) {
-    errorActions();
-    throw error;
-  }
+        if (data !== null) {
+            options.data = data;
+        }
+
+        const response = await axios(options);
+
+        successActions();
+        return response.data;
+    } catch (error) {
+        errorActions();
+        throw error;
+    }
 }
 
 /**
@@ -107,7 +112,7 @@ async function apiRequest(
  * @returns la respuesta de la petición
  */
 export function get(url, successActions = () => {}, errorActions = () => {}) {
-  return apiRequest("GET", url, null, successActions, errorActions);
+    return apiRequest("GET", url, null, successActions, errorActions);
 }
 
 /**
@@ -119,12 +124,12 @@ export function get(url, successActions = () => {}, errorActions = () => {}) {
  * @returns la respuesta de la petición
  */
 export function post(
-  url,
-  data,
-  successActions = () => {},
-  errorActions = () => {}
+    url,
+    data,
+    successActions = () => {},
+    errorActions = () => {}
 ) {
-  return apiRequest("POST", url, data, successActions, errorActions);
+    return apiRequest("POST", url, data, successActions, errorActions);
 }
 
 /**
@@ -136,12 +141,12 @@ export function post(
  * @returns la respuesta de la petición
  */
 export function put(
-  url,
-  data,
-  successActions = () => {},
-  errorActions = () => {}
+    url,
+    data,
+    successActions = () => {},
+    errorActions = () => {}
 ) {
-  return apiRequest("PUT", url, data, successActions, errorActions);
+    return apiRequest("PUT", url, data, successActions, errorActions);
 }
 
 /**
@@ -152,5 +157,5 @@ export function put(
  * @returns la respuesta de la petición
  */
 export function del(url, successActions = () => {}, errorActions = () => {}) {
-  return apiRequest("DELETE", url, null, successActions, errorActions);
+    return apiRequest("DELETE", url, null, successActions, errorActions);
 }
