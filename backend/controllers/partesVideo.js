@@ -29,9 +29,35 @@ router.get("/getByNivel/:id", async (req, res) => {
     }
 });
 
+function extractVideoID(url) {
+    const regex =
+        /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
+    const matches = url.match(regex);
+    return matches ? matches[5] : url;
+}
+
 router.post("/", async (req, res) => {
     try {
         const { id_nivel, url_video, nombre } = req.body;
+
+        // Obtener el id del video del url.
+        // Si se recibe en el formato:
+        // "https://www.youtube.com/watch?v=hDRTRgXGklU", "hDRTRgXGklU" es el id
+        // del video
+        // Si se recibe en el formato:
+        // "https://www.youtube.com/embed/hDRTRgXGklU", "hDRTRgXGklU" es el id
+        // del video
+        // Si se recibe en el formato:
+        // "https://youtu.be/hDRTRgXGklU", "hDRTRgXGklU" es el id del video
+        // Si se recibe en el formato:
+        // "hDRTRgXGklU", "hDRTRgXGklU" es el id del video
+        // Si se recibe en el formato:
+        // "https://www.youtube.com/watch?v=hDRTRgXGklU&feature=youtu.be",
+        // "hDRTRgXGklU" es el id del video
+        // Si se recibe en el formato:
+        // "https://youtu.be/hDRTRgXGklU?feature=shared", "hDRTRgXGklU" es el
+        // id del video
+        const videoID = extractVideoID(url_video);
 
         // Obtener el índice más alto para el id_nivel dado
         const maxIndiceRecord = await prisma.parte_video_cuestionario.findFirst(
@@ -54,7 +80,7 @@ router.post("/", async (req, res) => {
         const resultado = await prisma.parte_video_cuestionario.create({
             data: {
                 id_nivel: id_nivel,
-                url_video: url_video,
+                url_video: videoID,
                 indice: indice,
                 nombre: nombre,
             },
