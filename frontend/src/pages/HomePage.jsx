@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   FaPlus,
   FaEdit,
@@ -7,11 +8,20 @@ import {
   FaCaretRight,
 } from "react-icons/fa";
 
-function SinglePageTree() {
+function HomePage() {
+  const navigate = useNavigate();
+  const { envName, categoryName } = useParams();
   const [environments, setEnvironments] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
 
-  // Función para agregar entornos
+  // Simular carga de datos
+  useEffect(() => {
+    const initialEnvironments = [
+      { id: 1, name: "Env1", categories: [{ id: 1, name: "Cat1" }] },
+      { id: 2, name: "Env2", categories: [{ id: 2, name: "Cat2" }] },
+    ];
+    setEnvironments(initialEnvironments);
+  }, [envName, categoryName]);
+
   const addEnvironment = () => {
     const name = prompt("Nombre del nuevo entorno:");
     if (name) {
@@ -22,12 +32,10 @@ function SinglePageTree() {
     }
   };
 
-  // Función para eliminar entornos
   const deleteEnvironment = (envId) => {
     setEnvironments(environments.filter((env) => env.id !== envId));
   };
 
-  // Función para editar entornos
   const editEnvironment = (envId) => {
     const newName = prompt("Editar el nombre del entorno:");
     if (newName) {
@@ -41,7 +49,6 @@ function SinglePageTree() {
     }
   };
 
-  // Función para agregar categorías a un entorno específico
   const addCategory = (envId) => {
     const name = prompt("Nombre de la nueva categoría:");
     if (name) {
@@ -58,7 +65,6 @@ function SinglePageTree() {
     }
   };
 
-  // Función para eliminar categorías de un entorno específico
   const deleteCategory = (envId, catId) => {
     const updatedEnvironments = environments.map((env) => {
       if (env.id === envId) {
@@ -72,7 +78,6 @@ function SinglePageTree() {
     setEnvironments(updatedEnvironments);
   };
 
-  // Función para editar categorías en un entorno específico
   const editCategory = (envId, catId) => {
     const newName = prompt("Editar el nombre de la categoría:");
     if (newName) {
@@ -105,8 +110,8 @@ function SinglePageTree() {
     );
   };
 
-  const handleCategoryClick = (categoryName) => {
-    setSelectedCategory(categoryName);
+  const handleCategoryClick = (envName, categoryName) => {
+    navigate(`/${envName}/${categoryName}`);
   };
 
   return (
@@ -165,7 +170,7 @@ function SinglePageTree() {
                 >
                   <span
                     className="text-xs cursor-pointer"
-                    onClick={() => handleCategoryClick(cat.name)}
+                    onClick={() => handleCategoryClick(env.name, cat.name)}
                   >
                     {cat.name}
                   </span>
@@ -191,10 +196,15 @@ function SinglePageTree() {
         ))}
       </div>
       <div className="w-5/6 p-4">
-        {selectedCategory && <p className="text-xl">{selectedCategory}</p>}
+        <h1 className="text-2xl font-bold">Contenido de la Categoría</h1>
+        {/* Muestra el nombre del entorno y la categoría seleccionados */}
+        <p className="text-xl">Entorno: {envName || "No especificado"}</p>
+        <p className="text-xl">
+          Categoría: {categoryName || "No especificada"}
+        </p>
       </div>
     </div>
   );
 }
 
-export default SinglePageTree;
+export default HomePage;
