@@ -30,10 +30,12 @@ function HomePage() {
         { id: Date.now(), name, categories: [] },
       ]);
     }
+    console.log("Información actualizada enviada a la API:", environments);
   };
 
   const deleteEnvironment = (envId) => {
     setEnvironments(environments.filter((env) => env.id !== envId));
+    console.log("Información actualizada enviada a la API:", environments);
   };
 
   const editEnvironment = (envId) => {
@@ -47,6 +49,7 @@ function HomePage() {
       });
       setEnvironments(updatedEnvironments);
     }
+    console.log("Información actualizada enviada a la API:", environments);
   };
 
   const addCategory = (envId) => {
@@ -62,6 +65,7 @@ function HomePage() {
         return env;
       });
       setEnvironments(updatedEnvironments);
+      console.log("Información actualizada enviada a la API:", environments);
     }
   };
 
@@ -76,6 +80,7 @@ function HomePage() {
       return env;
     });
     setEnvironments(updatedEnvironments);
+    console.log("Información actualizada enviada a la API:", environments);
   };
 
   const editCategory = (envId, catId) => {
@@ -96,6 +101,7 @@ function HomePage() {
         return env;
       });
       setEnvironments(updatedEnvironments);
+      console.log("Información actualizada enviada a la API:", environments);
     }
   };
 
