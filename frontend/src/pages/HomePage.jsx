@@ -122,13 +122,18 @@ function HomePage() {
 
   return (
     <div className="flex">
-      <div className="w-1/6 p-4 space-y-4">
+      <div className="w-3/12 p-4 space-y-4">
         <button
           className="p-2 rounded bg-blue-500 text-white"
           onClick={addEnvironment}
           title="Crear Entorno"
         >
-          <div className="flex items-center gap-2">
+          <div
+            // onMouseEnter={() => {
+            //   console.log("Mostrar buttons");
+            // }}
+            className="flex items-center gap-2"
+          >
             <FaPlus />
             <p>Agregar Entorno</p>
           </div>
@@ -201,7 +206,7 @@ function HomePage() {
           </div>
         ))}
       </div>
-      <div className="w-5/6 p-4">
+      <div className="w-9/12 p-4">
         <h1 className="text-2xl font-bold">Contenido de la Categoría</h1>
         {/* Muestra el nombre del entorno y la categoría seleccionados */}
         <p className="text-xl">Entorno: {envName || "No especificado"}</p>
