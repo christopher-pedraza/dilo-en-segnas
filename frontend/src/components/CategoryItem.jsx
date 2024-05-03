@@ -34,7 +34,7 @@ function CategoryItem({ category, environment, setEnvironments, navigate }) {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between py-1">
       <span
         className="text-xs cursor-pointer"
         onClick={() => navigate(`/${environment.name}/${category.name}`)}
