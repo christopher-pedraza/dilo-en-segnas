@@ -16,6 +16,7 @@ import VideosPage from "./pages/VideosPage";
 import VideoPartssPage from "./pages/VideoPartsPage";
 import LoginPage from "./pages/LoginPage";
 import SigninPage from "./pages/SigninPage";
+import HomePage from "./pages/HomePage";
 
 function secured(Component) {
   return function WrappedComponent(props) {
@@ -33,11 +34,14 @@ const router = createBrowserRouter(
       <Route index element={<LoginPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="signin" element={<SigninPage />} />
-      <Route path="categories" element={secured(CategoriesPage)()} />
+      <Route path="home" element={<HomePage />} />
+      <Route path="/:envName/:categoryName" element={<HomePage />} />
+
+      {/* <Route path="categories" element={secured(CategoriesPage)()} />
       <Route path="categories/:id_category" element={secured(WordsPage)()} />
       <Route path="quiz" element={secured(QuizPage)()} />
       <Route path="videos" element={secured(VideosPage)()} />
-      <Route path="videos/:id_isla" element={secured(VideoPartssPage)()} />
+      <Route path="videos/:id_isla" element={secured(VideoPartssPage)()} /> */}
       <Route path="*" element={<NotFound />} />
     </Route>
   )
