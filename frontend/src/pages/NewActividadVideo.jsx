@@ -53,7 +53,8 @@ function NewActividadVideo() {
     const createDisclosure = useDisclosure();
     const videoDisclosure = useDisclosure();
 
-    const { id_nivel } = useParams();
+    let { id_nivel } = useParams();
+    id_nivel = parseInt(id_nivel);
 
     const navigate = useNavigate();
 

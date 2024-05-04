@@ -77,7 +77,7 @@ router.post("/", async (req, res) => {
         const maxIndiceRecord = await prisma.parte_video_cuestionario.findFirst(
             {
                 where: {
-                    id_nivel: id_nivel,
+                    id_nivel: parseInt(id_nivel),
                 },
                 // Al ordenarlos de manera descendente, el primer registro será el que tenga el índice más alto
                 orderBy: {
@@ -93,7 +93,7 @@ router.post("/", async (req, res) => {
 
         const resultado = await prisma.parte_video_cuestionario.create({
             data: {
-                id_nivel: id_nivel,
+                id_nivel: parseInt(id_nivel),
                 url_video: videoID,
                 indice: indice,
                 nombre: nombre,

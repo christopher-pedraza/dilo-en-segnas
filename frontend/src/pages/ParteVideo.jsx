@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { get } from "src/utils/ApiRequests";
 
 // Enrutamiento
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // Components
 import Navbar from "../components/Navbar";
@@ -30,7 +30,7 @@ function ParteVideo() {
     const [data, setData] = useState([]);
 
     // Historial de navegacion
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         get(`partesVideo/${id_parte}`).then((data) => {
@@ -39,7 +39,7 @@ function ParteVideo() {
     }, [id_parte]);
 
     const handleReturn = () => {
-        history.goBack();
+        navigate(-1);
     };
 
     return (
