@@ -22,6 +22,7 @@ CREATE TABLE "isla" (
 CREATE TABLE "nivel" (
     "id_nivel" SERIAL NOT NULL,
     "id_isla" INTEGER,
+    "nombre" TEXT NOT NULL,
 
     CONSTRAINT "nivel_pkey" PRIMARY KEY ("id_nivel")
 );
