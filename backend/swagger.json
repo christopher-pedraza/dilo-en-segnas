@@ -13,24 +13,93 @@
   "paths": {
     "/niveles/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Niveles"
+        ],
+        "description": "Endpoint para obtener todos los niveles.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Niveles obtenidos correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_nivel": {
+                        "type": "integer"
+                      },
+                      "id_isla": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al obtener los niveles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Niveles"
+        ],
+        "description": "Endpoint para crear un nuevo nivel.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Nivel creado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al crear el nivel.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -40,9 +109,15 @@
                 "type": "object",
                 "properties": {
                   "id_isla": {
-                    "example": "any"
+                    "type": "integer"
+                  },
+                  "nombre": {
+                    "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id_isla"
+                ]
               }
             }
           }
@@ -51,7 +126,10 @@
     },
     "/niveles/getByIsla/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Niveles"
+        ],
+        "description": "Endpoint para obtener los niveles por id de isla.",
         "parameters": [
           {
             "name": "id",
@@ -59,15 +137,182 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID de la isla."
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Niveles obtenidos correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_nivel": {
+                        "type": "integer"
+                      },
+                      "id_isla": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al obtener los niveles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/niveles/{id_nivel}": {
+      "put": {
+        "tags": [
+          "Niveles"
+        ],
+        "description": "Endpoint para actualizar un nivel.",
+        "parameters": [
+          {
+            "name": "id_nivel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del nivel a actualizar."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nivel actualizado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al actualizar el nivel.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_isla": {
+                    "type": "integer"
+                  },
+                  "nombre": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id_isla",
+                  "nombre"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Niveles"
+        ],
+        "description": "Endpoint para eliminar un nivel.",
+        "parameters": [
+          {
+            "name": "id_nivel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del nivel a eliminar."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nivel eliminado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al eliminar el nivel.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

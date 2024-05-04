@@ -34,7 +34,7 @@ app.use(require("./routes/routes.js"));
 
 // Documentacion de swagger
 app.use(
-    "/api-docs",
+    "/docs",
     swaggerUI.serve,
     swaggerUI.setup(swaggerDocument, swaggerOptions)
 );
