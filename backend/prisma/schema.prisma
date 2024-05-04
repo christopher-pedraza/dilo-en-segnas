@@ -84,6 +84,7 @@ model isla {
 model nivel {
   id_nivel                 Int                        @id @default(autoincrement())
   id_isla                  Int?
+  nombre                   String
   // id_video_cuestionario Int?
   // id_quiz               Int?
   // id_treasure_hunt      Int?
