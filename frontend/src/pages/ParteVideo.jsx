@@ -33,7 +33,7 @@ function ParteVideo() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        get(`partesVideo/${id_parte}`).then((data) => {
+        get(`parteVideo/${id_parte}`).then((data) => {
             setData(data);
         });
     }, [id_parte]);

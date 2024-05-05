@@ -59,7 +59,7 @@ function NewActividadVideo() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        get(`partesVideo/byNivel/${id_nivel}`).then((data) => {
+        get(`parteVideo/byNivel/${id_nivel}`).then((data) => {
             // Ordenar las partes por el índice
             data.sort((a, b) => a.indice - b.indice);
             setPartes(data);
@@ -77,7 +77,7 @@ function NewActividadVideo() {
     };
 
     const handleMoveUp = (id_parte) => {
-        put(`partesVideo/cambiarIndice/${id_parte}`, {
+        put(`parteVideo/cambiarIndice/${id_parte}`, {
             direccion: "up",
             id_nivel: id_nivel,
         }).then(() => {
@@ -86,7 +86,7 @@ function NewActividadVideo() {
     };
 
     const handleMoveDown = (id_parte) => {
-        put(`partesVideo/cambiarIndice/${id_parte}`, {
+        put(`parteVideo/cambiarIndice/${id_parte}`, {
             direccion: "down",
             id_nivel: id_nivel,
         }).then(() => {
@@ -96,7 +96,7 @@ function NewActividadVideo() {
 
     const confirmDelete = () => {
         if (idToDelete !== null) {
-            del(`partesVideo/${idToDelete}`).then(() => {
+            del(`parteVideo/${idToDelete}`).then(() => {
                 setRefresh((prev) => !prev);
             });
         }
