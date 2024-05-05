@@ -11,6 +11,7 @@
 // npx prisma migrate resolve --applied 0_init
 
 // Cada vez que se modifica el esquema correr "npx prisma generate"
+// npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
 // npx prisma migrate reset
 
 generator client {
@@ -46,15 +47,15 @@ model isla {
   progreso_islas    progreso_islas[]
 }
 
-model video_cuestionario {
-  id_video_cuestionario    Int                        @id @default(autoincrement())
-  nombre                   String
-  // id_isla                  Int
-  // isla                     isla                       @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
-  nivel                    nivel[]
-  parte_video_cuestionario parte_video_cuestionario[]
-  // palabras_video_cuestionario palabras_video_cuestionario[]
-}
+// model video_cuestionario {
+//   id_video_cuestionario    Int                        @id @default(autoincrement())
+//   nombre                   String
+//   // id_isla                  Int
+//   // isla                     isla                       @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
+//   nivel                    nivel[]
+//   parte_video_cuestionario parte_video_cuestionario[]
+//   // palabras_video_cuestionario palabras_video_cuestionario[]
+// }
 
 // model quiz {
 //   id_quiz       Int             @id @default(autoincrement())
@@ -82,17 +83,19 @@ model video_cuestionario {
 // }
 
 model nivel {
-  id_nivel              Int                 @id @default(autoincrement())
-  id_isla               Int?
-  id_video_cuestionario Int?
+  id_nivel                 Int                        @id @default(autoincrement())
+  id_isla                  Int?
+  nombre                   String
+  // id_video_cuestionario Int?
   // id_quiz               Int?
   // id_treasure_hunt      Int?
-  isla                  isla?               @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
-  video_cuestionario    video_cuestionario? @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
+  isla                     isla?                      @relation(fields: [id_isla], references: [id_isla], onDelete: NoAction, onUpdate: NoAction)
+  // video_cuestionario    video_cuestionario? @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: NoAction, onUpdate: NoAction)
   // quiz                  quiz?               @relation(fields: [id_quiz], references: [id_quiz], onDelete: NoAction, onUpdate: NoAction)
   // treasure_hunt         treasure_hunt?      @relation(fields: [id_treasure_hunt], references: [id_treasure_hunt], onDelete: NoAction, onUpdate: NoAction)
-  progreso_nivel        progreso_nivel[]
-  palabra               palabra[]
+  progreso_nivel           progreso_nivel[]
+  palabra                  palabra[]
+  parte_video_cuestionario parte_video_cuestionario[]
 }
 
 model progreso_islas {
@@ -130,11 +133,13 @@ model palabra {
 
 model parte_video_cuestionario {
   id_parte_video_cuestionario  Int                            @id @default(autoincrement())
-  id_video_cuestionario        Int
+  id_nivel                     Int
+  // id_video_cuestionario        Int
   url_video                    String
   indice                       Int
   nombre                       String
-  video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
+  nivel                        nivel                          @relation(fields: [id_nivel], references: [id_nivel], onDelete: Cascade, onUpdate: NoAction)
+  // video_cuestionario           video_cuestionario             @relation(fields: [id_video_cuestionario], references: [id_video_cuestionario], onDelete: Cascade, onUpdate: NoAction)
   preguntas_video_cuestionario preguntas_video_cuestionario[]
 }
 

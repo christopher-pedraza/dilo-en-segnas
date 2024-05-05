@@ -19,18 +19,10 @@ CREATE TABLE "isla" (
 );
 
 -- CreateTable
-CREATE TABLE "video_cuestionario" (
-    "id_video_cuestionario" SERIAL NOT NULL,
-    "nombre" TEXT NOT NULL,
-
-    CONSTRAINT "video_cuestionario_pkey" PRIMARY KEY ("id_video_cuestionario")
-);
-
--- CreateTable
 CREATE TABLE "nivel" (
     "id_nivel" SERIAL NOT NULL,
     "id_isla" INTEGER,
-    "id_video_cuestionario" INTEGER,
+    "nombre" TEXT NOT NULL,
 
     CONSTRAINT "nivel_pkey" PRIMARY KEY ("id_nivel")
 );
@@ -67,7 +59,7 @@ CREATE TABLE "palabra" (
 -- CreateTable
 CREATE TABLE "parte_video_cuestionario" (
     "id_parte_video_cuestionario" SERIAL NOT NULL,
-    "id_video_cuestionario" INTEGER NOT NULL,
+    "id_nivel" INTEGER NOT NULL,
     "url_video" TEXT NOT NULL,
     "indice" INTEGER NOT NULL,
     "nombre" TEXT NOT NULL,
@@ -98,9 +90,6 @@ CREATE TABLE "respuestas_video_cuestionario" (
 ALTER TABLE "nivel" ADD CONSTRAINT "nivel_id_isla_fkey" FOREIGN KEY ("id_isla") REFERENCES "isla"("id_isla") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "nivel" ADD CONSTRAINT "nivel_id_video_cuestionario_fkey" FOREIGN KEY ("id_video_cuestionario") REFERENCES "video_cuestionario"("id_video_cuestionario") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
 ALTER TABLE "progreso_islas" ADD CONSTRAINT "progreso_islas_id_miembro_fkey" FOREIGN KEY ("id_miembro") REFERENCES "miembro"("id_miembro") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
@@ -116,7 +105,7 @@ ALTER TABLE "progreso_nivel" ADD CONSTRAINT "progreso_nivel_id_nivel_fkey" FOREI
 ALTER TABLE "palabra" ADD CONSTRAINT "palabra_id_nivel_fkey" FOREIGN KEY ("id_nivel") REFERENCES "nivel"("id_nivel") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "parte_video_cuestionario" ADD CONSTRAINT "parte_video_cuestionario_id_video_cuestionario_fkey" FOREIGN KEY ("id_video_cuestionario") REFERENCES "video_cuestionario"("id_video_cuestionario") ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE "parte_video_cuestionario" ADD CONSTRAINT "parte_video_cuestionario_id_nivel_fkey" FOREIGN KEY ("id_nivel") REFERENCES "nivel"("id_nivel") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
 ALTER TABLE "preguntas_video_cuestionario" ADD CONSTRAINT "preguntas_video_cuestionario_id_parte_video_cuestionario_fkey" FOREIGN KEY ("id_parte_video_cuestionario") REFERENCES "parte_video_cuestionario"("id_parte_video_cuestionario") ON DELETE CASCADE ON UPDATE NO ACTION;
