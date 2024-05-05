@@ -727,6 +727,408 @@
           }
         }
       }
+    },
+    "/isla/": {
+      "get": {
+        "tags": [
+          "Isla"
+        ],
+        "description": "Endpoint para obtener todas las islas.",
+        "responses": {
+          "200": {
+            "description": "Islas obtenidas correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_isla": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      },
+                      "modelo_general": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "modelo_especifico": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener las islas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Isla"
+        ],
+        "description": "Endpoint para crear una isla.",
+        "responses": {
+          "201": {
+            "description": "Isla creada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "modelo_general": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "modelo_especifico": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al crear la isla.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "example": "nombre"
+                  },
+                  "modelo_general": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "modelo_especifico": {
+                    "type": "string",
+                    "example": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/isla/withNiveles": {
+      "get": {
+        "tags": [
+          "Isla"
+        ],
+        "description": "Endpoint para obtener todas las islas con sus niveles.",
+        "responses": {
+          "200": {
+            "description": "Islas obtenidas correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_isla": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      },
+                      "nivel": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id_nivel": {
+                              "type": "integer"
+                            },
+                            "nombre": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener las islas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/isla/{id}": {
+      "get": {
+        "tags": [
+          "Isla"
+        ],
+        "description": "Endpoint para obtener una isla por id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la isla."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Isla obtenida correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "modelo_general": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "modelo_especifico": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Isla no encontrada."
+          },
+          "500": {
+            "description": "Error al obtener la isla.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Isla"
+        ],
+        "description": "Endpoint para actualizar una isla.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la isla."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Isla actualizada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "modelo_general": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "modelo_especifico": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Isla no encontrada."
+          },
+          "500": {
+            "description": "Error al actualizar la isla.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "example": "nombre"
+                  },
+                  "modelo_general": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "modelo_especifico": {
+                    "type": "string",
+                    "example": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Isla"
+        ],
+        "description": "Endpoint para eliminar una isla.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la isla."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Isla eliminada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_isla": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "modelo_general": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "modelo_especifico": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Isla no encontrada."
+          },
+          "500": {
+            "description": "Error al eliminar la isla.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
