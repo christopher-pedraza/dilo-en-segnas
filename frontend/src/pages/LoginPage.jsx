@@ -32,7 +32,7 @@ export default function LoginPage() {
                     console.log(res);
                     if (res.autenticado == true) {
                         saveToSessionStorage("token", res.token);
-                        navigate("/categories");
+                        navigate("/home");
                     } else {
                         alert("Error al iniciar sesión");
                     }
