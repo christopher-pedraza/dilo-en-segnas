@@ -1132,29 +1132,83 @@
     },
     "/miembro/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para iniciar sesión como administrador.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Inicio de sesión exitoso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "autenticado": {
+                      "type": "boolean"
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Inicio de sesión fallido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "autenticado": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al iniciar sesión.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "autenticado": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "usuario": {
-                    "example": "any"
+                    "type": "string"
                   },
                   "contrasegna": {
-                    "example": "any"
+                    "type": "string"
                   }
                 }
               }
@@ -1165,29 +1219,75 @@
     },
     "/miembro/registro": {
       "post": {
-        "description": "",
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para registrar un nuevo miembro.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Registro exitoso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_miembro": {
+                      "type": "integer"
+                    },
+                    "usuario": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Registro fallido. Usuario ya existe.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al registrar.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "usuario": {
-                    "example": "any"
+                    "type": "string"
                   },
                   "contrasegna": {
-                    "example": "any"
+                    "type": "string"
                   },
                   "es_administrador": {
-                    "example": "any"
+                    "type": "boolean"
                   }
                 }
               }
@@ -1198,23 +1298,74 @@
     },
     "/miembro/authToken": {
       "post": {
-        "description": "",
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para autenticar un token.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Token autenticado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "autenticado": {
+                      "type": "boolean"
+                    },
+                    "usuario": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Token no autenticado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "autenticado": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "usuario": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al autenticar el token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "token": {
-                    "example": "any"
+                    "type": "string"
                   }
                 }
               }
