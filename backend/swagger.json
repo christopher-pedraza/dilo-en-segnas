@@ -14,7 +14,7 @@
     "/niveles/": {
       "get": {
         "tags": [
-          "Niveles"
+          "Nivel"
         ],
         "description": "Endpoint para obtener todos los niveles.",
         "responses": {
@@ -61,7 +61,7 @@
       },
       "post": {
         "tags": [
-          "Niveles"
+          "Nivel"
         ],
         "description": "Endpoint para crear un nuevo nivel.",
         "responses": {
@@ -127,7 +127,7 @@
     "/niveles/getByIsla/{id}": {
       "get": {
         "tags": [
-          "Niveles"
+          "Nivel"
         ],
         "description": "Endpoint para obtener los niveles por id de isla.",
         "parameters": [
@@ -187,7 +187,7 @@
     "/niveles/{id_nivel}": {
       "put": {
         "tags": [
-          "Niveles"
+          "Nivel"
         ],
         "description": "Endpoint para actualizar un nivel.",
         "parameters": [
@@ -263,7 +263,7 @@
       },
       "delete": {
         "tags": [
-          "Niveles"
+          "Nivel"
         ],
         "description": "Endpoint para eliminar un nivel.",
         "parameters": [
@@ -317,26 +317,107 @@
         }
       }
     },
-    "/partesVideo/": {
+    "/parteVideo/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para obtener todas las partes de video cuestionario.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Partes de video cuestionario obtenidas correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_parte_video_cuestionario": {
+                        "type": "integer"
+                      },
+                      "id_nivel": {
+                        "type": "integer"
+                      },
+                      "url_video": {
+                        "type": "string"
+                      },
+                      "indice": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al obtener las partes de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para crear una nueva parte de video cuestionario.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Parte de video cuestionario creada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "url_video": {
+                      "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al crear la parte de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -346,13 +427,84 @@
                 "type": "object",
                 "properties": {
                   "id_nivel": {
-                    "example": "any"
+                    "type": "integer"
                   },
                   "url_video": {
-                    "example": "any"
+                    "type": "string"
                   },
                   "nombre": {
-                    "example": "any"
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id_nivel",
+                  "url_video",
+                  "nombre"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parteVideo/byNivel/{id}": {
+      "get": {
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para obtener todas las partes de video cuestionario por nivel.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del nivel."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Partes de video cuestionario obtenidas correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_parte_video_cuestionario": {
+                        "type": "integer"
+                      },
+                      "id_nivel": {
+                        "type": "integer"
+                      },
+                      "url_video": {
+                        "type": "string"
+                      },
+                      "indice": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener las partes de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -361,9 +513,12 @@
         }
       }
     },
-    "/partesVideo/getByNivel/{id}": {
+    "/parteVideo/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para obtener una parte de video cuestionario por su ID.",
         "parameters": [
           {
             "name": "id",
@@ -371,43 +526,60 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID de la parte de video cuestionario."
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/partesVideo/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+            "description": "Parte de video cuestionario obtenida correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "url_video": {
+                      "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al obtener la parte de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para eliminar una parte de video cuestionario.",
         "parameters": [
           {
             "name": "id",
@@ -415,42 +587,66 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID de la parte de video cuestionario a eliminar."
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Parte de video cuestionario eliminada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "url_video": {
+                      "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id_nivel": {
-                    "example": "any"
-                  },
-                  "url_video": {
-                    "example": "any"
-                  },
-                  "nombre": {
-                    "example": "any"
+            "description": "Error al eliminar la parte de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
             }
           }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {}
         }
       }
     },
-    "/partesVideo/cambiarIndice/{id}": {
+    "/parteVideo/cambiarIndice/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para cambiar el índice de una parte de video cuestionario.",
         "parameters": [
           {
             "name": "id",
@@ -458,18 +654,55 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID de la parte de video cuestionario cuyo índice se cambiará."
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Índices actualizados correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Parte de video cuestionario o parte de intercambio no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al cambiar el índice de la parte de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -479,18 +712,16 @@
                 "type": "object",
                 "properties": {
                   "direccion": {
-                    "example": "any"
+                    "type": "string"
                   },
                   "id_nivel": {
-                    "example": "any"
-                  },
-                  "url_video": {
-                    "example": "any"
-                  },
-                  "nombre": {
-                    "example": "any"
+                    "type": "integer"
                   }
-                }
+                },
+                "required": [
+                  "direccion",
+                  "id_nivel"
+                ]
               }
             }
           }

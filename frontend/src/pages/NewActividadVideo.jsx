@@ -59,7 +59,7 @@ function NewActividadVideo() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        get(`partesVideo/getByNivel/${id_nivel}`).then((data) => {
+        get(`partesVideo/byNivel/${id_nivel}`).then((data) => {
             // Ordenar las partes por el índice
             data.sort((a, b) => a.indice - b.indice);
             setPartes(data);

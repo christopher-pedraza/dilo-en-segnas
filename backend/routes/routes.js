@@ -1,5 +1,6 @@
-const niveles = require("../controllers/niveles.js");
-const partesVideo = require("../controllers/partesVideo.js");
+const niveles = require("../controllers/nivel.js");
+const parteVideo = require("../controllers/parteVideo.js");
+// const isla = require("../controllers/isla.js");
 
 const express = require("express");
 const router = express.Router();
@@ -15,6 +16,6 @@ const router = express.Router();
 // router.use("/progreso", require("./routes_progreso.js"));
 
 router.use("/niveles", niveles);
-router.use("/partesVideo", partesVideo);
+router.use("/parteVideo", parteVideo);
 
 module.exports = router;

@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
     /*
-    #swagger.tags = ['Niveles']
+    #swagger.tags = ['Nivel']
     #swagger.description = 'Endpoint para obtener todos los niveles.'
     #swagger.responses[200] = {
         description: 'Niveles obtenidos correctamente.',
@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
 
 router.get("/getByIsla/:id", async (req, res) => {
     /*
-    #swagger.tags = ['Niveles']
+    #swagger.tags = ['Nivel']
     #swagger.description = 'Endpoint para obtener los niveles por id de isla.'
     #swagger.parameters['id'] = {
         in: 'path',
@@ -107,7 +107,7 @@ router.get("/getByIsla/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     /*
-    #swagger.tags = ['Niveles']
+    #swagger.tags = ['Nivel']
     #swagger.description = 'Endpoint para crear un nuevo nivel.'
     #swagger.requestBody = {
         content: {
@@ -168,7 +168,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id_nivel", async (req, res) => {
     /*
-    #swagger.tags = ['Niveles']
+    #swagger.tags = ['Nivel']
     #swagger.description = 'Endpoint para actualizar un nivel.'
     #swagger.parameters['id_nivel'] = {
         in: 'path',
@@ -237,7 +237,7 @@ router.put("/:id_nivel", async (req, res) => {
 
 router.delete("/:id_nivel", async (req, res) => {
     /*
-    #swagger.tags = ['Niveles']
+    #swagger.tags = ['Nivel']
     #swagger.description = 'Endpoint para eliminar un nivel.'
     #swagger.parameters['id_nivel'] = {
         in: 'path',
