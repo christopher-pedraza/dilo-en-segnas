@@ -41,7 +41,7 @@ app.use(
 
 // Se inicializa la API en el puerto especificado por el archivo .env
 app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${process.env.PORT}`);
+    console.log(`Documentacion: http://localhost:${process.env.PORT}/docs`);
 });
 
 module.exports = app;

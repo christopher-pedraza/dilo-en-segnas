@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon app.js",
         "dev": "nodemon app.js",
-        "docs": "node swagger.js"
+        "docs": "nodemon --watch ./controllers --exec npm run generate-docs",
+        "generate-docs": "node swagger.js"
     },
     "author": "",
     "license": "ISC",
