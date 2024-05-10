@@ -7,7 +7,7 @@ import { get, post, del, put } from "src/utils/ApiRequests";
 import { useNavigate, useParams } from "react-router-dom";
 
 // Components
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 // Fontawesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -109,7 +109,7 @@ function NewActividadVideo() {
     };
 
     const confirmCreate = () => {
-        post("partesVideo", {
+        post("parteVideo", {
             id_nivel: id_nivel,
             url_video: urlVideoNuevo,
             indice: 0,
@@ -182,6 +182,7 @@ function NewActividadVideo() {
                                     <Button
                                         isIconOnly={true}
                                         color="danger"
+                                        variant="solid"
                                         onPress={() => {
                                             handleDelete(
                                                 parte.id_parte_video_cuestionario
