@@ -217,18 +217,7 @@ router.post("/", async (req, res) => {
                     type: 'object',
                     properties: {
                         id_parte: { type: 'integer', description: 'Id de la parte de video cuestionario.' },
-                        pregunta: { type: 'string', description: 'Texto de la pregunta.' },
-                        respuestas: {
-                            type: 'array',
-                            items: {
-                                type: 'object',
-                                properties: {
-                                    respuesta: { type: 'string', description: 'Texto de la respuesta.' },
-                                    es_correcta: { type: 'boolean', description: 'Indica si la respuesta es correcta.' }
-                                }
-                            },
-                            description: 'Array de respuestas.'
-                        }
+                        pregunta: { type: 'string', description: 'Texto de la pregunta.' }
                     }
                 }
             }
@@ -241,24 +230,9 @@ router.post("/", async (req, res) => {
                 schema: {
                     type: 'object',
                     properties: {
-                        pregunta: {
-                            type: 'object',
-                            properties: {
-                                id_preguntas_video_cuestionario: { type: 'integer' },
-                                id_parte_video_cuestionario: { type: 'integer' },
-                                pregunta: { type: 'string' }
-                            }
-                        },
-                        respuestas: {
-                            type: 'array',
-                            items: {
-                                type: 'object',
-                                properties: {
-                                    respuesta: { type: 'string' },
-                                    es_correcta: { type: 'boolean' }
-                                }
-                            }
-                        }
+                        id_preguntas_video_cuestionario: { type: 'integer' },
+                        id_parte_video_cuestionario: { type: 'integer' },
+                        pregunta: { type: 'string' }
                     }
                 }
             }
@@ -278,32 +252,480 @@ router.post("/", async (req, res) => {
         }
     }
     */
-    const { id_parte, pregunta, respuestas } = req.body;
+    const { id_parte, pregunta } = req.body;
     try {
-        const preguntaCreada = await prisma.preguntas_video_cuestionario.create(
+        const response = await prisma.preguntas_video_cuestionario.create({
+            data: {
+                id_parte_video_cuestionario: id_parte,
+                pregunta: pregunta,
+            },
+        });
+
+        res.json(response);
+    } catch (error) {
+        res.status(500).json({ error: "No se pudo crear la pregunta" });
+    }
+});
+
+router.post("/respuesta", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para agregar una respuesta a una pregunta de video cuestionario.'
+    #swagger.requestBody = {
+        required: true,
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_pregunta: { type: 'integer', description: 'Id de la pregunta de video cuestionario.' },
+                        respuesta: { type: 'string', description: 'Texto de la respuesta.' },
+                        es_correcta: { type: 'boolean', description: 'Indica si la respuesta es correcta.' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Respuesta de video cuestionario agregada correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_respuestas_video_cuestionario: { type: 'integer' },
+                        id_preguntas_video_cuestionario: { type: 'integer' },
+                        respuesta: { type: 'string' },
+                        es_correcta: { type: 'boolean' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al agregar la respuesta de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id_pregunta, respuesta, es_correcta } = req.body;
+    try {
+        const response = await prisma.respuestas_video_cuestionario.create({
+            data: {
+                id_preguntas_video_cuestionario: id_pregunta,
+                respuesta: respuesta,
+                es_correcta: es_correcta,
+            },
+        });
+
+        res.json(response);
+    } catch (error) {
+        res.status(500).json({ error: "No se pudo agregar la respuesta" });
+    }
+});
+
+router.put("/respuesta/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para modificar una respuesta de video cuestionario.'
+    #swagger.parameters['id'] = { description: 'Id de la respuesta de video cuestionario.' }
+    #swagger.requestBody = {
+        required: true,
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        respuesta: { type: 'string', description: 'Texto de la respuesta.' },
+                        es_correcta: { type: 'boolean', description: 'Indica si la respuesta es correcta.' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Respuesta de video cuestionario modificada correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_respuestas_video_cuestionario: { type: 'integer' },
+                        id_preguntas_video_cuestionario: { type: 'integer' },
+                        respuesta: { type: 'string' },
+                        es_correcta: { type: 'boolean' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Respuesta de video cuestionario no encontrada.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al modificar la respuesta de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    const { respuesta, es_correcta } = req.body;
+    try {
+        const response = await prisma.respuestas_video_cuestionario.update({
+            where: { id_respuestas_video_cuestionario: parseInt(id) },
+            data: { respuesta: respuesta, es_correcta: es_correcta },
+        });
+        res.json(response);
+    } catch (error) {
+        if (error.code === "P2025") {
+            res.status(404).json({ error: "Respuesta no encontrada" });
+        }
+        res.status(500).json({ error: "No se pudo modificar la respuesta" });
+    }
+});
+
+router.delete("/respuesta/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para eliminar una respuesta de video cuestionario.'
+    #swagger.parameters['id'] = { description: 'Id de la respuesta de video cuestionario.' }
+    #swagger.responses[200] = {
+        description: 'Respuesta de video cuestionario eliminada correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_respuestas_video_cuestionario: { type: 'integer' },
+                        id_preguntas_video_cuestionario: { type: 'integer' },
+                        respuesta: { type: 'string' },
+                        es_correcta: { type: 'boolean' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Respuesta de video cuestionario no encontrada.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al eliminar la respuesta de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    try {
+        const response = await prisma.respuestas_video_cuestionario.delete({
+            where: { id_respuestas_video_cuestionario: parseInt(id) },
+        });
+        res.json(response);
+    } catch (error) {
+        if (error.code === "P2025") {
+            res.status(404).json({ error: "Respuesta no encontrada" });
+        }
+        res.status(500).json({ error: "No se pudo eliminar la respuesta" });
+    }
+});
+
+router.put("/cambiarIndice/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para cambiar el índice de una pregunta de video cuestionario.'
+    #swagger.parameters['id'] = {
+        in: 'path',
+        description: 'ID de la pregunta de video cuestionario cuyo índice se cambiará.',
+        required: true,
+        type: 'integer'
+    }
+    #swagger.requestBody = {
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        direccion: { type: 'string' },
+                        id_nivel: { type: 'integer' }
+                    },
+                    required: ['direccion', 'id_nivel']
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Índices actualizados correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Pregunta de video cuestionario o pregunta de intercambio no encontrada.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al cambiar el índice de la pregunta de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    try {
+        const { id } = req.params;
+        const { direccion, id_nivel } = req.body;
+
+        const question = await prisma.pregunta_video_cuestionario.findUnique({
+            where: { id_pregunta_video_cuestionario: Number(id) },
+        });
+        if (!question) {
+            return res.status(404).json({ message: "Question not found" });
+        }
+
+        const swapQuestion = await prisma.pregunta_video_cuestionario.findFirst(
             {
-                data: {
-                    id_parte_video_cuestionario: id_parte,
-                    pregunta: pregunta,
+                where: {
+                    AND: [
+                        {
+                            indice:
+                                direccion === "up"
+                                    ? question.indice - 1
+                                    : question.indice + 1,
+                        },
+                        { id_nivel: id_nivel },
+                    ],
                 },
             }
         );
-
-        for (let i = 0; i < respuestas.length; i++) {
-            const respuesta = respuestas[i];
-            await prisma.respuestas_video_cuestionario.create({
-                data: {
-                    id_preguntas_video_cuestionario:
-                        preguntaCreada.id_preguntas_video_cuestionario,
-                    respuesta: respuesta.respuesta,
-                    es_correcta: respuesta.es_correcta,
-                },
-            });
+        if (!swapQuestion) {
+            return res.status(404).json({ message: "Swap question not found" });
         }
 
-        res.json({ pregunta: preguntaCreada, respuestas: respuestas });
+        const temp = question.indice;
+        question.indice = swapQuestion.indice;
+        swapQuestion.indice = temp;
+
+        await prisma.pregunta_video_cuestionario.update({
+            where: {
+                id_pregunta_video_cuestionario:
+                    question.id_pregunta_video_cuestionario,
+            },
+            data: { indice: question.indice },
+        });
+        await prisma.pregunta_video_cuestionario.update({
+            where: {
+                id_pregunta_video_cuestionario:
+                    swapQuestion.id_pregunta_video_cuestionario,
+            },
+            data: { indice: swapQuestion.indice },
+        });
+        res.json({ message: "Indices updated successfully" });
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
+    }
+});
+
+router.put("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para modificar una pregunta de video cuestionario.'
+    #swagger.parameters['id'] = { description: 'Id de la pregunta de video cuestionario.' }
+    #swagger.requestBody = {
+        required: true,
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        pregunta: { type: 'string', description: 'Texto de la pregunta.' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Pregunta de video cuestionario modificada correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_preguntas_video_cuestionario: { type: 'integer' },
+                        id_parte_video_cuestionario: { type: 'integer' },
+                        pregunta: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Pregunta de video cuestionario no encontrada.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al modificar la pregunta de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    const { pregunta } = req.body;
+    try {
+        const response = await prisma.preguntas_video_cuestionario.update({
+            where: { id_preguntas_video_cuestionario: parseInt(id) },
+            data: { pregunta: pregunta },
+        });
+        res.json(response);
     } catch (error) {
-        res.status(500).json({ error: "No se pudo crear la pregunta" });
+        if (error.code === "P2025") {
+            res.status(404).json({ error: "Pregunta no encontrada" });
+        } else {
+            res.status(500).json({ error: "No se pudo modificar la pregunta" });
+        }
+    }
+});
+
+router.delete("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para eliminar una pregunta de video cuestionario.'
+    #swagger.parameters['id'] = { description: 'Id de la pregunta de video cuestionario.' }
+    #swagger.responses[200] = {
+        description: 'Pregunta de video cuestionario eliminada correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_preguntas_video_cuestionario: { type: 'integer' },
+                        id_parte_video_cuestionario: { type: 'integer' },
+                        pregunta: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Pregunta de video cuestionario no encontrada.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al eliminar la pregunta de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    try {
+        const response = await prisma.preguntas_video_cuestionario.delete({
+            where: { id_preguntas_video_cuestionario: parseInt(id) },
+        });
+        res.json(response);
+    } catch (error) {
+        if (error.code === "P2025") {
+            res.status(404).json({ error: "Pregunta no encontrada" });
+        } else {
+            res.status(500).json({ error: "No se pudo eliminar la pregunta" });
+        }
     }
 });
 

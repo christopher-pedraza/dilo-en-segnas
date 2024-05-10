@@ -1533,33 +1533,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "pregunta": {
-                      "type": "object",
-                      "properties": {
-                        "id_preguntas_video_cuestionario": {
-                          "type": "integer"
-                        },
-                        "id_parte_video_cuestionario": {
-                          "type": "integer"
-                        },
-                        "pregunta": {
-                          "type": "string"
-                        }
-                      }
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
                     },
-                    "respuestas": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "respuesta": {
-                            "type": "string"
-                          },
-                          "es_correcta": {
-                            "type": "boolean"
-                          }
-                        }
-                      }
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "pregunta": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1596,23 +1577,6 @@
                   "pregunta": {
                     "type": "string",
                     "description": "Texto de la pregunta."
-                  },
-                  "respuestas": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "respuesta": {
-                          "type": "string",
-                          "description": "Texto de la respuesta."
-                        },
-                        "es_correcta": {
-                          "type": "boolean",
-                          "description": "Indica si la respuesta es correcta."
-                        }
-                      }
-                    },
-                    "description": "Array de respuestas."
                   }
                 }
               }
@@ -1768,6 +1732,490 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para modificar una pregunta de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la pregunta de video cuestionario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pregunta de video cuestionario modificada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "pregunta": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pregunta de video cuestionario no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al modificar la pregunta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pregunta": {
+                    "type": "string",
+                    "description": "Texto de la pregunta."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para eliminar una pregunta de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la pregunta de video cuestionario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pregunta de video cuestionario eliminada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "pregunta": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pregunta de video cuestionario no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al eliminar la pregunta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preguntaVideo/respuesta": {
+      "post": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para agregar una respuesta a una pregunta de video cuestionario.",
+        "responses": {
+          "200": {
+            "description": "Respuesta de video cuestionario agregada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_respuestas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "respuesta": {
+                      "type": "string"
+                    },
+                    "es_correcta": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al agregar la respuesta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_pregunta": {
+                    "type": "integer",
+                    "description": "Id de la pregunta de video cuestionario."
+                  },
+                  "respuesta": {
+                    "type": "string",
+                    "description": "Texto de la respuesta."
+                  },
+                  "es_correcta": {
+                    "type": "boolean",
+                    "description": "Indica si la respuesta es correcta."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preguntaVideo/respuesta/{id}": {
+      "put": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para modificar una respuesta de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la respuesta de video cuestionario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta de video cuestionario modificada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_respuestas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "respuesta": {
+                      "type": "string"
+                    },
+                    "es_correcta": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Respuesta de video cuestionario no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al modificar la respuesta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "respuesta": {
+                    "type": "string",
+                    "description": "Texto de la respuesta."
+                  },
+                  "es_correcta": {
+                    "type": "boolean",
+                    "description": "Indica si la respuesta es correcta."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para eliminar una respuesta de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la respuesta de video cuestionario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta de video cuestionario eliminada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_respuestas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "respuesta": {
+                      "type": "string"
+                    },
+                    "es_correcta": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Respuesta de video cuestionario no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al eliminar la respuesta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preguntaVideo/cambiarIndice/{id}": {
+      "put": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para cambiar el índice de una pregunta de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la pregunta de video cuestionario cuyo índice se cambiará."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Índices actualizados correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pregunta de video cuestionario o pregunta de intercambio no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al cambiar el índice de la pregunta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "direccion": {
+                    "type": "string"
+                  },
+                  "id_nivel": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "direccion",
+                  "id_nivel"
+                ]
+              }
+            }
           }
         }
       }
