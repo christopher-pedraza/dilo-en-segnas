@@ -9,7 +9,7 @@ import "./App.css";
 import Root from "./pages/Parents/Root";
 import NotFound from "./pages/Rutas/NotFound";
 import ProtectedRoutes from "./pages/Rutas/ProtectedRoutes";
-import ActividadVideo from "./pages/ActividadVideo/NewActividadVideo";
+import ActividadVideo from "./pages/ActividadVideo/ActividadVideo";
 import ParteVideo from "./pages/ParteVideo";
 import LoginPage from "./pages/LoginPage";
 import SigninPage from "./pages/SigninPage";

@@ -5,7 +5,7 @@ import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-import { put } from "../../../../utils/ApiRequests";
+import { put } from "src/utils/ApiRequests";
 
 function IndexButtons({
     setRefresh,
