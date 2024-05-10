@@ -258,7 +258,7 @@ router.post("/", async (req, res) => {
         // Si no existe ningun registro, el índice será 1, de lo contrario, se
         // incrementa en 1 el índice del registro con el índice más alto
         // encontrado
-        const indice = maxIndiceRecord ? maxIndiceRecord.indice + 1 : 1;
+        const indice = maxIndiceRecord ? maxIndiceRecord.indice + 1 : 0;
 
         const resultado = await prisma.parte_video_cuestionario.create({
             data: {

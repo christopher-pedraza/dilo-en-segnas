@@ -99,7 +99,7 @@ function ModalCreateParteVideo({
                                 </Button>
                                 <Button
                                     color="success"
-                                    onPress={confirmCreate}
+                                    // onClick={confirmCreate}
                                     type="submit"
                                 >
                                     Agregar

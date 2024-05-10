@@ -99,7 +99,6 @@
 //                                 </Button>
 //                                 <Button
 //                                     color="success"
-//                                     onPress={confirmCreate}
 //                                     type="submit"
 //                                 >
 //                                     Agregar

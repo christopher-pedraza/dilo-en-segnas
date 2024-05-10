@@ -106,7 +106,7 @@ function ModalCreateParteVideo({
                                 </Button>
                                 <Button
                                     color="success"
-                                    onPress={confirmEdit}
+                                    // onPress={confirmEdit}
                                     type="submit"
                                 >
                                     Guardar
