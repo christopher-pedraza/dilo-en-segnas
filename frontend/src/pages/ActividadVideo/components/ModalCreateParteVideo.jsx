@@ -44,10 +44,25 @@ function ModalCreateParteVideo({
         setUrlVideoNuevo("");
     };
 
+    const handleClose = () => {
+        onClose();
+        setNombreNuevo("");
+        setUrlVideoNuevo("");
+    };
+
     return (
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
+        <Modal
+            isOpen={isOpen}
+            onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                    handleClose();
+                }
+                onOpenChange(isOpen);
+            }}
+            backdrop="blur"
+        >
             <ModalContent>
-                {(onClose) => (
+                {() => (
                     <>
                         <ModalHeader className="flex flex-col gap-1">
                             Agregar nueva parte
@@ -75,7 +90,7 @@ function ModalCreateParteVideo({
                             <Button
                                 color="danger"
                                 variant="light"
-                                onPress={onClose}
+                                onPress={handleClose}
                             >
                                 Cancelar
                             </Button>
