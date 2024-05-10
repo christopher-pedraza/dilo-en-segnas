@@ -11,6 +11,7 @@ import { useParams, useNavigate } from "react-router-dom";
 // Components
 import Navbar from "../../components/Navbar";
 import ModalEditarParteVideo from "./components/ModalEditarParteVideo";
+import ModalCrearPregunta from "./components/ModalCrearPregunta";
 
 // NextUI components
 import { Button } from "@nextui-org/react";
@@ -26,16 +27,19 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function ParteVideo() {
     // Obtener del url el id de la parte de video
-    const { id_parte } = useParams();
+    let { id_parte } = useParams();
+    id_parte = parseInt(id_parte);
 
     // Informacion de la parte
     const [data, setData] = useState([]);
+    const [preguntas, setPreguntas] = useState([]);
 
     // Historial de navegacion
     const navigate = useNavigate();
 
     // Disclosures para el modal
     const editDisclosure = useDisclosure();
+    const createDisclosure = useDisclosure();
 
     const [refresh, setRefresh] = useState(false);
 
@@ -78,7 +82,7 @@ function ParteVideo() {
                         <Button
                             startContent={<FontAwesomeIcon icon={faPlus} />}
                             color="success"
-                            onPress={() => {}}
+                            onPress={createDisclosure.onOpen}
                         >
                             Pregunta
                         </Button>
@@ -93,6 +97,14 @@ function ParteVideo() {
                 setRefresh={setRefresh}
                 data={data}
                 setData={setData}
+            />
+            <ModalCrearPregunta
+                isOpen={createDisclosure.isOpen}
+                onOpenChange={createDisclosure.onOpenChange}
+                onClose={createDisclosure.onClose}
+                id_parte={id_parte}
+                setPreguntas={setPreguntas}
+                preguntas={preguntas}
             />
         </div>
     );

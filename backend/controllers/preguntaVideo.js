@@ -254,10 +254,27 @@ router.post("/", async (req, res) => {
     */
     const { id_parte, pregunta } = req.body;
     try {
+        // Obtener el indice mas grande de las preguntas de la parte de video
+        // cuestionario
+        const maxIndiceRecord =
+            await prisma.preguntas_video_cuestionario.findFirst({
+                where: {
+                    id_parte_video_cuestionario: id_parte,
+                },
+                orderBy: {
+                    indice: "desc",
+                },
+            });
+
+        // Si no hay preguntas, el indice de la nueva pregunta es 0, de lo
+        // contrario es el indice mas grande + 1
+        const indice = maxIndiceRecord ? maxIndiceRecord.indice + 1 : 0;
+
         const response = await prisma.preguntas_video_cuestionario.create({
             data: {
                 id_parte_video_cuestionario: id_parte,
                 pregunta: pregunta,
+                indice: indice,
             },
         });
 
