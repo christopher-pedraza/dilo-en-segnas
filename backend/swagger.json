@@ -1892,6 +1892,66 @@
         }
       }
     },
+    "/preguntaVideo/respuestas/{id}": {
+      "get": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para obtener las respuestas de una pregunta\r  de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la pregunta de video   cuestionario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuestas de video cuestionario obtenidas correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_respuestas_video_cuestionario": {
+                        "type": "integer"
+                      },
+                      "respuesta": {
+                        "type": "string"
+                      },
+                      "es_correcta": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener las respuestas de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/preguntaVideo/respuesta": {
       "post": {
         "tags": [

@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 
 import propTypes from "prop-types";
 
-function ModalCreateParteVideo({
+function ModalEditarParteVideo({
     isOpen,
     onOpenChange,
     onClose,
@@ -116,7 +116,7 @@ function ModalCreateParteVideo({
     );
 }
 
-ModalCreateParteVideo.propTypes = {
+ModalEditarParteVideo.propTypes = {
     isOpen: propTypes.bool.isRequired,
     onOpenChange: propTypes.func.isRequired,
     onClose: propTypes.func.isRequired,
@@ -125,4 +125,4 @@ ModalCreateParteVideo.propTypes = {
     setData: propTypes.func.isRequired,
 };
 
-export default ModalCreateParteVideo;
+export default ModalEditarParteVideo;

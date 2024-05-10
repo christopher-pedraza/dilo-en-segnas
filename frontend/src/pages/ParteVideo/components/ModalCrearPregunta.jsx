@@ -95,12 +95,12 @@ function ModalCrearPregunta({
 }
 
 ModalCrearPregunta.propTypes = {
-    isOpen: propTypes.bool,
-    onOpenChange: propTypes.func,
-    onClose: propTypes.func,
-    id_parte: propTypes.number,
-    setPreguntas: propTypes.func,
-    preguntas: propTypes.array,
+    isOpen: propTypes.bool.isRequired,
+    onOpenChange: propTypes.func.isRequired,
+    onClose: propTypes.func.isRequired,
+    id_parte: propTypes.number.isRequired,
+    setPreguntas: propTypes.func.isRequired,
+    preguntas: propTypes.array.isRequired,
 };
 
 export default ModalCrearPregunta;

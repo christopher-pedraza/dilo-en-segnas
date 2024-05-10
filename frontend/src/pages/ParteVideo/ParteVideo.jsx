@@ -31,7 +31,7 @@ function ParteVideo() {
     id_parte = parseInt(id_parte);
 
     // Informacion de la parte
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const [preguntas, setPreguntas] = useState([]);
 
     // Historial de navegacion
@@ -41,13 +41,19 @@ function ParteVideo() {
     const editDisclosure = useDisclosure();
     const createDisclosure = useDisclosure();
 
-    const [refresh, setRefresh] = useState(false);
+    useEffect(() => {
+        get(`parteVideo/${id_parte}`).then((res) => {
+            console.log("DATA", res);
+            setData(res);
+        });
+    }, [id_parte]);
 
     useEffect(() => {
-        get(`parteVideo/${id_parte}`).then((data) => {
-            setData(data);
+        get(`preguntaVideo/byParte/${id_parte}`).then((res) => {
+            console.log("PREGUNTAS", res);
+            setPreguntas(res);
         });
-    }, [id_parte, refresh]);
+    }, [id_parte]);
 
     const handleReturn = () => {
         navigate(-1);
@@ -94,7 +100,6 @@ function ParteVideo() {
                 onOpenChange={editDisclosure.onOpenChange}
                 onClose={editDisclosure.onClose}
                 id_parte={id_parte}
-                setRefresh={setRefresh}
                 data={data}
                 setData={setData}
             />

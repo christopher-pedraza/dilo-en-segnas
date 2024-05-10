@@ -284,6 +284,61 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/respuestas/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Pregunta Video']
+    #swagger.description = 'Endpoint para obtener las respuestas de una pregunta
+    de video cuestionario.'
+    #swagger.parameters['id'] = { description: 'Id de la pregunta de video
+    cuestionario.' }
+    #swagger.responses[200] = {
+        description: 'Respuestas de video cuestionario obtenidas correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            id_respuestas_video_cuestionario: { type: 'integer' },
+                            respuesta: { type: 'string' },
+                            es_correcta: { type: 'boolean' }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al obtener las respuestas de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    try {
+        const respuestas = await prisma.respuestas_video_cuestionario.findMany({
+            where: { id_preguntas_video_cuestionario: parseInt(id) },
+            select: {
+                id_respuestas_video_cuestionario: true,
+                respuesta: true,
+                es_correcta: true,
+            },
+        });
+        res.json(respuestas);
+    } catch (error) {
+        res.status(500).json({ error: "No se pudo obtener las respuestas" });
+    }
+});
+
 router.post("/respuesta", async (req, res) => {
     /*
     #swagger.tags = ['Pregunta Video']
