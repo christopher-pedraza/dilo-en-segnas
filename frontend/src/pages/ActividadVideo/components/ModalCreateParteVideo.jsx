@@ -29,7 +29,9 @@ function ModalCreateParteVideo({
     const [nombreNuevo, setNombreNuevo] = useState("");
     const [urlVideoNuevo, setUrlVideoNuevo] = useState("");
 
-    const confirmCreate = () => {
+    const confirmCreate = (e) => {
+        e.preventDefault();
+
         post("parteVideo", {
             id_nivel: id_nivel,
             url_video: urlVideoNuevo,
@@ -67,37 +69,43 @@ function ModalCreateParteVideo({
                         <ModalHeader className="flex flex-col gap-1">
                             Agregar nueva parte
                         </ModalHeader>
-                        <ModalBody>
-                            <Input
-                                autoFocus
-                                label="Nombre"
-                                variant="bordered"
-                                value={nombreNuevo}
-                                onChange={(e) => {
-                                    setNombreNuevo(e.target.value);
-                                }}
-                            />
-                            <Input
-                                label="URL del video"
-                                variant="bordered"
-                                value={urlVideoNuevo}
-                                onChange={(e) => {
-                                    setUrlVideoNuevo(e.target.value);
-                                }}
-                            />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button
-                                color="danger"
-                                variant="light"
-                                onPress={handleClose}
-                            >
-                                Cancelar
-                            </Button>
-                            <Button color="success" onPress={confirmCreate}>
-                                Agregar
-                            </Button>
-                        </ModalFooter>
+                        <form onSubmit={confirmCreate}>
+                            <ModalBody>
+                                <Input
+                                    autoFocus
+                                    label="Nombre"
+                                    variant="bordered"
+                                    value={nombreNuevo}
+                                    onChange={(e) => {
+                                        setNombreNuevo(e.target.value);
+                                    }}
+                                />
+                                <Input
+                                    label="URL del video"
+                                    variant="bordered"
+                                    value={urlVideoNuevo}
+                                    onChange={(e) => {
+                                        setUrlVideoNuevo(e.target.value);
+                                    }}
+                                />
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    color="danger"
+                                    variant="light"
+                                    onPress={handleClose}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Button
+                                    color="success"
+                                    onPress={confirmCreate}
+                                    type="submit"
+                                >
+                                    Agregar
+                                </Button>
+                            </ModalFooter>
+                        </form>
                     </>
                 )}
             </ModalContent>

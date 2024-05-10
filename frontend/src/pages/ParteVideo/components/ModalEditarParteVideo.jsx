@@ -13,7 +13,7 @@ import {
 import { put } from "src/utils/ApiRequests";
 
 // Hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import propTypes from "prop-types";
 
@@ -29,7 +29,8 @@ function ModalCreateParteVideo({
     const [nombreNuevo, setNombreNuevo] = useState();
     const [urlVideoNuevo, setUrlVideoNuevo] = useState();
 
-    const confirmEdit = () => {
+    const confirmEdit = (e) => {
+        e.preventDefault();
         put(`parteVideo/${id_parte}`, {
             nombre: nombreNuevo,
             url_video: urlVideoNuevo,
@@ -53,6 +54,11 @@ function ModalCreateParteVideo({
         setUrlVideoNuevo(data.url_video);
     };
 
+    useEffect(() => {
+        setNombreNuevo(data.nombre);
+        setUrlVideoNuevo(data.url_video);
+    }, [data]);
+
     return (
         <Modal
             isOpen={isOpen}
@@ -70,37 +76,43 @@ function ModalCreateParteVideo({
                         <ModalHeader className="flex flex-col gap-1">
                             Editar datos de la parte
                         </ModalHeader>
-                        <ModalBody>
-                            <Input
-                                autoFocus
-                                label="Nombre"
-                                variant="bordered"
-                                value={nombreNuevo}
-                                onChange={(e) => {
-                                    setNombreNuevo(e.target.value);
-                                }}
-                            />
-                            <Input
-                                label="URL del video"
-                                variant="bordered"
-                                value={urlVideoNuevo}
-                                onChange={(e) => {
-                                    setUrlVideoNuevo(e.target.value);
-                                }}
-                            />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button
-                                color="danger"
-                                variant="light"
-                                onPress={handleClose}
-                            >
-                                Cancelar
-                            </Button>
-                            <Button color="success" onPress={confirmEdit}>
-                                Guardar
-                            </Button>
-                        </ModalFooter>
+                        <form onSubmit={confirmEdit}>
+                            <ModalBody>
+                                <Input
+                                    autoFocus
+                                    label="Nombre"
+                                    variant="bordered"
+                                    value={nombreNuevo}
+                                    onChange={(e) => {
+                                        setNombreNuevo(e.target.value);
+                                    }}
+                                />
+                                <Input
+                                    label="URL del video"
+                                    variant="bordered"
+                                    value={urlVideoNuevo}
+                                    onChange={(e) => {
+                                        setUrlVideoNuevo(e.target.value);
+                                    }}
+                                />
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    color="danger"
+                                    variant="light"
+                                    onPress={handleClose}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Button
+                                    color="success"
+                                    onPress={confirmEdit}
+                                    type="submit"
+                                >
+                                    Guardar
+                                </Button>
+                            </ModalFooter>
+                        </form>
                     </>
                 )}
             </ModalContent>
