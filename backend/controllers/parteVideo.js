@@ -494,6 +494,98 @@ router.put("/cambiarIndice/:id", async (req, res) => {
     }
 });
 
+router.put("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Parte Video']
+    #swagger.description = 'Endpoint para editar una parte de video cuestionario.'
+    #swagger.parameters['id'] = {
+        in: 'path',
+        description: 'ID de la parte de video cuestionario a editar.',
+        required: true,
+        type: 'integer'
+    }
+    #swagger.requestBody = {
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        url_video: { type: 'string' },
+                        nombre: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Parte de video cuestionario editada correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_parte_video_cuestionario: { type: 'integer' },
+                        id_nivel: { type: 'integer' },
+                        url_video: { type: 'string' },
+                        indice: { type: 'integer' },
+                        nombre: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al editar la parte de video cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    try {
+        const { id } = req.params;
+        const { url_video, nombre } = req.body;
+
+        // Obtener el id del video del url.
+        // Si se recibe en el formato:
+        // "https://www.youtube.com/watch?v=hDRTRgXGklU", "hDRTRgXGklU" es el id
+        // del video
+        // Si se recibe en el formato:
+        // "https://www.youtube.com/embed/hDRTRgXGklU", "hDRTRgXGklU" es el id
+        // del video
+        // Si se recibe en el formato:
+        // "https://youtu.be/hDRTRgXGklU", "hDRTRgXGklU" es el id del video
+        // Si se recibe en el formato:
+        // "hDRTRgXGklU", "hDRTRgXGklU" es el id del video
+        // Si se recibe en el formato:
+        // "https://www.youtube.com/watch?v=hDRTRgXGklU&feature=youtu.be",
+        // "hDRTRgXGklU" es el id del video
+        // Si se recibe en el formato:
+        // "https://youtu.be/hDRTRgXGklU?feature=shared", "hDRTRgXGklU" es el
+        // id del video
+        const videoID = extractVideoID(url_video);
+
+        const resultado = await prisma.parte_video_cuestionario.update({
+            where: {
+                id_parte_video_cuestionario: parseInt(id),
+            },
+            data: {
+                url_video: videoID,
+                nombre: nombre,
+            },
+        });
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
+    }
+});
+
 module.exports = router;
 
 /*

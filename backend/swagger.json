@@ -639,6 +639,84 @@
           "required": false,
           "content": {}
         }
+      },
+      "put": {
+        "tags": [
+          "Parte Video"
+        ],
+        "description": "Endpoint para editar una parte de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la parte de video cuestionario a editar."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Parte de video cuestionario editada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_nivel": {
+                      "type": "integer"
+                    },
+                    "url_video": {
+                      "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
+                    },
+                    "nombre": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al editar la parte de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url_video": {
+                    "type": "string"
+                  },
+                  "nombre": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/parteVideo/cambiarIndice/{id}": {

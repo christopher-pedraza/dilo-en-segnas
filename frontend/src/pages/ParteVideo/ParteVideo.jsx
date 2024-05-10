@@ -8,7 +8,7 @@ import { get } from "src/utils/ApiRequests";
 import { useParams, useNavigate } from "react-router-dom";
 
 // Components
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 // NextUI components
 import { Button } from "@nextui-org/react";
