@@ -1,5 +1,6 @@
 // Hooks
 import { useEffect, useState } from "react";
+import { useDisclosure } from "@nextui-org/react";
 
 // Llamadas API
 import { get } from "src/utils/ApiRequests";
@@ -9,6 +10,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 // Components
 import Navbar from "../../components/Navbar";
+import ModalEditarParteVideo from "./components/ModalEditarParteVideo";
 
 // NextUI components
 import { Button } from "@nextui-org/react";
@@ -32,11 +34,16 @@ function ParteVideo() {
     // Historial de navegacion
     const navigate = useNavigate();
 
+    // Disclosures para el modal
+    const editDisclosure = useDisclosure();
+
+    const [refresh, setRefresh] = useState(false);
+
     useEffect(() => {
         get(`parteVideo/${id_parte}`).then((data) => {
             setData(data);
         });
-    }, [id_parte]);
+    }, [id_parte, refresh]);
 
     const handleReturn = () => {
         navigate(-1);
@@ -63,7 +70,7 @@ function ParteVideo() {
                                 <FontAwesomeIcon icon={faPencilAlt} />
                             }
                             color="secondary"
-                            onPress={() => {}}
+                            onPress={editDisclosure.onOpen}
                             className="mr-2"
                         >
                             Editar datos
@@ -78,6 +85,15 @@ function ParteVideo() {
                     </div>
                 </div>
             </div>
+            <ModalEditarParteVideo
+                isOpen={editDisclosure.isOpen}
+                onOpenChange={editDisclosure.onOpenChange}
+                onClose={editDisclosure.onClose}
+                id_parte={id_parte}
+                setRefresh={setRefresh}
+                data={data}
+                setData={setData}
+            />
         </div>
     );
 }

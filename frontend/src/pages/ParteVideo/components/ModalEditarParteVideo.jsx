@@ -21,31 +21,51 @@ function ModalCreateParteVideo({
     isOpen,
     onOpenChange,
     onClose,
-    partes,
-    setPartes,
     id_parte,
+    data,
+    setData,
 }) {
     // Datos de la parte que se quiere agregar
-    const [nombreNuevo, setNombreNuevo] = useState("");
-    const [urlVideoNuevo, setUrlVideoNuevo] = useState("");
+    const [nombreNuevo, setNombreNuevo] = useState();
+    const [urlVideoNuevo, setUrlVideoNuevo] = useState();
 
     const confirmEdit = () => {
         put(`parteVideo/${id_parte}`, {
             nombre: nombreNuevo,
             url_video: urlVideoNuevo,
-        }).then((data) => {
-            console.log(data);
-            setPartes([...partes, data]);
+        }).then(() => {
+            setData((prevData) => {
+                return {
+                    ...prevData,
+                    nombre: nombreNuevo,
+                    url_video: urlVideoNuevo,
+                };
+            });
         });
         onClose();
-        setNombreNuevo("");
-        setUrlVideoNuevo("");
+        setNombreNuevo(data.nombre);
+        setUrlVideoNuevo(data.url_video);
+    };
+
+    const handleClose = () => {
+        onClose();
+        setNombreNuevo(data.nombre);
+        setUrlVideoNuevo(data.url_video);
     };
 
     return (
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
+        <Modal
+            isOpen={isOpen}
+            onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                    handleClose();
+                }
+                onOpenChange(isOpen);
+            }}
+            backdrop="blur"
+        >
             <ModalContent>
-                {(onClose) => (
+                {() => (
                     <>
                         <ModalHeader className="flex flex-col gap-1">
                             Editar datos de la parte
@@ -73,7 +93,7 @@ function ModalCreateParteVideo({
                             <Button
                                 color="danger"
                                 variant="light"
-                                onPress={onClose}
+                                onPress={handleClose}
                             >
                                 Cancelar
                             </Button>
@@ -92,9 +112,9 @@ ModalCreateParteVideo.propTypes = {
     isOpen: propTypes.bool.isRequired,
     onOpenChange: propTypes.func.isRequired,
     onClose: propTypes.func.isRequired,
-    partes: propTypes.array.isRequired,
-    setPartes: propTypes.func.isRequired,
     id_parte: propTypes.number.isRequired,
+    data: propTypes.object.isRequired,
+    setData: propTypes.func.isRequired,
 };
 
 export default ModalCreateParteVideo;
