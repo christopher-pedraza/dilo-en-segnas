@@ -104,11 +104,7 @@ function ModalCreateParteVideo({
                                 >
                                     Cancelar
                                 </Button>
-                                <Button
-                                    color="success"
-                                    // onPress={confirmEdit}
-                                    type="submit"
-                                >
+                                <Button color="success" type="submit">
                                     Guardar
                                 </Button>
                             </ModalFooter>
