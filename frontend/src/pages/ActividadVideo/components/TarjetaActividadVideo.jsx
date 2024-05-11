@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 // Components
 import BotonTarjetaActividadVideo from "./components/BotonTarjetaActividadVideo";
 import IndexButtons from "./components/IndexButtons";
-import ModalEliminar from "./components/ModalEliminar";
+import ModalEliminarParte from "./components/ModalEliminarParte";
 import ModalViewVideo from "./components/ModalViewVideo";
 
 // Trash icon
@@ -94,7 +94,7 @@ function TarjetaActividadVideo({ parte, partes_length, id_nivel, setRefresh }) {
                     />
                 </div>
             </div>
-            <ModalEliminar
+            <ModalEliminarParte
                 isOpen={deleteDisclosure.isOpen}
                 onOpenChange={deleteDisclosure.onOpenChange}
                 onClose={deleteDisclosure.onClose}

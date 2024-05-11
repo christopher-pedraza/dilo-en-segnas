@@ -13,7 +13,7 @@ import { del } from "src/utils/ApiRequests";
 
 import propTypes from "prop-types";
 
-function ModalEliminar({
+function ModalEliminarParte({
     isOpen,
     onOpenChange,
     onClose,
@@ -64,7 +64,7 @@ function ModalEliminar({
     );
 }
 
-ModalEliminar.propTypes = {
+ModalEliminarParte.propTypes = {
     isOpen: propTypes.bool.isRequired,
     onOpenChange: propTypes.func.isRequired,
     onClose: propTypes.func.isRequired,
@@ -73,4 +73,4 @@ ModalEliminar.propTypes = {
     setRefresh: propTypes.func.isRequired,
 };
 
-export default ModalEliminar;
+export default ModalEliminarParte;
