@@ -2,7 +2,7 @@
 import { Checkbox, Input } from "@nextui-org/react";
 
 // Fontawesome icons
-import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import BotonPregunta from "./BotonPregunta";
@@ -32,21 +32,19 @@ function RespuestaVideo({ datos_respuesta }) {
                 icon={faPencilAlt}
                 color="secondary"
                 variant="light"
-                classes={"mr-4"}
             />
             <BotonPregunta
                 handlePress={() => {}}
-                icon={faTrash}
+                icon={faXmark}
                 color="danger"
                 variant="light"
-                classes={"mr-4"}
             />
         </div>
     );
 }
 
 RespuestaVideo.propTypes = {
-    respuesta: propTypes.string.isRequired,
+    datos_respuesta: propTypes.object.isRequired,
 };
 
 export default RespuestaVideo;

@@ -53,9 +53,13 @@ function Pregunta({ datos_pregunta }) {
                 <IndexButtonsPregunta />
             </CardHeader>
             <CardBody>
-                {respuestas_video_cuestionario.map((respuesta, index) => (
-                    <RespuestaVideo key={index} datos_respuesta={respuesta} />
-                ))}
+                {respuestas_video_cuestionario &&
+                    respuestas_video_cuestionario.map((respuesta, index) => (
+                        <RespuestaVideo
+                            key={index}
+                            datos_respuesta={respuesta}
+                        />
+                    ))}
                 <div className="w-full flex justify-center">
                     <BotonPregunta
                         handlePress={() => {}}
