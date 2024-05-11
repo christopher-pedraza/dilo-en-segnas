@@ -9,15 +9,15 @@ import { put } from "src/utils/ApiRequests";
 
 function IndexButtonsPregunta({
     setRefresh,
-    id_nivel,
+    id_parte,
     id_pregunta,
     index,
-    partes_length,
+    preguntas_length,
 }) {
     const handleMoveUp = () => {
         put(`preguntaVideo/cambiarIndice/${id_pregunta}`, {
             direccion: "up",
-            id_nivel: id_nivel,
+            id_parte: id_parte,
         }).then(() => {
             setRefresh((prev) => !prev);
         });
@@ -26,7 +26,7 @@ function IndexButtonsPregunta({
     const handleMoveDown = () => {
         put(`preguntaVideo/cambiarIndice/${id_pregunta}`, {
             direccion: "down",
-            id_nivel: id_nivel,
+            id_parte: id_parte,
         }).then(() => {
             setRefresh((prev) => !prev);
         });
@@ -36,6 +36,7 @@ function IndexButtonsPregunta({
         <div className="flex flex-col">
             <Button
                 isIconOnly={true}
+                size="sm"
                 variant="light"
                 onPress={() => {
                     handleMoveUp();
@@ -46,11 +47,12 @@ function IndexButtonsPregunta({
             </Button>
             <Button
                 isIconOnly={true}
+                size="sm"
                 variant="light"
                 onPress={() => {
                     handleMoveDown();
                 }}
-                isDisabled={index === partes_length - 1}
+                isDisabled={index === preguntas_length - 1}
             >
                 <FontAwesomeIcon icon={faArrowDown} />
             </Button>

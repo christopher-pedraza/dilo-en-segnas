@@ -36,6 +36,7 @@ function IndexButtons({
         <div className="flex flex-col">
             <Button
                 isIconOnly={true}
+                size="sm"
                 variant="light"
                 onPress={() => {
                     handleMoveUp();
@@ -46,6 +47,7 @@ function IndexButtons({
             </Button>
             <Button
                 isIconOnly={true}
+                size="sm"
                 variant="light"
                 onPress={() => {
                     handleMoveDown();
