@@ -12,6 +12,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import ModalEditarParteVideo from "./components/ModalEditarParteVideo";
 import ModalCrearPregunta from "./components/ModalCrearPregunta";
+import Pregunta from "./components/Pregunta";
 
 // NextUI components
 import { Button } from "@nextui-org/react";
@@ -93,6 +94,9 @@ function ParteVideo() {
                             Pregunta
                         </Button>
                     </div>
+                </div>
+                <div className="mt-4">
+                    <Pregunta />
                 </div>
             </div>
             <ModalEditarParteVideo
