@@ -8,18 +8,24 @@ import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { put } from "src/utils/ApiRequests";
 
 function IndexButtonsPregunta({
-    setRefresh,
     id_parte,
     id_pregunta,
     index,
     preguntas_length,
+    setPreguntas,
 }) {
     const handleMoveUp = () => {
         put(`preguntaVideo/cambiarIndice/${id_pregunta}`, {
             direccion: "up",
             id_parte: id_parte,
         }).then(() => {
-            setRefresh((prev) => !prev);
+            setPreguntas((prev) => {
+                const copy = [...prev];
+                const temp = copy[index];
+                copy[index] = copy[index - 1];
+                copy[index - 1] = temp;
+                return copy;
+            });
         });
     };
 
@@ -28,7 +34,13 @@ function IndexButtonsPregunta({
             direccion: "down",
             id_parte: id_parte,
         }).then(() => {
-            setRefresh((prev) => !prev);
+            setPreguntas((prev) => {
+                const copy = [...prev];
+                const temp = copy[index];
+                copy[index] = copy[index + 1];
+                copy[index + 1] = temp;
+                return copy;
+            });
         });
     };
 
@@ -61,11 +73,11 @@ function IndexButtonsPregunta({
 }
 
 IndexButtonsPregunta.propTypes = {
-    setRefresh: propTypes.func.isRequired,
-    id_nivel: propTypes.number.isRequired,
-    id_parte: propTypes.number.isRequired,
-    index: propTypes.number.isRequired,
-    partes_length: propTypes.number.isRequired,
+    id_parte: propTypes.number,
+    id_pregunta: propTypes.number,
+    index: propTypes.number,
+    preguntas_length: propTypes.number,
+    setPreguntas: propTypes.func,
 };
 
 export default IndexButtonsPregunta;

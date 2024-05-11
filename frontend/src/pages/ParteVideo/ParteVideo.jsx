@@ -102,6 +102,8 @@ function ParteVideo() {
                             array_index={index}
                             datos_pregunta={pregunta}
                             setPreguntas={setPreguntas}
+                            preguntas_length={preguntas.length}
+                            id_parte={id_parte}
                         />
                     ))}
                 </div>

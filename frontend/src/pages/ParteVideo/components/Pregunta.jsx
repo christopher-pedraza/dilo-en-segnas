@@ -28,7 +28,13 @@ import propTypes from "prop-types";
 // Hooks
 import { useState } from "react";
 
-function Pregunta({ array_index, datos_pregunta, setPreguntas }) {
+function Pregunta({
+    array_index,
+    datos_pregunta,
+    setPreguntas,
+    preguntas_length,
+    id_parte,
+}) {
     const {
         id_preguntas_video_cuestionario,
         pregunta,
@@ -64,7 +70,13 @@ function Pregunta({ array_index, datos_pregunta, setPreguntas }) {
                         variant="light"
                         classes={"mr-4"}
                     />
-                    <IndexButtonsPregunta />
+                    <IndexButtonsPregunta
+                        id_parte={id_parte}
+                        id_pregunta={id_preguntas_video_cuestionario}
+                        index={array_index}
+                        preguntas_length={preguntas_length}
+                        setPreguntas={setPreguntas}
+                    />
                 </CardHeader>
                 <CardBody>
                     {respuestas_video_cuestionario &&
@@ -111,6 +123,8 @@ Pregunta.propTypes = {
     array_index: propTypes.number,
     datos_pregunta: propTypes.object,
     setPreguntas: propTypes.func,
+    preguntas_length: propTypes.number,
+    id_parte: propTypes.number,
 };
 
 export default Pregunta;
