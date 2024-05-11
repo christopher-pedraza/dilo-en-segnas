@@ -1477,6 +1477,9 @@
                       "pregunta": {
                         "type": "string"
                       },
+                      "indice": {
+                        "type": "integer"
+                      },
                       "respuestas_video_cuestionario": {
                         "type": "array",
                         "items": {
@@ -1541,6 +1544,9 @@
                     },
                     "pregunta": {
                       "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -1618,6 +1624,9 @@
                       "pregunta": {
                         "type": "string"
                       },
+                      "indice": {
+                        "type": "integer"
+                      },
                       "respuestas_video_cuestionario": {
                         "type": "array",
                         "items": {
@@ -1693,6 +1702,9 @@
                     "pregunta": {
                       "type": "string"
                     },
+                    "indice": {
+                      "type": "integer"
+                    },
                     "respuestas_video_cuestionario": {
                       "type": "array",
                       "items": {
@@ -1767,6 +1779,9 @@
                     },
                     "pregunta": {
                       "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -1853,6 +1868,9 @@
                     },
                     "pregunta": {
                       "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
                     }
                   }
                 }

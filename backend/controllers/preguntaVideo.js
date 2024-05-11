@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
                             id_preguntas_video_cuestionario: { type: 'integer' },
                             id_parte_video_cuestionario: { type: 'integer' },
                             pregunta: { type: 'string' },
+                            indice: { type: 'integer' },
                             respuestas_video_cuestionario: {
                                 type: 'array',
                                 items: {
@@ -80,6 +81,7 @@ router.get("/byParte/:id_parte", async (req, res) => {
                         properties: {
                             id_preguntas_video_cuestionario: { type: 'integer' },
                             pregunta: { type: 'string' },
+                            indice: { type: 'integer' },
                             respuestas_video_cuestionario: {
                                 type: 'array',
                                 items: {
@@ -118,6 +120,7 @@ router.get("/byParte/:id_parte", async (req, res) => {
             select: {
                 id_preguntas_video_cuestionario: true,
                 pregunta: true,
+                indice: true,
                 respuestas_video_cuestionario: {
                     select: {
                         id_respuestas_video_cuestionario: true,
@@ -126,6 +129,7 @@ router.get("/byParte/:id_parte", async (req, res) => {
                     },
                 },
             },
+            orderBy: { indice: "asc" },
         });
         res.json(preguntas);
     } catch (error) {
@@ -148,6 +152,7 @@ router.get("/:id", async (req, res) => {
                         id_preguntas_video_cuestionario: { type: 'integer' },
                         id_parte_video_cuestionario: { type: 'integer' },
                         pregunta: { type: 'string' },
+                        indice: { type: 'integer' },
                         respuestas_video_cuestionario: {
                             type: 'array',
                             items: {
@@ -186,6 +191,7 @@ router.get("/:id", async (req, res) => {
                 id_preguntas_video_cuestionario: true,
                 id_parte_video_cuestionario: true,
                 pregunta: true,
+                indice: true,
                 respuestas_video_cuestionario: {
                     select: {
                         id_respuestas_video_cuestionario: true,
@@ -232,7 +238,8 @@ router.post("/", async (req, res) => {
                     properties: {
                         id_preguntas_video_cuestionario: { type: 'integer' },
                         id_parte_video_cuestionario: { type: 'integer' },
-                        pregunta: { type: 'string' }
+                        pregunta: { type: 'string' },
+                        indice: { type: 'integer' }
                     }
                 }
             }
@@ -689,7 +696,8 @@ router.put("/:id", async (req, res) => {
                     properties: {
                         id_preguntas_video_cuestionario: { type: 'integer' },
                         id_parte_video_cuestionario: { type: 'integer' },
-                        pregunta: { type: 'string' }
+                        pregunta: { type: 'string' },
+                        indice: { type: 'integer' }
                     }
                 }
             }
@@ -753,7 +761,8 @@ router.delete("/:id", async (req, res) => {
                     properties: {
                         id_preguntas_video_cuestionario: { type: 'integer' },
                         id_parte_video_cuestionario: { type: 'integer' },
-                        pregunta: { type: 'string' }
+                        pregunta: { type: 'string' },
+                        indice: { type: 'integer' }
                     }
                 }
             }
