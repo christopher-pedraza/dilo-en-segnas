@@ -102,7 +102,6 @@ function ParteVideo() {
                             array_index={index}
                             datos_pregunta={pregunta}
                             setPreguntas={setPreguntas}
-                            // preguntas={preguntas}
                         />
                     ))}
                 </div>

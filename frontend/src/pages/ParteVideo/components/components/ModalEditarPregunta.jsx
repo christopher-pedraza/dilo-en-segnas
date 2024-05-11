@@ -36,17 +36,23 @@ function ModalEditarPregunta({
         }).then((res) => {
             setPreguntas((prev) => {
                 const newPreguntas = [...prev];
-                newPreguntas[array_index] = res;
+                // Copiar los atributos de la pregunta anterior
+                const oldPregunta = newPreguntas[array_index];
+                // Crear un nuevo objeto pregunta con los atributos de la
+                // pregunta anterior y los nuevos atributos
+                const newPregunta = {
+                    ...oldPregunta,
+                    ...res,
+                };
+                newPreguntas[array_index] = newPregunta;
                 return newPreguntas;
             });
         });
         onClose();
-        setPregunta("");
     };
 
     const handleClose = () => {
         onClose();
-        setPregunta("");
     };
 
     useEffect(() => {
