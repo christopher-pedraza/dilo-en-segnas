@@ -18,27 +18,20 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // Components
 import BotonPregunta from "./components/BotonPregunta";
 import IndexButtonsPregunta from "./components/IndexButtonsPregunta";
+import RespuestaVideo from "./components/RespuestaVideo";
 
 import propTypes from "prop-types";
 
-function Pregunta() {
+function Pregunta({ datos_pregunta }) {
+    const { pregunta, respuestas_video_cuestionario } = datos_pregunta;
+
     return (
-        <Card>
+        <Card className="mb-4">
             <CardHeader className="flex items-center">
-                {/* <Card
-                    fullWidth
-                    shadow="none"
-                    isPressable
-                    onPress={() => {
-                        alert("Hola");
-                    }}
-                    disableAnimation
-                    disableRipple
-                > */}
                 <Input
                     label="Pregunta"
                     isReadOnly
-                    value="Crees que deberia"
+                    value={pregunta}
                     variant="underlined"
                     className="mr-4"
                 />
@@ -59,37 +52,10 @@ function Pregunta() {
                 />
                 <IndexButtonsPregunta />
             </CardHeader>
-            {/* <Divider /> */}
             <CardBody>
-                <div className="flex items-center">
-                    <Checkbox
-                        color="success"
-                        radius="full"
-                        isSelected={true}
-                        isReadOnly
-                    />
-                    <Input
-                        label="Respuesta"
-                        isReadOnly
-                        value="Si"
-                        variant="underlined"
-                        className="mr-4"
-                    />
-                    <BotonPregunta
-                        handlePress={() => {}}
-                        icon={faPencilAlt}
-                        color="secondary"
-                        variant="light"
-                        classes={"mr-4"}
-                    />
-                    <BotonPregunta
-                        handlePress={() => {}}
-                        icon={faTrash}
-                        color="danger"
-                        variant="light"
-                        classes={"mr-4"}
-                    />
-                </div>
+                {respuestas_video_cuestionario.map((respuesta, index) => (
+                    <RespuestaVideo key={index} datos_respuesta={respuesta} />
+                ))}
                 <div className="w-full flex justify-center">
                     <BotonPregunta
                         handlePress={() => {}}
@@ -103,5 +69,9 @@ function Pregunta() {
         </Card>
     );
 }
+
+Pregunta.propTypes = {
+    datos_pregunta: propTypes.object.isRequired,
+};
 
 export default Pregunta;

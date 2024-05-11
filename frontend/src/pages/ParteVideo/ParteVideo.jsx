@@ -96,7 +96,14 @@ function ParteVideo() {
                     </div>
                 </div>
                 <div className="mt-4">
-                    <Pregunta />
+                    {preguntas.map((pregunta, index) => (
+                        <Pregunta
+                            key={index}
+                            datos_pregunta={pregunta}
+                            setPreguntas={setPreguntas}
+                            preguntas={preguntas}
+                        />
+                    ))}
                 </div>
             </div>
             <ModalEditarParteVideo
