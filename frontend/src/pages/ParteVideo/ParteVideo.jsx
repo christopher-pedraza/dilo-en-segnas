@@ -99,9 +99,10 @@ function ParteVideo() {
                     {preguntas.map((pregunta, index) => (
                         <Pregunta
                             key={index}
+                            array_index={index}
                             datos_pregunta={pregunta}
                             setPreguntas={setPreguntas}
-                            preguntas={preguntas}
+                            // preguntas={preguntas}
                         />
                     ))}
                 </div>
