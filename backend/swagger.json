@@ -2284,7 +2284,7 @@
                   "direccion": {
                     "type": "string"
                   },
-                  "id_nivel": {
+                  "id_parte_video_cuestionario": {
                     "type": "integer"
                   }
                 },

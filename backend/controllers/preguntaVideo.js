@@ -568,7 +568,7 @@ router.put("/cambiarIndice/:id", async (req, res) => {
                     type: 'object',
                     properties: {
                         direccion: { type: 'string' },
-                        id_nivel: { type: 'integer' }
+                        id_parte_video_cuestionario: { type: 'integer' }
                     },
                     required: ['direccion', 'id_nivel']
                 }
@@ -617,17 +617,17 @@ router.put("/cambiarIndice/:id", async (req, res) => {
     */
     try {
         const { id } = req.params;
-        const { direccion, id_nivel } = req.body;
+        const { direccion, id_parte_video_cuestionario } = req.body;
 
-        const question = await prisma.pregunta_video_cuestionario.findUnique({
-            where: { id_pregunta_video_cuestionario: Number(id) },
+        const question = await prisma.preguntas_video_cuestionario.findUnique({
+            where: { id_preguntas_video_cuestionario: Number(id) },
         });
         if (!question) {
             return res.status(404).json({ message: "Question not found" });
         }
 
-        const swapQuestion = await prisma.pregunta_video_cuestionario.findFirst(
-            {
+        const swapQuestion =
+            await prisma.preguntas_video_cuestionario.findFirst({
                 where: {
                     AND: [
                         {
@@ -636,11 +636,13 @@ router.put("/cambiarIndice/:id", async (req, res) => {
                                     ? question.indice - 1
                                     : question.indice + 1,
                         },
-                        { id_nivel: id_nivel },
+                        {
+                            id_parte_video_cuestionario:
+                                id_parte_video_cuestionario,
+                        },
                     ],
                 },
-            }
-        );
+            });
         if (!swapQuestion) {
             return res.status(404).json({ message: "Swap question not found" });
         }
@@ -649,17 +651,17 @@ router.put("/cambiarIndice/:id", async (req, res) => {
         question.indice = swapQuestion.indice;
         swapQuestion.indice = temp;
 
-        await prisma.pregunta_video_cuestionario.update({
+        await prisma.preguntas_video_cuestionario.update({
             where: {
-                id_pregunta_video_cuestionario:
-                    question.id_pregunta_video_cuestionario,
+                id_preguntas_video_cuestionario:
+                    question.id_preguntas_video_cuestionario,
             },
             data: { indice: question.indice },
         });
-        await prisma.pregunta_video_cuestionario.update({
+        await prisma.preguntas_video_cuestionario.update({
             where: {
-                id_pregunta_video_cuestionario:
-                    swapQuestion.id_pregunta_video_cuestionario,
+                id_preguntas_video_cuestionario:
+                    swapQuestion.id_preguntas_video_cuestionario,
             },
             data: { indice: swapQuestion.indice },
         });
