@@ -14,7 +14,7 @@ function IndexButtons({
     index,
     partes_length,
 }) {
-    const handleMoveUp = (id_parte) => {
+    const handleMoveUp = () => {
         put(`parteVideo/cambiarIndice/${id_parte}`, {
             direccion: "up",
             id_nivel: id_nivel,
@@ -23,7 +23,7 @@ function IndexButtons({
         });
     };
 
-    const handleMoveDown = (id_parte) => {
+    const handleMoveDown = () => {
         put(`parteVideo/cambiarIndice/${id_parte}`, {
             direccion: "down",
             id_nivel: id_nivel,
@@ -38,7 +38,7 @@ function IndexButtons({
                 isIconOnly={true}
                 variant="light"
                 onPress={() => {
-                    handleMoveUp(id_parte);
+                    handleMoveUp();
                 }}
                 isDisabled={index === 0}
             >
@@ -48,7 +48,7 @@ function IndexButtons({
                 isIconOnly={true}
                 variant="light"
                 onPress={() => {
-                    handleMoveDown(id_parte);
+                    handleMoveDown();
                 }}
                 isDisabled={index === partes_length - 1}
             >

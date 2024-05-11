@@ -10,12 +10,12 @@ import { put } from "src/utils/ApiRequests";
 function IndexButtonsPregunta({
     setRefresh,
     id_nivel,
-    id_parte,
+    id_pregunta,
     index,
     partes_length,
 }) {
-    const handleMoveUp = (id_parte) => {
-        put(`parteVideo/cambiarIndice/${id_parte}`, {
+    const handleMoveUp = () => {
+        put(`preguntaVideo/cambiarIndice/${id_pregunta}`, {
             direccion: "up",
             id_nivel: id_nivel,
         }).then(() => {
@@ -23,8 +23,8 @@ function IndexButtonsPregunta({
         });
     };
 
-    const handleMoveDown = (id_parte) => {
-        put(`parteVideo/cambiarIndice/${id_parte}`, {
+    const handleMoveDown = () => {
+        put(`preguntaVideo/cambiarIndice/${id_pregunta}`, {
             direccion: "down",
             id_nivel: id_nivel,
         }).then(() => {
@@ -38,7 +38,7 @@ function IndexButtonsPregunta({
                 isIconOnly={true}
                 variant="light"
                 onPress={() => {
-                    handleMoveUp(id_parte);
+                    handleMoveUp();
                 }}
                 isDisabled={index === 0}
             >
@@ -48,7 +48,7 @@ function IndexButtonsPregunta({
                 isIconOnly={true}
                 variant="light"
                 onPress={() => {
-                    handleMoveDown(id_parte);
+                    handleMoveDown();
                 }}
                 isDisabled={index === partes_length - 1}
             >

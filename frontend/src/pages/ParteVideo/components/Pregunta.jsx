@@ -21,8 +21,12 @@ import BotonPregunta from "./components/BotonPregunta";
 import IndexButtonsPregunta from "./components/IndexButtonsPregunta";
 import RespuestaVideo from "./components/RespuestaVideo";
 import ModalEditarPregunta from "./components/ModalEditarPregunta";
+import ModalEliminarPregunta from "./components/ModalEliminarPregunta";
 
 import propTypes from "prop-types";
+
+// Hooks
+import { useState } from "react";
 
 function Pregunta({ array_index, datos_pregunta, setPreguntas }) {
     const {
@@ -32,6 +36,7 @@ function Pregunta({ array_index, datos_pregunta, setPreguntas }) {
     } = datos_pregunta;
 
     const editarPreguntaDisclosure = useDisclosure();
+    const eliminarPreguntaDisclosure = useDisclosure();
 
     return (
         <div>
@@ -53,7 +58,7 @@ function Pregunta({ array_index, datos_pregunta, setPreguntas }) {
                         classes={"mr-4"}
                     />
                     <BotonPregunta
-                        handlePress={() => {}}
+                        handlePress={eliminarPreguntaDisclosure.onOpen}
                         icon={faTrash}
                         color="danger"
                         variant="light"
@@ -90,6 +95,13 @@ function Pregunta({ array_index, datos_pregunta, setPreguntas }) {
                 array_index={array_index}
                 setPreguntas={setPreguntas}
                 preguntaActual={pregunta}
+            />
+            <ModalEliminarPregunta
+                isOpen={eliminarPreguntaDisclosure.isOpen}
+                onOpenChange={eliminarPreguntaDisclosure.onOpenChange}
+                onClose={eliminarPreguntaDisclosure.onClose}
+                id_pregunta={id_preguntas_video_cuestionario}
+                setPreguntas={setPreguntas}
             />
         </div>
     );
