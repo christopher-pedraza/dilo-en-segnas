@@ -25,10 +25,10 @@ function EnvironmentList({ environments, setEnvironments, navigate }) {
           <p>Agregar Entorno</p>
         </div>
       </button>
-      {environments.map((env) => (
+      {environments.map((environment) => (
         <EnvironmentItem
-          key={env.id}
-          environment={env}
+          key={environment.id_isla}
+          environment={environment}
           setEnvironments={setEnvironments}
           navigate={navigate}
         />

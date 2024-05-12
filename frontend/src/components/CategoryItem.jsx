@@ -37,21 +37,22 @@ function CategoryItem({ category, environment, setEnvironments, navigate }) {
     <div className="flex items-center justify-between py-1">
       <span
         className="text-xs cursor-pointer"
-        onClick={() => navigate(`/${environment.name}/${category.name}`)}
+        // onClick={() => navigate(`/${environment.nombre}/${category.nombre}`)}
+        onClick={() => navigate(`/${environment.id_isla}/${category.id_nivel}`)}
       >
-        {category.name}
+        {category.nombre}
       </span>
       <div className="flex space-x-2">
         <button
           className="p-1 bg-green-500 text-white rounded"
-          onClick={() => editCategory(category.id)}
+          onClick={() => editCategory(category.id_nivel)}
           title="Editar Categoría"
         >
           <FaEdit />
         </button>
         <button
           className="p-1 bg-red-500 text-white rounded"
-          onClick={() => deleteCategory(category.id)}
+          onClick={() => deleteCategory(category.id_nivel)}
           title="Eliminar Categoría"
         >
           <FaTrash />

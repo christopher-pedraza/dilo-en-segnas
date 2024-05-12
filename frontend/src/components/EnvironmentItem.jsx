@@ -56,25 +56,27 @@ function EnvironmentItem({ environment, setEnvironments, navigate }) {
         >
           {environment.isOpen ? <FaCaretDown /> : <FaCaretRight />}
         </button>
-        <span className="flex-grow text-sm font-bold">{environment.name}</span>
+        <span className="flex-grow text-sm font-bold">
+          {environment.nombre}
+        </span>
         <div className="flex space-x-2">
           <button
             className="p-1 bg-indigo-500 text-white rounded"
-            onClick={() => addCategory(environment.id)}
+            onClick={() => addCategory(environment.id_isla)}
             title="Agregar Categoría"
           >
             <FaPlus />
           </button>
           <button
             className="p-1 bg-green-500 text-white rounded"
-            onClick={() => editEnvironment(environment.id)}
+            onClick={() => editEnvironment(environment.id_isla)}
             title="Editar Entorno"
           >
             <FaEdit />
           </button>
           <button
             className="p-1 bg-red-500 text-white rounded"
-            onClick={() => deleteEnvironment(environment.id)}
+            onClick={() => deleteEnvironment(environment.id_isla)}
             title="Eliminar Entorno"
           >
             <FaTrash />
