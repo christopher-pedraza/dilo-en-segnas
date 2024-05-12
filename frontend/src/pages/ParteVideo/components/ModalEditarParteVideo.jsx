@@ -29,17 +29,24 @@ function ModalEditarParteVideo({
     const [nombreNuevo, setNombreNuevo] = useState();
     const [urlVideoNuevo, setUrlVideoNuevo] = useState();
 
+    const extractVideoID = (url) => {
+        const regex =
+            /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^?&"'>]+)/;
+        const matches = url.match(regex);
+        return matches ? matches[5] : url;
+    };
+
     const confirmEdit = (e) => {
         e.preventDefault();
         put(`parteVideo/${id_parte}`, {
             nombre: nombreNuevo,
-            url_video: urlVideoNuevo,
+            url_video: extractVideoID(urlVideoNuevo),
         }).then(() => {
             setData((prevData) => {
                 return {
                     ...prevData,
                     nombre: nombreNuevo,
-                    url_video: urlVideoNuevo,
+                    url_video: extractVideoID(urlVideoNuevo),
                 };
             });
         });

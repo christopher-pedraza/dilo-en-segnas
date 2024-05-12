@@ -28,7 +28,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function ParteVideo() {
     // Obtener del url el id de la parte de video
-    let { id_parte } = useParams();
+    let { id_nivel, id_parte } = useParams();
     id_parte = parseInt(id_parte);
 
     // Informacion de la parte
@@ -57,7 +57,7 @@ function ParteVideo() {
     }, [id_parte]);
 
     const handleReturn = () => {
-        navigate(-1);
+        navigate(`/videos/${id_nivel}`);
     };
 
     return (
@@ -94,6 +94,16 @@ function ParteVideo() {
                             Pregunta
                         </Button>
                     </div>
+                </div>
+                <div className="mt-4">
+                    <iframe
+                        width="100%"
+                        height="400px"
+                        src={`https://www.youtube.com/embed/${data.url_video}`}
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                    ></iframe>
                 </div>
                 <div className="mt-4">
                     {preguntas.map((pregunta, index) => (

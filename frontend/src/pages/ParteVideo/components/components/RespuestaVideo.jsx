@@ -7,6 +7,7 @@ import { faPencilAlt, faXmark } from "@fortawesome/free-solid-svg-icons";
 // Components
 import BotonPregunta from "./BotonPregunta";
 import ModalEditarRespuesta from "./components/ModalEditarRespuesta";
+import ModalEliminarRespuesta from "./components/ModalEliminarRespuesta";
 
 import propTypes from "prop-types";
 
@@ -15,6 +16,7 @@ function RespuestaVideo({ datos_respuesta, setRespuestas, array_index }) {
         datos_respuesta;
 
     const editarRespuestaDisclosure = useDisclosure();
+    const eliminarRespuestaDisclosure = useDisclosure();
 
     return (
         <div>
@@ -39,7 +41,7 @@ function RespuestaVideo({ datos_respuesta, setRespuestas, array_index }) {
                     variant="light"
                 />
                 <BotonPregunta
-                    handlePress={() => {}}
+                    handlePress={eliminarRespuestaDisclosure.onOpen}
                     icon={faXmark}
                     color="danger"
                     variant="light"
@@ -54,6 +56,13 @@ function RespuestaVideo({ datos_respuesta, setRespuestas, array_index }) {
                 setRespuestas={setRespuestas}
                 respuestaActual={respuesta}
                 esCorrectaActual={es_correcta}
+            />
+            <ModalEliminarRespuesta
+                isOpen={eliminarRespuestaDisclosure.isOpen}
+                onOpenChange={eliminarRespuestaDisclosure.onOpenChange}
+                onClose={eliminarRespuestaDisclosure.onClose}
+                id_respuesta={id_respuestas_video_cuestionario}
+                setRespuestas={setRespuestas}
             />
         </div>
     );

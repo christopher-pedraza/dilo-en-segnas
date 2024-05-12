@@ -12,6 +12,7 @@ import {
 } from "@nextui-org/react";
 
 // Iconos
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -22,6 +23,7 @@ import IndexButtonsPregunta from "./components/IndexButtonsPregunta";
 import RespuestaVideo from "./components/RespuestaVideo";
 import ModalEditarPregunta from "./components/ModalEditarPregunta";
 import ModalEliminarPregunta from "./components/ModalEliminarPregunta";
+import ModalCrearRespuesta from "./components/ModalCrearRespuesta";
 
 import propTypes from "prop-types";
 
@@ -45,6 +47,7 @@ function Pregunta({
 
     const editarPreguntaDisclosure = useDisclosure();
     const eliminarPreguntaDisclosure = useDisclosure();
+    const crearRespuestaDisclosure = useDisclosure();
 
     useEffect(() => {
         setRespuestas(respuestas_video_cuestionario);
@@ -95,13 +98,22 @@ function Pregunta({
                             />
                         ))}
                     <div className="w-full flex justify-center">
-                        <BotonPregunta
-                            handlePress={() => {}}
+                        {/* <BotonPregunta
+                            handlePress={crearRespuestaDisclosure.onOpen}
                             icon={faPlus}
                             color="success"
                             variant="ghost"
                             classes={"mt-4"}
-                        />
+                        /> */}
+                        <Button
+                            startContent={<FontAwesomeIcon icon={faPlus} />}
+                            color="success"
+                            variant="ghost"
+                            className="mt-4"
+                            onPress={crearRespuestaDisclosure.onOpen}
+                        >
+                            Respuesta
+                        </Button>
                     </div>
                 </CardBody>
             </Card>
@@ -120,6 +132,13 @@ function Pregunta({
                 onClose={eliminarPreguntaDisclosure.onClose}
                 id_pregunta={id_preguntas_video_cuestionario}
                 setPreguntas={setPreguntas}
+            />
+            <ModalCrearRespuesta
+                isOpen={crearRespuestaDisclosure.isOpen}
+                onOpenChange={crearRespuestaDisclosure.onOpenChange}
+                onClose={crearRespuestaDisclosure.onClose}
+                id_pregunta={id_preguntas_video_cuestionario}
+                setRespuestas={setRespuestas}
             />
         </div>
     );
