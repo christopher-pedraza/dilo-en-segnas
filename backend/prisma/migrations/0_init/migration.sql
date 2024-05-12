@@ -72,6 +72,7 @@ CREATE TABLE "preguntas_video_cuestionario" (
     "id_preguntas_video_cuestionario" SERIAL NOT NULL,
     "id_parte_video_cuestionario" INTEGER NOT NULL,
     "pregunta" TEXT NOT NULL,
+    "indice" INTEGER NOT NULL,
 
     CONSTRAINT "preguntas_video_cuestionario_pkey" PRIMARY KEY ("id_preguntas_video_cuestionario")
 );

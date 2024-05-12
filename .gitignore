@@ -139,3 +139,5 @@ node_modules
 # Ignore Mac system files
 .clj-kondo
 /.clj-kondo
+
+.vite

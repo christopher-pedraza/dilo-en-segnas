@@ -2,6 +2,7 @@ const niveles = require("../controllers/nivel.js");
 const parteVideo = require("../controllers/parteVideo.js");
 const isla = require("../controllers/isla.js");
 const miembro = require("../controllers/miembro.js");
+const preguntaVideo = require("../controllers/preguntaVideo.js");
 
 const express = require("express");
 const router = express.Router();
@@ -20,5 +21,6 @@ router.use("/niveles", niveles);
 router.use("/parteVideo", parteVideo);
 router.use("/isla", isla);
 router.use("/miembro", miembro);
+router.use("/preguntaVideo", preguntaVideo);
 
 module.exports = router;
