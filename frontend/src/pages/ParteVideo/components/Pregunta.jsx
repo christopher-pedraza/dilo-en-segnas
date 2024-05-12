@@ -26,7 +26,7 @@ import ModalEliminarPregunta from "./components/ModalEliminarPregunta";
 import propTypes from "prop-types";
 
 // Hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Pregunta({
     array_index,
@@ -41,8 +41,14 @@ function Pregunta({
         respuestas_video_cuestionario,
     } = datos_pregunta;
 
+    const [respuestas, setRespuestas] = useState();
+
     const editarPreguntaDisclosure = useDisclosure();
     const eliminarPreguntaDisclosure = useDisclosure();
+
+    useEffect(() => {
+        setRespuestas(respuestas_video_cuestionario);
+    }, [respuestas_video_cuestionario]);
 
     return (
         <div>
@@ -79,15 +85,15 @@ function Pregunta({
                     />
                 </CardHeader>
                 <CardBody>
-                    {respuestas_video_cuestionario &&
-                        respuestas_video_cuestionario.map(
-                            (respuesta, index) => (
-                                <RespuestaVideo
-                                    key={index}
-                                    datos_respuesta={respuesta}
-                                />
-                            )
-                        )}
+                    {respuestas &&
+                        respuestas.map((respuesta, index) => (
+                            <RespuestaVideo
+                                key={index}
+                                datos_respuesta={respuesta}
+                                setRespuestas={setRespuestas}
+                                array_index={index}
+                            />
+                        ))}
                     <div className="w-full flex justify-center">
                         <BotonPregunta
                             handlePress={() => {}}
