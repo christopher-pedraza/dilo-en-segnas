@@ -43,7 +43,7 @@ function Pregunta({
         respuestas_video_cuestionario,
     } = datos_pregunta;
 
-    const [respuestas, setRespuestas] = useState();
+    const [respuestas, setRespuestas] = useState([]);
 
     const editarPreguntaDisclosure = useDisclosure();
     const eliminarPreguntaDisclosure = useDisclosure();
@@ -132,6 +132,7 @@ function Pregunta({
                 onClose={eliminarPreguntaDisclosure.onClose}
                 id_pregunta={id_preguntas_video_cuestionario}
                 setPreguntas={setPreguntas}
+                id_parte={id_parte}
             />
             <ModalCrearRespuesta
                 isOpen={crearRespuestaDisclosure.isOpen}

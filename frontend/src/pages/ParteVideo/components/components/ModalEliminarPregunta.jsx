@@ -19,10 +19,11 @@ function ModalEliminarPregunta({
     onClose,
     id_pregunta,
     setPreguntas,
+    id_parte,
 }) {
     const confirmDelete = () => {
         if (id_pregunta !== null) {
-            del(`preguntaVideo/${id_pregunta}`).then(() => {
+            del(`preguntaVideo/${id_parte}/${id_pregunta}`).then(() => {
                 setPreguntas((prev) => {
                     return prev.filter(
                         (pregunta) =>
@@ -73,6 +74,7 @@ ModalEliminarPregunta.propTypes = {
     onClose: propTypes.func.isRequired,
     id_pregunta: propTypes.number.isRequired,
     setPreguntas: propTypes.func.isRequired,
+    id_parte: propTypes.number.isRequired,
 };
 
 export default ModalEliminarPregunta;
