@@ -2,34 +2,80 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 function CategoryItem({ category, environment, setEnvironments, navigate }) {
-  const deleteCategory = (catId) => {
-    setEnvironments((prev) =>
-      prev.map((env) =>
-        env.id === environment.id
-          ? {
+  const deleteCategory = async (catId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/niveles/${catId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete category");
+      setEnvironments((prev) =>
+        prev.map((env) => {
+          if (env.id_isla === environment.id_isla) {
+            return {
               ...env,
-              categories: env.categories.filter((cat) => cat.id !== catId),
-            }
-          : env
-      )
-    );
+              categories: env.categories
+                ? env.categories.filter((cat) => cat.id_nivel !== catId)
+                : [],
+            };
+          }
+          return env;
+        })
+      );
+
+      // Recargamos la página para reflejar los cambios antes de la redirección
+      window.location.reload();
+
+      // Redirección usando navigate a home
+      navigate("/home");
+    } catch (error) {
+      console.error("Error deleting category:", error);
+      alert("Error al eliminar la categoría");
+    }
   };
 
-  const editCategory = (catId) => {
+  const editCategory = async (catId) => {
     const newName = prompt("Editar el nombre de la categoría:");
     if (newName) {
-      setEnvironments((prev) =>
-        prev.map((env) =>
-          env.id === environment.id
-            ? {
+      try {
+        const response = await fetch(`http://localhost:3000/niveles/${catId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id_isla: environment.id_isla,
+            nombre: newName,
+          }),
+        });
+        const updatedCategory = await response.json();
+        if (!response.ok) throw new Error("Failed to update category");
+        setEnvironments((prev) =>
+          prev.map((env) => {
+            if (env.id_isla === environment.id_isla) {
+              return {
                 ...env,
-                categories: env.categories.map((cat) =>
-                  cat.id === catId ? { ...cat, name: newName } : cat
-                ),
-              }
-            : env
-        )
-      );
+                categories: env.categories
+                  ? env.categories.map((cat) =>
+                      cat.id_nivel === catId
+                        ? { ...cat, nombre: updatedCategory.nombre }
+                        : cat
+                    )
+                  : [],
+              };
+            }
+            return env;
+          })
+        );
+
+        // Recargamos la página para reflejar los cambios antes de la redirección
+        window.location.reload();
+
+        // Redirección usando navigate a home
+        navigate("/home");
+      } catch (error) {
+        console.error("Error updating category:", error);
+        alert("Error al actualizar la categoría");
+      }
     }
   };
 
@@ -37,7 +83,6 @@ function CategoryItem({ category, environment, setEnvironments, navigate }) {
     <div className="flex items-center justify-between py-1">
       <span
         className="text-xs cursor-pointer"
-        // onClick={() => navigate(`/${environment.nombre}/${category.nombre}`)}
         onClick={() => navigate(`/${environment.id_isla}/${category.id_nivel}`)}
       >
         {category.nombre}
