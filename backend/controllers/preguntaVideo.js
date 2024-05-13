@@ -58,6 +58,7 @@ router.get("/", async (req, res) => {
     try {
         const preguntas = await prisma.preguntas_video_cuestionario.findMany({
             include: { respuestas_video_cuestionario: true },
+            orderBy: { indice: "asc" },
         });
         res.json(preguntas);
     } catch (error) {
@@ -749,11 +750,12 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id_parte/:id_pregunta", async (req, res) => {
     /*
     #swagger.tags = ['Pregunta Video']
     #swagger.description = 'Endpoint para eliminar una pregunta de video cuestionario.'
-    #swagger.parameters['id'] = { description: 'Id de la pregunta de video cuestionario.' }
+    #swagger.parameters['id_parte'] = { description: 'Id de la parte de video cuestionario.' }
+    #swagger.parameters['id_pregunta'] = { description: 'Id de la pregunta de video cuestionario.' }
     #swagger.responses[200] = {
         description: 'Pregunta de video cuestionario eliminada correctamente.',
         content: {
@@ -797,13 +799,57 @@ router.delete("/:id", async (req, res) => {
         }
     }
     */
-    const { id } = req.params;
+    let { id_parte, id_pregunta } = req.params;
+    id_parte = parseInt(id_parte);
+    id_pregunta = parseInt(id_pregunta);
+
     try {
-        const response = await prisma.preguntas_video_cuestionario.delete({
-            where: { id_preguntas_video_cuestionario: parseInt(id) },
+        // Obtener el registro a eliminar para poder obtener su indice y
+        // actualizar los indices de los registros con un indice mayor
+        const recordToDelete =
+            await prisma.preguntas_video_cuestionario.findUnique({
+                where: {
+                    id_preguntas_video_cuestionario: id_pregunta,
+                },
+            });
+
+        // Ya habiendo guardado el indice del registro que queremos eliminar,
+        // podemos proceder a eliminarlo
+        const resultado = await prisma.preguntas_video_cuestionario.delete({
+            where: { id_preguntas_video_cuestionario: id_pregunta },
         });
-        res.json(response);
+
+        // Obtener los registros con un indice mayor al indice del registro
+        const recordsToUpdate =
+            await prisma.preguntas_video_cuestionario.findMany({
+                where: {
+                    AND: {
+                        indice: {
+                            gt: recordToDelete.indice,
+                        },
+                        id_parte_video_cuestionario: id_parte,
+                    },
+                },
+            });
+
+        // Actualizar los indices de los registros con un indice mayor
+        const updatePromises = recordsToUpdate.map((record) =>
+            prisma.preguntas_video_cuestionario.update({
+                where: {
+                    id_preguntas_video_cuestionario:
+                        record.id_preguntas_video_cuestionario,
+                },
+                data: {
+                    indice: record.indice - 1,
+                },
+            })
+        );
+        await Promise.all(updatePromises);
+
+        // Retornar el registro eliminado
+        res.json(resultado);
     } catch (error) {
+        console.log(error);
         if (error.code === "P2025") {
             res.status(404).json({ error: "Pregunta no encontrada" });
         } else {

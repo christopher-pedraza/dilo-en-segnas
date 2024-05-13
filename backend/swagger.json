@@ -1835,79 +1835,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Pregunta Video"
-        ],
-        "description": "Endpoint para eliminar una pregunta de video cuestionario.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Id de la pregunta de video cuestionario."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Pregunta de video cuestionario eliminada correctamente.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id_preguntas_video_cuestionario": {
-                      "type": "integer"
-                    },
-                    "id_parte_video_cuestionario": {
-                      "type": "integer"
-                    },
-                    "pregunta": {
-                      "type": "string"
-                    },
-                    "indice": {
-                      "type": "integer"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Pregunta de video cuestionario no encontrada.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Error al eliminar la pregunta de video cuestionario.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/preguntaVideo/respuestas/{id}": {
@@ -2292,6 +2219,90 @@
                   "direccion",
                   "id_nivel"
                 ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/preguntaVideo/{id_parte}/{id_pregunta}": {
+      "delete": {
+        "tags": [
+          "Pregunta Video"
+        ],
+        "description": "Endpoint para eliminar una pregunta de video cuestionario.",
+        "parameters": [
+          {
+            "name": "id_parte",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la parte de video cuestionario."
+          },
+          {
+            "name": "id_pregunta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la pregunta de video cuestionario."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pregunta de video cuestionario eliminada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_preguntas_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "id_parte_video_cuestionario": {
+                      "type": "integer"
+                    },
+                    "pregunta": {
+                      "type": "string"
+                    },
+                    "indice": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pregunta de video cuestionario no encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al eliminar la pregunta de video cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
