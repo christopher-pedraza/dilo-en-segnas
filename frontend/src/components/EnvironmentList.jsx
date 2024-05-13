@@ -3,13 +3,31 @@ import EnvironmentItem from "./EnvironmentItem";
 import { FaPlus } from "react-icons/fa";
 
 function EnvironmentList({ environments, setEnvironments, navigate }) {
-  const addEnvironment = () => {
+  const addEnvironment = async () => {
     const name = prompt("Nombre del nuevo entorno:");
     if (name) {
-      setEnvironments([
-        ...environments,
-        { id: Date.now(), name, categories: [] },
-      ]);
+      try {
+        const response = await fetch("http://localhost:3000/isla/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombre: name,
+            modelo_general: null,
+            modelo_especifico: null,
+          }),
+        });
+        const newEnvironment = await response.json();
+        if (response.ok) {
+          setEnvironments([...environments, newEnvironment]);
+        } else {
+          throw new Error("Failed to create environment");
+        }
+      } catch (error) {
+        console.error("Error creating environment:", error);
+        alert("Error al crear el entorno");
+      }
     }
   };
 
@@ -25,10 +43,10 @@ function EnvironmentList({ environments, setEnvironments, navigate }) {
           <p>Agregar Entorno</p>
         </div>
       </button>
-      {environments.map((env) => (
+      {environments.map((environment) => (
         <EnvironmentItem
-          key={env.id}
-          environment={env}
+          key={environment.id_isla}
+          environment={environment}
           setEnvironments={setEnvironments}
           navigate={navigate}
         />

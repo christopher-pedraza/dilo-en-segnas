@@ -4,9 +4,9 @@ import CategoryItem from "./CategoryItem";
 function CategoryList({ environment, setEnvironments, navigate }) {
   return (
     <div className="ml-6">
-      {environment.categories.map((cat) => (
+      {environment.nivel.map((cat) => (
         <CategoryItem
-          key={cat.id}
+          key={cat.id_nivel}
           category={cat}
           environment={environment}
           setEnvironments={setEnvironments}
