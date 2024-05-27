@@ -37,7 +37,10 @@ function ModalCrearRespuesta({
             es_correcta: esCorrecta,
         }).then((res) => {
             setRespuestas((prev) => {
-                return [...prev, res];
+                if (prev === null) {
+                    return [res];
+                }
+                return Array.isArray(prev) ? [...prev, res] : [res];
             });
         });
         onClose();
