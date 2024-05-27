@@ -4,6 +4,7 @@ import EnvironmentList from "../components/EnvironmentList";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import Navbar from "../components/Navbar";
 import ActividadVideo from "./ActividadVideo/ActividadVideo";
+import Palabras from "./Palabras/Palabras";
 
 function HomePage() {
     const navigate = useNavigate();
@@ -53,7 +54,12 @@ function HomePage() {
                                 Contenido de la Categoría
                             </h1>
                             <Tabs aria-label="Options">
-                                <Tab key="palabras" title="Palabras"></Tab>
+                                <Tab key="palabras" title="Palabras">
+                                    <Palabras
+                                        id_isla={envName}
+                                        id_nivel={categoryName}
+                                    />
+                                </Tab>
                                 <Tab key="videos" title="Actividad de videos">
                                     <ActividadVideo
                                         id_isla={envName}

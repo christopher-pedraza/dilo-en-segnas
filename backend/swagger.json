@@ -2308,6 +2308,90 @@
           }
         }
       }
+    },
+    "/palabra/{id_nivel}": {
+      "get": {
+        "tags": [
+          "Palabra"
+        ],
+        "description": "Endpoint para obtener las palabras de un nivel",
+        "parameters": [
+          {
+            "name": "id_nivel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id del nivel"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/palabra/": {
+      "post": {
+        "tags": [
+          "Palabra"
+        ],
+        "description": "Endpoint para crear una palabra",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "palabra": {
+                    "example": "any"
+                  },
+                  "id_video_segna": {
+                    "example": "any"
+                  },
+                  "id_nivel": {
+                    "example": "any"
+                  },
+                  "url_icono": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/palabra/{id_palabra}": {
+      "delete": {
+        "tags": [
+          "Palabra"
+        ],
+        "description": "Endpoint para eliminar una palabra",
+        "parameters": [
+          {
+            "name": "id_palabra",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id de la palabra"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
