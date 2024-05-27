@@ -7,7 +7,6 @@ import {
     ModalBody,
     ModalFooter,
     Input,
-    Checkbox,
 } from "@nextui-org/react";
 
 // Api Requests
@@ -18,40 +17,42 @@ import { useState } from "react";
 
 import propTypes from "prop-types";
 
-function ModalCrearRespuesta({
+function ModalCreatePalabra({
     isOpen,
     onOpenChange,
     onClose,
-    id_pregunta,
-    setRespuestas,
+    id_nivel,
+    palabras,
+    setPalabras,
 }) {
-    const [respuesta, setRespuesta] = useState("");
-    const [esCorrecta, setEsCorrecta] = useState(false);
+    // Datos de la parte que se quiere agregar
+    const [palabra, setPalabra] = useState("");
+    const [urlVideo, setUrlVideo] = useState("");
+    const [urlIcono, setUrlIcono] = useState("");
 
     const confirmCreate = (e) => {
         e.preventDefault();
 
-        post("preguntaVideo/respuesta", {
-            id_pregunta: id_pregunta,
-            respuesta: respuesta,
-            es_correcta: esCorrecta,
-        }).then((res) => {
-            setRespuestas((prev) => {
-                if (prev === null) {
-                    return [res];
-                }
-                return Array.isArray(prev) ? [...prev, res] : [res];
-            });
+        post("palabra", {
+            id_nivel,
+            palabra,
+            id_video_segna: urlVideo,
+            url_icono: urlIcono,
+        }).then((data) => {
+            console.log(data);
+            setPalabras([...palabras, data]);
         });
         onClose();
-        setRespuesta("");
-        setEsCorrecta(false);
+        setPalabra("");
+        setUrlIcono("");
+        setUrlVideo("");
     };
 
     const handleClose = () => {
         onClose();
-        setRespuesta("");
-        setEsCorrecta(false);
+        setPalabra("");
+        setUrlIcono("");
+        setUrlVideo("");
     };
 
     return (
@@ -69,27 +70,35 @@ function ModalCrearRespuesta({
                 {() => (
                     <>
                         <ModalHeader className="flex flex-col gap-1">
-                            Agregar nueva respuesta
+                            Agregar nueva palabra
                         </ModalHeader>
                         <form onSubmit={confirmCreate}>
                             <ModalBody>
                                 <Input
                                     autoFocus
-                                    label="Pregunta"
+                                    label="Nombre"
                                     variant="bordered"
-                                    value={respuesta}
+                                    value={palabra}
                                     onChange={(e) => {
-                                        setRespuesta(e.target.value);
+                                        setPalabra(e.target.value);
                                     }}
                                 />
-                                <Checkbox
-                                    isSelected={esCorrecta}
+                                <Input
+                                    label="Url del video"
+                                    variant="bordered"
+                                    value={urlVideo}
                                     onChange={(e) => {
-                                        setEsCorrecta(e.target.checked);
+                                        setUrlVideo(e.target.value);
                                     }}
-                                >
-                                    ¿Es correcta?
-                                </Checkbox>
+                                />
+                                <Input
+                                    label="Url del icono"
+                                    variant="bordered"
+                                    value={urlIcono}
+                                    onChange={(e) => {
+                                        setUrlIcono(e.target.value);
+                                    }}
+                                />
                             </ModalBody>
                             <ModalFooter>
                                 <Button
@@ -111,12 +120,13 @@ function ModalCrearRespuesta({
     );
 }
 
-ModalCrearRespuesta.propTypes = {
-    isOpen: propTypes.bool,
-    onOpenChange: propTypes.func,
-    onClose: propTypes.func,
-    id_pregunta: propTypes.number,
-    setRespuestas: propTypes.func,
+ModalCreatePalabra.propTypes = {
+    isOpen: propTypes.bool.isRequired,
+    onOpenChange: propTypes.func.isRequired,
+    onClose: propTypes.func.isRequired,
+    id_nivel: propTypes.number.isRequired,
+    palabras: propTypes.array.isRequired,
+    setPalabras: propTypes.func.isRequired,
 };
 
-export default ModalCrearRespuesta;
+export default ModalCreatePalabra;

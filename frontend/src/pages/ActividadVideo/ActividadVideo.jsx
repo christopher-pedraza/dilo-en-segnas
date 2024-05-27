@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { get } from "src/utils/ApiRequests";
 
 // Enrutamiento
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 // Components
-import Navbar from "../../components/Navbar";
+// import Navbar from "../../components/Navbar";
 import ModalCreateParteVideo from "./components/ModalCreateParteVideo";
 import TarjetaActividadVideo from "./components/TarjetaActividadVideo";
 
@@ -19,14 +19,16 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // Nextui components
 import { Button, useDisclosure } from "@nextui-org/react";
 
-function NewActividadVideo() {
+import propTypes from "prop-types";
+
+function ActividadVideo({ id_nivel }) {
     const [partes, setPartes] = useState([]);
     // Variable para que se actualice la lista de partes cuando se elimina una
     const [refresh, setRefresh] = useState(false);
     // Disclosures para el modal
     const createDisclosure = useDisclosure();
 
-    let { id_nivel } = useParams();
+    // let { id_nivel } = useParams();
     id_nivel = parseInt(id_nivel);
 
     useEffect(() => {
@@ -43,7 +45,6 @@ function NewActividadVideo() {
 
     return (
         <div>
-            <Navbar />
             <div className="max-w-3xl m-auto p-8">
                 <div className="flex items-center justify-between">
                     <h2 className="text-3xl">Actividad de Videos</h2>
@@ -79,4 +80,8 @@ function NewActividadVideo() {
     );
 }
 
-export default NewActividadVideo;
+ActividadVideo.propTypes = {
+    id_nivel: propTypes.string.isRequired,
+};
+
+export default ActividadVideo;

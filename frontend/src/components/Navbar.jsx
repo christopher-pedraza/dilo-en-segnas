@@ -18,7 +18,7 @@ export default function Navbar() {
                 <p className="text-4xl font-bold text-white">Dilo en Señas</p>
             </div>
 
-            <div className="flex">
+            {/* <div className="flex">
                 <div className="mx-4">
                     <NavLink
                         to="/niveles"
@@ -51,7 +51,7 @@ export default function Navbar() {
                         Videos
                     </NavLink>
                 </div>
-            </div>
+            </div> */}
         </nav>
     );
 }

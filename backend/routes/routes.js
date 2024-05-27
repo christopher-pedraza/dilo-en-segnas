@@ -3,6 +3,7 @@ const parteVideo = require("../controllers/parteVideo.js");
 const isla = require("../controllers/isla.js");
 const miembro = require("../controllers/miembro.js");
 const preguntaVideo = require("../controllers/preguntaVideo.js");
+const palabra = require("../controllers/palabra.js");
 
 const express = require("express");
 const router = express.Router();
@@ -22,5 +23,6 @@ router.use("/parteVideo", parteVideo);
 router.use("/isla", isla);
 router.use("/miembro", miembro);
 router.use("/preguntaVideo", preguntaVideo);
+router.use("/palabra", palabra);
 
 module.exports = router;

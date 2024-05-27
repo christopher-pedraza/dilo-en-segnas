@@ -57,7 +57,7 @@ function ParteVideo() {
     }, [id_parte]);
 
     const handleReturn = () => {
-        navigate(`/videos/${id_nivel}`);
+        navigate(-1);
     };
 
     return (
