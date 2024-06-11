@@ -4,7 +4,7 @@ import SwiftUI
 // EL USUARIO DEBE DE ELEGIR LA OPCIÓN CORRECTA DE UNA PREGUNTA QUE SE HACE BASANDOSE EN EL CONTEXTO DEL VÍDEO
 
 struct IndividualVideoActivity: View {
-    let videoID: String
+    let videoURL: URL
     let preguntas: [Pregunta]
     @Binding var correctAnswers: Int
     @State var questionCorrectAnswers: [Int]
@@ -24,7 +24,7 @@ struct IndividualVideoActivity: View {
             Text(parteString)
                 .foregroundStyle(Color.white)
                 .font(.system(size: 31, weight: .bold))
-            VideoView(videoID: videoID)
+            VideoView(videoURL: videoURL)
                 .aspectRatio(16/9, contentMode: .fit) // Adjust contentMode to .fit or .fill depending on your need
                 .frame(width: UIScreen.main.bounds.width - 48) // Adjusting for padding
                 .cornerRadius(12)
@@ -119,7 +119,7 @@ struct IndividualVideoActivity_Previews: PreviewProvider {
     
     static var previews: some View {
         IndividualVideoActivity(
-            videoID: "exampleVideoID",
+            videoURL: URL(string: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4")!,
             preguntas: [
                 Pregunta(pregunta: "Pregunta 1", respuestas: [
                     Respuesta(respuesta: "Respuesta 1.1", es_correcta: false),

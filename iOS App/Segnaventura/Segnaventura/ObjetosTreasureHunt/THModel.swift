@@ -13,6 +13,7 @@ struct THModel: Decodable, Identifiable {
     var palabra : String = ""
     var url_icono : String = ""
     var id_video_segna : String = ""
+    var url_video: String = ""
     
     enum CodingKeys: String, CodingKey {
         case palabra

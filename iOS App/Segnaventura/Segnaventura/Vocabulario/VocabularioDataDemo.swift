@@ -6,40 +6,19 @@ import SwiftUI
 import AVKit
 import AVFoundation
 
-
 struct VocabularioDataDemo: View {
     @EnvironmentObject var VocabularioVM: VocabularioViewModel
     @EnvironmentObject var fsm: FileSystemManager
     @EnvironmentObject var MI: menuIndex
     @State private var selectedVocabulary: Vocabulario?
     
-    let customColor = UIColor(Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255)) // Replace with your RGB values
+    let customColor = UIColor(Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255))
+    let customColorBackground = Color(red: 205 / 255, green: 241 / 255, blue: 255 / 255)
     
-    let customColorBackground = Color(red: 205 / 255, green: 241 / 255, blue: 255 / 255) // Replace with your RGB values
-    
-    
-    
-    //Para editar la navbar de la parte superior de la pantalla
     init() {
-        /*
-         let customColorNavBar = UIColor(Color(red: 21 / 255, green: 17 / 255, blue: 28 / 255))
-         let navBarAppearance = UINavigationBarAppearance()
-         ///navBarAppearance.configureWithOpaqueBackground()
-         navBarAppearance.backgroundColor = customColorNavBar
-         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-         // Set the appearance for compact navigation bars (when scrolling)
-         //navBarAppearance.compactAppearance = navBarAppearance
-         */
-        
         let customColorNavBar = UIColor(Color(red: 21 / 255, green: 17 / 255, blue: 28 / 255))
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundColor = customColorNavBar
-        
-        // Customize the font for the navigation bar title text
-        // let titleFont = UIFont(name: "Poppins-SemiBold", size: 24)!
-        // navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: titleFont]
-        
-        // Set backgroundEffect to nil to remove the white space
         
         let titleFont = UIFont.systemFont(ofSize: 24, weight: .bold)
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: titleFont]
@@ -49,21 +28,15 @@ struct VocabularioDataDemo: View {
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().compactAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-        
-        // Set the appearance for full-height navigation bars (when not scrolling)
-        // navBarAppearance.scrollEdgeAppearance = navBarAppearance
     }
     
     var body: some View {
         NavigationStack {
-            
             VStack {
-                
                 List(VocabularioVM.vocabulario.categorias) { categoria in
                     CategoryView(category: categoria)
                         .listRowBackground(customColorBackground)
                 }
-                
                 .task {
                     do {
                         try await VocabularioVM.getVocabularioData()
@@ -73,20 +46,20 @@ struct VocabularioDataDemo: View {
                 }
                 .listStyle(PlainListStyle()) // Remove list style to take full width
             }
-            
             .frame(maxWidth: .infinity, alignment: .leading) // Make VStack take full width
             .background(customColorBackground)
             .navigationTitle("Vocabulario")
             .navigationBarTitleDisplayMode(.inline)
-            
             .sheet(item: $selectedVocabulary) { vocabulary in
-                PopupView(vocabulary: vocabulary, videoID: vocabulary.id_video_segna)
+                if let videoURL = URL(string: vocabulary.id_video_segna) {
+                    PopupView(vocabulary: vocabulary, videoURL: videoURL)
+                } else {
+                    // Handle invalid URL case
+                    Text("Invalid video URL")
+                }
             }
         }
-        
-        
         .navigationViewStyle(StackNavigationViewStyle())
-        
     }
 }
 
@@ -95,8 +68,8 @@ struct CategoryView: View {
     @EnvironmentObject var MI: menuIndex
     let customColorVerMas = Color(red: 12 / 255, green: 153 / 255, blue: 255 / 255)
     let category: Categorias
-    @State private var showAllObjects = false //Variable que controla si
-    @State private var selectedVocabulary: Vocabulario? //Variable para definir vocabulario que selecciono el usuario
+    @State private var showAllObjects = false
+    @State private var selectedVocabulary: Vocabulario?
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var frameWidth: CGFloat {
@@ -122,39 +95,26 @@ struct CategoryView: View {
     }
     
     let customColor = Color(red: 72 / 255, green: 200 / 255, blue: 254 / 255)
-    
-    
     let customColorObjeto = Color(red: 228 / 255, green: 228 / 255, blue: 228 / 255)
     
-    
-    
     var body: some View {
-        ZStack{
-            //Color.black
+        ZStack {
             VStack {
                 Text(category.nombre)
                     .font(.system(size: objectTitleFontSize + 4, weight: .bold))
-                
-                
-                /*.font(.custom(
-                 "Poppins-SemiBold",
-                 size: horizontalSizeClass == .compact ? 25 : 40).bold())*/
-                //  .font(.title)
-                    .padding(.top,objectTitlePadding)
-                    .padding(.leading,objectTitlePadding)
+                    .padding(.top, objectTitlePadding)
+                    .padding(.leading, objectTitlePadding)
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                //Limita objetos en una categoria a 6, checa si esta inclinado para definir numero de filas y  columnas
                 let maxObjectsPerRow = isLandscape ? 2 : 3
-                let objectsToDisplay = showAllObjects ? category.palabra.count : min(category.palabra.count,4)
+                let objectsToDisplay = showAllObjects ? category.palabra.count : min(category.palabra.count, 4)
                 
                 LazyVGrid(columns: columns(), spacing: 0) {
                     ForEach(category.palabra.prefix(objectsToDisplay).indices, id: \.self) { index in
                         let vocabulario = category.palabra[index]
                         
                         VStack (spacing:10) {
-                            // Check if url_icono is empty, and use a fallback image if true
                             if vocabulario.url_icono.isEmpty {
                                 Image("imagenObjetoVacio")
                                     .resizable()
@@ -170,39 +130,30 @@ struct CategoryView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: imageWidth, height: imageWidth)
-                                        .padding(.top,20)
+                                        .padding(.top, 20)
                                         .onTapGesture {
-                                            selectedVocabulary = vocabulario // Set the selected vocabulary
+                                            selectedVocabulary = vocabulario
                                         }
                                 }
                             }
                             
                             Text(vocabulario.palabra)
-                                .font(Font.custom("Poppins-Regular", size: objectFontSize + 3)) // Adjust font size here
+                                .font(Font.custom("Poppins-Regular", size: objectFontSize + 3))
                                 .font(.headline)
-                            
                                 .foregroundColor(.black)
                                 .frame(width: frameWidth)
-                                .padding(.horizontal,10)
-                                .padding(.vertical,10)
-                            
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 10)
                         }
                         .background(customColorObjeto)
-                        
-                        .contentShape(Rectangle()) // Make the whole cell tappable
+                        .contentShape(Rectangle())
                         .cornerRadius(15)
-                        .padding(.horizontal,50)
-                        .padding(.vertical,13)
+                        .padding(.horizontal, 50)
+                        .padding(.vertical, 13)
                         .onTapGesture {
-                            selectedVocabulary = vocabulario // Set the selected vocabulary when the cell is tapped
+                            selectedVocabulary = vocabulario
                         }
                     }
-                }.onAppear{
-                    print("===================")
-                    print("===================")
-                    print(self.MI.index)
-                    print("===================")
-                    print("===================")
                 }
                 if category.palabra.count > 4 {
                     Button(action: {
@@ -211,34 +162,34 @@ struct CategoryView: View {
                         Text(showAllObjects ? "Cerrar" : "Ver más")
                             .foregroundColor(customColorVerMas)
                             .font(.system(size: horizontalSizeClass == .compact ? 18 : 30))
-                            .padding(.bottom,10)
+                            .padding(.bottom, 10)
                     }
                     .padding(.top, 5)
                     .padding(.bottom, 3)
                     .padding(.horizontal, 7)
                     .background(
-                        RoundedRectangle(cornerRadius: 4) // Apply round corners to the button
-                            .stroke(customColorVerMas, lineWidth: 1) // Set a blue outline with a line width of 2
-                            .padding(.bottom,7)
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(customColorVerMas, lineWidth: 1)
+                            .padding(.bottom, 7)
                     )
                 }
             }
-            .padding(.horizontal,10)
+            .padding(.horizontal, 10)
             .background(Color.white)
             .cornerRadius(10)
-            
             .sheet(item: $selectedVocabulary) { vocabulary in
-                PopupView(vocabulary: vocabulary, videoID: vocabulary.id_video_segna)
+                if let videoURL = URL(string: vocabulary.id_video_segna) {
+                    PopupView(vocabulary: vocabulary, videoURL: videoURL)
+                } else {
+                    Text("Invalid video URL")
+                }
             }
-        }                            //.padding(.horizontal,35)
-        .padding(.horizontal,10)
-        
+        }
+        .padding(.horizontal, 10)
         Button("Regresar") {
             MI.index = 1
         }
-        
     }
-    
     
     func columns() -> [GridItem] {
         let columnsCount = isLandscape ? 3 : 2
@@ -250,22 +201,19 @@ struct CategoryView: View {
     }
 }
 
-
 //Vista del popup cuando usuario selecciona objeto
 struct PopupView: View {
     let vocabulary: Vocabulario
-    let videoID: String // Provide the video ID here
+    let videoURL: URL
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
     let synthesizer = AVSpeechSynthesizer()
     
     var body: some View {
         VStack {
-            
             HStack {
                 Spacer()
                 Button(action: {
-                    // Close the popup when the close button is clicked
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "xmark.circle.fill")
@@ -274,21 +222,16 @@ struct PopupView: View {
                         .padding()
                 }
             }
-            
-            
-            // Embed the YouTube video using VideoView
-            VideoView(videoID: videoID)
-                .frame(width: horizontalSizeClass == .compact ? 300 : 550, height: horizontalSizeClass == .compact ? 240 : 400) // Adjust size based on size class
+            VideoView(videoURL: videoURL)
+                .frame(width: horizontalSizeClass == .compact ? 300 : 550, height: horizontalSizeClass == .compact ? 240 : 400)
                 .cornerRadius(30)
-            
             HStack {
                 Text(vocabulary.palabra)
                     .font(.system(size: horizontalSizeClass == .compact ? 26 : 53))
                 
                 Button(action: {
-                    // Pronounce the word in Spanish
                     let utterance = AVSpeechUtterance(string: vocabulary.palabra)
-                    utterance.voice = AVSpeechSynthesisVoice(language: "es-MX") // Spanish voice
+                    utterance.voice = AVSpeechSynthesisVoice(language: "es-MX")
                     synthesizer.speak(utterance)
                 }) {
                     Image(systemName: "speaker.2.fill")
@@ -296,15 +239,13 @@ struct PopupView: View {
                         .foregroundColor(.black)
                 }
             }
-            
             if let imageUrl = URL(string: vocabulary.url_icono),
                let imageData = try? Data(contentsOf: imageUrl),
                let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: horizontalSizeClass == .compact ? 300 : 550, height: horizontalSizeClass == .compact ? 220 : 400) // Adjust size based on size class
-                
+                    .frame(width: horizontalSizeClass == .compact ? 300 : 550, height: horizontalSizeClass == .compact ? 220 : 400)
                     .cornerRadius(30)
             }
             Spacer()
