@@ -1,7 +1,7 @@
+import SwiftUI
+
 // ESTE ARCHIVO ES EL QUE MODIFICA LA ACTIVIDAD DONDE SE MUESTRAN VÍDEOS CON HISTORIAS Y PREGUNTAS
 // EL USUARIO DEBE DE ELEGIR LA OPCIÓN CORRECTA DE UNA PREGUNTA QUE SE HACE BASANDOSE EN EL CONTEXTO DEL VÍDEO
-
-import SwiftUI
 
 struct IndividualVideoActivity: View {
     let videoID: String
@@ -29,7 +29,6 @@ struct IndividualVideoActivity: View {
                 .frame(width: UIScreen.main.bounds.width - 48) // Adjusting for padding
                 .cornerRadius(12)
                 .padding(.horizontal, 24)
-
 
             // Replace the List with LazyVGrid
             ScrollView {
@@ -75,7 +74,6 @@ struct IndividualVideoActivity: View {
     }
 }
 
-
 struct VideoQuizButton: View {
     @State private var didTap: Bool = false
     let text: String
@@ -101,7 +99,7 @@ struct VideoQuizButton: View {
                 .font(.system(size: 24))
                 .frame(maxWidth: .infinity) // This will center the text
                 .multilineTextAlignment(.center) // In case the text is multiple lines
-                .padding(.vertical, 12) // Adjust vertical padding to decrease the height of the buttons
+                .padding(.vertical, 20) // Adjust vertical padding to decrease the height of the buttons
                 .background(didTap ? (esCorrecta ? Color.green : Color.red) : buttonColors[optionIndex % buttonColors.count])
                 .foregroundColor(.white)
                 .cornerRadius(15) // This will round the corners
@@ -110,5 +108,36 @@ struct VideoQuizButton: View {
                         .stroke(Color.white, lineWidth: 2) // This adds a white border to the buttons
                 )
         }
+    }
+}
+
+// Preview
+struct IndividualVideoActivity_Previews: PreviewProvider {
+    @State static var correctAnswers = 0
+    @State static var questionCorrectAnswers = [0, 0]
+    @State static var totalCorrectAnswers = 0
+    
+    static var previews: some View {
+        IndividualVideoActivity(
+            videoID: "exampleVideoID",
+            preguntas: [
+                Pregunta(pregunta: "Pregunta 1", respuestas: [
+                    Respuesta(respuesta: "Respuesta 1.1", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 1.2", es_correcta: true),
+                    Respuesta(respuesta: "Respuesta 1.3", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 1.4", es_correcta: false)
+                ]),
+                Pregunta(pregunta: "Pregunta 2", respuestas: [
+                    Respuesta(respuesta: "Respuesta 2.1", es_correcta: true),
+                    Respuesta(respuesta: "Respuesta 2.2", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 2.3", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 2.4", es_correcta: false)
+                ])
+            ],
+            correctAnswers: $correctAnswers,
+            questionCorrectAnswers: questionCorrectAnswers,
+            totalCorrectAnswers: $totalCorrectAnswers,
+            parteString: "Parte 1"
+        )
     }
 }
