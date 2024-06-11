@@ -25,8 +25,9 @@ struct IndividualVideoActivity: View {
                 .foregroundStyle(Color.white)
                 .font(.system(size: 31, weight: .bold))
             VideoView(videoURL: videoURL)
-                .aspectRatio(16/9, contentMode: .fit) // Adjust contentMode to .fit or .fill depending on your need
-                .frame(width: UIScreen.main.bounds.width - 48) // Adjusting for padding
+//                .aspectRatio(16/9, contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
                 .cornerRadius(12)
                 .padding(.horizontal, 24)
 
