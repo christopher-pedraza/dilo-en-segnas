@@ -1,10 +1,6 @@
-// ESTE ARCHIVO TIENE EL CÓDIGO DE LA ACTIVIDAD DONDE SE MUESTRA LA SEÑA DE LA PREGUNTA Y OPCIONES A ELEGIR
-
-
 import SwiftUI
 
 struct IndividualQuizActivity: View {
-    
     let preguntasArr: PreguntasPalabrasVideosArr
     @Binding var correctAnswers: Int
     @Binding var questionCorrectAnswers: [Int]
@@ -15,8 +11,6 @@ struct IndividualQuizActivity: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
-        
-        
         var imageWidth: CGFloat {
             return horizontalSizeClass == .compact ? 45 : 100
         }
@@ -40,96 +34,68 @@ struct IndividualQuizActivity: View {
             return horizontalSizeClass == .compact ? 10 : 0
         }
         
-        NavigationStack(){
-            VStack (alignment: .center, spacing: objectSeparation) {
+        NavigationStack {
+            VStack(alignment: .center, spacing: objectSeparation) {
                 Spacer(minLength: 15)
                 
                 let randomNumber = Int.random(in: 0...1)
                 
-                if (currentQuestionIndex < preguntasArr.preguntas.count) {
-                    if randomNumber == 0 {
-                        VideoView(videoID: preguntasArr.preguntas[currentQuestionIndex].id_video)
-                            .aspectRatio(4/5, contentMode: .fit) // Adjust contentMode to .fit or .fill depending on your need
-                            .frame(width: UIScreen.main.bounds.width - 48) // Adjusting for padding
-                            .cornerRadius(12)
-                            .padding(.horizontal, 24)
-                    }
+                if currentQuestionIndex < preguntasArr.preguntas.count {
+                    let pregunta = preguntasArr.preguntas[currentQuestionIndex]
                     
-                    if randomNumber == 1 {
-                        HStack (alignment: .center, spacing: 10) {
-                            Text(preguntasArr.preguntas[currentQuestionIndex].pregunta)
-                                .font(.system(size: objectFontSize + 8,weight: .bold))
+                    if randomNumber == 0 {
+                        if let videoURL = URL(string: pregunta.id_video) {
+                            VideoView(videoURL: videoURL)
+                                .aspectRatio(4/5, contentMode: .fit)
+                                .frame(width: UIScreen.main.bounds.width - 48)
+                                .cornerRadius(12)
+                                .padding(.horizontal, 24)
+                        } else {
+                            Text("Invalid video URL")
+                                .frame(width: UIScreen.main.bounds.width - 48)
+                                .background(Color.gray)
+                                .cornerRadius(12)
+                                .padding(.horizontal, 24)
+                        }
+                    } else {
+                        HStack(alignment: .center, spacing: 10) {
+                            Text(pregunta.pregunta)
+                                .font(.system(size: objectFontSize + 8, weight: .bold))
                                 .foregroundStyle(Color.white)
                             
-                            if let imageUrl = URL(string: preguntasArr.preguntas[currentQuestionIndex].url_icono),
-                               let imageData = try? Data(contentsOf: imageUrl),
-                               let uiImage = UIImage(data: imageData) {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: imageWidth, height: imageHeight)
-                                
+                            AsyncImage(url: URL(string: pregunta.url_icono)) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                        .frame(width: imageWidth, height: imageHeight)
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: imageWidth, height: imageHeight)
+                                case .failure:
+                                    Image(systemName: "xmark.circle")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: imageWidth, height: imageHeight)
+                                @unknown default:
+                                    EmptyView()
+                                }
                             }
                         }
                     }
-                    
-                    if randomNumber == 0 {
-                        let pregunta = preguntasArr.preguntas[currentQuestionIndex]
-                        GeometryReader { geometry in
-                            List(preguntasArr.preguntas.indices, id: \.self) { index in
-                                if index == currentQuestionIndex {
-                                    let pregunta = preguntasArr.preguntas[currentQuestionIndex]
-                                    ForEach(pregunta.respuestas.indices, id: \.self) { answerIndex in
-                                        let respuesta = pregunta.respuestas[answerIndex]
-                                        HStack (alignment: .center, spacing: 10){
-                                            QuizButton(
-                                                randomNum: randomNumber,
-                                                text: respuesta.respuesta_palabra,
-                                                url_icono: respuesta.respuesta_icono,
-                                                video_id: respuesta.respuesta_video,
-                                                esCorrecta: respuesta.esCorrecta,
-                                                numeroArr: preguntasArr.preguntas.count,
-                                                preguntasArr: preguntasArr,
-                                                correctAnswers: $correctAnswers,
-                                                questionCorrectAnswers: $questionCorrectAnswers,
-                                                currentQuestionIndex: $currentQuestionIndex,
-                                                cantidadCorrectas: pregunta.cantidadCorrectas,
-                                                correctAnswerVideo: $correctAnswerVideo,
-                                                bindingTapped: $bindingTapped
-                                            )
-                                            .frame(height: objectRowSize)
-                                            .background(getBackgroundColor(for: answerIndex))
-                                            
-                                        }
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    }
-                                    .listRowBackground(Color.clear)
-                                }
-                            }.listStyle(PlainListStyle())
-                                .frame(width: geometry.size.width, height: geometry.size.height + 20)
-                        }
-                    }
-                    
-                    if randomNumber == 1 {
-                        let pregunta = preguntasArr.preguntas[currentQuestionIndex]
-                        //Text(pregunta.pregunta)
-                        //    .font(.system(size: 35))
-                        
-                        var objectRowHeight: CGFloat {
-                            return horizontalSizeClass == .compact ? 110 : 200
-                        }
-                        
+
+                    GeometryReader { geometry in
                         List(preguntasArr.preguntas.indices, id: \.self) { index in
                             if index == currentQuestionIndex {
-                                let pregunta = preguntasArr.preguntas[currentQuestionIndex]
                                 ForEach(pregunta.respuestas.indices, id: \.self) { answerIndex in
                                     let respuesta = pregunta.respuestas[answerIndex]
-                                    HStack (alignment: .center, spacing: 10){
+                                    HStack(alignment: .center, spacing: 10) {
                                         QuizButton(
                                             randomNum: randomNumber,
                                             text: respuesta.respuesta_palabra,
                                             url_icono: respuesta.respuesta_icono,
-                                            video_id: respuesta.respuesta_video,
+                                            video_url: respuesta.respuesta_video,
                                             esCorrecta: respuesta.esCorrecta,
                                             numeroArr: preguntasArr.preguntas.count,
                                             preguntasArr: preguntasArr,
@@ -140,24 +106,24 @@ struct IndividualQuizActivity: View {
                                             correctAnswerVideo: $correctAnswerVideo,
                                             bindingTapped: $bindingTapped
                                         )
-                                        .frame(height: objectRowHeight + 10)
-                                        .padding(.all, 10)
+                                        .frame(height: objectRowSize)
                                         .background(getBackgroundColor(for: answerIndex))
                                     }
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    .padding(.all, 10)
                                 }
                                 .listRowBackground(Color.clear)
                             }
-                        }.listStyle(PlainListStyle())
-                            
-                          //  .frame(width: 100, height: 100)
+                        }
+                        .listStyle(PlainListStyle())
+                        .frame(width: geometry.size.width, height: geometry.size.height + 20)
                     }
                 }
             }
-            .background(Image("Wallpaper") // Replace "wallpaper" with the name of your asset
-                .resizable()
-                .aspectRatio(contentMode: .fill))
+            .background(
+                Image("Wallpaper")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            )
         }
     }
 }
@@ -168,7 +134,7 @@ struct QuizButton: View {
     let randomNum: Int
     let text: String
     let url_icono: String
-    let video_id: String
+    let video_url: String
     let esCorrecta: Bool
     let numeroArr: Int
     let preguntasArr: PreguntasPalabrasVideosArr
@@ -181,10 +147,7 @@ struct QuizButton: View {
     
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
-
     var body: some View {
-        
-        
         var imageWidth: CGFloat {
             return horizontalSizeClass == .compact ? 45 : 100
         }
@@ -232,68 +195,96 @@ struct QuizButton: View {
                 }
             }
         }) {
-            if randomNum == 0 {
-                HStack(alignment: .center, spacing: objectSeparation){
-                    Spacer(minLength: 50)
-                    Text(text)
-                        //.frame(maxWidth: .fit)
-                        .font(.system(size: objectFontSize - 10))
-                        .foregroundColor(
-                            !didTap ? Color.white :
+            VStack {
+                if randomNum == 0 {
+                    HStack(alignment: .center, spacing: objectSeparation) {
+                        Spacer(minLength: 50)
+                        Text(text)
+                            .font(.system(size: objectFontSize - 10))
+                            .foregroundColor(
+                                !didTap ? Color.white :
                                 (didTap && isCorrectAnswerSelected) ? Color.green :
                                 (didTap && !isCorrectAnswerSelected) ? Color.red :
                                 Color.white
-                        )
-                    
-                    if let imageUrl = URL(string: url_icono),
-                       let imageData = try? Data(contentsOf: imageUrl),
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: imageWidth, height: imageHeight)
+                            )
                         
-                        
+                        AsyncImage(url: URL(string: url_icono)) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                                    .frame(width: imageWidth, height: imageHeight)
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: imageWidth, height: imageHeight)
+                            case .failure:
+                                Image(systemName: "xmark.circle")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: imageWidth, height: imageHeight)
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
+                        Spacer(minLength: 50)
                     }
-                    Spacer(minLength: 50)
-                }.frame(maxWidth: .infinity)
-
-            }
-            if randomNum == 1 {
-                    HStack (alignment: .center) {
+                    .frame(maxWidth: .infinity)
+                }
+                if randomNum == 1 {
+                    HStack(alignment: .center) {
                         if horizontalSizeClass != .compact {
                             Spacer(minLength: objectSpaceWidth - 20)
 
                             GeometryReader { geometry in
-                                VideoView(videoID: video_id)
-                                    .frame(maxWidth: geometry.size.width * videoWidth) // Adjust the width as needed
-                                    .cornerRadius(12)
-                                    .padding(.vertical, 10)
+                                if let videoURL = URL(string: video_url) {
+                                    VideoView(videoURL: videoURL)
+                                        .aspectRatio(4/5, contentMode: .fill)
+                                        .frame(width: UIScreen.main.bounds.width - 240)
+                                        .cornerRadius(12)
+                                        .padding(10)
+                                } else {
+                                    Text("Invalid video URL")
+                                        .frame(maxWidth: geometry.size.width * videoWidth)
+                                        .background(Color.gray)
+                                        .cornerRadius(12)
+                                        .padding(.vertical, 10)
+                                }
                             }
                             .frame(height: UIScreen.main.bounds.height * 0.25)
-                            
-                            // .frame(maxWidth: 350, minHeight: 0, maxHeight: UIScreen.main.bounds.height)
                             .cornerRadius(12)
-                        }else{
-                            VideoView(videoID: video_id)
-                                .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height * 0.7)
-                                .cornerRadius(12)
-                                .padding(.vertical, 10)
+                        } else {
+                            if let videoURL = URL(string: video_url) {
+                                VideoView(videoURL: videoURL)
+                                    .aspectRatio(4/5, contentMode: .fill)
+                                    .frame(width: UIScreen.main.bounds.width - 240)
+                                    .cornerRadius(12)
+                                    .padding(10)
+                            } else {
+                                Text("Invalid video URL")
+                                    .frame(minHeight: 0, maxHeight: UIScreen.main.bounds.height * 0.7)
+                                    .background(Color.gray)
+                                    .cornerRadius(12)
+                                    .padding(.vertical, 10)
+                                    .foregroundColor(.red)
+                            }
                         }
                         
                         Text("Seleccionar")
                             .frame(maxHeight: UIScreen.main.bounds.height * 0.3)
-                            .frame(maxWidth:117)
+                            .frame(maxWidth: 117)
                             .font(.system(size: objectFontSize2 - 27))
                             .foregroundColor(
                                 !didTap ? Color.white :
-                                    (didTap && isCorrectAnswerSelected) ? Color.green :
-                                    (didTap && !isCorrectAnswerSelected) ? Color.red :
-                                    Color.white
+                                (didTap && isCorrectAnswerSelected) ? Color.green :
+                                (didTap && !isCorrectAnswerSelected) ? Color.red :
+                                Color.white
                             )
                         if horizontalSizeClass != .compact {
-                            Spacer(minLength: objectSpaceWidth  - 40)
+                            Spacer(minLength: objectSpaceWidth - 40)
                         }
+                    }
+                    .frame(maxWidth: .infinity)
                 }
             }
         }

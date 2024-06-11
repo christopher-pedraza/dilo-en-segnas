@@ -1,10 +1,10 @@
+import SwiftUI
+
 // ESTE ARCHIVO ES EL QUE MODIFICA LA ACTIVIDAD DONDE SE MUESTRAN VÍDEOS CON HISTORIAS Y PREGUNTAS
 // EL USUARIO DEBE DE ELEGIR LA OPCIÓN CORRECTA DE UNA PREGUNTA QUE SE HACE BASANDOSE EN EL CONTEXTO DEL VÍDEO
 
-import SwiftUI
-
 struct IndividualVideoActivity: View {
-    let videoID: String
+    let videoURL: URL
     let preguntas: [Pregunta]
     @Binding var correctAnswers: Int
     @State var questionCorrectAnswers: [Int]
@@ -24,12 +24,12 @@ struct IndividualVideoActivity: View {
             Text(parteString)
                 .foregroundStyle(Color.white)
                 .font(.system(size: 31, weight: .bold))
-            VideoView(videoID: videoID)
-                .aspectRatio(16/9, contentMode: .fit) // Adjust contentMode to .fit or .fill depending on your need
-                .frame(width: UIScreen.main.bounds.width - 48) // Adjusting for padding
+            VideoView(videoURL: videoURL)
+//                .aspectRatio(16/9, contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
                 .cornerRadius(12)
                 .padding(.horizontal, 24)
-
 
             // Replace the List with LazyVGrid
             ScrollView {
@@ -75,7 +75,6 @@ struct IndividualVideoActivity: View {
     }
 }
 
-
 struct VideoQuizButton: View {
     @State private var didTap: Bool = false
     let text: String
@@ -101,7 +100,7 @@ struct VideoQuizButton: View {
                 .font(.system(size: 24))
                 .frame(maxWidth: .infinity) // This will center the text
                 .multilineTextAlignment(.center) // In case the text is multiple lines
-                .padding(.vertical, 12) // Adjust vertical padding to decrease the height of the buttons
+                .padding(.vertical, 20) // Adjust vertical padding to decrease the height of the buttons
                 .background(didTap ? (esCorrecta ? Color.green : Color.red) : buttonColors[optionIndex % buttonColors.count])
                 .foregroundColor(.white)
                 .cornerRadius(15) // This will round the corners
@@ -110,5 +109,36 @@ struct VideoQuizButton: View {
                         .stroke(Color.white, lineWidth: 2) // This adds a white border to the buttons
                 )
         }
+    }
+}
+
+// Preview
+struct IndividualVideoActivity_Previews: PreviewProvider {
+    @State static var correctAnswers = 0
+    @State static var questionCorrectAnswers = [0, 0]
+    @State static var totalCorrectAnswers = 0
+    
+    static var previews: some View {
+        IndividualVideoActivity(
+            videoURL: URL(string: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4")!,
+            preguntas: [
+                Pregunta(pregunta: "Pregunta 1", respuestas: [
+                    Respuesta(respuesta: "Respuesta 1.1", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 1.2", es_correcta: true),
+                    Respuesta(respuesta: "Respuesta 1.3", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 1.4", es_correcta: false)
+                ]),
+                Pregunta(pregunta: "Pregunta 2", respuestas: [
+                    Respuesta(respuesta: "Respuesta 2.1", es_correcta: true),
+                    Respuesta(respuesta: "Respuesta 2.2", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 2.3", es_correcta: false),
+                    Respuesta(respuesta: "Respuesta 2.4", es_correcta: false)
+                ])
+            ],
+            correctAnswers: $correctAnswers,
+            questionCorrectAnswers: questionCorrectAnswers,
+            totalCorrectAnswers: $totalCorrectAnswers,
+            parteString: "Parte 1"
+        )
     }
 }
