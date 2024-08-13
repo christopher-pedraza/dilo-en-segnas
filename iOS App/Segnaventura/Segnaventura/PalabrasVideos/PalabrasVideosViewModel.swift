@@ -18,7 +18,7 @@ class PalabraVideosViewModel : ObservableObject {
     func getPalabrasVideos() async throws {
         // Guarda el URL donde esta almacenado el JSON
 
-        guard let url = URL(string: "https://api.npoint.io/013db6c57f27144c9c04")//"http://localhost:3000/quiz/getPalabrasByQuiz/1")
+        guard let url = URL(string: "https://api.npoint.io/800777991a798144ae60")//"http://localhost:3000/quiz/getPalabrasByQuiz/1")
 
                 else {
                     return
