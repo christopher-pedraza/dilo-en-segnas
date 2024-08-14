@@ -184,6 +184,57 @@
         }
       }
     },
+    "/niveles/videoCuestionario/{id_nivel}": {
+      "get": {
+        "tags": [
+          "Nivel"
+        ],
+        "description": "Endpoint para obtener el video del cuestionario de un nivel.",
+        "parameters": [
+          {
+            "name": "id_nivel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del nivel."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Video del cuestionario obtenido correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url_video_cuestionario": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener el video del cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/niveles/{id_nivel}": {
       "put": {
         "tags": [
@@ -2334,6 +2385,38 @@
       }
     },
     "/palabra/": {
+      "get": {
+        "tags": [
+          "Palabra"
+        ],
+        "description": "Endpoint para obtener todas las palabras",
+        "responses": {
+          "200": {
+            "description": "Palabras encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "palabra": {
+                        "type": "string"
+                      },
+                      "id_video_segna": {
+                        "type": "string"
+                      },
+                      "url_icono": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Palabra"

@@ -1,0 +1,44 @@
+INSERT INTO isla (nombre, modelo_general, modelo_especifico)
+VALUES
+('Isla A', '\\x89504e47', '\\x89504e47'),
+('Isla B', '\\x89504e47', '\\x89504e47'),
+('Isla C', '\\x89504e47', '\\x89504e47');
+
+
+INSERT INTO nivel (id_isla, nombre)
+VALUES
+(1, 'Nivel 1 - Isla A'),
+(1, 'Nivel 2 - Isla A'),
+(2, 'Nivel 1 - Isla B'),
+(3, 'Nivel 1 - Isla C'),
+(3, 'Nivel 2 - Isla C');
+
+INSERT INTO palabra (id_nivel, palabra, id_video_segna, url_icono)
+VALUES
+(1, 'Palabra 1', 'video1', 'http://example.com/icon1.png'),
+(1, 'Palabra 2', 'video2', 'http://example.com/icon2.png'),
+(2, 'Palabra 3', 'video3', 'http://example.com/icon3.png'),
+(3, 'Palabra 4', 'video4', 'http://example.com/icon4.png'),
+(4, 'Palabra 5', 'video5', 'http://example.com/icon5.png'),
+(5, 'Palabra 6', 'video6', 'http://example.com/icon6.png');
+
+
+INSERT INTO parte_video_cuestionario (id_nivel, url_video, indice, nombre)
+VALUES
+(1, 'http://example.com/video1.mp4', 1, 'Parte 1 - Introducción'),
+(1, 'http://example.com/video2.mp4', 2, 'Parte 2 - Desarrollo');
+
+INSERT INTO preguntas_video_cuestionario (id_parte_video_cuestionario, pregunta, indice)
+VALUES
+(1, '¿Cuál es el tema principal de la introducción?', 1),
+(1, '¿Qué se menciona como el primer paso en la introducción?', 2),
+(2, '¿Qué se desarrolla en la segunda parte?', 1);
+
+INSERT INTO respuestas_video_cuestionario (id_preguntas_video_cuestionario, respuesta, es_correcta)
+VALUES
+(1, 'El tema principal es la presentación del proyecto.', TRUE),
+(1, 'El tema principal es la conclusión del proyecto.', FALSE),
+(2, 'El primer paso es la investigación.', TRUE),
+(2, 'El primer paso es la implementación.', FALSE),
+(3, 'Se desarrolla la metodología del proyecto.', TRUE),
+(3, 'Se desarrolla el análisis final.', FALSE);

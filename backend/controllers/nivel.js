@@ -105,6 +105,87 @@ router.get("/getByIsla/:id", async (req, res) => {
     }
 });
 
+router.get("/videoCuestionario/:id_nivel", async (req, res) => {
+    /*
+    #swagger.tags = ['Nivel']
+    #swagger.description = 'Endpoint para obtener el video del cuestionario de un nivel.'
+    #swagger.parameters['id_nivel'] = {
+        in: 'path',
+        description: 'ID del nivel.',
+        required: true,
+        type: 'integer'
+    }
+    #swagger.responses[200] = {
+        description: 'Video del cuestionario obtenido correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        url_video_cuestionario: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al obtener el video del cuestionario.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    try {
+        const { id_nivel } = req.params;
+        const partes = await prisma.parte_video_cuestionario.findMany({
+            where: {
+                id_nivel: parseInt(id_nivel),
+            },
+            select: {
+                _count: true,
+                nombre: true,
+                url_video: true,
+                indice: true,
+                preguntas_video_cuestionario: {
+                    select: {
+                        _count: true,
+                        pregunta: true,
+                        respuestas_video_cuestionario: {
+                            select: {
+                                respuesta: true,
+                                es_correcta: true,
+                            },
+                        },
+                    },
+                },
+            },
+            orderBy: {
+                indice: "asc",
+            },
+        });
+
+        const cantidadPartes = partes.length;
+
+        const resultado = {
+            _count: {
+                parte_video_cuestionario: cantidadPartes,
+            },
+            parte_video_cuestionario: partes,
+        };
+
+        res.status(200).json(resultado);
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
+    }
+});
+
 router.post("/", async (req, res) => {
     /*
     #swagger.tags = ['Nivel']
