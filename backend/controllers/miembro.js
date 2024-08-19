@@ -11,6 +11,56 @@ const sha512 = require("js-sha512");
 const jwt = require("jsonwebtoken");
 const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
+router.get("/", async (req, res) => {
+    /*
+    #swagger.tags = ['Miembro']
+    #swagger.description = 'Endpoint para obtener todos los miembros.'
+    #swagger.responses[200] = {
+        description: 'Miembros encontrados.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            id_miembro: { type: 'integer' },
+                            usuario: { type: 'string' },
+                            es_administrador: { type: 'boolean' }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al obtener los miembros.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    try {
+        const miembros = await prisma.miembro.findMany({
+            select: {
+                id_miembro: true,
+                usuario: true,
+                es_administrador: true,
+            },
+        });
+        res.json(miembros);
+    } catch (error) {
+        res.status(500).json({ error: `${error}` });
+    }
+});
+
 router.post("/login", async (req, res) => {
     /*
     #swagger.tags = ['Miembro']
@@ -123,8 +173,7 @@ router.post("/registro", async (req, res) => {
                     type: 'object',
                     properties: {
                         usuario: { type: 'string' },
-                        contrasegna: { type: 'string' },
-                        es_administrador: { type: 'boolean' }
+                        contrasegna: { type: 'string' }
                     }
                 }
             }
@@ -171,29 +220,29 @@ router.post("/registro", async (req, res) => {
         }
     }
     */
-    const { usuario, contrasegna, es_administrador } = req.body;
+    const { usuario, contrasegna } = req.body;
     try {
-        const existencia = await prisma.miembro.findMany({
-            where: {
+        // const existencia = await prisma.miembro.findMany({
+        //     where: {
+        //         usuario: usuario.toLowerCase(),
+        //     },
+        // });
+
+        // if (existencia.length === 0) {
+        const resultado = await prisma.miembro.create({
+            data: {
                 usuario: usuario.toLowerCase(),
+                contrasegna: sha512(contrasegna),
+                es_administrador: true,
             },
         });
-
-        if (existencia.length === 0) {
-            const resultado = await prisma.miembro.create({
-                data: {
-                    usuario: usuario.toLowerCase(),
-                    contrasegna: sha512(contrasegna),
-                    es_administrador: es_administrador,
-                },
-            });
-            res.status(200).json({
-                id_miembro: resultado.id_miembro,
-                usuario: resultado.usuario,
-            });
-        } else {
-            res.status(409).json({ error: "Usuario ya existe." });
-        }
+        res.status(200).json({
+            id_miembro: resultado.id_miembro,
+            usuario: resultado.usuario,
+        });
+        // } else {
+        //     res.status(409).json({ error: "Usuario ya existe." });
+        // }
     } catch (err) {
         res.status(500).json({ error: `${err}` });
     }
@@ -265,6 +314,167 @@ router.post("/authToken", async (req, res) => {
         res.status(200).json({ autenticado: true, usuario: decoded.usuario });
     } catch (err) {
         res.status(403).json({ autenticado: false, usuario: "" });
+    }
+});
+
+router.put("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Miembro']
+    #swagger.description = 'Endpoint para modificar un miembro.'
+    #swagger.parameters['id'] = { description: 'ID del miembro.' }
+    #swagger.requestBody = {
+        required: true,
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        usuario: { type: 'string' },
+                        contrasegna: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Miembro modificado correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_miembro: { type: 'integer' },
+                        usuario: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Miembro no encontrado.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al modificar el miembro.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    const { usuario, contrasegna } = req.body;
+
+    try {
+        const resultado = await prisma.miembro.update({
+            where: {
+                id_miembro: parseInt(id),
+            },
+            data: {
+                usuario: usuario.toLowerCase(),
+                contrasegna: sha512(contrasegna),
+            },
+        });
+
+        res.status(200).json({
+            id_miembro: resultado.id_miembro,
+            usuario: resultado.usuario,
+        });
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
+    }
+});
+
+router.delete("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Miembro']
+    #swagger.description = 'Endpoint para eliminar un miembro.'
+    #swagger.parameters['id'] = { description: 'ID del miembro.' }
+    #swagger.responses[200] = {
+        description: 'Miembro eliminado correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_miembro: { type: 'integer' },
+                        usuario: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Miembro no encontrado.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al eliminar el miembro.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+
+    // validar si el miembro es el único administrador
+    const miembros = await prisma.miembro.findMany({
+        where: {
+            es_administrador: true,
+        },
+    });
+
+    if (miembros.length === 1) {
+        res.status(403).json({
+            error: "No se puede eliminar el único administrador.",
+        });
+        return;
+    }
+
+    try {
+        const resultado = await prisma.miembro.delete({
+            where: {
+                id_miembro: parseInt(id),
+            },
+        });
+
+        res.status(200).json({
+            id_miembro: resultado.id_miembro,
+            usuario: resultado.usuario,
+        });
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
     }
 });
 

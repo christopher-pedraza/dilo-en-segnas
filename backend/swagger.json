@@ -184,6 +184,120 @@
         }
       }
     },
+    "/niveles/videoCuestionario/{id_nivel}": {
+      "get": {
+        "tags": [
+          "Nivel"
+        ],
+        "description": "Endpoint para obtener el video del cuestionario de un nivel.",
+        "parameters": [
+          {
+            "name": "id_nivel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del nivel."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Video del cuestionario obtenido correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_count": {
+                      "type": "object",
+                      "properties": {
+                        "parte_video_cuestionario": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "parte_video_cuestionario": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_count": {
+                            "type": "object",
+                            "properties": {
+                              "preguntas_video_cuestionario": {
+                                "type": "integer"
+                              }
+                            }
+                          },
+                          "nombre": {
+                            "type": "string"
+                          },
+                          "url_video": {
+                            "type": "string"
+                          },
+                          "indice": {
+                            "type": "integer"
+                          },
+                          "preguntas_video_cuestionario": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_count": {
+                                  "type": "object",
+                                  "properties": {
+                                    "respuestas_video_cuestionario": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "pregunta": {
+                                  "type": "string"
+                                },
+                                "respuestas_video_cuestionario": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "respuesta": {
+                                        "type": "string"
+                                      },
+                                      "es_correcta": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener el video del cuestionario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/niveles/{id_nivel}": {
       "put": {
         "tags": [
@@ -1208,6 +1322,55 @@
         }
       }
     },
+    "/miembro/": {
+      "get": {
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para obtener todos los miembros.",
+        "responses": {
+          "200": {
+            "description": "Miembros encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_miembro": {
+                        "type": "integer"
+                      },
+                      "usuario": {
+                        "type": "string"
+                      },
+                      "es_administrador": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener los miembros.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/miembro/login": {
       "post": {
         "tags": [
@@ -1363,9 +1526,6 @@
                   },
                   "contrasegna": {
                     "type": "string"
-                  },
-                  "es_administrador": {
-                    "type": "boolean"
                   }
                 }
               }
@@ -1444,6 +1604,163 @@
                 "properties": {
                   "token": {
                     "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/miembro/{id}": {
+      "put": {
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para modificar un miembro.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del miembro."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Miembro modificado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_miembro": {
+                      "type": "integer"
+                    },
+                    "usuario": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Miembro no encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al modificar el miembro.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usuario": {
+                    "type": "string"
+                  },
+                  "contrasegna": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para eliminar un miembro.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del miembro."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Miembro eliminado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_miembro": {
+                      "type": "integer"
+                    },
+                    "usuario": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Miembro no encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al eliminar el miembro.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -2328,12 +2645,95 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Palabras encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "palabra": {
+                        "type": "string"
+                      },
+                      "id_video_segna": {
+                        "type": "string"
+                      },
+                      "url_icono": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/palabra/": {
+      "get": {
+        "tags": [
+          "Palabra"
+        ],
+        "description": "Endpoint para obtener todas las palabras",
+        "responses": {
+          "200": {
+            "description": "Palabras encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "palabra": {
+                        "type": "string"
+                      },
+                      "id_video_segna": {
+                        "type": "string"
+                      },
+                      "url_icono": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Palabra"
@@ -2342,6 +2742,21 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Error message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -2389,6 +2804,21 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Error message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
