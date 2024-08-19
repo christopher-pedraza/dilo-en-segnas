@@ -222,27 +222,27 @@ router.post("/registro", async (req, res) => {
     */
     const { usuario, contrasegna } = req.body;
     try {
-        const existencia = await prisma.miembro.findMany({
-            where: {
+        // const existencia = await prisma.miembro.findMany({
+        //     where: {
+        //         usuario: usuario.toLowerCase(),
+        //     },
+        // });
+
+        // if (existencia.length === 0) {
+        const resultado = await prisma.miembro.create({
+            data: {
                 usuario: usuario.toLowerCase(),
+                contrasegna: sha512(contrasegna),
+                es_administrador: true,
             },
         });
-
-        if (existencia.length === 0) {
-            const resultado = await prisma.miembro.create({
-                data: {
-                    usuario: usuario.toLowerCase(),
-                    contrasegna: sha512(contrasegna),
-                    es_administrador: true,
-                },
-            });
-            res.status(200).json({
-                id_miembro: resultado.id_miembro,
-                usuario: resultado.usuario,
-            });
-        } else {
-            res.status(409).json({ error: "Usuario ya existe." });
-        }
+        res.status(200).json({
+            id_miembro: resultado.id_miembro,
+            usuario: resultado.usuario,
+        });
+        // } else {
+        //     res.status(409).json({ error: "Usuario ya existe." });
+        // }
     } catch (err) {
         res.status(500).json({ error: `${err}` });
     }
@@ -388,6 +388,84 @@ router.put("/:id", async (req, res) => {
             data: {
                 usuario: usuario.toLowerCase(),
                 contrasegna: sha512(contrasegna),
+            },
+        });
+
+        res.status(200).json({
+            id_miembro: resultado.id_miembro,
+            usuario: resultado.usuario,
+        });
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
+    }
+});
+
+router.delete("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Miembro']
+    #swagger.description = 'Endpoint para eliminar un miembro.'
+    #swagger.parameters['id'] = { description: 'ID del miembro.' }
+    #swagger.responses[200] = {
+        description: 'Miembro eliminado correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_miembro: { type: 'integer' },
+                        usuario: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Miembro no encontrado.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al eliminar el miembro.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+
+    // validar si el miembro es el único administrador
+    const miembros = await prisma.miembro.findMany({
+        where: {
+            es_administrador: true,
+        },
+    });
+
+    if (miembros.length === 1) {
+        res.status(403).json({
+            error: "No se puede eliminar el único administrador.",
+        });
+        return;
+    }
+
+    try {
+        const resultado = await prisma.miembro.delete({
+            where: {
+                id_miembro: parseInt(id),
             },
         });
 
