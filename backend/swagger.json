@@ -1526,9 +1526,6 @@
                   },
                   "contrasegna": {
                     "type": "string"
-                  },
-                  "es_administrador": {
-                    "type": "boolean"
                   }
                 }
               }

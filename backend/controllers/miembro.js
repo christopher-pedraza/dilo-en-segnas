@@ -173,8 +173,7 @@ router.post("/registro", async (req, res) => {
                     type: 'object',
                     properties: {
                         usuario: { type: 'string' },
-                        contrasegna: { type: 'string' },
-                        es_administrador: { type: 'boolean' }
+                        contrasegna: { type: 'string' }
                     }
                 }
             }
@@ -221,7 +220,7 @@ router.post("/registro", async (req, res) => {
         }
     }
     */
-    const { usuario, contrasegna, es_administrador } = req.body;
+    const { usuario, contrasegna } = req.body;
     try {
         const existencia = await prisma.miembro.findMany({
             where: {
@@ -234,7 +233,7 @@ router.post("/registro", async (req, res) => {
                 data: {
                     usuario: usuario.toLowerCase(),
                     contrasegna: sha512(contrasegna),
-                    es_administrador: es_administrador,
+                    es_administrador: true,
                 },
             });
             res.status(200).json({
