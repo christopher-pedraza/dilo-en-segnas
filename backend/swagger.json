@@ -209,8 +209,71 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "url_video_cuestionario": {
-                      "type": "string"
+                    "_count": {
+                      "type": "object",
+                      "properties": {
+                        "parte_video_cuestionario": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "parte_video_cuestionario": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_count": {
+                            "type": "object",
+                            "properties": {
+                              "preguntas_video_cuestionario": {
+                                "type": "integer"
+                              }
+                            }
+                          },
+                          "nombre": {
+                            "type": "string"
+                          },
+                          "url_video": {
+                            "type": "string"
+                          },
+                          "indice": {
+                            "type": "integer"
+                          },
+                          "preguntas_video_cuestionario": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_count": {
+                                  "type": "object",
+                                  "properties": {
+                                    "respuestas_video_cuestionario": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "pregunta": {
+                                  "type": "string"
+                                },
+                                "respuestas_video_cuestionario": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "respuesta": {
+                                        "type": "string"
+                                      },
+                                      "es_correcta": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -1259,6 +1322,55 @@
         }
       }
     },
+    "/miembro/": {
+      "get": {
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para obtener todos los miembros.",
+        "responses": {
+          "200": {
+            "description": "Miembros encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id_miembro": {
+                        "type": "integer"
+                      },
+                      "usuario": {
+                        "type": "string"
+                      },
+                      "es_administrador": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al obtener los miembros.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/miembro/login": {
       "post": {
         "tags": [
@@ -1494,6 +1606,93 @@
                 "type": "object",
                 "properties": {
                   "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/miembro/{id}": {
+      "put": {
+        "tags": [
+          "Miembro"
+        ],
+        "description": "Endpoint para modificar un miembro.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del miembro."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Miembro modificado correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_miembro": {
+                      "type": "integer"
+                    },
+                    "usuario": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Miembro no encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error al modificar el miembro.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usuario": {
+                    "type": "string"
+                  },
+                  "contrasegna": {
                     "type": "string"
                   }
                 }

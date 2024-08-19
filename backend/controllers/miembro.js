@@ -11,6 +11,56 @@ const sha512 = require("js-sha512");
 const jwt = require("jsonwebtoken");
 const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
+router.get("/", async (req, res) => {
+    /*
+    #swagger.tags = ['Miembro']
+    #swagger.description = 'Endpoint para obtener todos los miembros.'
+    #swagger.responses[200] = {
+        description: 'Miembros encontrados.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            id_miembro: { type: 'integer' },
+                            usuario: { type: 'string' },
+                            es_administrador: { type: 'boolean' }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al obtener los miembros.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    try {
+        const miembros = await prisma.miembro.findMany({
+            select: {
+                id_miembro: true,
+                usuario: true,
+                es_administrador: true,
+            },
+        });
+        res.json(miembros);
+    } catch (error) {
+        res.status(500).json({ error: `${error}` });
+    }
+});
+
 router.post("/login", async (req, res) => {
     /*
     #swagger.tags = ['Miembro']
@@ -265,6 +315,89 @@ router.post("/authToken", async (req, res) => {
         res.status(200).json({ autenticado: true, usuario: decoded.usuario });
     } catch (err) {
         res.status(403).json({ autenticado: false, usuario: "" });
+    }
+});
+
+router.put("/:id", async (req, res) => {
+    /*
+    #swagger.tags = ['Miembro']
+    #swagger.description = 'Endpoint para modificar un miembro.'
+    #swagger.parameters['id'] = { description: 'ID del miembro.' }
+    #swagger.requestBody = {
+        required: true,
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        usuario: { type: 'string' },
+                        contrasegna: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Miembro modificado correctamente.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        id_miembro: { type: 'integer' },
+                        usuario: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[404] = {
+        description: 'Miembro no encontrado.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    #swagger.responses[500] = {
+        description: 'Error al modificar el miembro.',
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        error: { type: 'string' }
+                    }
+                }
+            }
+        }
+    }
+    */
+    const { id } = req.params;
+    const { usuario, contrasegna } = req.body;
+
+    try {
+        const resultado = await prisma.miembro.update({
+            where: {
+                id_miembro: parseInt(id),
+            },
+            data: {
+                usuario: usuario.toLowerCase(),
+                contrasegna: sha512(contrasegna),
+            },
+        });
+
+        res.status(200).json({
+            id_miembro: resultado.id_miembro,
+            usuario: resultado.usuario,
+        });
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
     }
 });
 

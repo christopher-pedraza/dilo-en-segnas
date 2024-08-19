@@ -105,6 +105,7 @@ router.get("/getByIsla/:id", async (req, res) => {
     }
 });
 
+// Reemplazar el endpoint -> https://api.npoint.io/d4cc6b207a4c8317be09
 router.get("/videoCuestionario/:id_nivel", async (req, res) => {
     /*
     #swagger.tags = ['Nivel']
@@ -122,7 +123,54 @@ router.get("/videoCuestionario/:id_nivel", async (req, res) => {
                 schema: {
                     type: 'object',
                     properties: {
-                        url_video_cuestionario: { type: 'string' }
+                        _count: {
+                            type: 'object',
+                            properties: {
+                                parte_video_cuestionario: { type: 'integer' }
+                            }
+                        },
+                        parte_video_cuestionario: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    _count: {
+                                        type: 'object',
+                                        properties: {
+                                            preguntas_video_cuestionario: { type: 'integer' }
+                                        }
+                                    },
+                                    nombre: { type: 'string' },
+                                    url_video: { type: 'string' },
+                                    indice: { type: 'integer' },
+                                    preguntas_video_cuestionario: {
+                                        type: 'array',
+                                        items: {
+                                            type: 'object',
+                                            properties: {
+                                                _count: {
+                                                    type: 'object',
+                                                    properties: {
+                                                        respuestas_video_cuestionario: { type: 'integer' }
+                                                    }
+                                                },
+                                                pregunta: { type: 'string' },
+                                                respuestas_video_cuestionario: {
+                                                    type: 'array',
+                                                    items: {
+                                                        type: 'object',
+                                                        properties: {
+                                                            respuesta: { type: 'string' },
+                                                            es_correcta: { type: 'boolean' }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
