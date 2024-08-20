@@ -33,7 +33,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       {/* <Route path="signin" element={<SigninPage />} /> */}
       <Route path="home" element={secured(HomePage)()} />
-      <Route path="accounts" element={<AccountsPage />} />
+      <Route path="accounts" element={secured(AccountsPage)()} />
       <Route path="/:envName/:categoryName" element={secured(HomePage)()} />
       <Route path="videos/:id_nivel" element={secured(ActividadVideo)()} />
       <Route
