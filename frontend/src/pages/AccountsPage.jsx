@@ -1,37 +1,101 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 
-function HomePage() {
+function AccountsPage() {
   const [users, setUsers] = useState([]);
-  const [newUser, setNewUser] = useState({ username: "", password: "" });
-  const [editingIndex, setEditingIndex] = useState(null);
+  const [newUser, setNewUser] = useState({ usuario: "", contrasegna: "" });
+  const [editingUserId, setEditingUserId] = useState(null);
 
-  // Función para agregar o editar un usuario
-  const handleAddOrEditUser = () => {
-    if (editingIndex !== null) {
-      // Editar usuario existente
-      const updatedUsers = users.map((user, index) =>
-        index === editingIndex ? newUser : user
-      );
-      setUsers(updatedUsers);
-      setEditingIndex(null);
-    } else {
-      // Agregar nuevo usuario
-      setUsers([...users, newUser]);
+  // Función para obtener todos los usuarios de la API
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/miembro/");
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.error("Error al obtener los usuarios:", error);
     }
-    setNewUser({ username: "", password: "" });
+  };
+
+  useEffect(() => {
+    // Llamada inicial para obtener los usuarios
+    fetchUsers();
+  }, []);
+
+  // Función para agregar un nuevo usuario
+  const handleAddUser = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/miembro/registro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      if (response.ok) {
+        fetchUsers(); // Volvemos a obtener los usuarios después de agregar uno nuevo
+        setNewUser({ usuario: "", contrasegna: "" });
+      } else {
+        console.error("Error al agregar el usuario");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  };
+
+  // Función para editar un usuario
+  const handleEditUser = async () => {
+    if (editingUserId === null) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/miembro/${editingUserId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+      );
+
+      if (response.ok) {
+        fetchUsers(); // Volvemos a obtener los usuarios después de la edición
+        setNewUser({ usuario: "", contrasegna: "" });
+        setEditingUserId(null);
+      } else {
+        console.error("Error al editar el usuario");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
   };
 
   // Función para seleccionar un usuario para editar
-  const handleEditUser = (index) => {
-    setNewUser(users[index]);
-    setEditingIndex(index);
+  const startEditUser = (user) => {
+    setNewUser({ usuario: user.usuario, contrasegna: "" });
+    setEditingUserId(user.id_miembro);
   };
 
   // Función para eliminar un usuario
-  const handleDeleteUser = (index) => {
-    const updatedUsers = users.filter((_, i) => i !== index);
-    setUsers(updatedUsers);
+  const handleDeleteUser = async (id_miembro) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/miembro/${id_miembro}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        fetchUsers(); // Volvemos a obtener los usuarios después de la eliminación
+      } else {
+        console.error("Error al eliminar el usuario");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
   };
 
   return (
@@ -47,45 +111,48 @@ function HomePage() {
           <input
             className="border p-2 mr-2"
             type="text"
-            placeholder="Username"
-            value={newUser.username}
+            placeholder="Usuario"
+            value={newUser.usuario}
             onChange={(e) =>
-              setNewUser({ ...newUser, username: e.target.value })
+              setNewUser({ ...newUser, usuario: e.target.value })
             }
           />
           <input
             className="border p-2 mr-2"
             type="password"
-            placeholder="Password"
-            value={newUser.password}
+            placeholder="Contraseña"
+            value={newUser.contrasegna}
             onChange={(e) =>
-              setNewUser({ ...newUser, password: e.target.value })
+              setNewUser({ ...newUser, contrasegna: e.target.value })
             }
           />
           <button
             className="bg-blue-500 text-white px-4 py-2"
-            onClick={handleAddOrEditUser}
+            onClick={editingUserId !== null ? handleEditUser : handleAddUser}
           >
-            {editingIndex !== null ? "Editar Usuario" : "Agregar Usuario"}
+            {editingUserId !== null ? "Editar Usuario" : "Agregar Usuario"}
           </button>
         </div>
 
         {/* Lista de usuarios */}
-        <div>
+        <div className="w-full max-w-3xl">
           <h3 className="text-xl font-semibold mb-2">Usuarios Actuales</h3>
           <ul>
-            {users.map((user, index) => (
-              <li key={index} className="mb-2">
-                <span className="mr-4">{user.username}</span>
+            {users.map((user) => (
+              <li
+                key={user.id_miembro}
+                className="grid grid-cols-12 gap-4 items-center mb-2"
+              >
+                <span className="col-span-8 truncate">{user.usuario}</span>
                 <button
-                  className="bg-yellow-500 text-white px-2 py-1 mr-2"
-                  onClick={() => handleEditUser(index)}
+                  className="col-span-2 bg-yellow-500 text-white px-2 py-1"
+                  onClick={() => startEditUser(user)}
                 >
                   Editar
                 </button>
                 <button
-                  className="bg-red-500 text-white px-2 py-1"
-                  onClick={() => handleDeleteUser(index)}
+                  className="col-span-2 bg-red-500 text-white px-2 py-1"
+                  onClick={() => handleDeleteUser(user.id_miembro)}
                 >
                   Eliminar
                 </button>
@@ -98,4 +165,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default AccountsPage;
