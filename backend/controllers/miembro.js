@@ -222,27 +222,27 @@ router.post("/registro", async (req, res) => {
     */
     const { usuario, contrasegna } = req.body;
     try {
-        // const existencia = await prisma.miembro.findMany({
-        //     where: {
-        //         usuario: usuario.toLowerCase(),
-        //     },
-        // });
-
-        // if (existencia.length === 0) {
-        const resultado = await prisma.miembro.create({
-            data: {
+        const existencia = await prisma.miembro.findMany({
+            where: {
                 usuario: usuario.toLowerCase(),
-                contrasegna: sha512(contrasegna),
-                es_administrador: true,
             },
         });
-        res.status(200).json({
-            id_miembro: resultado.id_miembro,
-            usuario: resultado.usuario,
-        });
-        // } else {
-        //     res.status(409).json({ error: "Usuario ya existe." });
-        // }
+
+        if (existencia.length === 0) {
+            const resultado = await prisma.miembro.create({
+                data: {
+                    usuario: usuario.toLowerCase(),
+                    contrasegna: sha512(contrasegna),
+                    es_administrador: true,
+                },
+            });
+            res.status(200).json({
+                id_miembro: resultado.id_miembro,
+                usuario: resultado.usuario,
+            });
+        } else {
+            res.status(409).json({ error: "Usuario ya existe." });
+        }
     } catch (err) {
         res.status(500).json({ error: `${err}` });
     }
@@ -380,21 +380,35 @@ router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const { usuario, contrasegna } = req.body;
 
-    try {
-        const resultado = await prisma.miembro.update({
-            where: {
-                id_miembro: parseInt(id),
-            },
-            data: {
-                usuario: usuario.toLowerCase(),
-                contrasegna: sha512(contrasegna),
-            },
-        });
+    const existencia = await prisma.miembro.findMany({
+        where: {
+            usuario: usuario.toLowerCase(),
+        },
+    });
 
-        res.status(200).json({
-            id_miembro: resultado.id_miembro,
-            usuario: resultado.usuario,
-        });
+    try {
+        if (
+            existencia.length === 0 ||
+            (existencia.length === 1 &&
+                existencia[0].id_miembro === parseInt(id))
+        ) {
+            const resultado = await prisma.miembro.update({
+                where: {
+                    id_miembro: parseInt(id),
+                },
+                data: {
+                    usuario: usuario.toLowerCase(),
+                    contrasegna: sha512(contrasegna),
+                },
+            });
+
+            res.status(200).json({
+                id_miembro: resultado.id_miembro,
+                usuario: resultado.usuario,
+            });
+        } else {
+            res.status(409).json({ error: "Usuario ya existe." });
+        }
     } catch (err) {
         res.status(500).json({ error: `${err}` });
     }
