@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 function AccountsPage() {
@@ -10,10 +10,13 @@ function AccountsPage() {
   const fetchUsers = async () => {
     try {
       const response = await fetch("http://localhost:3000/miembro/");
+      if (!response.ok) {
+        throw new Error("Error al obtener los usuarios.");
+      }
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error("Error al obtener los usuarios:", error);
+      alert(error.message); // Mostrar el error en una alerta del navegador
     }
   };
 
@@ -33,14 +36,14 @@ function AccountsPage() {
         body: JSON.stringify(newUser),
       });
 
-      if (response.ok) {
-        fetchUsers(); // Volvemos a obtener los usuarios después de agregar uno nuevo
-        setNewUser({ usuario: "", contrasegna: "" });
-      } else {
-        console.error("Error al agregar el usuario");
+      if (!response.ok) {
+        throw new Error("Error al agregar el usuario.");
       }
+
+      fetchUsers(); // Volvemos a obtener los usuarios después de agregar uno nuevo
+      setNewUser({ usuario: "", contrasegna: "" });
     } catch (error) {
-      console.error("Error en la solicitud:", error);
+      alert(error.message); // Mostrar el error en una alerta del navegador
     }
   };
 
@@ -60,15 +63,15 @@ function AccountsPage() {
         }
       );
 
-      if (response.ok) {
-        fetchUsers(); // Volvemos a obtener los usuarios después de la edición
-        setNewUser({ usuario: "", contrasegna: "" });
-        setEditingUserId(null);
-      } else {
-        console.error("Error al editar el usuario");
+      if (!response.ok) {
+        throw new Error("Error al editar el usuario.");
       }
+
+      fetchUsers(); // Volvemos a obtener los usuarios después de la edición
+      setNewUser({ usuario: "", contrasegna: "" });
+      setEditingUserId(null);
     } catch (error) {
-      console.error("Error en la solicitud:", error);
+      alert(error.message); // Mostrar el error en una alerta del navegador
     }
   };
 
@@ -88,13 +91,13 @@ function AccountsPage() {
         }
       );
 
-      if (response.ok) {
-        fetchUsers(); // Volvemos a obtener los usuarios después de la eliminación
-      } else {
-        console.error("Error al eliminar el usuario");
+      if (!response.ok) {
+        throw new Error("Error al eliminar el usuario.");
       }
+
+      fetchUsers(); // Volvemos a obtener los usuarios después de la eliminación
     } catch (error) {
-      console.error("Error en la solicitud:", error);
+      alert(error.message); // Mostrar el error en una alerta del navegador
     }
   };
 
@@ -143,15 +146,15 @@ function AccountsPage() {
                 key={user.id_miembro}
                 className="grid grid-cols-12 gap-4 items-center mb-2"
               >
-                <span className="col-span-8 truncate">{user.usuario}</span>
+                <span className="col-span-6 truncate">{user.usuario}</span>
                 <button
-                  className="col-span-2 bg-yellow-500 text-white px-2 py-1"
+                  className="col-span-3 bg-yellow-500 text-white px-2 py-1"
                   onClick={() => startEditUser(user)}
                 >
                   Editar
                 </button>
                 <button
-                  className="col-span-2 bg-red-500 text-white px-2 py-1"
+                  className="col-span-3 bg-red-500 text-white px-2 py-1"
                   onClick={() => handleDeleteUser(user.id_miembro)}
                 >
                   Eliminar
